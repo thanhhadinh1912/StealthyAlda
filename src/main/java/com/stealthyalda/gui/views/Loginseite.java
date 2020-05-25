@@ -40,12 +40,12 @@ public class Loginseite extends VerticalLayout implements View {
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
         FileResource resource = new FileResource(new File(basepath +
-                "/Image/Logo3.png"));
+                "/Image/stealthyalda.png"));
         Image Logo = new Image("", resource);
-        System.out.println(basepath + "/Image/Logo3.png");
+        System.out.println(basepath + "/Image/stealthyalda.png");
 
         FileResource resource3 = new FileResource(new File(basepath +
-                "/Image/BImage.jpg"));
+                "/Image/background_home.jpg"));
 
 
         GridLayout Maingrid = new GridLayout(6, 6);
@@ -66,7 +66,7 @@ public class Loginseite extends VerticalLayout implements View {
         gridTop.setComponentAlignment(butonReg, Alignment.BOTTOM_RIGHT);
 
 
-        gridTop.setComponentAlignment(Logo, Alignment.TOP_LEFT);
+        gridTop.setComponentAlignment(Logo, Alignment.MIDDLE_CENTER);
 
         //grid.setWidthFull();
         Panel panel2 = new Panel( "Stealthy_Alda");
