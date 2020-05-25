@@ -20,7 +20,7 @@ import java.io.File;
 
 
 
-public class Startseite extends VerticalLayout implements View {
+public class Loginseite extends VerticalLayout implements View {
 
     public void setUp(){
 

@@ -3,8 +3,8 @@ package com.stealthyalda.gui.ui;
 import javax.servlet.annotation.WebServlet;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.views.Loginseite;
 import com.stealthyalda.gui.views.Registerseite;
-import com.stealthyalda.gui.views.Startseite;
 import com.stealthyalda.gui.views.Suchseite;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.annotations.*;
@@ -43,7 +43,7 @@ public class MyUI extends UI {
 
         Navigator navi = new Navigator(this,this);
         navi.addView(Views.MAIN, Suchseite.class);
-        navi.addView(Views.LOGIN, Startseite.class);
+        navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
