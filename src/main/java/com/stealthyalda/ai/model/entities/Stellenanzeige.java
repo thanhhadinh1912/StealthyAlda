@@ -9,8 +9,16 @@ public class Stellenanzeige {
     private String status;
     private Date datum;
     private String fachbereich;
-    private int unternehmen_id;
+    private int arbeitgeber_id;
     private String ort;
+
+    public int getArbeitgeber_id() {
+        return arbeitgeber_id;
+    }
+
+    public void setArbeitgeber_id(int arbeitgeber_id) {
+        this.arbeitgeber_id = arbeitgeber_id;
+    }
 
     public Stellenanzeige(){
 
@@ -72,11 +80,5 @@ public class Stellenanzeige {
         this.fachbereich = fachbereich;
     }
 
-    public int getUnternehmen_id() {
-        return unternehmen_id;
-    }
 
-    public void setUnternehmen_id(int unternehmen_id) {
-        this.unternehmen_id = unternehmen_id;
-    }
 }

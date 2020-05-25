@@ -8,39 +8,12 @@ import java.util.Date;
 
 public class Benutzer {
     private String nachname;
+    private String vorname;
     private String email;
+    private String passwort;
     private String telefonnummer = null;
-    private int benutzer_id ;
-    private Date geburtsdatum = null;
-    private String login;
-    private Adresse adresse;
-    private String roles;
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login=login;
-    }
-
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
-
-    private String vorname = null;
-
-    public String getVorname() {
-        return vorname;
-    }
-
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
-    }
+    private int id ;
+    private int andere;
 
     public String getNachname() {
         return nachname;
@@ -48,6 +21,14 @@ public class Benutzer {
 
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
     }
 
     public String getEmail() {
@@ -58,6 +39,14 @@ public class Benutzer {
         this.email = email;
     }
 
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
+    }
+
     public String getTelefonnummer() {
         return telefonnummer;
     }
@@ -66,37 +55,20 @@ public class Benutzer {
         this.telefonnummer = telefonnummer;
     }
 
-    public int getBenutzer_id() {
-        return benutzer_id;
+    public int getId() {
+        return id;
     }
 
-    public void setBenutzer_id(int benutzer_id) {
-        this.benutzer_id = benutzer_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Date getGeburtsdatum() {
-        return geburtsdatum;
+    public int getAndere() {
+        return andere;
     }
 
-    public void setGeburtsdatum(Date geburtsdatum) {
-        this.geburtsdatum = geburtsdatum;
+    public void setAndere(int andere) {
+        this.andere = andere;
     }
-//    public boolean hasRole(String role) {
-//        //Lazy Load
-//        if(this.roles == null){
-//            getRoles();
-//        }
-//        for( Role r : roles){
-//            if(r.getBezeichnung().equals(role)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    private void getRoles() {
-//
-//        this.roles = RoleDAO.getInstance().getRolesForUser(this);
-//    }
 
 }

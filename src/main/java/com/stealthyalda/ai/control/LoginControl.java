@@ -22,9 +22,9 @@ public class LoginControl {
             //DB - Zugriffxyss
             Statement statement = JDBCConnection.getInstance().getStatement();
             set = statement.executeQuery("SELECT * \n" +
-                    "FROM stealthyalda.account\n" +
-                    "WHERE stealthyalda.account.email = '" + email + "'\n" +
-                    "AND stealthyalda.account.passwort = '"+password+"';");
+                    "FROM stealthyalda.benutzer\n" +
+                    "WHERE stealthyalda.benutzer.email = '" + email + "'\n" +
+                    "AND stealthyalda.benutzer.passwort = '"+password+"';");
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
@@ -35,8 +35,8 @@ public class LoginControl {
         try {
             if(set.next()){
                 benutzer = new Benutzer();
-                benutzer.setLogin(set.getString(1));
-                benutzer.setVorname(set.getString(4));
+                benutzer.setEmail(set.getString(6));
+                benutzer.setVorname(set.getString(3));
             } else{
                 //Error Handling
                 throw new NoSuchUserOrPassword();

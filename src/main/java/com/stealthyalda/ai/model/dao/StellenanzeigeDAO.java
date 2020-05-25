@@ -48,7 +48,7 @@ public class StellenanzeigeDAO extends AbstractDAO{
                 stellenanzeige.setStatus(rs.getString(4));
                 stellenanzeige.setDatum(rs.getDate(5));
                 stellenanzeige.setFachbereich(rs.getString(6));
-                stellenanzeige.setUnternehmen_id(rs.getInt(7));
+                stellenanzeige.setArbeitgeber_id(rs.getInt(7));
                 stellenanzeige.setOrt(rs.getString(8));
                 liste.add(stellenanzeige);
             }
