@@ -46,6 +46,10 @@ public class Registerseite extends VerticalLayout implements View {
         FileResource resource3 = new FileResource(new File(basepath +
                 "/Image/background_home.jpg"));
 
+        Image background = new Image("", resource3);
+
+        Link link = new Link("Arbeitgeber", new ExternalResource(""));
+
         GridLayout RegisterGrid = new GridLayout(6, 6);
         RegisterGrid.setSizeFull();
 
@@ -53,44 +57,22 @@ public class Registerseite extends VerticalLayout implements View {
         gridTop.setSizeFull();
 
         gridTop.addComponent(Logo,0,0);
+        gridTop.setComponentAlignment(Logo, Alignment.TOP_LEFT);
 
-
-        //gridTop.setComponentAlignment(butonReg, Alignment.BOTTOM_RIGHT);
-
-
-        gridTop.setComponentAlignment(Logo, Alignment.MIDDLE_CENTER);
+        gridTop.addComponent(link);
+        gridTop.setComponentAlignment(link, Alignment.BOTTOM_RIGHT);
 
         //grid.setWidthFull();
         Panel panel2 = new Panel( "Stealthy_Alda");
         panel2.addStyleName("login");
+
         panel2.setContent(gridTop);
 
         //grid bottom
         GridLayout gridBottom = new GridLayout(4, 1);
         gridBottom.setWidth("40%");
 
-        /*Link link = new Link("Stealthy_Alda",
-                new ExternalResource("http://vaadin.com/"));
 
-        Link link1 = new Link("© 2020",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link2 = new Link("Info",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link3 = new Link("Hilfe",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link4 = new Link("Passwort vergessen?",
-                new ExternalResource("http://vaadin.com/"));
-
-
-        gridBottom.addComponent(link,0,0);
-        gridBottom.addComponent(link1,1,0);
-        gridBottom.addComponent(link2,2,0);
-        gridBottom.addComponent(link3,3,0);
-
-    */
 //Vertikales Layout + Hinzufügen der Textfelder
         VerticalLayout layout = new VerticalLayout();
 
@@ -101,18 +83,16 @@ public class Registerseite extends VerticalLayout implements View {
         Label label = new Label ( "&nbsp;", ContentMode.HTML);
         layout.addComponent(label);
 //Erstellen und Hinzufügen eines Panels + Platzierung in die Mitte
-        Panel panel = new Panel( "Willkommen Zurück: ");
+        Panel panel = new Panel( "Erstellen sie ihr Stealthy_Alda Konto: ");
         panel.addStyleName("login");
 
 //Button zum Registrieren
 
-        Button butonRegister = new Button("Anmelden", FontAwesome.SEARCH);
+        Button butonRegister = new Button("Registrieren", FontAwesome.SIGN_IN);
         butonRegister.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
         layout.addComponent(butonRegister);
         layout.setComponentAlignment(butonRegister, Alignment.MIDDLE_CENTER);
-        //layout.addComponent(link4);
-        //layout.setComponentAlignment(link4, Alignment.MIDDLE_CENTER);
         panel.setContent(layout);
         panel.setSizeUndefined();
 
@@ -163,13 +143,6 @@ public class Registerseite extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-//        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
-
-        /*Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-        if( user != null) {
-            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
-        } else {
-*/
         this.setUp();
 
     }
