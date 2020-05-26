@@ -15434,3 +15434,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #464646 !important;
 	text-decoration: none !important;
 }
+
+.mytheme .button {
+	color: blue;
+}

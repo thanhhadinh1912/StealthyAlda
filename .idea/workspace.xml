@@ -16,14 +16,70 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/Register" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ebde0f14-bf25-4813-a90b-fb1410da9179" name="Default Changelist" comment="Lokaler testbranch">
+    <list default="true" id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_05_2020_18_56__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_05_2020_18_56__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_05_2020_17_08__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_05_2020_17_08__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Loginseite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Loginseite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/components/TopPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/components/TopPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/mytheme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/mytheme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/VAADIN/themes/mytheme/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/BenutzerprofilAnlegen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/BenutzerprofilAnlegen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/LoginControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/LoginControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/RegisterControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/RegisterControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/SucheEinfach.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/SucheEinfach.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/DatabaseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/DatabaseException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/NoSuchUserOrPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/NoSuchUserOrPassword.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/UserExistsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/UserExistsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/ValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/ValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/AbstractDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/AbstractDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/RoleDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/RoleDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/StellenanzeigeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/StellenanzeigeDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Benutzerdaten.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Benutzerdaten.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/SuchErgebnis.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/SuchErgebnis.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Suchauftrag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Suchauftrag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Benutzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Benutzer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Bewerbung.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Bewerbung.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Stellenanzeige.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Stellenanzeige.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI$MyUIServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI$MyUIServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Passwortvergessenseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Passwortvergessenseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/ProfilVerwalten.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/ProfilVerwalten.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/db/JDBCConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/db/JDBCConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Adresse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Adresse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Password.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Password.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/PasswordAuthentication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/PasswordAuthentication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Roles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Views.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Views.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/postgresql/util/SQLException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/postgresql/util/SQLException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,15 +87,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Register" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="ProjectId" id="1cP7fMqobu8bJSvmNvgoIExr6Gj" />
+  <component name="ProjectId" id="1cS7E33d2Jc3NBGgDIJ1u1xPgZ4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,52 +97,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/Image" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Medion 6681-60596\IdeaProjects\wi-inf_se2_2020_stealthy_alda\src\main\webapp\Image" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Medion 6681-60596\IdeaProjects\wi-inf_se2_2020_stealthy_alda\src\main\java\com\stealthyalda\ai\control" />
-      <recent name="C:\Users\Medion 6681-60596\IdeaProjects\wi-inf_se2_2020_stealthy_alda\src\main\java\com\stealthyalda\ai\control\exceptions" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Maven.run webapplication">
-    <configuration name="clean install" type="MavenRunConfiguration" factoryName="Maven">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean" />
-                <option value="install" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="run webapplication" type="MavenRunConfiguration" factoryName="Maven">
+  <component name="RunManager">
+    <configuration name="[jetty:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -117,213 +124,64 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Maven.clean install" />
-      <item itemvalue="Maven.run webapplication" />
-    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="03e6262d-d6ed-4d41-8b27-63f7dbd2bc9e" name="Default Changelist" comment="" />
-      <created>1590418476370</created>
+      <changelist id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="" />
+      <created>1590510025496</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1590418476370</updated>
-      <workItem from="1590418478299" duration="292000" />
-      <workItem from="1590418813524" duration="12188000" />
-      <workItem from="1590494535855" duration="9143000" />
-      <workItem from="1590505545350" duration="1832000" />
+      <updated>1590510025496</updated>
     </task>
-    <task id="LOCAL-00001" summary="Registry Class don't use">
-      <created>1590441426006</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590441426006</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Register" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Registry Class don't use" />
-    <MESSAGE value="Lokaler testbranch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lokaler testbranch" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1590509133172">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590510076760">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1590509133172" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590439015569">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1590510076760" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590510117748">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1590439015569" />
-    <state x="500" y="214" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1590438506194">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590510117748" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590510117748">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="500" y="214" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1590438506194" />
-    <state x="515" y="267" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1590439719938">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590510117748" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590510117748">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="515" y="267" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1590439719938" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1590509079718">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590510117748" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590510117748">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1590509079718" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1590430525979">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590430525979" />
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.bottom" timestamp="1590501911463">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590501911463" />
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.center" timestamp="1590501911463">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.center/0.0.1536.824@0.0.1536.824" timestamp="1590501911463" />
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.left" timestamp="1590501911462">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.left/0.0.1536.824@0.0.1536.824" timestamp="1590501911462" />
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.right" timestamp="1590501911463">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="121" y="511" width="1464" height="186" key="GridCell.Tab.-1.right/0.0.1536.824@0.0.1536.824" timestamp="1590501911463" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1590508960045">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590508960045" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1590508960045">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590508960045" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1590508960045">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590508960045" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1590508960045">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590508960045" />
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.bottom" timestamp="1590505509593">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590505509593" />
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.center" timestamp="1590505509593">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590505509593" />
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.left" timestamp="1590505509593">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590505509593" />
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.right" timestamp="1590505509593">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="197" y="474" width="1493" height="214" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590505509593" />
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.bottom" timestamp="1590501706707">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590501706707" />
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.center" timestamp="1590501706707">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1590501706707" />
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.left" timestamp="1590501706707">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1590501706707" />
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.right" timestamp="1590501706707">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1464" height="186" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1590501706707" />
-    <state x="650" y="278" width="385" height="267" key="MultipleFileMergeDialog" timestamp="1590509104915">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="650" y="278" width="385" height="267" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1590509104915" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1590418770685">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1590418770685" />
-    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog" timestamp="1590509079718">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="ShowDiffWithBranchDialog/0.0.1536.824@0.0.1536.824" timestamp="1590509079718" />
-    <state x="640" y="326" key="VCS.EditChangelistDialog" timestamp="1590441593186">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="640" y="326" key="VCS.EditChangelistDialog/0.0.1536.824@0.0.1536.824" timestamp="1590441593186" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590441432192">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590441432192" />
-    <state x="602" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590509083814">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="602" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1590509083814" />
-    <state x="0" y="355" width="1478" height="252" key="dock-window-1" timestamp="1590501825374">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1478" height="252" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1590501825374" />
-    <state x="0" y="355" width="1478" height="252" key="dock-window-2" timestamp="1590501825374">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="0" y="355" width="1478" height="252" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1590501825374" />
-    <state x="121" y="511" width="1478" height="252" key="dock-window-3" timestamp="1590502299004">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="121" y="511" width="1478" height="252" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1590502299004" />
-    <state x="49" y="355" width="1478" height="252" key="dock-window-4" timestamp="1590502299004">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="49" y="355" width="1478" height="252" key="dock-window-4/0.0.1536.824@0.0.1536.824" timestamp="1590502299004" />
-    <state x="435" y="125" key="git4idea.branch.GitSmartOperationDialog" timestamp="1590508837964">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="435" y="125" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1590508837964" />
-    <state x="367" y="200" key="git4idea.merge.GitPullDialog" timestamp="1590418500773">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="367" y="200" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1590418500773" />
-  </component>
-  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
-    <option name="sizePresets">
-      <list>
-        <SizePreset>
-          <option name="caption" value="Phone" />
-          <option name="height" value="568" />
-          <option name="width" value="320" />
-        </SizePreset>
-        <SizePreset>
-          <option name="caption" value="Tablet" />
-          <option name="height" value="1024" />
-          <option name="width" value="768" />
-        </SizePreset>
-        <SizePreset>
-          <option name="caption" value="Desktop" />
-          <option name="height" value="900" />
-          <option name="width" value="1440" />
-        </SizePreset>
-      </list>
-    </option>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590510117748" />
   </component>
 </project>

@@ -30,39 +30,6 @@ public class TopPanel extends HorizontalLayout {
             vorname = user.getVorname();
         }
 
-//        Label loggedLabel = new Label("Welcome: " + user.getVorname() + "!");
-//        loggedLabel.setSizeUndefined();
-//        loggedLabel.addStyleName("loggedLabel");
-//
-//        Label loggedLabel2 = new Label("Welcome text: !");
-//        loggedLabel2.setSizeUndefined();
-//        loggedLabel2.addStyleName("loggedLabel");
-//
-//
-//
-//
-//        MenuBar bar = new MenuBar();
-//        MenuBar.MenuItem item1 = bar.addItem("Menü", null);
-//
-//        item1.addItem("Logout", FontAwesome.SIGN_OUT, new MenuBar.Command() {
-//            @Override
-//            public void menuSelected(MenuBar.MenuItem menuItem) {
-//                LoginControl.logoutUser();
-//            }
-//        });
-
-//        if(user.hasRole(Roles.POWER_USER)) {
-//            item1.addItem("Cancel", FontAwesome.UNLINK, new MenuBar.Command() {
-//                @Override
-//                public void menuSelected(MenuBar.MenuItem menuItem) {
-//
-//                    ListBookingWindow window = new ListBookingWindow();
-//                    UI.getCurrent().addWindow(window);
-//                }
-//            });
-//        }
-
-
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/stealthyalda.png"));
@@ -71,18 +38,11 @@ public class TopPanel extends HorizontalLayout {
         GridLayout gridTop = new GridLayout(8, 1);
         gridTop.setSizeFull();
 
-//        GridLayout gridBar = new GridLayout(2, 1);
-//        gridTop.setSizeFull();
-//
-//
-//        gridBar.addComponent(bar,1,0);
-//        gridBar.addComponent(loggedLabel,0,0);
-
-//
-//        gridTop.addComponent(gridBar,3,0);
          gridTop.addComponent(Logo,0,0);
         Button buttonFürStudent = new Button("Für Studenten");
+
         buttonFürStudent.addStyleName(ValoTheme.BUTTON_LINK);
+
         buttonFürStudent.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -99,7 +59,7 @@ public class TopPanel extends HorizontalLayout {
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARD);
             }
         });
-                gridTop.addComponent(buttonFürArbeitgeber,6,0);
+        gridTop.addComponent(buttonFürArbeitgeber,6,0);
 
                 
         Button buttonAbmelden = new Button("Abmelden");
@@ -122,6 +82,8 @@ public class TopPanel extends HorizontalLayout {
         Panel panel = new Panel( );
 //        panel.addStyleName("login");
         panel.setContent(gridTop);
+        panel.addStyleName("login");
+
 
         this.addComponent(panel);
         this.setComponentAlignment(panel,Alignment.TOP_RIGHT);

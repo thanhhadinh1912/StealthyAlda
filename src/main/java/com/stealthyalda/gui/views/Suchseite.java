@@ -26,9 +26,6 @@ public class Suchseite extends VerticalLayout implements View{
 
         this.addComponent(new TopPanel());
 
-     /*   Label hr = new Label("<div class=CollHBRS-568231481></div>",ContentMode.HTML);
-        hr.setWidth(100f, Sizeable.Unit.PERCENTAGE);
-        this.addComponent(hr);*/
 
 
         setMargin(true);
