@@ -11,6 +11,7 @@ public class Stellenanzeige {
     private String fachbereich;
     private int arbeitgeber_id;
     private String ort;
+    private String unternehmen;
 
     public int getArbeitgeber_id() {
         return arbeitgeber_id;
@@ -78,6 +79,13 @@ public class Stellenanzeige {
 
     public void setFachbereich(String fachbereich) {
         this.fachbereich = fachbereich;
+    }
+    public String getUnternehmen() {
+        return unternehmen;
+    }
+
+    public void setUnternehmen(String unternehmen) {
+        this.unternehmen = unternehmen;
     }
 
 

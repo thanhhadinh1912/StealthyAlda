@@ -23,17 +23,22 @@ public class StellenanzeigeDAO extends AbstractDAO{
 
     }
 
-    public List<Stellenanzeige> getStellenanzeigeByLocation(String titel, String ort)  {
+    public List<Stellenanzeige> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort)  {
         Statement statement = this.getStatement();
 
         ResultSet rs = null;
         try{
-            rs = statement.executeQuery("SELECT * FROM stealthyalda.stellenanzeige WHERE stealthyalda.stellenanzeige.ort =  \'" + ort +"\' OR stealthyalda.stellenanzeige.titel = '" +titel+ "'" );
+            rs = statement.executeQuery("select s.stellenanzeige_id, s.titel, s.beschreibung, s.status, s.datum, s.fachbereich, a.unternehmen,s. ort\n" +
+                    "from stealthyalda.stellenanzeige s, stealthyalda.arbeitgeber a\n" +
+                    "where s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                    "and ort LIKE '%"+ ort + "%'\n" +
+                    "or unternehmen LIKE '%" + titelorunternehmen +"%'\n" +
+                    "or titel LIKE '%" + titelorunternehmen +"%'");
         }catch(SQLException ex){
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (rs == null){
-            System.out.println("h2");
+            System.out.println("null");
             return null;
         }
         List<Stellenanzeige> liste = new ArrayList<Stellenanzeige>();
@@ -48,7 +53,7 @@ public class StellenanzeigeDAO extends AbstractDAO{
                 stellenanzeige.setStatus(rs.getString(4));
                 stellenanzeige.setDatum(rs.getDate(5));
                 stellenanzeige.setFachbereich(rs.getString(6));
-                stellenanzeige.setArbeitgeber_id(rs.getInt(7));
+                stellenanzeige.setUnternehmen(rs.getString(7));
                 stellenanzeige.setOrt(rs.getString(8));
                 liste.add(stellenanzeige);
             }

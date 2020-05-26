@@ -98,7 +98,7 @@ public class Suchseite extends VerticalLayout implements View{
 
                 //erstmal alles löschen
                 grid.removeAllColumns();
-                grid.setCaption("Treffer für " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((Benutzer) ((MyUI) UI.getCurrent()).getBenutzer()).getVorname() + ")");
+                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((Benutzer) ((MyUI) UI.getCurrent()).getBenutzer()).getVorname() + ")");
 
                 // neue Items hinzufügen
                 grid.setItems(liste);
@@ -106,6 +106,7 @@ public class Suchseite extends VerticalLayout implements View{
                 // Columns definieren
                 grid.addColumn(Stellenanzeige::getTitel).setCaption("Titel");
                 grid.addColumn(Stellenanzeige::getBeschreibung).setCaption("Beschreibung");
+                grid.addColumn(Stellenanzeige::getUnternehmen).setCaption("Unternehmen");
                 grid.addColumn(Stellenanzeige::getDatum).setCaption("Datum");
                 grid.addColumn(Stellenanzeige::getOrt).setCaption("Ort");
                 grid.addColumn(Stellenanzeige::getStatus).setCaption("Status");

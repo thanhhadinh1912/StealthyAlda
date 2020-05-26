@@ -19,6 +19,6 @@ public class SucheEinfach {
     }
     public List<Stellenanzeige> getStellenanzeigeByOrt(String titel, String ort){
         //Datenbank-Zugriff
-        return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocation(titel,ort);
+        return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehmen(titel,ort);
     }
 }
