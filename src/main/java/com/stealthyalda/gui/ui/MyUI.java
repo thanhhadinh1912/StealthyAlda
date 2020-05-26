@@ -3,12 +3,11 @@ package com.stealthyalda.gui.ui;
 import javax.servlet.annotation.WebServlet;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.views.Loginseite;
-import com.stealthyalda.gui.views.Registerseite;
-import com.stealthyalda.gui.views.Suchseite;
+import com.stealthyalda.gui.views.*;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.annotations.*;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
@@ -45,6 +44,9 @@ public class MyUI extends UI {
         navi.addView(Views.MAIN, Suchseite.class);
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
+        navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
+        navi.addView(Views.DASHBOARD, Dashboard.class);
+        navi.addView(Views.ProfilVerwalten, ProfilVerwalten.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 
