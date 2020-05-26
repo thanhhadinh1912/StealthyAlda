@@ -60,7 +60,7 @@ public class Loginseite extends VerticalLayout implements View {
 
 
 
-        Panel panel = new Panel( "Stealthy_Alda");
+        Panel panel = new Panel( );
         panel.addStyleName("login");
 //Vertikales Layout + Hinzufügen der Textfelder
         GridLayout layout = new GridLayout(4, 11);
