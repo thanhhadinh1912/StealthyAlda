@@ -26,8 +26,6 @@ public class Suchseite extends VerticalLayout implements View{
 
         this.addComponent(new TopPanel());
 
-
-
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
 
@@ -45,12 +43,23 @@ public class Suchseite extends VerticalLayout implements View{
             vorname = benutzer.getVorname();
         }
 
-        Label label = new Label(benutzer.getVorname() + ", gebe den Ort ein: ");
-        horizon.addComponents(label, textinput, button);
+        GridLayout layout = new GridLayout(4, 1);
+        //Textfeld Jobtitel, Unternehmen
+        final TextField jobsearch = new TextField();
+        jobsearch.setCaption("Jobtitel, Unternehmen: ");
+
+
+//Textfelt Passwort
+        final TextField jobsearchOrt = new TextField();
+        jobsearchOrt.setCaption("Ort: ");
+
+
+//        Label label = new Label(benutzer.getVorname() + ", gebe den Ort ein: ");
+        horizon.addComponents(jobsearch, jobsearchOrt, button);
         addComponent(horizon);
 
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
-        horizon.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+//        horizon.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
 
         Grid<Stellenanzeige> grid = new Grid<>();
         grid.setSizeFull();
