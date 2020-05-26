@@ -69,40 +69,9 @@ public class Suchseite extends VerticalLayout implements View{
         grid.setStyleName("gridSuche");
 
 
-        //grid bottom #############################
-//        GridLayout gridBottom = new GridLayout(4, 1);
-//        gridBottom.setWidth("40%");
-//
-//        Link link = new Link("Stealthy_Alda",
-//                new ExternalResource("http://vaadin.com/"));
-//
-//        Link link1 = new Link("© 2020",
-//                new ExternalResource("http://vaadin.com/"));
-//
-//        Link link2 = new Link("Info",
-//                new ExternalResource("http://vaadin.com/"));
-//
-//        Link link3 = new Link("Hilfe",
-//                new ExternalResource("http://vaadin.com/"));
-
-
-        //LogoBottom.setWidth("50%");
-        //LogoBottom.setHeight("50%");
-//
-//        gridBottom.addComponent(link, 0, 0);
-//        gridBottom.addComponent(link1, 1, 0);
-//        gridBottom.addComponent(link2, 2, 0);
-//        gridBottom.addComponent(link3, 3, 0);
-
         GridLayout MainFutter = new GridLayout(6, 6);
         MainFutter.setSizeFull();
-//        MainFutter.addComponent(gridBottom, 3, 5, 4, 5);
 
-        //this.addComponent(MainFutter);
-        //this.setComponentAlignment(MainFutter,Alignment.BOTTOM_CENTER);
-
-
-        // Die aktuell angewählte Zeile in der Tabelle (aka dem Grid)
         SingleSelect<Stellenanzeige> selection = grid.asSingleSelect();
 
         // Der Event Listener für den Grid
