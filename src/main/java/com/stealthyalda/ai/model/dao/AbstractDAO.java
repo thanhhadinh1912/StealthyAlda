@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.model.dao;
 
 
-
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.services.db.JDBCConnection;
 
@@ -12,22 +11,22 @@ import java.util.logging.Logger;
 
 public class AbstractDAO {
 
-    protected Statement getStatement(){
+    protected Statement getStatement() {
         Statement statement = null;
-        try{
+        try {
             statement = JDBCConnection.getInstance().getStatement();
-        } catch (DatabaseException ex){
-            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null,ex);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return statement;
     }
 
-    protected PreparedStatement getPreaparedStatement(String sql){
+    protected PreparedStatement getPreaparedStatement(String sql) {
         Statement statement = null;
-        try{
-            statement = JDBCConnection.getInstance().getPreparedStatement(sql)
-            ;        } catch (DatabaseException ex){
-            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null,ex);
+        try {
+            statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        } catch (DatabaseException ex) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return (PreparedStatement) statement;
     }
