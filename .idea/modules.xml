@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/StealthyAlda.iml" filepath="$PROJECT_DIR$/StealthyAlda.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" filepath="$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" />
     </modules>
   </component>
