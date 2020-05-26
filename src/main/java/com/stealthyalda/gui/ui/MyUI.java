@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.views.Loginseite;
+import com.stealthyalda.gui.views.Passwortvergessenseite;
 import com.stealthyalda.gui.views.Registerseite;
 import com.stealthyalda.gui.views.Suchseite;
 import com.stealthyalda.services.util.Views;
@@ -45,6 +46,7 @@ public class MyUI extends UI {
         navi.addView(Views.MAIN, Suchseite.class);
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
+        navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 

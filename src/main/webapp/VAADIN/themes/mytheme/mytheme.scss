@@ -91,5 +91,25 @@ $v-font-size: 18px;
 @mixin mytheme {
   @include valo;
 
-  // Insert your own theme rules here
+.link{
+        padding: 5px 10px !important;
+        background-color: transparent !important;
+        color: #464646 !important;
+        border: 1px solid transparent !important;
+        border-radius: 4px !important;
+        height: auto !important;
+        min-width: 100px !important;
+        font-size: small !important;
+        -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
+        -moz-transition: all 200ms ease-in-out !important; /* WebKit */
+        -o-transition: all 200ms ease-in-out !important; /* Opera */
+        transition: all 200ms ease-in-out !important; /* Standard */
+   }
+
+   .link:hover{
+       color: white !important;
+       background-color: #464646 !important;
+       text-decoration: none !important;
+   }
+
 }

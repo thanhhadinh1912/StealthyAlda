@@ -4,6 +4,7 @@ import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.components.LinkButton;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
@@ -15,7 +16,7 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
-
+import com.vaadin.ui.themes.ValoTheme;
 import java.io.File;
 
 
@@ -55,18 +56,14 @@ public class Loginseite extends VerticalLayout implements View {
 
 
 
-        Link link4 = new Link("Passwort vergessen",
-                new ExternalResource("http://vaadin.com/"));
-
-
-
-        Panel panel = new Panel( );
+        Panel panel = new Panel( "Stealthy_Alda");
         panel.addStyleName("login");
 //Vertikales Layout + Hinzufügen der Textfelder
         GridLayout layout = new GridLayout(4, 11);
         Link link5 = new Link("Anmelden",
        new ExternalResource("http://localhost:8080/#!login"));
-        Button butonReg = new Button("Registrieren", FontAwesome.SIGN_IN);
+        Button butonReg = new Button("Registrieren");
+        butonReg.addStyleName(ValoTheme.BUTTON_LINK);
         butonReg.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -90,8 +87,16 @@ public class Loginseite extends VerticalLayout implements View {
         layout.addComponent(passwordField,0,4,3,4);
         layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
 
-        layout.addComponent(link4,2,5,3,5);
-        layout.setComponentAlignment(link4, Alignment.MIDDLE_RIGHT);
+        Button butonPasswortvergessen = new Button("Passwort vergessen?");
+        butonPasswortvergessen.addStyleName(ValoTheme.BUTTON_LINK);
+        butonPasswortvergessen.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                UI.getCurrent().getNavigator().navigateTo(Views.PASSWORTVERGESSEN);
+            }
+        });
+        layout.addComponent(butonPasswortvergessen,2,5,3,5);
+        layout.setComponentAlignment(butonPasswortvergessen, Alignment.MIDDLE_RIGHT);
         userLogin.setWidth("500px");
         passwordField.setWidth("500px");
 
