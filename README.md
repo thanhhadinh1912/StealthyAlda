@@ -8,6 +8,7 @@ TODO
 ========
 
 - finish view
-- complete registration logic - insert prepared
-- misc corrections and fusion of control + view class
+- complete registration logic - insert prepared **DONE**
+- misc corrections and fusion of control + view class **DONE**
+- CSS styling!!
 
