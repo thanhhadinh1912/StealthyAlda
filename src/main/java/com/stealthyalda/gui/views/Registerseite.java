@@ -22,6 +22,9 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+// TODO - Add "Vorname", "Nachname", "Telefonnummer" to the fields
+// TODO - Validate user input on client side (*valid* email address)
+// TODO - Alternative registeration for "Unternehmen"
 public class Registerseite extends VerticalLayout implements View {
     public void setUp(){
 
