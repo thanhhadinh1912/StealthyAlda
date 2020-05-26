@@ -7,38 +7,71 @@ import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Account;
 import com.stealthyalda.services.util.Views;
+import com.stealthyalda.services.util.PasswordAuthentication;
 import com.vaadin.ui.UI;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginControl {
+    private static final String userLoginStatement = "SELECT passwort, vorname FROM stealthyalda.benutzer WHERE email = ?";
+
     public static void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException {
         ResultSet set = null;
-        try {
-            //DB - Zugriffxyss
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * \n" +
-                    "FROM stealthyalda.benutzer\n" +
-                    "WHERE stealthyalda.benutzer.email = '" + email + "'\n" +
-                    "AND stealthyalda.benutzer.passwort = '"+password+"';");
-        } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+
+        // TODO change login logic below to use hashed passwords from the databank
+        try{
+            // hash password for check in db
+            PasswordAuthentication hasher = new PasswordAuthentication();
+
+            // remember, convert to char[] as the string method is deprecated
+            char[] c = password.toCharArray();
+
+            String passwordHash = hasher.hash(c); // password hash
+
+            // use prepared statements to mitigate sql injection
+
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(userLoginStatement);
+            // remember, the int references the index of the item, starting 1
+            preparedStatement.setString(1, email);
+            // preparedStatement.setString(2, passwordHash);
+            // query!
+            set = preparedStatement.executeQuery();
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
-
-        Benutzer benutzer = null;
-
+        String dbPasswordHash = null;
         try {
-            if(set.next()){
-                benutzer = new Benutzer();
-                benutzer.setEmail(set.getString(6));
-                benutzer.setVorname(set.getString(3));
+            if(set.next()) {
+                dbPasswordHash = set.getString(1);
             } else{
                 //Error Handling
+                throw new NoSuchUserOrPassword();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+        }
+        // user vorhanden. Jetzt Passwort hashes vergleichen
+        /**
+        *
+        * */
+        Benutzer benutzer = null;
+
+        PasswordAuthentication authenticator = new PasswordAuthentication();
+        // remember, convert to char[] as the string method is deprecated
+        char[] c = password.toCharArray();
+        // check if hashes match
+
+        try {
+            if(authenticator.authenticate(c, dbPasswordHash) == true) {
+                benutzer = new Benutzer();
+                benutzer.setEmail(email);
+                benutzer.setVorname(set.getString(2));
+            } else {
                 throw new NoSuchUserOrPassword();
             }
         } catch (SQLException ex) {
@@ -47,6 +80,7 @@ public class LoginControl {
 
             JDBCConnection.getInstance().closeConnenction();
         }
+
 
 //        VaadinSession session = UI.getCurrent().getSession();//welche account gerade eingeloggt
 //        session.setAttribute(Rolles.CURRENT_USER, user);
