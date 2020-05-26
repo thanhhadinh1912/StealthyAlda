@@ -1,35 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/Register" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="change suchseite">
+    <list default="true" id="3859a34a-942c-4fd1-b298-d1e927b111ac" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/wi_inf_se2_2020_stealthy_alda_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/wi_inf_se2_2020_stealthy_alda_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_18_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jcraft_jsch_0_1_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_thoughtworks_xstream_xstream_1_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_external_atmosphere_atmosphere_runtime_2_4_30_vaadin1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_client_compiled_8_10_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_push_8_10_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_server_8_10_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_shared_8_10_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_themes_8_10_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_pool_commons_pool_1_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__concurrent_concurrent_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javassist_javassist_3_12_1_GA.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_jsr250_api_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_enterprise_cdi_api_1_0_SP1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_cdisource_beancontainer_beancontainer_api_0_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_interceptor_jboss_interceptor_api_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_tree_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_util_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_beancontainer_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_commons_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_context_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_exception_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_formater_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_i18n_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_loader_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_logger_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_slf4j_log4j12_1_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_tinygroup_org_tinygroup_vfs_3_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__postgresql_postgresql_9_1_901_1_jdbc4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xmlpull_xmlpull_1_1_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xpp3_xpp3_min_1_1_4c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wi-inf_se2_2020_stealthy_alda.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/BenutzerprofilAnlegen.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/BenutzerprofilAnlegen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/LoginControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/LoginControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/RegisterControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/RegisterControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/SucheEinfach.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/SucheEinfach.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/DatabaseException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/DatabaseException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/NoSuchUserOrPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/NoSuchUserOrPassword.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/UserExistsException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/UserExistsException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/ValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/control/exceptions/ValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/AbstractDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/AbstractDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/RoleDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/RoleDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/StellenanzeigeDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dao/StellenanzeigeDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Benutzerdaten.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Benutzerdaten.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/SuchErgebnis.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/SuchErgebnis.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Suchauftrag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/dtos/Suchauftrag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Benutzer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Benutzer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Bewerbung.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Bewerbung.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Stellenanzeige.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/ai/model/entities/Stellenanzeige.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/components/TopPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI$MyUIServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI$MyUIServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/ui/MyUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Dashboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Dashboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Loginseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Passwortvergessenseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Passwortvergessenseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/ProfilVerwalten.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/ProfilVerwalten.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Registerseite.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/db/JDBCConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/db/JDBCConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Adresse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Adresse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Password.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Password.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/PasswordAuthentication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/PasswordAuthentication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Roles.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Roles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Views.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/services/util/Views.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/postgresql/util/SQLException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/postgresql/util/SQLException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +104,8 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1cS7E33d2Jc3NBGgDIJ1u1xPgZ4" />
+  <component name="ProjectId" id="1cSH0USMJ9wUSs755Vd1pwBozMO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,9 +113,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
-    <configuration name="[jetty:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+    <configuration name="run webapplication" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -80,93 +154,85 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="" />
-      <created>1590510025496</created>
+      <changelist id="3859a34a-942c-4fd1-b298-d1e927b111ac" name="Default Changelist" comment="" />
+      <created>1590514852336</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1590510025496</updated>
+      <updated>1590514852336</updated>
+      <workItem from="1590514860647" duration="382000" />
+      <workItem from="1590515256255" duration="596000" />
     </task>
-    <task id="LOCAL-00001" summary="change top panel">
-      <created>1590513785603</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1590513785603</updated>
-    </task>
-    <task id="LOCAL-00002" summary="change suchseite">
-      <created>1590514459791</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1590514459791</updated>
-    </task>
-    <task id="LOCAL-00003" summary="change suchseite">
-      <created>1590515044659</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1590515044659</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/Register" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="change top panel" />
-    <MESSAGE value="change suchseite" />
-    <option name="LAST_COMMIT_MESSAGE" value="change suchseite" />
+  <component name="VaadinDesigner.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590510076760">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="258" y="95" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590515347733">
+      <screen x="0" y="0" width="1600" height="873" />
     </state>
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1590510076760" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590515270817">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="258" y="95" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.873/1600.0.1280.1024@0.0.1600.873" timestamp="1590515347733" />
+    <state x="303" y="0" width="985" height="868" key="CommitChangelistDialog2" timestamp="1590515723200">
+      <screen x="0" y="0" width="1600" height="873" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590515270817" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590515270817">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="303" y="0" width="985" height="868" key="CommitChangelistDialog2/0.0.1600.873/1600.0.1280.1024@0.0.1600.873" timestamp="1590515723200" />
+    <state x="155" y="73" width="1282" height="723" key="MergeDialog" timestamp="1590515712986">
+      <screen x="0" y="0" width="1600" height="873" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590515270817" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590515270817">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="155" y="73" width="1282" height="723" key="MergeDialog/0.0.1600.873/1600.0.1280.1024@0.0.1600.873" timestamp="1590515712986" />
+    <state x="283" y="14" width="1026" height="840" key="SettingsEditor" timestamp="1590515235783">
+      <screen x="0" y="0" width="1600" height="873" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590515270817" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590515270817">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="283" y="14" width="1026" height="840" key="SettingsEditor/0.0.1600.873/1600.0.1280.1024@0.0.1600.873" timestamp="1590515235783" />
+    <state x="599" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590515682415">
+      <screen x="0" y="0" width="1600" height="873" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590515270817" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1590515060053">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590515060053" />
-    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590513813259">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1590513813259" />
+    <state x="599" y="353" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.873/1600.0.1280.1024@0.0.1600.873" timestamp="1590515682415" />
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
+  </component>
+  <component name="designer.settings">
+    <option name="autodetectServerAddress" value="true" />
+    <option name="serverIp" value="localhost" />
   </component>
 </project>

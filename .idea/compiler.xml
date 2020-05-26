@@ -7,7 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="StealthyAlda" />
+        <module name="wi-inf_se2_2020_stealthy_alda" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wi-inf_se2_2020_stealthy_alda" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
