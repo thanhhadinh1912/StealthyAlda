@@ -26,10 +26,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="change top panel">
+    <list default="true" id="8d7b7e03-ae4f-44aa-803e-d606571f4cb7" name="Default Changelist" comment="change suchseite">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Loginseite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Loginseite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/stealthyalda/gui/views/Suchseite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/stealthyalda/gui/views/Suchseite.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590513785603</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="change suchseite">
+      <created>1590514459791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590514459791</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -122,33 +129,34 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change top panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="change top panel" />
+    <MESSAGE value="change suchseite" />
+    <option name="LAST_COMMIT_MESSAGE" value="change suchseite" />
   </component>
   <component name="WindowStateProjectService">
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590510076760">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1590510076760" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590513677889">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1590514881646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590513677889" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590513677889">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590514881646" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1590514881646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590513677889" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590513677889">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590514881646" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1590514881646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590513677889" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590513677889">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590514881646" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1590514881646">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590513677889" />
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1590513805149">
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590514881646" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1590514477119">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590513805149" />
+    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1590514477119" />
     <state x="492" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590513813259">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

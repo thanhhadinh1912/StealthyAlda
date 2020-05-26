@@ -29,7 +29,7 @@ public class Suchseite extends VerticalLayout implements View{
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
 
-        Button button = new Button("Suche", FontAwesome.SEARCH);
+        Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
         final TextField textinput = new TextField();
@@ -47,19 +47,21 @@ public class Suchseite extends VerticalLayout implements View{
         //Textfeld Jobtitel, Unternehmen
         final TextField jobsearch = new TextField();
         jobsearch.setCaption("Jobtitel, Unternehmen: ");
+        jobsearch.setWidth("500px");
 
 
 //Textfelt Passwort
         final TextField jobsearchOrt = new TextField();
         jobsearchOrt.setCaption("Ort: ");
-
+        jobsearchOrt.setWidth("500px");
 
 //        Label label = new Label(benutzer.getVorname() + ", gebe den Ort ein: ");
         horizon.addComponents(jobsearch, jobsearchOrt, button);
         addComponent(horizon);
 
+
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
-//        horizon.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+        horizon.setComponentAlignment(button, Alignment.BOTTOM_RIGHT);
 
         Grid<Stellenanzeige> grid = new Grid<>();
         grid.setSizeFull();
