@@ -4,6 +4,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.PasswordAuthentication;
+import org.apache.commons.mail.*;
 
 
 import java.sql.*;
@@ -52,6 +53,21 @@ public class RegisterControl {
      * @throws DatabaseException
      */
     public static boolean registerUser(String email, String password) throws DatabaseException {
+        HtmlEmail mail = new HtmlEmail();
+        mail.setHostName("smtp.gmail.com");
+        mail.setSmtpPort(465);
+        mail.setSSLOnConnect(true);
+        mail.setAuthentication("your-account-name@gmail.com", "your-password");
+
+        try {
+            mail.setFrom("sender@test.com");
+            mail.addTo("recipient1@test.com", "recipient2@test.com");
+            mail.setSubject("The subject");
+            mail.setHtmlMsg("This is the message.");
+            mail.send();
+        } catch (EmailException e) {
+            e.printStackTrace();
+        }
         // store hashed password!!
         ResultSet set = null;
 

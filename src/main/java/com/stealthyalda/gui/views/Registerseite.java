@@ -36,6 +36,12 @@ public class Registerseite extends VerticalLayout implements View {
         final PasswordField passwordRegister = new PasswordField();
         passwordRegister.setCaption("Passwort");
 
+        final TextField vornameRegister = new TextField();
+        vornameRegister.setCaption("Vorname");
+
+        final TextField nachnameRegister = new TextField();
+        nachnameRegister.setCaption("Nachname");
+
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
         FileResource resource = new FileResource(new File(basepath +
@@ -79,6 +85,9 @@ public class Registerseite extends VerticalLayout implements View {
 
         layout.addComponent(userRegister);
         layout.addComponent(passwordRegister);
+        layout.addComponent(vornameRegister);
+        layout.addComponent(nachnameRegister);
+        layout.addComponent(nachnameRegister);
 
         Label label = new Label ( "&nbsp;", ContentMode.HTML);
         layout.addComponent(label);
