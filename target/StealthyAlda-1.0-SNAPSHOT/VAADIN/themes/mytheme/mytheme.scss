@@ -1,0 +1,115 @@
+// If you edit this file you need to compile the theme. See README.md for details.
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+//$v-border-radius: 4px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+//$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/docs/v8/framework/articles/ValoExamples.html
+//0f2a54
+
+
+$v-app-loading-text: "Blueprint Valo";
+$v-background-color: #0f2a54;
+$v-focus-color: #fff;
+//$v-background-image: url("https://previews.123rf.com/images/gonin/gonin1507/gonin150700073/42848307-abstrakt-blau-wei%C3%9Fen-geometrischen-web-hintergrund.jpg");
+$v-panel-background-color: $v-background-color;
+$v-overlay-background-color: $v-background-color;
+$valo-menu-background-color: $v-background-color;
+$v-overlay-shadow: 0 0 0 1px rgba(#fff, .5);
+$v-window-shadow: $v-overlay-shadow;
+$v-window-modality-curtain-background-color: $v-background-color;
+$v-bevel: false;
+$v-gradient: false;
+$v-shadow: false;
+$v-textfield-bevel: false;
+$v-textfield-shadow: false;
+$v-border: 1px solid (v-tint 1.5);
+$v-textfield-background-color: $v-background-color;
+$v-font-family: sans-serif;
+$v-font-size: 18px; 
+
+.body{
+     //$v-background-color: black;
+     //$v-background-color: transparent; 
+     // $v-background-image: url("src/main/webapp/Image/BImage.jpg"); 
+}
+
+.login .v-panel-content {
+  background: #B2B2B2;
+  border: 0px #ffffff;
+  padding: 10px;
+  font-family: Verdana;
+  color: #0f2a54;
+ //  background-image: url("Image/BImage.jpg");
+}
+
+
+
+.headlabel {
+  
+  font-family: Verdana;
+  color: #0f2a54;
+  padding: 10px;
+  font-size: 14px;
+ 
+}
+
+.loggedLabel {
+  font-family: Verdana;
+  color: #0f2a54;
+  padding: 10px;
+  font-size: 14px;
+ 
+}
+
+
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+  @include valo;
+
+.link{
+        padding: 5px 10px !important;
+        background-color: transparent !important;
+        color: #464646 !important;
+        border: 1px solid transparent !important;
+        border-radius: 4px !important;
+        height: auto !important;
+        min-width: 100px !important;
+        font-size: small !important;
+        -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
+        -moz-transition: all 200ms ease-in-out !important; /* WebKit */
+        -o-transition: all 200ms ease-in-out !important; /* Opera */
+        transition: all 200ms ease-in-out !important; /* Standard */
+   }
+
+   .link:hover{
+       color: white !important;
+       background-color: #464646 !important;
+       text-decoration: none !important;
+   }
+
+}
