@@ -3,11 +3,15 @@ package com.stealthyalda.ai.control;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.services.db.JDBCConnection;
+import com.stealthyalda.services.util.Email;
 import com.stealthyalda.services.util.PasswordAuthentication;
 import org.apache.commons.mail.*;
 
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +21,7 @@ public class RegisterControl {
     private static final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort) VALUES (?,?)";
 
     public static boolean checkUserExists( String email) throws UserExistsException, DatabaseException {
-        ResultSet set = null;
+        ResultSet set;
         try {
             //DB - Zugriffxyss
             Statement statement = JDBCConnection.getInstance().getStatement();
@@ -50,24 +54,9 @@ public class RegisterControl {
      * @param email - String
      * @param password - String of the password entered in the form
      * @return boolean
-     * @throws DatabaseException
+     * @throws DatabaseException When murphy is around
      */
     public static boolean registerUser(String email, String password) throws DatabaseException {
-        HtmlEmail mail = new HtmlEmail();
-        mail.setHostName("smtp.gmail.com");
-        mail.setSmtpPort(465);
-        mail.setSSLOnConnect(true);
-        mail.setAuthentication("your-account-name@gmail.com", "your-password");
-
-        try {
-            mail.setFrom("sender@test.com");
-            mail.addTo("recipient1@test.com", "recipient2@test.com");
-            mail.setSubject("The subject");
-            mail.setHtmlMsg("This is the message.");
-            mail.send();
-        } catch (EmailException e) {
-            e.printStackTrace();
-        }
         // store hashed password!!
         ResultSet set = null;
 
@@ -94,6 +83,24 @@ public class RegisterControl {
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
         return true;
+    }
+    private void sendConfirmationEmail(String email) {
+        HtmlEmail mail = new HtmlEmail();
+
+        // mail.setHostName("smtp.mailtrap.io");
+        mail.setSmtpPort(587);
+        mail.setSSLOnConnect(false);
+        mail.setAuthentication("fc96262875e64b", "556759cf419b54");
+
+        try {
+            mail.setFrom("stealthy.alda@test.com");
+            mail.addTo(email, email);
+            mail.setSubject("The subject");
+            mail.setHtmlMsg("This is the message.");
+            mail.send();
+        } catch (EmailException e) {
+            e.printStackTrace();
+        }
     }
 }
 
