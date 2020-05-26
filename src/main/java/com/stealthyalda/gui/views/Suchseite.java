@@ -89,7 +89,7 @@ public class Suchseite extends VerticalLayout implements View{
             String ort = jobsearchOrt.getValue();
             String titel = jobsearch.getValue();
 
-            List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(ort);
+            List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel,ort);
 
             if (ort.equals("")&&titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);

@@ -23,12 +23,12 @@ public class StellenanzeigeDAO extends AbstractDAO{
 
     }
 
-    public List<Stellenanzeige> getStellenanzeigeByLocation(String ort)  {
+    public List<Stellenanzeige> getStellenanzeigeByLocation(String titel, String ort)  {
         Statement statement = this.getStatement();
 
         ResultSet rs = null;
         try{
-            rs = statement.executeQuery("SELECT * FROM stealthyalda.stellenanzeige WHERE stealthyalda.stellenanzeige.ort =  \'" + ort +"\' " );
+            rs = statement.executeQuery("SELECT * FROM stealthyalda.stellenanzeige WHERE stealthyalda.stellenanzeige.ort =  \'" + ort +"\' OR stealthyalda.stellenanzeige.titel = '" +titel+ "'" );
         }catch(SQLException ex){
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         }
