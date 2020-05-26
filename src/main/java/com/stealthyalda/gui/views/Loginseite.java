@@ -36,7 +36,6 @@ public class Loginseite extends VerticalLayout implements View {
         final PasswordField passwordField = new PasswordField();
         passwordField.setCaption("Passwort");
 
-// add image
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
         FileResource resource = new FileResource(new File(basepath +
