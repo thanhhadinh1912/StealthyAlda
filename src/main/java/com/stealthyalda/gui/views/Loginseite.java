@@ -32,9 +32,11 @@ public class Loginseite extends VerticalLayout implements View {
         final TextField userLogin = new TextField();
         userLogin.setCaption("Email");
 
+
 //Textfelt Passwort
         final PasswordField passwordField = new PasswordField();
         passwordField.setCaption("Passwort");
+
 
 // add image
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -51,79 +53,78 @@ public class Loginseite extends VerticalLayout implements View {
         GridLayout Maingrid = new GridLayout(6, 6);
         Maingrid.setSizeFull();
 
-        GridLayout gridTop = new GridLayout(4, 1);
-        gridTop.setSizeFull();
 
 
-
-        Button butonReg = new Button("Registrieren", FontAwesome.SIGN_IN);
-
-        gridTop.addComponent(butonReg,3,0);
-
-        gridTop.addComponent(Logo,0,0);
-
-
-        gridTop.setComponentAlignment(butonReg, Alignment.BOTTOM_RIGHT);
-
-
-        gridTop.setComponentAlignment(Logo, Alignment.MIDDLE_CENTER);
-
-        //grid.setWidthFull();
-        Panel panel2 = new Panel( "Stealthy_Alda");
-        panel2.addStyleName("login");
-        panel2.setContent(gridTop);
-
-        //grid bottom
-        GridLayout gridBottom = new GridLayout(4, 1);
-        gridBottom.setWidth("40%");
-
-        Link link = new Link("Stealthy_Alda",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link1 = new Link("© 2020",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link2 = new Link("Info",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link3 = new Link("Hilfe",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link4 = new Link("Passwort vergessen?",
+        Link link4 = new Link("Passwort vergessen",
                 new ExternalResource("http://vaadin.com/"));
 
 
-        gridBottom.addComponent(link,0,0);
-        gridBottom.addComponent(link1,1,0);
-        gridBottom.addComponent(link2,2,0);
-        gridBottom.addComponent(link3,3,0);
 
-
+        Panel panel = new Panel( "Stealthy_Alda");
+        panel.addStyleName("login");
 //Vertikales Layout + Hinzufügen der Textfelder
-        VerticalLayout layout = new VerticalLayout();
+        GridLayout layout = new GridLayout(4, 11);
+        Link link5 = new Link("Anmelden",
+       new ExternalResource("http://localhost:8080/#!login"));
+        Button butonReg = new Button("Registrieren", FontAwesome.SIGN_IN);
+        butonReg.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                UI.getCurrent().getNavigator().navigateTo(Views.REGISTER);
+            }
+        });
+       layout.addComponent(link5,0,0);
+       layout.setComponentAlignment(link5, Alignment.MIDDLE_CENTER);
+       layout.addComponent(Logo,1,0,2,0);
+       layout.setComponentAlignment(Logo, Alignment.MIDDLE_CENTER);
+       layout.addComponent(butonReg,3,0);
+       layout.setComponentAlignment(butonReg, Alignment.MIDDLE_CENTER);
+       Label label = new Label(    "Willkommen zurück!",  ContentMode.PREFORMATTED);
+       layout.addComponent(label, 0, 1,3,1);
+       layout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+       Label label1 = new Label ( "&nbsp;", ContentMode.HTML);
+        layout.addComponent(label1,0,2,3,2);
+                
+        layout.addComponent(userLogin,0,3,3,3);
+        layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
+        layout.addComponent(passwordField,0,4,3,4);
+        layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
 
+        layout.addComponent(link4,2,5,3,5);
+        layout.setComponentAlignment(link4, Alignment.MIDDLE_RIGHT);
+        userLogin.setWidth("500px");
+        passwordField.setWidth("500px");
 
-        layout.addComponent(userLogin);
-        layout.addComponent(passwordField);
+        
+        CheckBox checkbox1 = new CheckBox("Angemeldet bleiben");
+        layout.addComponent(checkbox1, 0, 5, 1, 5);
+        layout.setComponentAlignment(checkbox1, Alignment.MIDDLE_LEFT);
 
 //Platzhalter
-        Label label = new Label ( "&nbsp;", ContentMode.HTML);
-        layout.addComponent(label);
-//Erstellen und Hinzufügen eines Panels + Platzierung in die Mitte
-        Panel panel = new Panel( "Willkommen Zurück: ");
-        panel.addStyleName("login");
+        Label label2 = new Label ( "&nbsp;", ContentMode.HTML);
+        layout.addComponent(label2,0,6,3,6);
 
 //Button zum Login + Symbol auf Button
 
-        Button butonLogin = new Button("Anmelden", FontAwesome.SEARCH);
+        Button butonLogin = new Button("Anmelden");
         butonLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        layout.addComponent(butonLogin);
+
+        layout.addComponent(butonLogin,0,7,3,7);
         layout.setComponentAlignment(butonLogin, Alignment.MIDDLE_CENTER);
-        layout.addComponent(link4);
-        layout.setComponentAlignment(link4, Alignment.MIDDLE_CENTER);
+        Label label3= new Label("oder",  ContentMode.TEXT);
+        layout.addComponent(label3, 0, 8,3,8);
+       layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
+       Button butonLoginMitGoogle = new Button("Mit Google Anmelden");
+       layout.addComponent(butonLoginMitGoogle, 0,9,3,9);
+        layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);
+
+//       butonLoginMitGoogle.addClickListener(null);
+        Label label4 = new Label ( "&nbsp;", ContentMode.HTML);
+        layout.addComponent(label4,0,10,3,10);
         panel.setContent(layout);
         panel.setSizeUndefined();
+
 
         butonLogin.addClickListener(new Button.ClickListener() {
             @Override
@@ -145,9 +146,8 @@ public class Loginseite extends VerticalLayout implements View {
             }
         });
 
-        Maingrid.addComponent(panel2,0,0,5,0);
+
         Maingrid.addComponent(panel,3,2,4,4);
-        Maingrid.addComponent(gridBottom,3,5,4,5);
 
         this.addComponent(Maingrid);
         this.setComponentAlignment(Maingrid,Alignment.MIDDLE_CENTER);
@@ -164,7 +164,6 @@ public class Loginseite extends VerticalLayout implements View {
         if( user != null) {
             UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
         } else {
-
             this.setUp();
         }
     }

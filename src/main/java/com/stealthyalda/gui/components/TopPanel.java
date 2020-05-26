@@ -63,7 +63,7 @@ public class TopPanel extends HorizontalLayout {
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
-                "/Image/Logo3.png"));
+                "/Image/stealthyalda.png"));
         Image Logo = new Image("", resource);
 
         GridLayout gridTop = new GridLayout(4, 1);
