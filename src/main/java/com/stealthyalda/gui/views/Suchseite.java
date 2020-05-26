@@ -70,33 +70,33 @@ public class Suchseite extends VerticalLayout implements View{
 
 
         //grid bottom #############################
-        GridLayout gridBottom = new GridLayout(4, 1);
-        gridBottom.setWidth("40%");
-
-        Link link = new Link("Stealthy_Alda",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link1 = new Link("© 2020",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link2 = new Link("Info",
-                new ExternalResource("http://vaadin.com/"));
-
-        Link link3 = new Link("Hilfe",
-                new ExternalResource("http://vaadin.com/"));
+//        GridLayout gridBottom = new GridLayout(4, 1);
+//        gridBottom.setWidth("40%");
+//
+//        Link link = new Link("Stealthy_Alda",
+//                new ExternalResource("http://vaadin.com/"));
+//
+//        Link link1 = new Link("© 2020",
+//                new ExternalResource("http://vaadin.com/"));
+//
+//        Link link2 = new Link("Info",
+//                new ExternalResource("http://vaadin.com/"));
+//
+//        Link link3 = new Link("Hilfe",
+//                new ExternalResource("http://vaadin.com/"));
 
 
         //LogoBottom.setWidth("50%");
         //LogoBottom.setHeight("50%");
-
-        gridBottom.addComponent(link, 0, 0);
-        gridBottom.addComponent(link1, 1, 0);
-        gridBottom.addComponent(link2, 2, 0);
-        gridBottom.addComponent(link3, 3, 0);
+//
+//        gridBottom.addComponent(link, 0, 0);
+//        gridBottom.addComponent(link1, 1, 0);
+//        gridBottom.addComponent(link2, 2, 0);
+//        gridBottom.addComponent(link3, 3, 0);
 
         GridLayout MainFutter = new GridLayout(6, 6);
         MainFutter.setSizeFull();
-        MainFutter.addComponent(gridBottom, 3, 5, 4, 5);
+//        MainFutter.addComponent(gridBottom, 3, 5, 4, 5);
 
         //this.addComponent(MainFutter);
         //this.setComponentAlignment(MainFutter,Alignment.BOTTOM_CENTER);
@@ -117,12 +117,13 @@ public class Suchseite extends VerticalLayout implements View{
         // Event Listener für den Suchen Button
         button.addClickListener(e -> {
 
-            String ort = textinput.getValue();
+            String ort = jobsearchOrt.getValue();
+            String titel = jobsearch.getValue();
 
             List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(ort);
 
-            if (ort.equals("")) {
-                Notification.show(null, "Bitte Ort eingeben!", Notification.Type.WARNING_MESSAGE);
+            if (ort.equals("")&&titel.equals("")) {
+                Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
                 anzahl += 1;
 
@@ -136,8 +137,9 @@ public class Suchseite extends VerticalLayout implements View{
                 // Columns definieren
                 grid.addColumn(Stellenanzeige::getTitel).setCaption("Titel");
                 grid.addColumn(Stellenanzeige::getBeschreibung).setCaption("Beschreibung");
-                grid.addColumn(Stellenanzeige::getOrt).setCaption("Ort");
                 grid.addColumn(Stellenanzeige::getDatum).setCaption("Datum");
+                grid.addColumn(Stellenanzeige::getOrt).setCaption("Ort");
+                grid.addColumn(Stellenanzeige::getStatus).setCaption("Status");
 
                 addComponent(grid);
                 addComponent(bewerben);
