@@ -39,18 +39,13 @@ public class ProfilVerwaltenStudent extends Window {
 
 
         // Create a text field
-        TextField tfvorname = new TextField("Vorname");
-        String vorname = benutzer.getVorname();
-        if(vorname!=null) {
-            tfvorname.setValue(vorname);
+        TextField tfname = new TextField("Name");
+        String name = benutzer.getName();
+        if(name!=null) {
+            tfname.setValue(name);
         }
-        layout.addComponent(tfvorname, 1, 1, 2, 1);
-        TextField tfnachname = new TextField("Nachname");
-        String nachname = benutzer.getNachname();
-        if(nachname!=null) {
-            tfnachname.setValue(nachname);
-        }
-        layout.addComponent(tfnachname, 3, 1, 4, 1);
+        layout.addComponent(tfname, 1, 1, 4, 1);
+        tfname.setWidth("500px");
 
 
         ImageUploader receiver = new ImageUploader();
@@ -68,7 +63,7 @@ public class ProfilVerwaltenStudent extends Window {
         TextArea area = new TextArea("Job Erfahrungen:");
         layout.addComponent(area, 1, 3, 4, 6);
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
-        area.setWidth("600px");
+        area.setWidth("500px");
         
 
         TextArea area1 = new TextArea("Hobby");
@@ -76,10 +71,9 @@ public class ProfilVerwaltenStudent extends Window {
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
 
         TextArea area2 = new TextArea("Fachkompetenz");
-        layout.addComponent(area2, 3, 7, 9, 10);
+        layout.addComponent(area2, 3, 7, 5, 10);
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
-        area.setWidth("450px");
-
+        
         Button buttonProfilAendern = new Button("Speichern");
         layout.addComponent(buttonProfilAendern,7,11);
 

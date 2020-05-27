@@ -40,7 +40,7 @@ public class Suchseite extends VerticalLayout implements View{
 
         String vorname;
         if (benutzer != null) {
-            vorname = benutzer.getVorname();
+            vorname = benutzer.getName();
         }
 
         GridLayout layout = new GridLayout(4, 1);
@@ -98,7 +98,7 @@ public class Suchseite extends VerticalLayout implements View{
 
                 //erstmal alles löschen
                 grid.removeAllColumns();
-                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((Benutzer) ((MyUI) UI.getCurrent()).getBenutzer()).getVorname() + ")");
+                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((Benutzer) ((MyUI) UI.getCurrent()).getBenutzer()).getName() + ")");
 
                 // neue Items hinzufügen
                 grid.setItems(liste);

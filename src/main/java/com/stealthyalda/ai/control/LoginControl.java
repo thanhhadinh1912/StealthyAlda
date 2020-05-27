@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginControl {
-    private static final String userLoginStatement = "SELECT passwort, vorname, nachname, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
+    private static final String userLoginStatement = "SELECT passwort, name, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
     public static void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException {
         ResultSet set = null;
@@ -69,10 +69,9 @@ public class LoginControl {
             if(authenticator.authenticate(c, dbPasswordHash) == true) {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
-                benutzer.setVorname(set.getString(2));
-                benutzer.setNachname(set.getString(3));
-                benutzer.setAnrede(set.getString(4));
-                benutzer.setTelefonnummer(set.getString(5));
+                benutzer.setName(set.getString(2));
+                benutzer.setAnrede(set.getString(3));
+                benutzer.setTelefonnummer(set.getString(4));
 
             } else {
                 throw new NoSuchUserOrPassword();

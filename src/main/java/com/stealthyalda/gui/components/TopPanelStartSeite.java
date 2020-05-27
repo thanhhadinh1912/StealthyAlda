@@ -30,7 +30,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
         String vorname = null;
 
         if(user != null) {
-            vorname = user.getVorname();
+            vorname = user.getName();
         }
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();

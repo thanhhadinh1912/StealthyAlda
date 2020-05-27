@@ -7,8 +7,7 @@ import com.stealthyalda.services.util.Adresse;
 import java.util.Date;
 
 public class Benutzer {
-    private String nachname;
-    private String vorname;
+    private String name;
     private String email;
     private String passwort;
     private String telefonnummer = null;
@@ -24,20 +23,12 @@ public class Benutzer {
         this.role = role;
     }
 
-    public String getNachname() {
-        return nachname;
+    public String getName() {
+        return name;
     }
 
-    public void setNachname(String nachname) {
-        this.nachname = nachname;
-    }
-
-    public String getVorname() {
-        return vorname;
-    }
-
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
