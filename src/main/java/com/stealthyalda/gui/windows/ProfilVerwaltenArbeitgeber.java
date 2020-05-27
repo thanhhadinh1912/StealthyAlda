@@ -64,9 +64,9 @@ public class ProfilVerwaltenArbeitgeber extends Window {
         
 
         TextArea area1 = new TextArea("Kontaktdaten");
-        layout.addComponent(area1, 5, 2, 9, 4);
+        layout.addComponent(area1, 6, 2, 9, 4);
         layout.setComponentAlignment(area1, Alignment.MIDDLE_LEFT);
-        area1.setWidth("300px");
+        area1.setWidth("288px");
               
 
         TextArea area2 = new TextArea("Stellenanzeige");
