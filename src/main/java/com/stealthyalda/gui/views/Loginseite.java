@@ -41,7 +41,7 @@ public class Loginseite extends VerticalLayout implements View {
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
         FileResource resource = new FileResource(new File(basepath +
-                "/Image/stealthyalda.png"));
+                "/Image/stealthyalda1.png"));
         Image Logo = new Image("", resource);
         System.out.println(basepath + "/Image/stealthyalda.png");
 

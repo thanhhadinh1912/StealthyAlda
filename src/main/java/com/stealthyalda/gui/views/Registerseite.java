@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Views;
@@ -32,7 +33,7 @@ public class Registerseite extends VerticalLayout implements View {
         Binder<Benutzer> binder = new Binder<>();
         // end validation experiment
 
-        this.setSizeFull();
+//        this.setSizeFull();
 
         final TextField userRegister = new TextField();
         userRegister.setCaption("Email");
@@ -76,41 +77,9 @@ public class Registerseite extends VerticalLayout implements View {
 
 
 
-        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+        this.addComponent(new TopPanelStartSeite());
 
-        FileResource resource = new FileResource(new File(basepath +
-                "/Image/stealthyalda.png"));
-        Image Logo = new Image("", resource);
-        System.out.println(basepath + "/Image/stealthyalda.png");
-
-        FileResource resource3 = new FileResource(new File(basepath +
-                "/Image/background_home.jpg"));
-
-        Image background = new Image("", resource3);
-
-        Link link = new Link("Arbeitgeber", new ExternalResource(""));
-
-        GridLayout RegisterGrid = new GridLayout(6, 6);
-        RegisterGrid.setSizeFull();
-
-        GridLayout gridTop = new GridLayout(4, 1);
-        gridTop.setSizeFull();
-
-        gridTop.addComponent(Logo,0,0);
-        gridTop.setComponentAlignment(Logo, Alignment.TOP_LEFT);
-
-        gridTop.addComponent(link);
-        gridTop.setComponentAlignment(link, Alignment.BOTTOM_RIGHT);
-
-        //grid.setWidthFull();
-        Panel panel2 = new Panel( "Stealthy_Alda");
-        panel2.addStyleName("login");
-
-        panel2.setContent(gridTop);
-
-        //grid bottom
-        GridLayout gridBottom = new GridLayout(4, 1);
-        gridBottom.setWidth("40%");
+        setMargin(true);
 
 
 //Vertikales Layout + Hinzufügen der Textfelder
@@ -183,12 +152,8 @@ public class Registerseite extends VerticalLayout implements View {
             }
         });
 
-        RegisterGrid.addComponent(panel2,0,0,5,0);
-        RegisterGrid.addComponent(panel,3,2,4,4);
-        RegisterGrid.addComponent(gridBottom,3,5,4,5);
-
-        this.addComponent(RegisterGrid);
-        this.setComponentAlignment(RegisterGrid,Alignment.MIDDLE_CENTER);
+        this.addComponent(panel);
+        this.setComponentAlignment(panel,Alignment.MIDDLE_CENTER);
     }
 
 
