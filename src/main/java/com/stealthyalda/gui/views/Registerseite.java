@@ -55,6 +55,11 @@ public class Registerseite extends VerticalLayout implements View {
 
         // Add some items
         userAnrede.setItems("Herr", "Frau");
+                RadioButtonGroup<String> single = new RadioButtonGroup<>();
+        single.setItems("Arbeitgeber", "Student");
+        single.setValue("Student");
+
+        single.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
 
 //        final TextField userAnrede = new TextField();
 //        userAnrede.setCaption("Anrede");
@@ -79,10 +84,9 @@ public class Registerseite extends VerticalLayout implements View {
         binder.forField(userNachname).asRequired()
                 .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1, 30))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
+        binder.forField(single).asRequired("Sie müssen Role auswählen").withValidator( role -> role!=null, "Bitte Role auswählen").bind(Benutzer::getRole, Benutzer::setRole);
         
-        RadioButtonGroup<String> single = new RadioButtonGroup<>();
-        single.setItems("Arbeitgeber", "Student");
-        single.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
+
 //        CheckBox roleField = new CheckBox();
 //        binder.forField(roleField)
 //                .withConverter(role -> role ? Roles.STUDENT : Roles.ARBEITGEBER,

@@ -49,7 +49,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
         buttonFürStudent.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                 UI.getCurrent().getNavigator().navigateTo(Views.REGISTER);
+                 UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFÜRSTUDENT);
             }
         });
         gridTop.addComponent(buttonFürStudent,5,0);
@@ -59,7 +59,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
         buttonFürArbeitgeber.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                 UI.getCurrent().getNavigator().navigateTo(Views.REGISTER);
+                 UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFÜRARBEITGEBER);
             }
         });
         gridTop.addComponent(buttonFürArbeitgeber,6,0);
