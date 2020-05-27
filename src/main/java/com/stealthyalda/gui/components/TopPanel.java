@@ -2,6 +2,7 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.gui.windows.ProfilVerwaltenStudent;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
@@ -13,6 +14,8 @@ import java.io.File;
 
 
 public class TopPanel extends HorizontalLayout {
+    private  Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+
 
     public TopPanel() {
         this.setSizeFull();
@@ -22,7 +25,6 @@ public class TopPanel extends HorizontalLayout {
         HorizontalLayout horizon = new HorizontalLayout();
 
 //        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
         String vorname = null;
 
@@ -46,7 +48,8 @@ public class TopPanel extends HorizontalLayout {
         buttonFürStudent.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARD);
+                ProfilVerwaltenStudent window = new ProfilVerwaltenStudent(user);
+                UI.getCurrent().addWindow(window);
             }
         });
         gridTop.addComponent(buttonFürStudent,5,0);
@@ -56,7 +59,8 @@ public class TopPanel extends HorizontalLayout {
         buttonFürArbeitgeber.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARD);
+                ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
+                UI.getCurrent().addWindow(window2);
             }
         });
         gridTop.addComponent(buttonFürArbeitgeber,6,0);

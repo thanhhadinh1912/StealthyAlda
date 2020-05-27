@@ -6,5 +6,5 @@ public class Views {
     public static final String REGISTER = "register";
     public static final String PASSWORTVERGESSEN = "reset";
     public static final String DASHBOARD = "dashboard";
-    public static final String ProfilVerwalten = "profil_verwalten";
+    public static final String PROFILVERWALTEN = "profil_verwalten";
 }

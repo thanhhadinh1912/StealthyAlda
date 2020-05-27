@@ -45,8 +45,6 @@ public class MyUI extends UI {
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
         navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
-        navi.addView(Views.DASHBOARD, Dashboard.class);
-        navi.addView(Views.ProfilVerwalten, ProfilVerwalten.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 

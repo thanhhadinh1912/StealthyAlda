@@ -29,12 +29,12 @@ public class Loginseite extends VerticalLayout implements View {
 
 //Textfeld Login
         final TextField userLogin = new TextField();
-        userLogin.setCaption("Email");
+        userLogin.setCaption("Email: ");
 
 
 //Textfelt Passwort
         final PasswordField passwordField = new PasswordField();
-        passwordField.setCaption("Passwort");
+        passwordField.setCaption("Passwort: ");
 
 
 // add image
