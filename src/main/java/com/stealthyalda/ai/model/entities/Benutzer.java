@@ -14,6 +14,15 @@ public class Benutzer {
     private String telefonnummer = null;
     private int id ;
     private String anrede;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getNachname() {
         return nachname;

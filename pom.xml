@@ -30,6 +30,7 @@
 			<url>http://maven.vaadin.com/vaadin-addons</url>
 		</repository>
 	</repositories>
+        
 
 	<dependencyManagement>
 		<dependencies>
@@ -86,6 +87,7 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.4</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

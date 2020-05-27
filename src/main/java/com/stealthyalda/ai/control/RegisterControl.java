@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class RegisterControl {
     // prepared statement for insertion
-    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, vorname, nachname,telefonnummer, anrede) VALUES (?,?,?,?,?,?)";
+    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, vorname, nachname,telefonnummer, anrede, role) VALUES (?,?,?,?,?,?,?)";
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         ResultSet set;
@@ -53,7 +53,7 @@ public class RegisterControl {
      * @return boolean
      * @throws DatabaseException When murphy is around
      */
-    public boolean registerUser(String email, String password, String vorname, String nachname, String telefonNummer, String anrede) throws DatabaseException {
+    public boolean registerUser(String email, String password, String vorname, String nachname, String telefonNummer, String anrede, String role) throws DatabaseException {
         // store hashed password!!
         ResultSet set = null;
 
@@ -74,6 +74,8 @@ public class RegisterControl {
             preparedStatement.setString(4, nachname);
             preparedStatement.setString(5, telefonNummer);
             preparedStatement.setString(6, anrede);
+            preparedStatement.setString(7, role);
+
             // insert!
             int row = preparedStatement.executeUpdate();
             // delete for now

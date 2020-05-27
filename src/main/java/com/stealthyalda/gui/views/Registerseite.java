@@ -6,6 +6,7 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.services.db.JDBCConnection;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.data.Binder;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.RegexpValidator;
@@ -16,6 +17,9 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+import com.vaadin.ui.themes.ValoTheme;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +79,14 @@ public class Registerseite extends VerticalLayout implements View {
         binder.forField(userNachname).asRequired()
                 .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1, 30))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
-
+        
+        RadioButtonGroup<String> single = new RadioButtonGroup<>();
+        single.setItems("Arbeitgeber", "Student");
+        single.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
+//        CheckBox roleField = new CheckBox();
+//        binder.forField(roleField)
+//                .withConverter(role -> role ? Roles.STUDENT : Roles.ARBEITGEBER,
+//                        role -> Roles.STUDENT.equals(role));
 
         this.addComponent(new TopPanelStartSeite());
 
@@ -92,6 +103,7 @@ public class Registerseite extends VerticalLayout implements View {
         layout.addComponent(userVorname);
         layout.addComponent(userNachname);
         layout.addComponent(userTelefonNummer);
+        layout.addComponent(single);
 
         Label label = new Label("&nbsp;", ContentMode.HTML);
         layout.addComponent(label);
@@ -109,6 +121,7 @@ public class Registerseite extends VerticalLayout implements View {
         panel.setContent(layout);
         panel.setSizeUndefined();
 
+
         butonRegister.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
@@ -118,6 +131,9 @@ public class Registerseite extends VerticalLayout implements View {
                 String nachname = userNachname.getValue();
                 String telefonNummer = userTelefonNummer.getValue();
                 String anrede = userAnrede.getValue();
+                String role = single.getValue(); 
+                
+                //String role = roleField.getValue();
 
                 // instance of control
                 RegisterControl r = new RegisterControl();
@@ -135,7 +151,7 @@ public class Registerseite extends VerticalLayout implements View {
                 if (allChecksOkay) {
                     allChecksOkay = false;
                     try {
-                        allChecksOkay = r.registerUser(register, password, vorname, nachname, telefonNummer,anrede);
+                        allChecksOkay = r.registerUser(register, password, vorname, nachname, telefonNummer,anrede, role);
                     } catch (DatabaseException ex) {
                         // TODO update to actually get the reason
                         Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
