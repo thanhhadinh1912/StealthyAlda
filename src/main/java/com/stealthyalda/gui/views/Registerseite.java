@@ -8,6 +8,8 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Views;
+import com.vaadin.data.Binder;
+import com.vaadin.data.validator.*;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -22,18 +24,57 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// TODO - Add "Vorname", "Nachname", "Telefonnummer" to the fields
-// TODO - Validate user input on client side (*valid* email address)
-// TODO - Alternative registeation für "Unternehmen"
+// TODO - Validation seems to ignore invalid fields
+// TODO - Alternative registeration for "Unternehmen"
 public class Registerseite extends VerticalLayout implements View {
     public void setUp(){
+        // validation experiment
+        Binder<Benutzer> binder = new Binder<>();
+        // end validation experiment
 
         this.setSizeFull();
 
         final TextField userRegister = new TextField();
-        userRegister.setCaption("Email:");
+        userRegister.setCaption("Email");
+
+
         final PasswordField passwordRegister = new PasswordField();
-        passwordRegister.setCaption("Passwort:");
+        passwordRegister.setCaption("Passwort");
+
+        final TextField userVorname = new TextField();
+        userVorname.setCaption("Vorname");
+
+        final TextField userNachname = new TextField();
+        userNachname.setCaption("Nachname");
+
+        final TextField userTelefonNummer = new TextField();
+        userTelefonNummer.setCaption("Tel.Nr");
+
+//        final TextField userAnrede = new TextField();
+//        userAnrede.setCaption("Anrede");
+        // validators
+        // invalid email
+        binder.forField(userRegister).asRequired("Sie müssen eine Email Adresse eingeben")
+                .withValidator(new EmailValidator("Ungültige Email Adresse"))
+                .bind(Benutzer::getEmail, Benutzer::setEmail);
+
+        // password too $hort ;)
+        binder.forField(passwordRegister).asRequired("Sie müssen ein Passwort eingeben")
+                .withValidator(new StringLengthValidator("Passwort muss zwischen 6 und 20 Zeichen lang sein", 6,20))
+                .bind(Benutzer::getPasswort, Benutzer::setPasswort);
+
+
+        // Phone number fake?
+        binder.forField(userTelefonNummer)
+                .withValidator(new RegexpValidator("Ungültige Telefonnumer", "^\\d+"))
+                .bind(Benutzer::getPasswort, Benutzer::setPasswort);
+
+        // Require Nachname
+        binder.forField(userNachname).asRequired()
+                .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1,30))
+                .bind(Benutzer::getPasswort, Benutzer::setPasswort);
+
+
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
@@ -49,47 +90,52 @@ public class Registerseite extends VerticalLayout implements View {
 
         Link link = new Link("Arbeitgeber", new ExternalResource(""));
 
-//      Erstellung des Layouts
-
         GridLayout RegisterGrid = new GridLayout(6, 6);
         RegisterGrid.setSizeFull();
 
-        //Panel panel2 = new Panel( "Stealthy_Alda");
-        //panel2.addStyleName("login");
+        GridLayout gridTop = new GridLayout(4, 1);
+        gridTop.setSizeFull();
 
+        gridTop.addComponent(Logo,0,0);
+        gridTop.setComponentAlignment(Logo, Alignment.TOP_LEFT);
+
+        gridTop.addComponent(link);
+        gridTop.setComponentAlignment(link, Alignment.BOTTOM_RIGHT);
+
+        //grid.setWidthFull();
+        Panel panel2 = new Panel( "Stealthy_Alda");
+        panel2.addStyleName("login");
+
+        panel2.setContent(gridTop);
+
+        //grid bottom
+        GridLayout gridBottom = new GridLayout(4, 1);
+        gridBottom.setWidth("40%");
+
+
+//Vertikales Layout + Hinzufügen der Textfelder
+        VerticalLayout layout = new VerticalLayout();
+
+
+        layout.addComponent(userRegister);
+        layout.addComponent(passwordRegister);
+        layout.addComponent(userVorname);
+        layout.addComponent(userNachname);
+        layout.addComponent(userTelefonNummer);
+
+        Label label = new Label ( "&nbsp;", ContentMode.HTML);
+        layout.addComponent(label);
+//Erstellen und Hinzufügen eines Panels + Platzierung in die Mitte
         Panel panel = new Panel( "Erstellen sie ihr Stealthy_Alda Konto: ");
         panel.addStyleName("login");
-
-        GridLayout layout = new GridLayout(4, 11);
-
-        layout.addComponent(Logo,0,0);
-        layout.setComponentAlignment(Logo, Alignment.MIDDLE_CENTER);
-        layout.addComponent(link,3,0);
-        layout.setComponentAlignment(link, Alignment.MIDDLE_CENTER);
-        layout.addComponent(userRegister,0,3,3,3);
-        layout.setComponentAlignment(userRegister, Alignment.MIDDLE_CENTER);
-        Label label1 = new Label ( "&nbsp;", ContentMode.HTML);
-        layout.addComponent(label1,0,4,3,4);
-        layout.addComponent(passwordRegister,0,5,3,5);
-        layout.setComponentAlignment(passwordRegister, Alignment.MIDDLE_CENTER);
-        Label label2 = new Label ( "&nbsp;", ContentMode.HTML);
-        layout.addComponent(label2,0,6,3,6);
-        Label label = new Label ( "&nbsp;", ContentMode.HTML);
-        layout.addComponent(label,0,2,3,2);
-
-        Label label4 = new Label ( "&nbsp;", ContentMode.HTML);
-        layout.addComponent(label4,0,10,3,10);
-
-        userRegister.setWidth("500px");
-        passwordRegister.setWidth("500px");
 
 //Button zum Registrieren
 
         Button butonRegister = new Button("Registrieren", FontAwesome.SIGN_IN);
         butonRegister.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        layout.addComponent(butonRegister,0,7,3,7);
-        layout.setComponentAlignment(butonRegister, Alignment.BOTTOM_CENTER);
+        layout.addComponent(butonRegister);
+        layout.setComponentAlignment(butonRegister, Alignment.MIDDLE_CENTER);
         panel.setContent(layout);
         panel.setSizeUndefined();
 
@@ -98,10 +144,17 @@ public class Registerseite extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 String register = userRegister.getValue();
                 String password = passwordRegister.getValue();
+                String vorname = userVorname.getValue();
+                String nachname = userNachname.getValue();
+                String telefonNummer = userTelefonNummer.getValue();
+                // String anrede = userAnrede.getValue();
+
+                // instance of control
+                RegisterControl r = new RegisterControl();
+
                 boolean allChecksOkay = false;
                 try {
-                    RegisterControl.checkUserExists(register);
-                    allChecksOkay = true;
+                    allChecksOkay = r.checkUserExists(register);
                 } catch (UserExistsException | DatabaseException ex) {
                     Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden", Notification.Type.ERROR_MESSAGE);
 
@@ -109,9 +162,10 @@ public class Registerseite extends VerticalLayout implements View {
                     userRegister.setValue("");
                     passwordRegister.setValue("");
                 }
-                if(allChecksOkay == true) {
+                if(allChecksOkay) {
+                    allChecksOkay = false;
                     try {
-                        RegisterControl.registerUser(register,password);
+                        allChecksOkay = r.registerUser(register,password,vorname,nachname,telefonNummer);
                     } catch (DatabaseException ex) {
                         // TODO update to actually get the reason
                         Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
@@ -123,12 +177,15 @@ public class Registerseite extends VerticalLayout implements View {
                     }
 
                 }
-                Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
+                if(allChecksOkay) {
+                    Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
+                }
             }
         });
 
-
+        RegisterGrid.addComponent(panel2,0,0,5,0);
         RegisterGrid.addComponent(panel,3,2,4,4);
+        RegisterGrid.addComponent(gridBottom,3,5,4,5);
 
         this.addComponent(RegisterGrid);
         this.setComponentAlignment(RegisterGrid,Alignment.MIDDLE_CENTER);

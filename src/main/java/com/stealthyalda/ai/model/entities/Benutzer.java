@@ -13,7 +13,7 @@ public class Benutzer {
     private String passwort;
     private String telefonnummer = null;
     private int id ;
-    private int andere;
+    private int anrede;
 
     public String getNachname() {
         return nachname;
@@ -63,12 +63,12 @@ public class Benutzer {
         this.id = id;
     }
 
-    public int getAndere() {
-        return andere;
+    public int getAnrede() {
+        return anrede;
     }
 
-    public void setAndere(int andere) {
-        this.andere = andere;
+    public void setAnrede(int anrede) {
+        this.anrede = anrede;
     }
 
 }
