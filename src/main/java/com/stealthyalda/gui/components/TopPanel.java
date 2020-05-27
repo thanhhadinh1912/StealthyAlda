@@ -59,8 +59,8 @@ public class TopPanel extends HorizontalLayout {
         buttonFürArbeitgeber.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                ProfilVerwaltenStudent window = new ProfilVerwaltenStudent(user);
-                UI.getCurrent().addWindow(window);
+                ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
+                UI.getCurrent().addWindow(window2);
             }
         });
         gridTop.addComponent(buttonFürArbeitgeber,6,0);
