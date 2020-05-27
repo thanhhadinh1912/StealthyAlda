@@ -42,11 +42,9 @@ public class Registerseite extends VerticalLayout implements View {
         final PasswordField passwordRegister = new PasswordField();
         passwordRegister.setCaption("Passwort");
 
-        final TextField userVorname = new TextField();
-        userVorname.setCaption("Vorname");
 
-        final TextField userNachname = new TextField();
-        userNachname.setCaption("Nachname");
+        final TextField userName = new TextField();
+        userName.setCaption("Name");
 
         final TextField userTelefonNummer = new TextField();
         userTelefonNummer.setCaption("Tel.Nr");
@@ -81,10 +79,9 @@ public class Registerseite extends VerticalLayout implements View {
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
 
         // Require Nachname
-        binder.forField(userNachname).asRequired()
-                .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1, 30))
+        binder.forField(userName).asRequired()
+                .withValidator(new StringLengthValidator("Bitte Name eingeben", 1, 100))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
-        binder.forField(single).asRequired("Sie müssen Role auswählen").withValidator( role -> role!=null, "Bitte Role auswählen").bind(Benutzer::getRole, Benutzer::setRole);
         
 
 //        CheckBox roleField = new CheckBox();
@@ -104,8 +101,7 @@ public class Registerseite extends VerticalLayout implements View {
         layout.addComponent(userRegister);
         layout.addComponent(passwordRegister);
         layout.addComponent(userAnrede);
-        layout.addComponent(userVorname);
-        layout.addComponent(userNachname);
+        layout.addComponent(userName);
         layout.addComponent(userTelefonNummer);
         layout.addComponent(single);
 
@@ -131,8 +127,7 @@ public class Registerseite extends VerticalLayout implements View {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 String register = userRegister.getValue();
                 String password = passwordRegister.getValue();
-                String vorname = userVorname.getValue();
-                String nachname = userNachname.getValue();
+                String name = userName.getValue();
                 String telefonNummer = userTelefonNummer.getValue();
                 String anrede = userAnrede.getValue();
                 String role = single.getValue(); 
@@ -155,7 +150,7 @@ public class Registerseite extends VerticalLayout implements View {
                 if (allChecksOkay) {
                     allChecksOkay = false;
                     try {
-                        allChecksOkay = r.registerUser(register, password, vorname, nachname, telefonNummer,anrede, role);
+                        allChecksOkay = r.registerUser(register, password, name, telefonNummer,anrede, role);
                     } catch (DatabaseException ex) {
                         // TODO update to actually get the reason
                         Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
