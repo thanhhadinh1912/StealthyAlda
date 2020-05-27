@@ -3,32 +3,28 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
-import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.data.Binder;
-import com.vaadin.data.validator.*;
+import com.vaadin.data.validator.EmailValidator;
+import com.vaadin.data.validator.RegexpValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.ExternalResource;
-import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
-import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 // TODO - Validation seems to ignore invalid fields
 // TODO - Alternative registeration for "Unternehmen"
+// TODO - redirect to login after successful registration
 public class Registerseite extends VerticalLayout implements View {
-    public void setUp(){
+    public void setUp() {
         // validation experiment
         Binder<Benutzer> binder = new Binder<>();
         // end validation experiment
@@ -51,6 +47,11 @@ public class Registerseite extends VerticalLayout implements View {
         final TextField userTelefonNummer = new TextField();
         userTelefonNummer.setCaption("Tel.Nr");
 
+        final NativeSelect<String> userAnrede = new NativeSelect<>("Anrede");
+
+        // Add some items
+        userAnrede.setItems("Herr", "Frau");
+
 //        final TextField userAnrede = new TextField();
 //        userAnrede.setCaption("Anrede");
         // validators
@@ -61,7 +62,7 @@ public class Registerseite extends VerticalLayout implements View {
 
         // password too $hort ;)
         binder.forField(passwordRegister).asRequired("Sie müssen ein Passwort eingeben")
-                .withValidator(new StringLengthValidator("Passwort muss zwischen 6 und 20 Zeichen lang sein", 6,20))
+                .withValidator(new StringLengthValidator("Passwort muss zwischen 6 und 20 Zeichen lang sein", 6, 20))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
 
 
@@ -72,9 +73,8 @@ public class Registerseite extends VerticalLayout implements View {
 
         // Require Nachname
         binder.forField(userNachname).asRequired()
-                .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1,30))
+                .withValidator(new StringLengthValidator("Bitte Nachname eingeben", 1, 30))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
-
 
 
         this.addComponent(new TopPanelStartSeite());
@@ -88,14 +88,15 @@ public class Registerseite extends VerticalLayout implements View {
 
         layout.addComponent(userRegister);
         layout.addComponent(passwordRegister);
+        layout.addComponent(userAnrede);
         layout.addComponent(userVorname);
         layout.addComponent(userNachname);
         layout.addComponent(userTelefonNummer);
 
-        Label label = new Label ( "&nbsp;", ContentMode.HTML);
+        Label label = new Label("&nbsp;", ContentMode.HTML);
         layout.addComponent(label);
 //Erstellen und Hinzufügen eines Panels + Platzierung in die Mitte
-        Panel panel = new Panel( "Erstellen sie ihr Stealthy_Alda Konto: ");
+        Panel panel = new Panel("Erstellen sie ihr Stealthy_Alda Konto: ");
         panel.addStyleName("login");
 
 //Button zum Registrieren
@@ -116,7 +117,7 @@ public class Registerseite extends VerticalLayout implements View {
                 String vorname = userVorname.getValue();
                 String nachname = userNachname.getValue();
                 String telefonNummer = userTelefonNummer.getValue();
-                // String anrede = userAnrede.getValue();
+                String anrede = userAnrede.getValue();
 
                 // instance of control
                 RegisterControl r = new RegisterControl();
@@ -131,10 +132,10 @@ public class Registerseite extends VerticalLayout implements View {
                     userRegister.setValue("");
                     passwordRegister.setValue("");
                 }
-                if(allChecksOkay) {
+                if (allChecksOkay) {
                     allChecksOkay = false;
                     try {
-                        allChecksOkay = r.registerUser(register,password,vorname,nachname,telefonNummer);
+                        allChecksOkay = r.registerUser(register, password, vorname, nachname, telefonNummer,anrede);
                     } catch (DatabaseException ex) {
                         // TODO update to actually get the reason
                         Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
@@ -146,16 +147,15 @@ public class Registerseite extends VerticalLayout implements View {
                     }
 
                 }
-                if(allChecksOkay) {
+                if (allChecksOkay) {
                     Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
                 }
             }
         });
 
         this.addComponent(panel);
-        this.setComponentAlignment(panel,Alignment.MIDDLE_CENTER);
+        this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
     }
-
 
 
     @Override

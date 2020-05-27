@@ -15,12 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginControl {
-    private static final String userLoginStatement = "SELECT passwort, vorname FROM stealthyalda.benutzer WHERE email = ?";
+    private static final String userLoginStatement = "SELECT passwort, vorname, nachname, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
     public static void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException {
         ResultSet set = null;
 
-        // TODO change login logic below to use hashed passwords from the databank
         try{
             // hash password for check in db
             PasswordAuthentication hasher = new PasswordAuthentication();
@@ -71,6 +70,10 @@ public class LoginControl {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
                 benutzer.setVorname(set.getString(2));
+                benutzer.setNachname(set.getString(3));
+                benutzer.setAnrede(set.getString(4));
+                benutzer.setTelefonnummer(set.getString(5));
+
             } else {
                 throw new NoSuchUserOrPassword();
             }
