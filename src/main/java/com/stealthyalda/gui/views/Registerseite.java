@@ -31,7 +31,7 @@ public class Registerseite extends VerticalLayout implements View {
         this.setSizeFull();
 
         final TextField userRegister = new TextField();
-        userRegister.setCaption("UserID:");
+        userRegister.setCaption("Email:");
         final PasswordField passwordRegister = new PasswordField();
         passwordRegister.setCaption("Passwort:");
 

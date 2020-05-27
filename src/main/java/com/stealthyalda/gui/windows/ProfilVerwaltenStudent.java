@@ -41,7 +41,9 @@ public class ProfilVerwaltenStudent extends Window {
         // Create a text field
         TextField tfvorname = new TextField("Vorname");
         String vorname = benutzer.getVorname();
-        tfvorname.setValue(vorname);
+        if(vorname!=null) {
+            tfvorname.setValue(vorname);
+        }
         layout.addComponent(tfvorname, 1, 1, 2, 1);
         TextField tfnachname = new TextField("Nachname");
         String nachname = benutzer.getNachname();
