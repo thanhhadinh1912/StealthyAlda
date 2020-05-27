@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.windows.ConfirmationRegisterseite;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Roles;
 import com.vaadin.data.Binder;
@@ -163,7 +164,9 @@ public class Registerseite extends VerticalLayout implements View {
 
                 }
                 if (allChecksOkay) {
-                    Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
+                    //Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
+                    ConfirmationRegisterseite window = new ConfirmationRegisterseite("Registrierung abgeschlossen!");
+                UI.getCurrent().addWindow(window);
                 }
             }
         });
