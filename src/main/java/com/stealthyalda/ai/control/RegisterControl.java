@@ -18,9 +18,9 @@ import java.util.logging.Logger;
 
 public class RegisterControl {
     // prepared statement for insertion
-    private static final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort) VALUES (?,?)";
+    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, vorname, nachname,telefonnummer) VALUES (?,?,?,?,?)";
 
-    public static boolean checkUserExists( String email) throws UserExistsException, DatabaseException {
+    public boolean checkUserExists( String email) throws UserExistsException, DatabaseException {
         ResultSet set;
         try {
             //DB - Zugriffxyss
@@ -32,7 +32,6 @@ public class RegisterControl {
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
 
-
         try {
             set.next();
             int count = set.getInt("rowcount");
@@ -43,9 +42,9 @@ public class RegisterControl {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-
             JDBCConnection.getInstance().closeConnenction();
         }
+
         return true;
     }
 
@@ -56,11 +55,11 @@ public class RegisterControl {
      * @return boolean
      * @throws DatabaseException When murphy is around
      */
-    public static boolean registerUser(String email, String password) throws DatabaseException {
+    public boolean registerUser(String email, String password, String vorname, String nachname, String telefonNummer) throws DatabaseException {
         // store hashed password!!
         ResultSet set = null;
 
-        // new password hasher
+        // init password hasher
         PasswordAuthentication hasher = new PasswordAuthentication();
 
         // convert to char[] as the string method is deprecated
@@ -73,6 +72,10 @@ public class RegisterControl {
             // remember, the int references the index of the item, starting 1
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, passwordHash);
+            preparedStatement.setString(3, vorname);
+            preparedStatement.setString(4, nachname);
+            preparedStatement.setString(5, telefonNummer);
+            // preparedStatement.setString(6, anrede);
             // insert!
             int row = preparedStatement.executeUpdate();
             // delete for now
@@ -82,21 +85,23 @@ public class RegisterControl {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
+        sendConfirmationEmail(email);
+
         return true;
     }
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();
 
-        // mail.setHostName("smtp.mailtrap.io");
+        mail.setHostName("smtp.mailtrap.io");
         mail.setSmtpPort(587);
         mail.setSSLOnConnect(false);
         mail.setAuthentication("fc96262875e64b", "556759cf419b54");
 
         try {
             mail.setFrom("stealthy.alda@test.com");
-            mail.addTo(email, email);
-            mail.setSubject("The subject");
-            mail.setHtmlMsg("This is the message.");
+            mail.addTo(email);
+            mail.setSubject("Willkommen in Stealthy_Alda Portal");
+            mail.setHtmlMsg("Sie haben Ihr Konto erfolgreich erstellt!<br>Ab jetzt steht Ihnen das Portal zur Verfügung.");
             mail.send();
         } catch (EmailException e) {
             e.printStackTrace();
