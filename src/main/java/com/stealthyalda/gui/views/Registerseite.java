@@ -7,7 +7,6 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.windows.ConfirmationRegisterseite;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Roles;
 import com.vaadin.data.Binder;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.RegexpValidator;
@@ -19,8 +18,6 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,8 +30,6 @@ public class Registerseite extends VerticalLayout implements View {
         // validation experiment
         Binder<Benutzer> binder = new Binder<>();
         // end validation experiment
-
-//        this.setSizeFull();
 
         final TextField userRegister = new TextField();
         userRegister.setCaption("Email");
@@ -60,8 +55,6 @@ public class Registerseite extends VerticalLayout implements View {
 
         single.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);
 
-//        final TextField userAnrede = new TextField();
-//        userAnrede.setCaption("Anrede");
         // validators
         // invalid email
         binder.forField(userRegister).asRequired("Sie müssen eine Email Adresse eingeben")
@@ -123,51 +116,47 @@ public class Registerseite extends VerticalLayout implements View {
         panel.setSizeUndefined();
 
 
-        butonRegister.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                String register = userRegister.getValue();
-                String password = passwordRegister.getValue();
-                String name = userName.getValue();
-                String telefonNummer = userTelefonNummer.getValue();
-                String anrede = userAnrede.getValue();
-                String role = single.getValue(); 
-                
-                //String role = roleField.getValue();
+        butonRegister.addClickListener(clickEvent -> {
+            // TODO isn't it better to get a Benutzer object?!
+            String register = userRegister.getValue();
+            String password = passwordRegister.getValue();
+            String name = userName.getValue();
+            String telefonNummer = userTelefonNummer.getValue();
+            String anrede = userAnrede.getValue();
+            String role = single.getValue();
 
-                // instance of control
-                RegisterControl r = new RegisterControl();
+            // instance of control
+            RegisterControl r = new RegisterControl();
 
-                boolean allChecksOkay = false;
+            boolean allChecksOkay = false;
+            try {
+                allChecksOkay = r.checkUserExists(register);
+            } catch (UserExistsException | DatabaseException ex) {
+                Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden", Notification.Type.ERROR_MESSAGE);
+
+                Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
+                userRegister.setValue("");
+                passwordRegister.setValue("");
+            }
+            if (allChecksOkay) {
+                allChecksOkay = false;
                 try {
-                    allChecksOkay = r.checkUserExists(register);
-                } catch (UserExistsException | DatabaseException ex) {
-                    Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden", Notification.Type.ERROR_MESSAGE);
-
+                    allChecksOkay = r.registerUser(register, password, name, telefonNummer, anrede, role);
+                } catch (DatabaseException ex) {
+                    // TODO update to actually get the reason
+                    Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                    // TODO CSS update for success messages
                     Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
                     userRegister.setValue("");
                     passwordRegister.setValue("");
-                }
-                if (allChecksOkay) {
-                    allChecksOkay = false;
-                    try {
-                        allChecksOkay = r.registerUser(register, password, name, telefonNummer,anrede, role);
-                    } catch (DatabaseException ex) {
-                        // TODO update to actually get the reason
-                        Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
-                        // TODO CSS update for success messages
-                        Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
-                        userRegister.setValue("");
-                        passwordRegister.setValue("");
-
-                    }
 
                 }
-                if (allChecksOkay) {
-                    //Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
-                    ConfirmationRegisterseite window = new ConfirmationRegisterseite("Registrierung abgeschlossen!");
+
+            }
+            if (allChecksOkay) {
+                //Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
+                ConfirmationRegisterseite window = new ConfirmationRegisterseite("Registrierung abgeschlossen!");
                 UI.getCurrent().addWindow(window);
-                }
             }
         });
 

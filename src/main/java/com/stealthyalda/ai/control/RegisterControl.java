@@ -17,10 +17,12 @@ import java.util.logging.Logger;
 
 public class RegisterControl {
     // prepared statement for insertion
-    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, name,telefonnummer, anrede, role) VALUES (?,?,?,?,?,?)";
+    private static final String USER_INSERT_STMT = "INSERT INTO stealthyalda.benutzer (" +
+            "email, passwort, name,telefonnummer, anrede, role) " +
+            "VALUES (?,?,?,?,?,?)";
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
-        ResultSet set;
+        ResultSet set = null;
         try {
             //DB - Zugriffxyss
             Statement statement = JDBCConnection.getInstance().getStatement();
@@ -54,9 +56,6 @@ public class RegisterControl {
      * @throws DatabaseException When murphy is around
      */
     public boolean registerUser(String email, String password, String name, String telefonNummer, String anrede, String role) throws DatabaseException {
-        // store hashed password!!
-        ResultSet set = null;
-
         // init password hasher
         PasswordAuthentication hasher = new PasswordAuthentication();
 
@@ -66,7 +65,7 @@ public class RegisterControl {
 
         try {
             // use prepared statements to mitigate sql injection
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(userInsertStatement);
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_INSERT_STMT);
             // remember, the int references the index of the item, starting 1
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, passwordHash);
@@ -77,8 +76,6 @@ public class RegisterControl {
 
             // insert!
             int row = preparedStatement.executeUpdate();
-            // delete for now
-            // System.out.println(row);
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, row);
         } catch (SQLException e) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
@@ -104,7 +101,7 @@ public class RegisterControl {
             mail.setHtmlMsg("Hallo" + name + "Sie haben Ihr Konto erfolgreich erstellt!<br>Ab jetzt steht Ihnen das Portal zur Verfügung.");
             mail.send();
         } catch (EmailException e) {
-            e.printStackTrace();
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 }

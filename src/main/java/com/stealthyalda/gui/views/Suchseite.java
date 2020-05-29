@@ -9,11 +9,9 @@ import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.ExternalResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
-
 
 import java.util.List;
 
@@ -32,7 +30,6 @@ public class Suchseite extends VerticalLayout implements View{
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
-        final TextField textinput = new TextField();
 
 
 //        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);

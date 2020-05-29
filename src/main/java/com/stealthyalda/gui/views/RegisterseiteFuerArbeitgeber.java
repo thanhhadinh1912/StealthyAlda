@@ -7,7 +7,6 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.windows.ConfirmationRegisterseite;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Roles;
 import com.vaadin.data.Binder;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.RegexpValidator;
@@ -19,8 +18,6 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +25,7 @@ import java.util.logging.Logger;
 // TODO - Validation seems to ignore invalid fields
 // TODO - Alternative registeration for "Unternehmen"
 // TODO - redirect to login after successful registration
-public class RegisterseiteFürArbeitgeber extends VerticalLayout implements View {
+public class RegisterseiteFuerArbeitgeber extends VerticalLayout implements View {
     public void setUp() {
         // validation experiment
         Binder<Benutzer> binder = new Binder<>();

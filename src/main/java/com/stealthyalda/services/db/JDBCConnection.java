@@ -3,8 +3,9 @@ package com.stealthyalda.services.db;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.services.util.Password;
 import org.postgresql.Driver;
+
 import java.sql.*;
-import java.util.*;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,8 +13,6 @@ public class JDBCConnection {
     private static JDBCConnection connection = null;
     private String url = "jdbc:postgresql://dumbo.inf.h-brs.de:5432/wrast2s";
     private Connection conn;
-    private String login = "wrast2s";
-    private Password password;
     public static JDBCConnection getInstance() throws DatabaseException {
         if(connection == null){
             connection = new JDBCConnection();
@@ -71,7 +70,7 @@ public class JDBCConnection {
             }
             return this.conn.prepareStatement(sql);
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, throwables);
             throw new DatabaseException("Fehler beim Zugriff auf die Datenbank! Sichere Verbindung vorhanden?");
         }
     }
