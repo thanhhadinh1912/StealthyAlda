@@ -6,6 +6,7 @@
 package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.services.util.Views;
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -30,6 +31,8 @@ public class ConfirmRegStudent extends Window {
         setContent(content);
 
         Button button = new Button("OK");
+        button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+
         button.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
