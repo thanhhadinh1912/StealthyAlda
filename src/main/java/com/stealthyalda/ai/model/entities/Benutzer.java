@@ -1,16 +1,11 @@
 package com.stealthyalda.ai.model.entities;
-import com.stealthyalda.ai.model.dao.RoleDAO;
-import com.stealthyalda.ai.model.dtos.Role;
-import com.stealthyalda.services.util.Adresse;
-
-import java.util.Date;
 
 public class Benutzer {
     private String name;
     private String email;
     private String passwort;
     private String telefonnummer = null;
-    private int id ;
+    private int id;
     private String anrede;
     private String role;
 

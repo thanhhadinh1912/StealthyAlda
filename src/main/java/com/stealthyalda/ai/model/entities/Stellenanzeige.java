@@ -3,7 +3,7 @@ package com.stealthyalda.ai.model.entities;
 import java.util.Date;
 
 public class Stellenanzeige {
-    private int stellenanzeige_id;
+    private int stellenanzeigeID;
     private String titel;
     private String beschreibung;
     private String status;
@@ -21,16 +21,14 @@ public class Stellenanzeige {
         this.arbeitgeber_id = arbeitgeber_id;
     }
 
-    public Stellenanzeige(){
-
-    }
     public int getStellenanzeige_id() {
-        return stellenanzeige_id;
+        return stellenanzeigeID;
     }
 
-    public void setStellenanzeige_id(int stellenanzeige_id) {
-        this.stellenanzeige_id = stellenanzeige_id;
+    public void setStellenanzeige_id(int stellenanzeigeID) {
+        this.stellenanzeigeID = stellenanzeigeID;
     }
+
     public String getTitel() {
         return titel;
     }
@@ -38,7 +36,7 @@ public class Stellenanzeige {
     public void setTitel(String titel) {
         this.titel = titel;
     }
-    
+
     public String getOrt() {
         return ort;
     }

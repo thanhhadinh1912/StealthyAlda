@@ -12,12 +12,7 @@ import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 /**
@@ -48,13 +43,8 @@ public class Startseite extends VerticalLayout implements View {
         layout.addComponent(label2, 1,0);
         layout.setComponentAlignment(label2, Alignment.BOTTOM_CENTER);
         Button button = new Button("Los");
-        button.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                 UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
-            }
-        });
-        layout.addComponent(button,1,1);
+        button.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.LOGIN));
+        layout.addComponent(button, 1, 1);
         layout.setComponentAlignment(button, Alignment.TOP_CENTER);
 
         this.addComponent(layout);
@@ -64,6 +54,7 @@ public class Startseite extends VerticalLayout implements View {
     
 }
 
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
 //        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
