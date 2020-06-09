@@ -5,7 +5,6 @@ import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Account;
 import com.stealthyalda.services.util.Views;
 import com.stealthyalda.services.util.PasswordAuthentication;
 import com.vaadin.ui.UI;
@@ -15,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginControl {
-    private static final String userLoginStatement = "SELECT passwort, name, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
+    private static final String userLoginStatement = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
     public static void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException {
         ResultSet set = null;
@@ -69,7 +68,7 @@ public class LoginControl {
             if(authenticator.authenticate(c, dbPasswordHash) == true) {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
-                benutzer.setName(set.getString(2));
+                benutzer.setRole(set.getString(2));
                 benutzer.setAnrede(set.getString(3));
                 benutzer.setTelefonnummer(set.getString(4));
 

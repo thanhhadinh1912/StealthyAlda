@@ -15436,6 +15436,6 @@ div.v-layout.v-horizontal.v-widget {
 	text-decoration: none !important;
 }
 
-.mytheme .button {
-	color: blue;
+.mytheme .v-button .v-button-caption {
+	color: white;
 }

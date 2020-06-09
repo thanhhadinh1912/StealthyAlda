@@ -37,7 +37,6 @@ public class TopPanelStartSeite extends HorizontalLayout {
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/stealthyalda1.png"));
         Image Logo = new Image("", resource);
-
         GridLayout gridTop = new GridLayout(8, 1);
         gridTop.setSizeFull();
 
@@ -82,14 +81,10 @@ public class TopPanelStartSeite extends HorizontalLayout {
 
         //gridTop.setComponentAlignment(loggedLabel2, Alignment.TOP_RIGHT);
         //grid.setWidthFull();
-        Panel panel = new Panel( );
 //        panel.addStyleName("login");
-        panel.setContent(gridTop);
-        panel.addStyleName("login");
+      
 
-
-        this.addComponent(panel);
-        this.setComponentAlignment(panel,Alignment.TOP_RIGHT);
+        this.addComponent(gridTop);
 
 
 

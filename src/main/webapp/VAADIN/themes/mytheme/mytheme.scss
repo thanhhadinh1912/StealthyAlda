@@ -111,8 +111,13 @@ $v-font-size: 18px;
        background-color: #464646 !important;
        text-decoration: none !important;
    }
-   .button {
-       color: blue;
+    .v-button {
+       //margin: 10px;
+
+       /* A nested selector to increase specificity */
+       .v-button-caption {
+         color: white;
+       }
      }
 
 }

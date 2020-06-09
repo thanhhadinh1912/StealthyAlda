@@ -84,14 +84,10 @@ public class TopPanel extends HorizontalLayout {
 
         //gridTop.setComponentAlignment(loggedLabel2, Alignment.TOP_RIGHT);
         //grid.setWidthFull();
-        Panel panel = new Panel( );
 //        panel.addStyleName("login");
-        panel.setContent(gridTop);
-        panel.addStyleName("login");
+ 
 
-
-        this.addComponent(panel);
-        this.setComponentAlignment(panel,Alignment.TOP_RIGHT);
+        this.addComponent(gridTop);
 
 
 

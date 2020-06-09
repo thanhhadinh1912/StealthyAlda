@@ -48,6 +48,9 @@ public class MyUI extends UI {
         navi.addView(Views.STARTSEITE, Startseite.class);
         navi.addView(Views.REGISTERFÜRSTUDENT, RegisterseiteFürStudent.class);
         navi.addView(Views.REGISTERFÜRARBEITGEBER, RegisterseiteFürArbeitgeber.class);
+        navi.addView(Views.REGWEITERS,RegWeiterStudent.class);
+        navi.addView(Views.REGWEITERA,RegWeiterArbeitgeber.class);
+        
      
 
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);

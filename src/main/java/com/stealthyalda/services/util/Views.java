@@ -8,4 +8,7 @@ public class Views {
     public static final String REGISTERFÜRSTUDENT = "register_student";
     public static final String PASSWORTVERGESSEN = "reset";
     public static final String STARTSEITE = "startseite";
+    public static final String REGWEITERS = "richtenkontostudent";
+    public static final String REGWEITERA = "richtenkontoarbeitgeber";
+    
 }

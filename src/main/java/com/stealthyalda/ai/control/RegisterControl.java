@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class RegisterControl {
     // prepared statement for insertion
-    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, name,telefonnummer, anrede, role) VALUES (?,?,?,?,?,?)";
+    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         ResultSet set;
@@ -53,7 +53,7 @@ public class RegisterControl {
      * @return boolean
      * @throws DatabaseException When murphy is around
      */
-    public boolean registerUser(String email, String password, String name, String telefonNummer, String anrede, String role) throws DatabaseException {
+    public boolean registerUser(String email, String password, String role) throws DatabaseException {
         // store hashed password!!
         ResultSet set = null;
 
@@ -70,10 +70,10 @@ public class RegisterControl {
             // remember, the int references the index of the item, starting 1
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, passwordHash);
-            preparedStatement.setString(3, name);
-            preparedStatement.setString(4, telefonNummer);
-            preparedStatement.setString(5, anrede);
-            preparedStatement.setString(6, role);
+//            preparedStatement.setString(3, name);
+//            preparedStatement.setString(4, telefonNummer);
+//            preparedStatement.setString(5, anrede);
+            preparedStatement.setString(3, role);
 
             // insert!
             int row = preparedStatement.executeUpdate();
@@ -84,12 +84,12 @@ public class RegisterControl {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
-        sendConfirmationEmail(email, name);
+        sendConfirmationEmail(email);
 
         return true;
     }
 
-    private void sendConfirmationEmail(String email, String name) {
+    private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();
 
         mail.setHostName("smtp.mailtrap.io");
@@ -101,11 +101,12 @@ public class RegisterControl {
             mail.setFrom("stealthy.alda@test.com");
             mail.addTo(email);
             mail.setSubject("Willkommen in Stealthy_Alda Portal");
-            mail.setHtmlMsg("Hallo" + name + "Sie haben Ihr Konto erfolgreich erstellt!<br>Ab jetzt steht Ihnen das Portal zur Verfügung.");
+            mail.setHtmlMsg("Hallo! Sie haben Ihr Konto erfolgreich erstellt!<br>Ab jetzt steht Ihnen das Portal zur Verfügung.");
             mail.send();
         } catch (EmailException e) {
             e.printStackTrace();
         }
     }
+
 }
 

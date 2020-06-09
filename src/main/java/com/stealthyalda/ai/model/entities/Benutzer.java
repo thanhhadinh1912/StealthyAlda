@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.model.entities;
 import com.stealthyalda.ai.model.dao.RoleDAO;
 import com.stealthyalda.ai.model.dtos.Role;
-import com.stealthyalda.services.util.Account;
 import com.stealthyalda.services.util.Adresse;
 
 import java.util.Date;
