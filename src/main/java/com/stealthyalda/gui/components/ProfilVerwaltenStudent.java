@@ -1,7 +1,12 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.services.util.ImageUploader;
+import com.vaadin.server.FileResource;
+import com.vaadin.server.VaadinService;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+
+import java.io.File;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
     public ProfilVerwaltenStudent(){
@@ -45,11 +50,18 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         ImageUploader receiver = new ImageUploader();
 
         // Create the upload with a caption and set receiver later
+        String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+        FileResource resource = new FileResource(new File(basepath +
+                "/Image/Unknown.png"));
+        Image profilbild = new Image("", resource);
+        vertical2.addComponent(profilbild);
+        vertical2.setComponentAlignment(profilbild, Alignment.MIDDLE_RIGHT);
+        /*Label label = new Label("&nbsp;", ContentMode.HTML);
+        vertical2.addComponent(label);*/
         Upload upload = new Upload("", receiver);
         upload.addSucceededListener(receiver);
         upload.setButtonCaption("Profilbild hochladen");
         upload.setImmediateMode(false);
-        upload.setHeight("240px");
         vertical2.addComponent(upload);
         vertical2.setComponentAlignment(upload, Alignment.MIDDLE_RIGHT);
         TextArea softskill = new TextArea("Softskills");
