@@ -21,7 +21,7 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
         name.setHeight("60px");
         logoandname.addComponent(name);
         logoandname.setComponentAlignment(name,Alignment.BOTTOM_CENTER);
-        logoandname.setComponentAlignment(logo,Alignment.MIDDLE_LEFT);
+        logoandname.setComponentAlignment(logo,Alignment.TOP_LEFT);
         main.addComponent(logoandname);
         //this.setComponentAlignment(logoandname, Alignment.TOP_LEFT);
 
@@ -50,7 +50,12 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
         anfahrt.setHeight("100px");
         main.addComponent(anfahrt);
 
+        Button speichern = new Button("Speichern");
+        main.addComponent(speichern);
+        main.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
+
         this.addComponent(main);
+        this.setHeight("700px");
         this.setComponentAlignment(main, Alignment.TOP_CENTER);
 
 

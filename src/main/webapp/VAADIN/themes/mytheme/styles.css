@@ -15441,8 +15441,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-textfield {
 	background-color: white;
+	caption-color: black;
 }
 
 .mytheme .v-textarea {
 	overflow-y: auto !important;
+	background-color: white;
 }

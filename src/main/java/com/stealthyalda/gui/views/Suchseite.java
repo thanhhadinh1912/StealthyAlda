@@ -38,13 +38,13 @@ public class Suchseite extends VerticalLayout implements View {
         GridLayout layout = new GridLayout(4, 1);
         //Textfeld Jobtitel, Unternehmen
         final TextField jobsearch = new TextField();
-        jobsearch.setCaption("Jobtitel, Unternehmen: ");
+        jobsearch.setPlaceholder("Jobtitel, Unternehmen, ... ");
         jobsearch.setWidth("500px");
 
 
 //Textfelt Passwort
         final TextField jobsearchOrt = new TextField();
-        jobsearchOrt.setCaption("Ort: ");
+        jobsearchOrt.setPlaceholder("Ort, Umkreis ");
         jobsearchOrt.setWidth("500px");
 
 //        Label label = new Label(benutzer.getVorname() + ", gebe den Ort ein: ");

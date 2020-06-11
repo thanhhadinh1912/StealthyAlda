@@ -121,8 +121,13 @@ $v-font-size: 18px;
      }
      .v-textfield{
      background-color: white;
+     caption-color: black;
+     color: black;
      }
-     .v-textarea { overflow-y: auto ! important;}
+     .v-textarea {
+     overflow-y: auto ! important;
+     background-color: white;
+     }
 
 
 

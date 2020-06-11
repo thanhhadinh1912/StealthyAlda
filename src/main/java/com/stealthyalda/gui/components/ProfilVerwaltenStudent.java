@@ -76,9 +76,12 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         this.addComponent(horizon1);
         this.setComponentAlignment(horizon1, Alignment.TOP_CENTER);
 
+        Button speichern = new Button("Speichern");
+        this.addComponent(speichern);
+        this.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
 
         this.setWidth("1150px");
-        this.setHeight("550px");
+        this.setHeight("600px");
 
 
 
