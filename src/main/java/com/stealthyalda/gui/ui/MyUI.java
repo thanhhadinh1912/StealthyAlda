@@ -46,8 +46,7 @@ public class MyUI extends UI {
         Logger.getLogger(MyUI.class.getName()).log(Level.INFO, sess);
 
         Navigator navi = new Navigator(this, this);
-        navi.addView(Views.MAINSTUDENT, SuchseiteStudent.class);
-        navi.addView(Views.MAINARBEITGEBER, SuchseiteArbeitgeber.class);
+        navi.addView(Views.MAIN, Suchseite.class);
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
         navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
@@ -56,6 +55,10 @@ public class MyUI extends UI {
         navi.addView(Views.REGISTERFUERARBEITGEBER, RegisterseiteFuerArbeitgeber.class);
         navi.addView(Views.REGWEITERS, RegWeiterStudent.class);
         navi.addView(Views.REGWEITERA, RegWeiterArbeitgeber.class);
+        navi.addView(Views.DASHBOARDS, DashboardStudent.class);
+        navi.addView(Views.DASHBOARDA, DashboardArbeitgeber.class);
+
+
 
 
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);

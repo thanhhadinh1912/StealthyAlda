@@ -26,14 +26,14 @@ public class TopPanelStartSeite extends HorizontalLayout {
         gridTop.setSizeFull();
 
         gridTop.addComponent(logo, 0, 0);
-        Button buttonFuerStudent = new Button("Fuer Studenten");
+        Button buttonFuerStudent = new Button("Für Studenten");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
 
         buttonFuerStudent.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFUERSTUDENT));
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
-        Button buttonFuerArbeitgeber = new Button("Fuer Arbeitgeber");
+        Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFUERARBEITGEBER));
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);

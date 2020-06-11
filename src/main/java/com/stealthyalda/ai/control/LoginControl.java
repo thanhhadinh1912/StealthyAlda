@@ -82,18 +82,12 @@ public class LoginControl {
 
         ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
 
-        try {
             // Der Benutzer ist vorhanden
-            if(set.getString(2).equals("Student")){
-                UI.getCurrent().getNavigator().navigateTo(Views.MAINSTUDENT);
-            }
-            else{
-                UI.getCurrent().getNavigator().navigateTo(Views.MAINARBEITGEBER);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            
+                UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+            
+
+       
 
 
     }

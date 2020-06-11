@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.windows.ProfilVerwaltenStudent;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
@@ -13,11 +14,11 @@ import com.vaadin.ui.themes.ValoTheme;
 import java.io.File;
 
 
-public class TopPanelArbeitgeber extends HorizontalLayout {
+public class TopPanel extends HorizontalLayout {
     private final Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
 
-    public TopPanelArbeitgeber() {
+    public TopPanel() {
         this.setSizeFull();
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -29,21 +30,22 @@ public class TopPanelArbeitgeber extends HorizontalLayout {
         gridTop.setSizeFull();
 
         gridTop.addComponent(logo, 0, 0);
-        Button buttonFuerStudent = new Button("Fuer Studenten");
+        Button buttonFuerStudent = new Button("Für Studenten");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
 
         buttonFuerStudent.addClickListener(event -> {
-            ProfilVerwaltenStudent window = new ProfilVerwaltenStudent(user);
-            UI.getCurrent().addWindow(window);
+            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
         });
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
-        Button buttonFuerArbeitgeber = new Button("Fuer Arbeitgeber");
+        Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addClickListener(event -> {
-            ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
-            UI.getCurrent().addWindow(window2);
+            //ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
+            //UI.getCurrent().addWindow(window2);
+            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
+
         });
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
 

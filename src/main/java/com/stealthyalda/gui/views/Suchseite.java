@@ -3,7 +3,7 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.SucheEinfach;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.components.TopPanelStudent;
+import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
@@ -15,14 +15,14 @@ import com.vaadin.ui.*;
 
 import java.util.List;
 
-public class SuchseiteStudent extends VerticalLayout implements View {
+public class Suchseite extends VerticalLayout implements View {
 
     private int anzahl = 0;
     private Stellenanzeige selected = null;
 
     public void setUp() {
 
-        this.addComponent(new TopPanelStudent());
+        this.addComponent(new TopPanel());
 
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
