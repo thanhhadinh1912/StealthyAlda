@@ -1,6 +1,7 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
@@ -36,7 +37,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         tab1.addComponent(bewerber);
         accordion.addTab(tab1, "Dashboard");
 
-        final Layout tab2 = new VerticalLayout();
+        final Layout tab2 = new ProfilVerwaltenArbeitgeber();
         accordion.addTab(tab2, "Profil verwalten");
 
         final Layout tab3 = new VerticalLayout();
