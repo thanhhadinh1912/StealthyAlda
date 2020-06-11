@@ -5,6 +5,7 @@
  */
 package com.stealthyalda.gui.windows;
 
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.ui.*;
 
@@ -12,7 +13,7 @@ import com.vaadin.ui.*;
  * @author WINDOWS
  */
 public class ProfilVerwaltenArbeitgeber extends Window {
-    public ProfilVerwaltenArbeitgeber() {
+    public ProfilVerwaltenArbeitgeber(Benutzer user) {
         super("Profil Verwalten"); //set window caption
         center();
         this.setHeight("600px");
