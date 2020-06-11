@@ -15,7 +15,7 @@ import com.vaadin.ui.*;
 
 import java.util.List;
 
-public class Suchseite extends VerticalLayout implements View{
+public class SuchseiteStudent extends VerticalLayout implements View{
 
     private  int anzahl = 0;
     private Stellenanzeige selected = null;

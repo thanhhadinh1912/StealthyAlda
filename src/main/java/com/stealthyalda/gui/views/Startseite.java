@@ -62,6 +62,7 @@ public class Startseite extends VerticalLayout implements View {
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         if( user != null) {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+
         } else {
             this.setUp();
         }

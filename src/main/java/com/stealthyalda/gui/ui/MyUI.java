@@ -41,7 +41,8 @@ public class MyUI extends UI {
         System.out.println("LOG: neues UI-Objekt erzeugt, Session-ID" + VaadinSession.getCurrent().toString());
 
         Navigator navi = new Navigator(this,this);
-        navi.addView(Views.MAIN, Suchseite.class);
+        navi.addView(Views.MAINSTUDENT, SuchseiteStudent.class);
+        navi.addView(Views.MAINARBEITGEBER, SuchseiteArbeitgeber.class);
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
         navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);

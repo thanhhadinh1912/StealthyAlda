@@ -169,7 +169,13 @@ public class Loginseite extends VerticalLayout implements View {
 
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         if( user != null) {
-            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+            String role = user.getRole();
+            if(role.equals("Student")){
+            UI.getCurrent().getNavigator().navigateTo(Views.MAINSTUDENT);
+            }
+            else{
+                UI.getCurrent().getNavigator().navigateTo(Views.MAINARBEITGEBER);
+            }
         } else {
             this.setUp();
         }
