@@ -33,21 +33,17 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 "  s.beschreibung," +
                 "  s.status," +
                 "  s.datum," +
-                "  s.fachbereich," +
                 "  a.unternehmen," +
                 "  s.ort " +
                 "FROM" +
                 " stealthyalda.stellenanzeige s, stealthyalda.arbeitgeber a " +
                 "WHERE s.arbeitgeber_id = a.arbeitgeber_id " +
-                "AND ort LIKE '%?%' " +
-                "OR  unternehmen LIKE '%?%' " +
-                "OR titel LIKE '%?%'";
+                "AND ort LIKE '%"+ ort +"%' " +
+                "OR unternehmen LIKE '%"+ titelorunternehmen +"%' " +
+                "OR titel LIKE '%"+ titelorunternehmen +"%'";
         try {
             // use prepared stmt
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
-
-            preparedStatement.setString(1, titelorunternehmen);
-            preparedStatement.setString(2, ort);
 
             rs = preparedStatement.executeQuery();
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
@@ -70,9 +66,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 stellenanzeige.setBeschreibung(rs.getString(3));
                 stellenanzeige.setStatus(rs.getString(4));
                 stellenanzeige.setDatum(rs.getDate(5));
-                stellenanzeige.setFachbereich(rs.getString(6));
-                stellenanzeige.setUnternehmen(rs.getString(7));
-                stellenanzeige.setOrt(rs.getString(8));
+                stellenanzeige.setUnternehmen(rs.getString(6));
+                stellenanzeige.setOrt(rs.getString(7));
                 liste.add(stellenanzeige);
             }
         } catch (SQLException ex) {

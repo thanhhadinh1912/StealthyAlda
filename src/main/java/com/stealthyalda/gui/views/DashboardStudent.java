@@ -41,7 +41,7 @@ public class DashboardStudent extends VerticalLayout implements View {
         accordion.addTab(tab2, "Profil verwalten");
 
         final Layout tab3 = new VerticalLayout();
-        accordion.addTab(tab3, "Benachrichtigungen");
+        accordion.addTab(tab3, "Bewerbungen");
 
         final Layout tab4 = new VerticalLayout();
         accordion.addTab(tab4, "Konto");
