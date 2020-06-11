@@ -25,6 +25,7 @@ import com.vaadin.ui.*;
 @PreserveOnRefresh
 public class MyUI extends UI {
 
+
     private Benutzer benutzer = null;
 
     public Benutzer getBenutzer() {
@@ -34,7 +35,6 @@ public class MyUI extends UI {
     public void setBenutzer(Benutzer benutzer) {
         this.benutzer = benutzer;
     }
-
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
