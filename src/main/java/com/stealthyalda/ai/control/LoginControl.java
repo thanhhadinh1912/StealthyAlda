@@ -5,35 +5,33 @@ import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Views;
 import com.stealthyalda.services.util.PasswordAuthentication;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.ui.UI;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LoginControl {
-    private static final String userLoginStatement = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
-    public static void checkAuthentification( String email, String password) throws NoSuchUserOrPassword, DatabaseException {
-        ResultSet set = null;
+    private static final String USER_LOGIN_STATEMENT = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
-        try{
-            // hash password for check in db
-            PasswordAuthentication hasher = new PasswordAuthentication();
+    private LoginControl() {
+    }
 
-            // remember, convert to char[] as the string method is deprecated
-            char[] c = password.toCharArray();
+    public static void checkAuthentification(String email, String password) throws NoSuchUserOrPassword, DatabaseException {
+        ResultSet set;
 
-            String passwordHash = hasher.hash(c); // password hash
-
+        try {
             // use prepared statements to mitigate sql injection
 
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(userLoginStatement);
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_LOGIN_STATEMENT);
             // remember, the int references the index of the item, starting 1
             preparedStatement.setString(1, email);
-            // preparedStatement.setString(2, passwordHash);
+
             // query!
             set = preparedStatement.executeQuery();
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
@@ -82,10 +80,6 @@ public class LoginControl {
             JDBCConnection.getInstance().closeConnenction();
         }
 
-
-//        VaadinSession session = UI.getCurrent().getSession();//welche account gerade eingeloggt
-//        session.setAttribute(Rolles.CURRENT_USER, user);
-
         ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
 
         try {
@@ -106,7 +100,6 @@ public class LoginControl {
     public static void logoutUser() {
         UI.getCurrent().close();
         UI.getCurrent().getPage().setLocation("/");
-        //UI.getCurrent().getSession().close();
     }
 }
 

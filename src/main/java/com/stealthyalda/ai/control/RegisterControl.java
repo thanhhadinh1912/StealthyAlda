@@ -10,41 +10,45 @@ import org.apache.commons.mail.HtmlEmail;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
 public class RegisterControl {
     // prepared statement for insertion
-    private final String userInsertStatement = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
+    private static final String USER_INSERT_STATEMENT = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         ResultSet set;
+        boolean checksOkay = false;
         try {
-            //DB - Zugriffxyss
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT  COUNT(*) AS rowcount FROM stealthyalda.benutzer " +
-                    " WHERE stealthyalda.benutzer.email = '" + email + "' ;");
-        } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement("SELECT  COUNT(*) AS rowcount FROM stealthyalda.benutzer " +
+                    " WHERE stealthyalda.benutzer.email = ?;");
+
+            preparedStatement.setString(1, email);
+
+            set = preparedStatement.executeQuery();
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
-
         try {
             set.next();
             int count = set.getInt("rowcount");
             set.close();
             if (count != 0) {
+                checksOkay = false;
                 throw new UserExistsException("Sorry, Sie können diese Email Adresse nicht benutzen");
             }
+            checksOkay = true;
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             JDBCConnection.getInstance().closeConnenction();
         }
 
-        return true;
+        return checksOkay;
     }
 
     /**
@@ -54,9 +58,6 @@ public class RegisterControl {
      * @throws DatabaseException When murphy is around
      */
     public boolean registerUser(String email, String password, String role) throws DatabaseException {
-        // store hashed password!!
-        ResultSet set = null;
-
         // init password hasher
         PasswordAuthentication hasher = new PasswordAuthentication();
 
@@ -65,20 +66,13 @@ public class RegisterControl {
         String passwordHash = hasher.hash(c); // password hash
 
         try {
-            // use prepared statements to mitigate sql injection
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(userInsertStatement);
-            // remember, the int references the index of the item, starting 1
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_INSERT_STATEMENT);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, passwordHash);
-//            preparedStatement.setString(3, name);
-//            preparedStatement.setString(4, telefonNummer);
-//            preparedStatement.setString(5, anrede);
             preparedStatement.setString(3, role);
 
-            // insert!
             int row = preparedStatement.executeUpdate();
-            // delete for now
-            // System.out.println(row);
+
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, row);
         } catch (SQLException e) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
@@ -104,7 +98,7 @@ public class RegisterControl {
             mail.setHtmlMsg("Hallo! Sie haben Ihr Konto erfolgreich erstellt!<br>Ab jetzt steht Ihnen das Portal zur Verfügung.");
             mail.send();
         } catch (EmailException e) {
-            e.printStackTrace();
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, "Failed to send an email", e);
         }
     }
 

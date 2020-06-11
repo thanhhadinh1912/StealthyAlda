@@ -1,17 +1,21 @@
 package com.stealthyalda.gui.ui;
 
-import javax.servlet.annotation.WebServlet;
-
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.views.*;
 import com.stealthyalda.services.util.Views;
-import com.vaadin.annotations.*;
+import com.vaadin.annotations.PreserveOnRefresh;
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
+import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.*;
+import com.vaadin.ui.UI;
+
+import javax.servlet.annotation.WebServlet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window
@@ -38,27 +42,27 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        System.out.println("LOG: neues UI-Objekt erzeugt, Session-ID" + VaadinSession.getCurrent().toString());
+        String sess = VaadinSession.getCurrent().toString();
+        Logger.getLogger(MyUI.class.getName()).log(Level.INFO, sess);
 
-        Navigator navi = new Navigator(this,this);
+        Navigator navi = new Navigator(this, this);
         navi.addView(Views.MAINSTUDENT, SuchseiteStudent.class);
         navi.addView(Views.MAINARBEITGEBER, SuchseiteArbeitgeber.class);
         navi.addView(Views.LOGIN, Loginseite.class);
         navi.addView(Views.REGISTER, Registerseite.class);
         navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
         navi.addView(Views.STARTSEITE, Startseite.class);
-        navi.addView(Views.REGISTERFÜRSTUDENT, RegisterseiteFürStudent.class);
-        navi.addView(Views.REGISTERFÜRARBEITGEBER, RegisterseiteFürArbeitgeber.class);
-        navi.addView(Views.REGWEITERS,RegWeiterStudent.class);
-        navi.addView(Views.REGWEITERA,RegWeiterArbeitgeber.class);
-        
-     
+        navi.addView(Views.REGISTERFÜRSTUDENT, RegisterseiteFuerStudent.class);
+        navi.addView(Views.REGISTERFÜRARBEITGEBER, RegisterseiteFuerArbeitgeber.class);
+        navi.addView(Views.REGWEITERS, RegWeiterStudent.class);
+        navi.addView(Views.REGWEITERA, RegWeiterArbeitgeber.class);
+
 
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);
 
     }
 
-    public MyUI getMyUI(){
+    public MyUI getMyUI() {
         return (MyUI) UI.getCurrent();
     }
 

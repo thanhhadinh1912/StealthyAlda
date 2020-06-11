@@ -9,23 +9,23 @@ public class Stellenanzeige {
     private String status;
     private Date datum;
     private String fachbereich;
-    private int arbeitgeber_id;
+    private int arbeitgeberID;
     private String ort;
     private String unternehmen;
 
-    public int getArbeitgeber_id() {
-        return arbeitgeber_id;
+    public int getArbeitgeberID() {
+        return arbeitgeberID;
     }
 
-    public void setArbeitgeber_id(int arbeitgeber_id) {
-        this.arbeitgeber_id = arbeitgeber_id;
+    public void setArbeitgeberID(int arbeitgeberID) {
+        this.arbeitgeberID = arbeitgeberID;
     }
 
-    public int getStellenanzeige_id() {
+    public int getStellenanzeigeID() {
         return stellenanzeigeID;
     }
 
-    public void setStellenanzeige_id(int stellenanzeigeID) {
+    public void setStellenanzeigeID(int stellenanzeigeID) {
         this.stellenanzeigeID = stellenanzeigeID;
     }
 
