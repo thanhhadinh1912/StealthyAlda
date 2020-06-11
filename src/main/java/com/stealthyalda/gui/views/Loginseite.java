@@ -69,8 +69,11 @@ public class Loginseite extends VerticalLayout implements View {
 
         layout.addComponent(userLogin, 0, 3, 3, 3);
         layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
+        Label label5 = new Label("&nbsp;", ContentMode.HTML);
+        layout.addComponent(label5);
         layout.addComponent(passwordField, 0, 4, 3, 4);
         layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
+
 
         Button butonPasswortvergessen = new Button("Passwort vergessen?");
         butonPasswortvergessen.addStyleName(ValoTheme.BUTTON_LINK);

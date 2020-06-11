@@ -58,7 +58,7 @@ $v-font-size: 18px;
 }
 
 .login .v-panel-content {
-  background: #B2B2B2;
+  background-color: white;
   border: 0px #ffffff;
   padding: 10px;
   font-family: Verdana;
@@ -127,6 +127,9 @@ $v-font-size: 18px;
      .v-textarea {
      overflow-y: auto ! important;
      background-color: white;
+     }
+     .v-panel{
+     background-color:white
      }
 
 

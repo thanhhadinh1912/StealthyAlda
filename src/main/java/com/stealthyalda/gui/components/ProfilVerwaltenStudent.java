@@ -47,7 +47,7 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
 
         VerticalLayout vertical2 = new VerticalLayout();
         vertical2.setHeight("525px");
-        ImageUploader receiver = new ImageUploader();
+
 
         // Create the upload with a caption and set receiver later
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -58,10 +58,11 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         vertical2.setComponentAlignment(profilbild, Alignment.MIDDLE_RIGHT);
         /*Label label = new Label("&nbsp;", ContentMode.HTML);
         vertical2.addComponent(label);*/
+        ImageUploader receiver = new ImageUploader();
         Upload upload = new Upload("", receiver);
         upload.addSucceededListener(receiver);
         upload.setButtonCaption("Profilbild hochladen");
-        upload.setImmediateMode(false);
+        upload.setImmediateMode(true);
         vertical2.addComponent(upload);
         vertical2.setComponentAlignment(upload, Alignment.MIDDLE_RIGHT);
         TextArea softskill = new TextArea("Softskills");
