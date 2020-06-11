@@ -25,7 +25,7 @@ import com.vaadin.ui.*;
 @PreserveOnRefresh
 public class MyUI extends UI {
 
-    //Test Push
+
     private Benutzer benutzer = null;
 
     public Benutzer getBenutzer() {
