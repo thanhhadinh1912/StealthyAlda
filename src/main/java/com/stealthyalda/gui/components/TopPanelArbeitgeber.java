@@ -14,11 +14,11 @@ import com.vaadin.ui.themes.ValoTheme;
 import java.io.File;
 
 
-public class TopPanel extends HorizontalLayout {
+public class TopPanelArbeitgeber extends HorizontalLayout {
     private  Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
 
-    public TopPanel() {
+    public TopPanelArbeitgeber() {
         this.setSizeFull();
 
 
@@ -77,8 +77,8 @@ public class TopPanel extends HorizontalLayout {
         });
                 gridTop.addComponent(buttonAbmelden,7,0);
                 gridTop.setComponentAlignment(buttonFürStudent,Alignment.MIDDLE_RIGHT);
-        gridTop.setComponentAlignment(buttonFürArbeitgeber,Alignment.MIDDLE_RIGHT);
-        gridTop.setComponentAlignment(buttonAbmelden,Alignment.MIDDLE_RIGHT);
+                gridTop.setComponentAlignment(buttonFürArbeitgeber,Alignment.MIDDLE_RIGHT);
+                gridTop.setComponentAlignment(buttonAbmelden,Alignment.MIDDLE_RIGHT);
 //        gridTop.setComponentAlignment(gridBar, Alignment.BOTTOM_RIGHT);
 //        gridTop.setComponentAlignment(Logo, Alignment.TOP_LEFT);
 

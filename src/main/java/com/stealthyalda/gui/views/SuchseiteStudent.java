@@ -3,7 +3,7 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.SucheEinfach;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.gui.components.TopPanelStudent;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
@@ -22,7 +22,7 @@ public class SuchseiteStudent extends VerticalLayout implements View{
 
     public void setUp() {
 
-        this.addComponent(new TopPanel());
+        this.addComponent(new TopPanelStudent());
 
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
