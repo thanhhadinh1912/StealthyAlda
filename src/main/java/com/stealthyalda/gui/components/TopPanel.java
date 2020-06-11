@@ -3,8 +3,6 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.gui.windows.ProfilVerwaltenArbeitgeber;
-import com.stealthyalda.gui.windows.ProfilVerwaltenStudent;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
