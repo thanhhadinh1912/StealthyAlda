@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
@@ -10,6 +11,11 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
     public ProfilVerwaltenArbeitgeber(){
         VerticalLayout main = new VerticalLayout();
         HorizontalLayout logoandname = new HorizontalLayout();
+        ImageUploader receiver = new ImageUploader();
+        Upload upload = new Upload("", receiver);
+        upload.addSucceededListener(receiver);
+        upload.setButtonCaption("Logo hochladen");
+        upload.setImmediateMode(true);
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/Unknown_logo.png"));
@@ -17,11 +23,16 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
         logoandname.addComponent(logo);
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
-        name.setWidth("500px");
+        name.setWidth("580px");
         name.setHeight("60px");
         logoandname.addComponent(name);
         logoandname.setComponentAlignment(name,Alignment.BOTTOM_CENTER);
         logoandname.setComponentAlignment(logo,Alignment.TOP_LEFT);
+
+
+        logoandname.addComponent(upload);
+        logoandname.setComponentAlignment(upload, Alignment.BOTTOM_RIGHT);
+
         main.addComponent(logoandname);
         //this.setComponentAlignment(logoandname, Alignment.TOP_LEFT);
 

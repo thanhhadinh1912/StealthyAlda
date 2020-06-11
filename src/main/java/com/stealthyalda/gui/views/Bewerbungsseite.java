@@ -25,6 +25,9 @@ public class Bewerbungsseite extends VerticalLayout implements View {
         anschreiben.setWidth("500px");
         anschreibenupload.setComponentAlignment(anschreiben, Alignment.TOP_LEFT);
 
+        /*Upload upload = new Upload("Upload it here", receiver);
+        upload.setImmediateMode(false);*/
+
 
 
 
