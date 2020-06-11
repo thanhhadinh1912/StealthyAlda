@@ -5,22 +5,14 @@
  */
 package com.stealthyalda.gui.windows;
 
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.ImageUploader;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.Upload;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.*;
 
 /**
- *
  * @author WINDOWS
  */
 public class ProfilVerwaltenArbeitgeber extends Window {
-     public ProfilVerwaltenArbeitgeber(Benutzer benutzer) {
+    public ProfilVerwaltenArbeitgeber() {
         super("Profil Verwalten"); //set window caption
         center();
         this.setHeight("600px");
@@ -42,7 +34,7 @@ public class ProfilVerwaltenArbeitgeber extends Window {
         Button buttonKonto = new Button("Konto");
         layout.addComponent(buttonKonto, 0, 4);
         layout.setComponentAlignment(buttonKonto, Alignment.MIDDLE_LEFT);
-        
+
         ImageUploader receiver = new ImageUploader();
 
         // Create the upload with a caption and set receiver later
@@ -51,40 +43,37 @@ public class ProfilVerwaltenArbeitgeber extends Window {
         upload.setButtonCaption("Logo hochladen");
         upload.setImmediateMode(false);
 
-        layout.addComponent(upload, 1,0);
+        layout.addComponent(upload, 1, 0);
         layout.setComponentAlignment(upload, Alignment.TOP_LEFT);
 
-      
 
         // Create the area
         TextArea area = new TextArea("Kurze Beschreibung des Unternehmens:");
-        layout.addComponent(area, 1,2,4,4);
+        layout.addComponent(area, 1, 2, 4, 4);
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
         area.setWidth("300px");
-        
+
 
         TextArea area1 = new TextArea("Kontaktdaten");
         layout.addComponent(area1, 6, 2, 9, 4);
         layout.setComponentAlignment(area1, Alignment.MIDDLE_LEFT);
         area1.setWidth("288px");
-              
+
 
         TextArea area2 = new TextArea("Stellenanzeige");
-        layout.addComponent(area2, 1, 5,9,9);
+        layout.addComponent(area2, 1, 5, 9, 9);
         layout.setComponentAlignment(area2, Alignment.MIDDLE_LEFT);
         area2.setWidth("600px");
-        
-        TextArea area3 = new TextArea ("Anfahrt");
 
-        layout.addComponent(area3, 1,10,4,12);
+        TextArea area3 = new TextArea("Anfahrt");
+
+        layout.addComponent(area3, 1, 10, 4, 12);
         layout.setComponentAlignment(area3, Alignment.MIDDLE_LEFT);
         area3.setWidth("300px");
 
 
-        
-
         Button buttonProfilAendern = new Button("Speichern");
-        layout.addComponent(buttonProfilAendern,10,13);
+        layout.addComponent(buttonProfilAendern, 10, 13);
 
         this.setContent(layout);
 

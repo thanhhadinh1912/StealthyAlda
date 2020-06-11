@@ -2,15 +2,7 @@ package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.ImageUploader;
-import com.vaadin.navigator.View;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.GridLayout;
-import com.vaadin.ui.TextArea;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.Upload;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.*;
 
 
 public class ProfilVerwaltenStudent extends Window {
@@ -41,7 +33,7 @@ public class ProfilVerwaltenStudent extends Window {
         // Create a text field
         TextField tfname = new TextField("Name");
         String name = benutzer.getName();
-        if(name!=null) {
+        if (name != null) {
             tfname.setValue(name);
         }
         layout.addComponent(tfname, 1, 1, 4, 1);
@@ -64,7 +56,7 @@ public class ProfilVerwaltenStudent extends Window {
         layout.addComponent(area, 1, 3, 4, 6);
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
         area.setWidth("500px");
-        
+
 
         TextArea area1 = new TextArea("Hobby");
         layout.addComponent(area1, 1, 7, 2, 10);
@@ -73,9 +65,9 @@ public class ProfilVerwaltenStudent extends Window {
         TextArea area2 = new TextArea("Fachkompetenz");
         layout.addComponent(area2, 3, 7, 5, 10);
         layout.setComponentAlignment(area, Alignment.MIDDLE_LEFT);
-        
+
         Button buttonProfilAendern = new Button("Speichern");
-        layout.addComponent(buttonProfilAendern,7,11);
+        layout.addComponent(buttonProfilAendern, 7, 11);
 
         this.setContent(layout);
 

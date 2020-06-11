@@ -15,9 +15,9 @@ import com.vaadin.ui.*;
 
 import java.util.List;
 
-public class SuchseiteStudent extends VerticalLayout implements View{
+public class SuchseiteStudent extends VerticalLayout implements View {
 
-    private  int anzahl = 0;
+    private int anzahl = 0;
     private Stellenanzeige selected = null;
 
     public void setUp() {
@@ -33,12 +33,7 @@ public class SuchseiteStudent extends VerticalLayout implements View{
 
 
 //        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
-        Benutzer benutzer = ((MyUI) UI.getCurrent()).getBenutzer();
 
-        String vorname;
-        if (benutzer != null) {
-            vorname = benutzer.getName();
-        }
 
         GridLayout layout = new GridLayout(4, 1);
         //Textfeld Jobtitel, Unternehmen
@@ -86,16 +81,16 @@ public class SuchseiteStudent extends VerticalLayout implements View{
             String ort = jobsearchOrt.getValue();
             String titel = jobsearch.getValue();
 
-            List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel,ort);
+            List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel, ort);
 
-            if (ort.equals("")&&titel.equals("")) {
+            if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
                 anzahl += 1;
 
                 //erstmal alles löschen
                 grid.removeAllColumns();
-                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((Benutzer) ((MyUI) UI.getCurrent()).getBenutzer()).getName() + ")");
+                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + " " + ((MyUI) UI.getCurrent()).getBenutzer().getName() + ")");
 
                 // neue Items hinzufügen
                 grid.setItems(liste);

@@ -6,9 +6,8 @@
 package org.postgresql.util;
 
 /**
- *
  * @author WINDOWS
  */
-public class SQLException {
-    
+public class SQLException extends Exception {
+
 }

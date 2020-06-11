@@ -16,6 +16,8 @@ import java.util.*;
  * @author alejandro@vaadin.com
  **/
 public class Email {
+    private Email() {
+    }
 
     /**
      * Sends an email message with no attachments.

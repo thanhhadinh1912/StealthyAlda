@@ -52,8 +52,8 @@ public class MyUI extends UI {
         navi.addView(Views.REGISTER, Registerseite.class);
         navi.addView(Views.PASSWORTVERGESSEN, Passwortvergessenseite.class);
         navi.addView(Views.STARTSEITE, Startseite.class);
-        navi.addView(Views.REGISTERFÜRSTUDENT, RegisterseiteFuerStudent.class);
-        navi.addView(Views.REGISTERFÜRARBEITGEBER, RegisterseiteFuerArbeitgeber.class);
+        navi.addView(Views.REGISTERFUERSTUDENT, RegisterseiteFuerStudent.class);
+        navi.addView(Views.REGISTERFUERARBEITGEBER, RegisterseiteFuerArbeitgeber.class);
         navi.addView(Views.REGWEITERS, RegWeiterStudent.class);
         navi.addView(Views.REGWEITERA, RegWeiterArbeitgeber.class);
 

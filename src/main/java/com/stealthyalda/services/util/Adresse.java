@@ -38,12 +38,13 @@ public class Adresse {
         this.hausnummer = hausnummer;
     }
 
-    public int getAdresse_id() {
-        return adresse_id;
+    private int adresseID;
+
+    public int getAdresseID() {
+        return adresseID;
     }
 
-    public void setAdresse_id(int adresse_id) {
-        this.adresse_id = adresse_id;
+    public void setAdresseID(int id) {
+        this.adresseID = id;
     }
-    private int adresse_id ;
 }

@@ -4,18 +4,20 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.model.dtos.Role;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.services.db.JDBCConnection;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class RoleDAO extends AbstractDAO {
 
-    public static RoleDAO dao = null;
+    public static RoleDAO dao;
 
     private RoleDAO() {
 
@@ -28,19 +30,28 @@ public class RoleDAO extends AbstractDAO {
         return dao;
     }
 
-    public List<Role> getRolesForUser(Benutzer user) {
-        Statement statement = this.getStatement();
-
+    public List<Role> getRolesForUser(Benutzer user) throws SQLException {
         ResultSet rs = null;
+        // labs
 
-        // rs = statement.executeQuery("SELECT role FROM  hoteluser.user_to_role WHERE hoteluser.user_to_role.login = \'"+user.getLogin()+"\' ");
+        try {
+            PreparedStatement preparedStatement = this.getPreparedStatement("SELECT role from stealthyalda.benutzer where stealthyalda.benuter.benutzer_id =  = ?;");
+
+            preparedStatement.setInt(1, user.getId());
+
+            rs = preparedStatement.executeQuery();
+            Logger.getLogger(RoleDAO.class.getName()).log(Level.INFO, "all good");
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, "Failed", e);
+        }
+        // labs
 
         if (rs == null) {
-            return null;
+            return Collections.emptyList();
         }
 
         List<Role> liste = new ArrayList<>();
-        Role role = null;
+        Role role;
 
         try {
             while (rs.next()) {
@@ -50,6 +61,8 @@ public class RoleDAO extends AbstractDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            rs.close();
         }
 
 

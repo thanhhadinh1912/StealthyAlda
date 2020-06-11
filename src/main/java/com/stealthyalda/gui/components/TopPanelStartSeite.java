@@ -18,11 +18,6 @@ public class TopPanelStartSeite extends HorizontalLayout {
     public TopPanelStartSeite() {
         this.setSizeFull();
 
-        if (user != null) {
-            String vorname = null;
-            vorname = user.getName();
-        }
-
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/stealthyalda1.png"));

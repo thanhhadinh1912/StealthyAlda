@@ -7,12 +7,7 @@ package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
+import com.vaadin.ui.*;
 
 /**
  *
@@ -33,13 +28,10 @@ public class ConfirmRegStudent extends Window {
         Button button = new Button("OK");
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        button.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                close();
-                    UI.getCurrent().getNavigator().navigateTo(Views.REGWEITERS);
+        button.addClickListener(clickEvent -> {
+            close();
+            UI.getCurrent().getNavigator().navigateTo(Views.REGWEITERS);
 
-            }
         });
         content.addComponent(button);
         content.setComponentAlignment(button, Alignment.MIDDLE_CENTER);

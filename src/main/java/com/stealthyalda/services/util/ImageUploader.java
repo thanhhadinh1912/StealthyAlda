@@ -8,22 +8,27 @@ package com.stealthyalda.services.util;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Image;
-import com.vaadin.ui.Upload;
 import com.vaadin.ui.Upload.Receiver;
 import com.vaadin.ui.Upload.SucceededEvent;
 import com.vaadin.ui.Upload.SucceededListener;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
  * @author WINDOWS
  */
 public class ImageUploader implements Receiver, SucceededListener {
-    public File file;
     static Image image = new Image("Uploaded Image");
+    public File file;
+
+    public static Image getImage() {
+        return image;
+    }
 
     public OutputStream receiveUpload(String filename,
                                       String mimeType) {
@@ -32,27 +37,22 @@ public class ImageUploader implements Receiver, SucceededListener {
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
 
 
-
         file = new File(basepath + "/image/" + filename);
 
-        try{
+        try {
             fos = new FileOutputStream(file);
-        } catch (final IOException e){
-            e.printStackTrace();
-            return null;
+        } catch (final IOException e) {
+            Logger.getLogger(ImageUploader.class.getName()).log(Level.SEVERE, "IO Exception thrown");
         }
+
         return fos;
-        
+
     }
 
     public void uploadSucceeded(SucceededEvent event) {
         // Show the uploaded file in the image viewer
         image.setSource(new FileResource(file));
     }
-    
-     public static Image getImage() {
-        return image;
-    }
-    
-   
+
+
 }

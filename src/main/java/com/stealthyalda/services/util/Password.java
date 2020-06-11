@@ -2,6 +2,13 @@ package com.stealthyalda.services.util;
 
 public class Password {
 
-    public static String PASSWORD="wrast2s";
+    private static final String PASSWORT = "wrast2s";
+
+    private Password() {
+    }
+
+    public static String getPasswort() {
+        return PASSWORT;
+    }
 
 }

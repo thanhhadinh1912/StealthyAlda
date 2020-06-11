@@ -22,7 +22,7 @@ protected Statement getStatement() {
     return statement;
 }
 
-    protected PreparedStatement getPreaparedStatement(String sql) {
+    protected PreparedStatement getPreparedStatement(String sql) {
         Statement statement = null;
         try {
             statement = JDBCConnection.getInstance().getPreparedStatement(sql);

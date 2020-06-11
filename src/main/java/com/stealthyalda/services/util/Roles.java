@@ -4,4 +4,7 @@ public class Roles {
 
     public static final String STUDENT = "Student";
     public static final String ARBEITGEBER = "Arbeitgeber";
+
+    private Roles() {
+    }
 }
