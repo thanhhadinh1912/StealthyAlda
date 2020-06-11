@@ -34,7 +34,7 @@
 $v-app-loading-text: "Blueprint Valo";
 $v-background-color: #0f2a54;
 $v-focus-color: #fff;
-//$v-background-image: url("https://previews.123rf.com/images/gonin/gonin1507/gonin150700073/42848307-abstrakt-blau-wei%C3%9Fen-geometrischen-web-hintergrund.jpg");
+$v-background-image: url("src/main/webapp/Image/background_home.jpg");
 $v-panel-background-color: $v-background-color;
 $v-overlay-background-color: $v-background-color;
 $valo-menu-background-color: $v-background-color;
@@ -54,7 +54,7 @@ $v-font-size: 18px;
 .body{
      //$v-background-color: black;
      //$v-background-color: transparent; 
-     // $v-background-image: url("src/main/webapp/Image/BImage.jpg"); 
+     $v-background-image: url("src/main/webapp/Image/background_home.jpg");
 }
 
 .login .v-panel-content {
@@ -63,7 +63,7 @@ $v-font-size: 18px;
   padding: 10px;
   font-family: Verdana;
   color: #0f2a54;
- background-image: url("Image/background_home.jpg");
+ //background-image: url("Image/background_home.jpg");
 }
 
 
@@ -119,5 +119,7 @@ $v-font-size: 18px;
          color: white;
        }
      }
+
+
 
 }
