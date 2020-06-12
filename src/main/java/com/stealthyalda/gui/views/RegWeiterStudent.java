@@ -7,7 +7,6 @@ package com.stealthyalda.gui.views;
 
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.windows.ConfirmReg;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -16,7 +15,7 @@ import com.vaadin.ui.themes.ValoTheme;
 /**
  * @author WINDOWS
  */
-public class RegWeiterStudent extends VerticalLayout implements View {
+public class RegWeiterStudent extends Register {
     private static final String WIDTH = "500px";
 
     public void setUp() {

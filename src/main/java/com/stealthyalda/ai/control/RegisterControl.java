@@ -18,6 +18,12 @@ public class RegisterControl {
     // prepared statement for insertion
     private static final String USER_INSERT_STATEMENT = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
 
+    /**
+     * @param email email address of user
+     * @return boolean
+     * @throws UserExistsException if user exists
+     * @throws DatabaseException   if Murphy is around
+     */
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         ResultSet set;
         boolean checksOkay = false;
@@ -52,10 +58,12 @@ public class RegisterControl {
     }
 
     /**
-     * @param email    - String
-     * @param password - String of the password entered in the form
+     *
+     * @param email email address
+     * @param password password of user
+     * @param role student or arbeitgeber?
      * @return boolean
-     * @throws DatabaseException When murphy is around
+     * @throws DatabaseException only when Murphy is looking
      */
     public boolean registerUser(String email, String password, String role) throws DatabaseException {
         // init password hasher
@@ -76,7 +84,7 @@ public class RegisterControl {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, row);
         } catch (SQLException e) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+            throw new DatabaseException("Fehler im SQL-Befehl! Bitte 911 benachrichtigen");
         }
         sendConfirmationEmail(email);
 

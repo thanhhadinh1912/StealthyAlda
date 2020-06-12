@@ -13,7 +13,6 @@ import com.vaadin.data.Binder;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -22,10 +21,8 @@ import com.vaadin.ui.themes.ValoTheme;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// TODO - Validation seems to ignore invalid fields
-public class Registerseite extends VerticalLayout implements View {
-    private static final String STUDENT = "Student";
-    private static final String ARBEITGEBER = "Arbeitgeber";
+
+public class Registerseite extends Register {
 
     public void setUp() {
         // validation experiment
@@ -55,22 +52,6 @@ public class Registerseite extends VerticalLayout implements View {
                 .withValidator(new StringLengthValidator("Passwort muss zwischen 6 und 20 Zeichen lang sein", 6, 20))
                 .bind(Benutzer::getPasswort, Benutzer::setPasswort);
 
-
-//        // Phone number fake?
-//        binder.forField(userTelefonNummer)
-//                .withValidator(new RegexpValidator("Ungültige Telefonnumer", "^\\d+"))
-//                .bind(Benutzer::getPasswort, Benutzer::setPasswort);
-//
-//        // Require Nachname
-//        binder.forField(userName).asRequired()
-//                .withValidator(new StringLengthValidator("Bitte Name eingeben", 1, 100))
-//                .bind(Benutzer::getPasswort, Benutzer::setPasswort);
-
-
-//        CheckBox roleField = new CheckBox();
-//        binder.forField(roleField)
-//                .withConverter(role -> role ? Roles.STUDENT : Roles.ARBEITGEBER,
-//                        role -> Roles.STUDENT.equals(role));
 
         this.addComponent(new TopPanelStartSeite());
 
@@ -131,9 +112,6 @@ public class Registerseite extends VerticalLayout implements View {
         buttonReg.addClickListener(clickEvent -> {
             String register = userRegister.getValue();
             String password = passwordRegister.getValue();
-//                String name = userName.getValue();
-//                String telefonNummer = userTelefonNummer.getValue();
-//                String anrede = userAnrede.getValue();
             String role = single.getValue();
 
             // instance of control
@@ -156,7 +134,6 @@ public class Registerseite extends VerticalLayout implements View {
                     allChecksOkay = r.registerUser(register, password, role);
                 } catch (DatabaseException ex) {
                     Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
-                    // TODO CSS update for success messages
                     Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
                     userRegister.setValue("");
                     passwordRegister.setValue("");
@@ -165,7 +142,6 @@ public class Registerseite extends VerticalLayout implements View {
 
             }
             if (allChecksOkay) {
-                //Notification.show("Success", "Registrierung abgeschlossen!", Notification.Type.HUMANIZED_MESSAGE);
                 if (role.equals(STUDENT)) {
                     ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                     UI.getCurrent().addWindow(window);

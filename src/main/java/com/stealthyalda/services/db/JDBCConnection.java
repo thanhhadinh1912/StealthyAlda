@@ -13,20 +13,26 @@ public class JDBCConnection {
     private static JDBCConnection connection = null;
     private final String url = "jdbc:postgresql://dumbo.inf.h-brs.de:5432/wrast2s";
     private Connection conn;
+
+    /**
+     * @return JDBCConnection
+     * @throws DatabaseException when Murphy lurks...
+     */
     public static JDBCConnection getInstance() throws DatabaseException {
-        if(connection == null){
+        if (connection == null) {
             connection = new JDBCConnection();
         }
         return connection;
     }
-    private JDBCConnection() throws DatabaseException{
+
+    private JDBCConnection() throws DatabaseException {
         this.initConnection();
     }
     public void initConnection() throws DatabaseException {
         try {
             DriverManager.registerDriver(new Driver());
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
         this.openConnection();
     }
