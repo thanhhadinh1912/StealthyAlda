@@ -62,27 +62,27 @@ $v-font-size: 18px;
   border: 0px #ffffff;
   padding: 10px;
   font-family: Verdana;
-  color: #00b0f0;
+  color: #0f2a54;
  //background-image: url("Image/background_home.jpg");
 }
 
 
 
 .headlabel {
-  
+
   font-family: Verdana;
-  color: #00b0f0;
+  color: #0f2a54;
   padding: 10px;
   font-size: 14px;
- 
+
 }
 
 .loggedLabel {
   font-family: Verdana;
-  color: ##00b0f0;
+  color: #0f2a54;
   padding: 10px;
   font-size: 14px;
- 
+
 }
 
 
@@ -117,9 +117,6 @@ $v-font-size: 18px;
        /* A nested selector to increase specificity */
        .v-button-caption {
          color: black;
-       }
-       .background{
-       color: #00B0F0;
        }
      }
      .v-textfield{
