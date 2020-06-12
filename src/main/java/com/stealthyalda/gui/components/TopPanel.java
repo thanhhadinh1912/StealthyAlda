@@ -51,7 +51,7 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonAbmelden = new Button("Abmelden");
         buttonAbmelden.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonAbmelden..addStyleName("toppanelbutton");
+        buttonAbmelden.addStyleName("toppanelbutton");
         buttonAbmelden.addClickListener(event -> LoginControl.logoutUser());
         gridTop.addComponent(buttonAbmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);
