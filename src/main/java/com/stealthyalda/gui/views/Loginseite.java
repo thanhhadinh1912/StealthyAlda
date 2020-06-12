@@ -50,7 +50,7 @@ public class Loginseite extends VerticalLayout implements View {
         Panel panel = new Panel();
         panel.addStyleName("login");
 //Vertikales Layout + Hinzufügen der Textfelder
-        GridLayout layout = new GridLayout(4, 11);
+        GridLayout layout = new GridLayout(4, 12);
         Button buttonAn = new Button("Anmelden");
         Button butonReg = new Button("Registrieren");
         buttonAn.addStyleName(ValoTheme.BUTTON_LINK);
@@ -70,27 +70,28 @@ public class Loginseite extends VerticalLayout implements View {
         layout.addComponent(userLogin, 0, 3, 3, 3);
         layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
         Label label5 = new Label("&nbsp;", ContentMode.HTML);
-        layout.addComponent(label5);
-        layout.addComponent(passwordField, 0, 4, 3, 4);
+        layout.addComponent(label5,0,4,3,4);
+
+        layout.addComponent(passwordField, 0, 5, 3, 5);
         layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
 
 
         Button butonPasswortvergessen = new Button("Passwort vergessen?");
         butonPasswortvergessen.addStyleName(ValoTheme.BUTTON_LINK);
         butonPasswortvergessen.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.PASSWORTVERGESSEN));
-        layout.addComponent(butonPasswortvergessen, 2, 5, 3, 5);
+        layout.addComponent(butonPasswortvergessen, 2, 6, 3, 6);
         layout.setComponentAlignment(butonPasswortvergessen, Alignment.MIDDLE_RIGHT);
         userLogin.setWidth("400px");
         passwordField.setWidth("400px");
 
 
         CheckBox checkbox1 = new CheckBox("Angemeldet bleiben");
-        layout.addComponent(checkbox1, 0, 5, 1, 5);
+        layout.addComponent(checkbox1, 0, 6, 1, 6);
         layout.setComponentAlignment(checkbox1, Alignment.MIDDLE_LEFT);
 
 //Platzhalter
         Label label2 = new Label("&nbsp;", ContentMode.HTML);
-        layout.addComponent(label2, 0, 6, 3, 6);
+        layout.addComponent(label2, 0, 7, 3, 7);
 
 //Button zum Login + Symbol auf Button
 
@@ -98,18 +99,18 @@ public class Loginseite extends VerticalLayout implements View {
         butonLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
 
-        layout.addComponent(butonLogin, 0, 7, 3, 7);
+        layout.addComponent(butonLogin, 0, 8, 3, 8);
         layout.setComponentAlignment(butonLogin, Alignment.MIDDLE_CENTER);
         Label label3 = new Label("oder", ContentMode.TEXT);
-        layout.addComponent(label3, 0, 8, 3, 8);
+        layout.addComponent(label3, 0, 9, 3, 9);
         layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
         Button butonLoginMitGoogle = new Button("Mit Google Anmelden");
-        layout.addComponent(butonLoginMitGoogle, 0, 9, 3, 9);
+        layout.addComponent(butonLoginMitGoogle, 0, 10, 3, 10);
         layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);
 
 
         Label label4 = new Label("&nbsp;", ContentMode.HTML);
-        layout.addComponent(label4, 0, 10, 3, 10);
+        layout.addComponent(label4, 0, 11, 3, 11);
         panel.setContent(layout);
         panel.setSizeUndefined();
 
