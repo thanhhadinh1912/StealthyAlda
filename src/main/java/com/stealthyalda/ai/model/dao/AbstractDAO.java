@@ -11,7 +11,8 @@ import java.util.logging.Logger;
 
 public class AbstractDAO {
 
-// TODO Generics - refactor
+
+    // TODO Generics - refactor
 protected Statement getStatement() {
     Statement statement = null;
     try {
