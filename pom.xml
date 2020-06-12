@@ -109,6 +109,11 @@
 			<version>5.7.0-M1</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>4.3.1</version>
+        </dependency>
 
 	</dependencies>
 
