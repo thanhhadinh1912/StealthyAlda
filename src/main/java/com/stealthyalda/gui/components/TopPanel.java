@@ -31,7 +31,7 @@ public class TopPanel extends HorizontalLayout {
         Button buttonFuerStudent = new Button("Für Studenten");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
-
+        buttonFuerStudent.addStyleName("toppanelbutton");
         buttonFuerStudent.addClickListener(event -> {
             UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
         });
@@ -39,6 +39,7 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
+        buttonFuerArbeitgeber..addStyleName("toppanelbutton");
         buttonFuerArbeitgeber.addClickListener(event -> {
             //ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
             //UI.getCurrent().addWindow(window2);
@@ -50,6 +51,7 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonAbmelden = new Button("Abmelden");
         buttonAbmelden.addStyleName(ValoTheme.BUTTON_LINK);
+        buttonAbmelden..addStyleName("toppanelbutton");
         buttonAbmelden.addClickListener(event -> LoginControl.logoutUser());
         gridTop.addComponent(buttonAbmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);
