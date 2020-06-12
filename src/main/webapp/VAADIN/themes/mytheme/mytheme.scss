@@ -129,7 +129,15 @@ $v-font-size: 18px;
      background-color: white;
      }
      .v-panel{
-     background-color:white
+     background-color:white;
+     }
+     .toppanelbutton{
+     .v-button-caption {
+      color: white;
+     }
+     }
+     .v-background{
+     image: url("src/main/webapp/Image/background_home.jpg");
      }
 
 

@@ -27,6 +27,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
 
         gridTop.addComponent(logo, 0, 0);
         Button buttonFuerStudent = new Button("Für Studenten");
+        buttonFuerStudent.addStyleName("toppanelbutton");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
 

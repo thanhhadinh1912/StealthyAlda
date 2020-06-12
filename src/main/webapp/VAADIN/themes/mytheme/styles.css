@@ -15417,7 +15417,7 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .link {
 	padding: 5px 10px !important;
 	background-color: transparent !important;
-	color: #464646 !important;
+	color: black !important;
 	border: 1px solid transparent !important;
 	border-radius: 4px !important;
 	height: auto !important;
@@ -15436,7 +15436,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-button .v-button-caption {
-	color: white;
+	color: black;
 }
 
 .mytheme .v-textfield {
@@ -15452,4 +15452,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-panel {
 	background-color: white;
+}
+
+.mytheme .toppanelbutton .v-button-caption {
+	color: white;
+}
+
+.mytheme .v-background {
+	image: url("src/main/webapp/Image/background_home.jpg");
 }
