@@ -39,7 +39,7 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonFuerArbeitgeber..addStyleName("toppanelbutton");
+        buttonFuerArbeitgeber.addStyleName("toppanelbutton");
         buttonFuerArbeitgeber.addClickListener(event -> {
             //ProfilVerwaltenArbeitgeber window2 = new ProfilVerwaltenArbeitgeber(user);
             //UI.getCurrent().addWindow(window2);
