@@ -40,6 +40,7 @@ public class Startseite extends VerticalLayout implements View {
                 "\tSie sind ein Unternehmer und suchen nach\n" + "\t einem Mitarbeiter?\n" +
                 "\n" +
                 "\tWir finden!", ContentMode.PREFORMATTED);
+        label2.setStyleName("startseite");
         layout.addComponent(label2, 1, 0);
         layout.setComponentAlignment(label2, Alignment.BOTTOM_CENTER);
         Button button = new Button("Los");
