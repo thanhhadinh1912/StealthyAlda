@@ -70,7 +70,7 @@ public class Loginseite extends VerticalLayout implements View {
         layout.addComponent(userLogin, 0, 3, 3, 3);
         layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
         Label label5 = new Label("&nbsp;", ContentMode.HTML);
-        layout.addComponent(label5,0,4,3,4);
+        layout.addComponent(label5, 0, 4, 3, 4);
 
         layout.addComponent(passwordField, 0, 5, 3, 5);
         layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
@@ -144,7 +144,7 @@ public class Loginseite extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         if (user != null) {
-                UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
         } else {
             this.setUp();

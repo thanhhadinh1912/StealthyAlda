@@ -38,9 +38,9 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 "FROM" +
                 " stealthyalda.stellenanzeige s, stealthyalda.arbeitgeber a " +
                 "WHERE s.arbeitgeber_id = a.arbeitgeber_id " +
-                "AND ort LIKE '%"+ ort +"%' " +
-                "OR unternehmen LIKE '%"+ titelorunternehmen +"%' " +
-                "OR titel LIKE '%"+ titelorunternehmen +"%'";
+                "AND ort LIKE '%" + ort + "%' " +
+                "OR unternehmen LIKE '%" + titelorunternehmen + "%' " +
+                "OR titel LIKE '%" + titelorunternehmen + "%'";
         try {
             // use prepared stmt
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);

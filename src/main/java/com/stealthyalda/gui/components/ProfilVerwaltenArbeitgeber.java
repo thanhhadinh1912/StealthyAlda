@@ -7,8 +7,8 @@ import com.vaadin.ui.*;
 
 import java.io.File;
 
-public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
-    public ProfilVerwaltenArbeitgeber(){
+public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
+    public ProfilVerwaltenArbeitgeber() {
         VerticalLayout main = new VerticalLayout();
         HorizontalLayout logoandname = new HorizontalLayout();
         ImageUploader receiver = new ImageUploader();
@@ -26,8 +26,8 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
         name.setWidth("580px");
         name.setHeight("60px");
         logoandname.addComponent(name);
-        logoandname.setComponentAlignment(name,Alignment.BOTTOM_CENTER);
-        logoandname.setComponentAlignment(logo,Alignment.TOP_LEFT);
+        logoandname.setComponentAlignment(name, Alignment.BOTTOM_CENTER);
+        logoandname.setComponentAlignment(logo, Alignment.TOP_LEFT);
 
 
         logoandname.addComponent(upload);
@@ -43,7 +43,7 @@ public class ProfilVerwaltenArbeitgeber  extends VerticalLayout {
         area.setHeight("75px");
         area.setWidth("650px");
         beschreibungandkontakt.addComponent(area);
-        beschreibungandkontakt.setComponentAlignment(area,Alignment.TOP_LEFT);
+        beschreibungandkontakt.setComponentAlignment(area, Alignment.TOP_LEFT);
         TextArea kontakte = new TextArea("Shortlink mit Icons");
         kontakte.setHeight("75px");
         kontakte.setWidth("300px");

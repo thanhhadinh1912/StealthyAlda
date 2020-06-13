@@ -90,7 +90,7 @@ public class Suchseite extends VerticalLayout implements View {
 
                 //erstmal alles löschen
                 grid.removeAllColumns();
-                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl +  ")");
+                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + ")");
 
                 // neue Items hinzufügen
                 grid.setItems(liste);

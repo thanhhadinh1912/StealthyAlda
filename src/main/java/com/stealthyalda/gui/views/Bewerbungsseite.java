@@ -7,7 +7,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class Bewerbungsseite extends VerticalLayout implements View {
-    public void setUp(){
+    public void setUp() {
         this.addComponent(new TopPanel());
         Panel bewerbung = new Panel();
         VerticalLayout main = new VerticalLayout();
@@ -27,8 +27,6 @@ public class Bewerbungsseite extends VerticalLayout implements View {
 
         /*Upload upload = new Upload("Upload it here", receiver);
         upload.setImmediateMode(false);*/
-
-
 
 
     }

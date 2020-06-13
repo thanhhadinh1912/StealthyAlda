@@ -5,16 +5,8 @@ import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.PasswordAuthentication;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.ui.UI;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LoginControl {
 
@@ -24,19 +16,18 @@ public class LoginControl {
 
     public static void checkAuthentification(String email, String password) throws NoSuchUserOrPassword, DatabaseException {
 
-        Benutzer benutzer = BenutzerDAO.getBenutzer(email,password);
+        Benutzer benutzer = BenutzerDAO.getBenutzer(email, password);
 
 
         ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
 
-            // Der Benutzer ist vorhanden
-            
-                UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
-            
+        // Der Benutzer ist vorhanden
 
+        UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
 
     }
+
     public static void logoutUser() {
         UI.getCurrent().close();
         UI.getCurrent().getPage().setLocation("/");

@@ -46,7 +46,6 @@ public class Stellenanzeige {
     }
 
 
-
     public String getBeschreibung() {
         return beschreibung;
     }
@@ -78,6 +77,7 @@ public class Stellenanzeige {
     public void setFachbereich(String fachbereich) {
         this.fachbereich = fachbereich;
     }
+
     public String getUnternehmen() {
         return unternehmen;
     }

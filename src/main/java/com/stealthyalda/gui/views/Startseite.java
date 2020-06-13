@@ -16,11 +16,10 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 /**
- *
  * @author WINDOWS
  */
 public class Startseite extends VerticalLayout implements View {
-    public void setUp(){
+    public void setUp() {
 
 //Gesamtgröße des Bildschirms auf komplette Größe beziehen
         this.setSizeFull();
@@ -50,16 +49,14 @@ public class Startseite extends VerticalLayout implements View {
 
         this.addComponent(layout);
 
-        
-        
-    
-}
+
+    }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-        if( user != null) {
+        if (user != null) {
             UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 
         } else {

@@ -1,4 +1,5 @@
 package com.stealthyalda.services.util;
+
 import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.MessagingException;

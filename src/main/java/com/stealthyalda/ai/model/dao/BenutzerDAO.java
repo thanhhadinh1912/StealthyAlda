@@ -12,11 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BenutzerDAO extends  AbstractDAO{
+public class BenutzerDAO extends AbstractDAO {
 
     private static BenutzerDAO dao = null;
 
@@ -30,6 +29,7 @@ public class BenutzerDAO extends  AbstractDAO{
         }
         return dao;
     }
+
     public static Benutzer getUser(String email) throws DatabaseException {
 
         ResultSet set = null;
@@ -66,6 +66,100 @@ public class BenutzerDAO extends  AbstractDAO{
         return null;
     }
 
+    public static String getUserRole(String email) {
+        ResultSet set;
+        try {
+            Statement statement = JDBCConnection.getInstance().getStatement();
+            set = statement.executeQuery("SELECT role "
+                    + "FROM stealthyalda.benutzer "
+                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
+
+            if (set.next()) {
+                return set.getString(1);
+            }
+        } catch (SQLException | DatabaseException ex) {
+            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static Benutzer getBenutzer(String email, String password) throws DatabaseException, NoSuchUserOrPassword {
+        ResultSet set;
+        final String USER_LOGIN_STATEMENT = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
+
+        try {
+            // use prepared statements to mitigate sql injection
+
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_LOGIN_STATEMENT);
+            // remember, the int references the index of the item, starting 1
+            preparedStatement.setString(1, email);
+
+            // query!
+            set = preparedStatement.executeQuery();
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+        }
+        String dbPasswordHash = null;
+        try {
+            if (set.next()) {
+                dbPasswordHash = set.getString(1);
+            } else {
+                //Error Handling
+                throw new NoSuchUserOrPassword();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+        }
+        // user vorhanden. Jetzt Passwort hashes vergleichen
+        /**
+         *
+         * */
+        Benutzer benutzer = null;
+
+        PasswordAuthentication authenticator = new PasswordAuthentication();
+        // remember, convert to char[] as the string method is deprecated
+        char[] c = password.toCharArray();
+        // check if hashes match
+
+        try {
+            if (authenticator.authenticate(c, dbPasswordHash) == true) {
+                benutzer = new Benutzer();
+                benutzer.setEmail(email);
+                benutzer.setRole(set.getString(2));
+                benutzer.setAnrede(set.getString(3));
+                benutzer.setTelefonnummer(set.getString(4));
+                return benutzer;
+            } else {
+                throw new NoSuchUserOrPassword();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            JDBCConnection.getInstance().closeConnenction();
+        }
+        return null;
+    }
+
+    public static void deleteUser(String email) throws DatabaseException {
+        String sql;
+        sql = "DELETE FROM stealthyalda.benutzer WHERE email = '" + email + "'";
+
+        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        try {
+            assert statement != null;
+            statement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            JDBCConnection.getInstance().closeConnenction();
+        }
+
+    }
+
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         ResultSet set;
         boolean checksOkay = false;
@@ -99,23 +193,6 @@ public class BenutzerDAO extends  AbstractDAO{
         return checksOkay;
     }
 
-    public static String getUserRole(String email)  {
-        ResultSet set;
-        try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT role "
-                    + "FROM stealthyalda.benutzer "
-                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
-
-            if( set.next()){
-                return set.getString(1);
-            }
-        } catch (SQLException | DatabaseException ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
     public void createBenutzer(String email, String passwort, String role) throws DatabaseException {
 
         String sql;
@@ -143,86 +220,6 @@ public class BenutzerDAO extends  AbstractDAO{
 
 
     }
-
-    public static Benutzer getBenutzer(String email, String password) throws DatabaseException, NoSuchUserOrPassword {
-        ResultSet set;
-        final String USER_LOGIN_STATEMENT = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
-
-        try {
-            // use prepared statements to mitigate sql injection
-
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_LOGIN_STATEMENT);
-            // remember, the int references the index of the item, starting 1
-            preparedStatement.setString(1, email);
-
-            // query!
-            set = preparedStatement.executeQuery();
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
-        } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
-        }
-        String dbPasswordHash = null;
-        try {
-            if(set.next()) {
-                dbPasswordHash = set.getString(1);
-            } else{
-                //Error Handling
-                throw new NoSuchUserOrPassword();
-            }
-        } catch (SQLException  e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
-        }
-        // user vorhanden. Jetzt Passwort hashes vergleichen
-        /**
-         *
-         * */
-        Benutzer benutzer = null;
-
-        PasswordAuthentication authenticator = new PasswordAuthentication();
-        // remember, convert to char[] as the string method is deprecated
-        char[] c = password.toCharArray();
-        // check if hashes match
-
-        try {
-            if(authenticator.authenticate(c, dbPasswordHash) == true) {
-                benutzer = new Benutzer();
-                benutzer.setEmail(email);
-                benutzer.setRole(set.getString(2));
-                benutzer.setAnrede(set.getString(3));
-                benutzer.setTelefonnummer(set.getString(4));
-                return benutzer;
-            } else {
-                throw new NoSuchUserOrPassword();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            JDBCConnection.getInstance().closeConnenction();
-        }
-        return null;
-    }
-
-    public static void deleteUser(String email) throws DatabaseException {
-        String sql;
-            sql = "DELETE FROM stealthyalda.benutzer WHERE email = '" +  email + "'";
-
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
-        try {
-            assert statement != null;
-            statement.executeUpdate();
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } finally {
-            JDBCConnection.getInstance().closeConnenction();
-        }
-
-    }
-
-
-
 
 
 }

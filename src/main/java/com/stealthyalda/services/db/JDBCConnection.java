@@ -14,6 +14,10 @@ public class JDBCConnection {
     private final String url = "jdbc:postgresql://dumbo.inf.h-brs.de:5432/wrast2s";
     private Connection conn;
 
+    private JDBCConnection() throws DatabaseException {
+        this.initConnection();
+    }
+
     /**
      * @return JDBCConnection
      * @throws DatabaseException when Murphy lurks...
@@ -25,9 +29,6 @@ public class JDBCConnection {
         return connection;
     }
 
-    private JDBCConnection() throws DatabaseException {
-        this.initConnection();
-    }
     public void initConnection() throws DatabaseException {
         try {
             DriverManager.registerDriver(new Driver());
@@ -50,28 +51,30 @@ public class JDBCConnection {
             throw new DatabaseException("Fehler bei Zugriff auf die DB! Sichere Verbindung vorhanden!?");
         }
     }
-    public Statement getStatement() throws DatabaseException{
+
+    public Statement getStatement() throws DatabaseException {
         try {
-            if(this.conn.isClosed()){
+            if (this.conn.isClosed()) {
                 this.openConnection();
             }
             return this.conn.createStatement();
-        }
-        catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-    public void closeConnenction(){
+
+    public void closeConnenction() {
         try {
             this.conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public PreparedStatement getPreparedStatement( String sql) throws DatabaseException {
+
+    public PreparedStatement getPreparedStatement(String sql) throws DatabaseException {
         try {
-            if(this.conn.isClosed()) {
+            if (this.conn.isClosed()) {
                 this.openConnection();
             }
             return this.conn.prepareStatement(sql);

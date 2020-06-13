@@ -5,6 +5,7 @@ public class Adresse {
     private String strasse;
     private int plz;
     private String hausnummer;
+    private int adresseID;
 
     public String getOrt() {
         return ort;
@@ -37,8 +38,6 @@ public class Adresse {
     public void setHausnummer(String hausnummer) {
         this.hausnummer = hausnummer;
     }
-
-    private int adresseID;
 
     public int getAdresseID() {
         return adresseID;

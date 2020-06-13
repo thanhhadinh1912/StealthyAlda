@@ -59,8 +59,6 @@ public class MyUI extends UI {
         navi.addView(Views.DASHBOARDA, DashboardArbeitgeber.class);
 
 
-
-
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);
 
     }

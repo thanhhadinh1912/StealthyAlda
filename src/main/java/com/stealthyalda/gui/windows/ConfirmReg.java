@@ -10,11 +10,10 @@ import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
 
 /**
- *
  * @author WINDOWS
  */
 public class ConfirmReg extends Window {
-   
+
     public ConfirmReg(String text) {
         super("Success!"); //Set Window caption
         center();

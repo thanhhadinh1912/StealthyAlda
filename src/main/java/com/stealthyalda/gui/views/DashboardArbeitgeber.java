@@ -1,16 +1,13 @@
 package com.stealthyalda.gui.views;
 
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
-import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 
 public class DashboardArbeitgeber extends VerticalLayout implements View {
-    public void setUp(){
+    public void setUp() {
 
         this.addComponent(new TopPanel());
 
@@ -50,8 +47,9 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         this.addComponent(accordion);
         this.setComponentAlignment(accordion, Alignment.MIDDLE_CENTER);
     }
+
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-            this.setUp();
+        this.setUp();
 
     }
 }

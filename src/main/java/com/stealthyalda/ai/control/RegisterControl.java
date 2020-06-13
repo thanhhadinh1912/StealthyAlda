@@ -3,14 +3,9 @@ package com.stealthyalda.ai.control;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
-import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.PasswordAuthentication;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

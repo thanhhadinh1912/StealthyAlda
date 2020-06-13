@@ -3,13 +3,12 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 import java.io.File;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
-    public ProfilVerwaltenStudent(){
+    public ProfilVerwaltenStudent() {
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
@@ -83,8 +82,6 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
 
         this.setWidth("1150px");
         this.setHeight("600px");
-
-
 
 
 //        String name = benutzer.getName();

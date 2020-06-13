@@ -9,27 +9,25 @@ import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Image;
 import com.vaadin.ui.Upload;
-import com.vaadin.ui.Upload.Receiver;
-import com.vaadin.ui.Upload.SucceededEvent;
-import com.vaadin.ui.Upload.SucceededListener;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author WINDOWS
  */
 public class ImageUploader implements Upload.Receiver, Upload.SucceededListener {
-    static File file;
     final static Image image = new Image();
-
+    static File file;
 
     public static File getFile() {
         return file;
+    }
+
+    public static Image getImage() {
+        return image;
     }
 
     public OutputStream receiveUpload(String filename,
@@ -53,11 +51,6 @@ public class ImageUploader implements Upload.Receiver, Upload.SucceededListener 
     public void uploadSucceeded(Upload.SucceededEvent event) {
 
         image.setSource(new FileResource(file));
-    }
-
-
-    public static Image getImage() {
-        return image;
     }
 }
 

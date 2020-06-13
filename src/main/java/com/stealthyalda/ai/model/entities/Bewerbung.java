@@ -48,5 +48,5 @@ public class Bewerbung {
     public void setDatum(Date datum) {
         this.datum = datum;
     }
-    
+
 }

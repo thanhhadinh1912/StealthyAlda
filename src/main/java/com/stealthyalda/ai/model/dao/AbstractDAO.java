@@ -13,15 +13,15 @@ public class AbstractDAO {
 
 
     // TODO Generics - refactor
-protected Statement getStatement() {
-    Statement statement = null;
-    try {
-        statement = JDBCConnection.getInstance().getStatement();
-    } catch (DatabaseException ex) {
-        Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+    protected Statement getStatement() {
+        Statement statement = null;
+        try {
+            statement = JDBCConnection.getInstance().getStatement();
+        } catch (DatabaseException ex) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return statement;
     }
-    return statement;
-}
 
     protected PreparedStatement getPreparedStatement(String sql) {
         Statement statement = null;
