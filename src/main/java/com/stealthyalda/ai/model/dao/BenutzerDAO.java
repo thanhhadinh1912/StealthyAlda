@@ -89,7 +89,6 @@ public class BenutzerDAO extends AbstractDAO {
 
         try {
             // use prepared statements to mitigate sql injection
-
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(USER_LOGIN_STATEMENT);
             // remember, the int references the index of the item, starting 1
             preparedStatement.setString(1, email);
