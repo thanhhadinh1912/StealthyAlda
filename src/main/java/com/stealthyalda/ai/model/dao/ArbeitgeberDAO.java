@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.postgresql.util;
+package com.stealthyalda.ai.model.dao;
 
 /**
+ *
  * @author WINDOWS
  */
-public class SQLException extends Exception {
-
+public class ArbeitgeberDAO {
+    
 }
