@@ -1,6 +1,7 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.SucheEinfach;
+import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.TopPanel;
@@ -18,7 +19,7 @@ import java.util.List;
 public class Suchseite extends VerticalLayout implements View {
 
     private int anzahl = 0;
-    private Stellenanzeige selected = null;
+    private StellenanzeigeDTO selected = null;
 
     public void setUp() {
 
@@ -55,7 +56,7 @@ public class Suchseite extends VerticalLayout implements View {
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
         horizon.setComponentAlignment(button, Alignment.BOTTOM_RIGHT);
 
-        Grid<Stellenanzeige> grid = new Grid<>();
+        Grid<StellenanzeigeDTO> grid = new Grid<>();
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
         grid.setStyleName("gridSuche");
@@ -64,7 +65,7 @@ public class Suchseite extends VerticalLayout implements View {
         GridLayout MainFutter = new GridLayout(6, 6);
         MainFutter.setSizeFull();
 
-        SingleSelect<Stellenanzeige> selection = grid.asSingleSelect();
+        SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
 
         // Der Event Listener für den Grid
         grid.addSelectionListener(event -> {
@@ -81,7 +82,7 @@ public class Suchseite extends VerticalLayout implements View {
             String ort = jobsearchOrt.getValue();
             String titel = jobsearch.getValue();
 
-            List<Stellenanzeige> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel, ort);
+            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel, ort);
 
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
@@ -91,17 +92,17 @@ public class Suchseite extends VerticalLayout implements View {
                 //erstmal alles löschen
                 grid.removeAllColumns();
                 grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + ")");
-
+                grid.setItems(liste);
                 // neue Items hinzufügen
                 grid.setItems(liste);
 
                 // Columns definieren
-                grid.addColumn(Stellenanzeige::getTitel).setCaption("Titel");
-                grid.addColumn(Stellenanzeige::getBeschreibung).setCaption("Beschreibung");
-                grid.addColumn(Stellenanzeige::getUnternehmen).setCaption("Unternehmen");
-                grid.addColumn(Stellenanzeige::getDatum).setCaption("Datum");
-                grid.addColumn(Stellenanzeige::getOrt).setCaption("Ort");
-                grid.addColumn(Stellenanzeige::getStatus).setCaption("Status");
+                grid.addColumn(StellenanzeigeDTO::getTitel).setCaption("Titel");
+                grid.addColumn(StellenanzeigeDTO::getBeschreibung).setCaption("Beschreibung");
+                grid.addColumn(StellenanzeigeDTO::getArbeitgeber).setCaption("Unternehmen");
+                grid.addColumn(StellenanzeigeDTO::getDatum).setCaption("Datum");
+                grid.addColumn(StellenanzeigeDTO::getOrt).setCaption("Ort");
+                grid.addColumn(StellenanzeigeDTO::getStatus).setCaption("Status");
 
                 addComponent(grid);
                 addComponent(bewerben);

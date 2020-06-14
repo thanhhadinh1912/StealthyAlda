@@ -1,6 +1,7 @@
 package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.model.dao.StellenanzeigeDAO;
+import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class SucheEinfach {
         return search;
     }
 
-    public List<Stellenanzeige> getStellenanzeigeByOrt(String titel, String ort) {
+    public List<StellenanzeigeDTO> getStellenanzeigeByOrt(String titel, String ort) {
         //Datenbank-Zugriff
         return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehmen(titel, ort);
     }

@@ -61,7 +61,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            JDBCConnection.getInstance().closeConnenction();
+            JDBCConnection.getInstance().closeConnection();
         }
         return null;
     }
@@ -137,7 +137,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            JDBCConnection.getInstance().closeConnenction();
+            JDBCConnection.getInstance().closeConnection();
         }
         return null;
     }
@@ -154,7 +154,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            JDBCConnection.getInstance().closeConnenction();
+            JDBCConnection.getInstance().closeConnection();
         }
 
     }
@@ -186,7 +186,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            JDBCConnection.getInstance().closeConnenction();
+            JDBCConnection.getInstance().closeConnection();
         }
 
         return checksOkay;

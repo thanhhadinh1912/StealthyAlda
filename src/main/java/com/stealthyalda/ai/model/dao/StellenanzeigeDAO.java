@@ -1,6 +1,7 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.services.db.JDBCConnection;
 
@@ -23,12 +24,15 @@ public class StellenanzeigeDAO extends AbstractDAO {
         return dao;
 
     }
+    
+    public void createStellenanzeige(String titel, String beschreibung, String ort)throws DatabaseException{
+        
+    }
 
-    public List<Stellenanzeige> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
         ResultSet rs = null;
 
         String getStellenanzeigen = "SELECT" +
-                "  s.stellenanzeige_id," +
                 "  s.titel," +
                 "  s.beschreibung," +
                 "  s.status," +
@@ -55,19 +59,18 @@ public class StellenanzeigeDAO extends AbstractDAO {
         if (rs == null) {
             return Collections.emptyList();
         }
-        List<Stellenanzeige> liste = new ArrayList<>();
-        Stellenanzeige stellenanzeige = null;
+        List<StellenanzeigeDTO> liste = new ArrayList<>();
+        StellenanzeigeDTO stellenanzeige = null;
 
         try {
             while (rs.next()) {
-                stellenanzeige = new Stellenanzeige();
-                stellenanzeige.setStellenanzeigeID(rs.getInt(1));
-                stellenanzeige.setTitel(rs.getString(2));
-                stellenanzeige.setBeschreibung(rs.getString(3));
-                stellenanzeige.setStatus(rs.getString(4));
-                stellenanzeige.setDatum(rs.getDate(5));
-                stellenanzeige.setUnternehmen(rs.getString(6));
-                stellenanzeige.setOrt(rs.getString(7));
+                stellenanzeige = new StellenanzeigeDTO();
+                stellenanzeige.setTitel(rs.getString(1));
+                stellenanzeige.setBeschreibung(rs.getString(2));
+                stellenanzeige.setStatus(rs.getString(3));
+                stellenanzeige.setDatum(rs.getDate(4));
+                stellenanzeige.setArbeitgeber(rs.getString(5));
+                stellenanzeige.setOrt(rs.getString(6));
                 liste.add(stellenanzeige);
             }
         } catch (SQLException ex) {

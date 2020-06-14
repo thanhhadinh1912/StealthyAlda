@@ -64,7 +64,7 @@ public class JDBCConnection {
         }
     }
 
-    public void closeConnenction() {
+    public void closeConnection() {
         try {
             this.conn.close();
         } catch (SQLException ex) {
