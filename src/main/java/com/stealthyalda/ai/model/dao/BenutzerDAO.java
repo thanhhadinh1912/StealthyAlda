@@ -195,7 +195,7 @@ public class BenutzerDAO extends AbstractDAO {
     public void createBenutzer(String email, String passwort, String role) throws DatabaseException {
 
         String sql;
-        sql = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
+        sql = "INSERT INTO stealthyalda.benutzer(email, passwort, role) VALUES (?,?,?)";
 
 
         PasswordAuthentication hasher = new PasswordAuthentication();

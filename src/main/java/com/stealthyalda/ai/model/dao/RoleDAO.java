@@ -2,6 +2,7 @@ package com.stealthyalda.ai.model.dao;
 
 
 import com.stealthyalda.ai.control.LoginControl;
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.Role;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
@@ -30,7 +31,7 @@ public class RoleDAO extends AbstractDAO {
         return dao;
     }
 
-    public List<Role> getRolesForUser(Benutzer user) throws SQLException {
+    public List<Role> getRolesForUser(Benutzer user) throws SQLException, DatabaseException {
         ResultSet rs = null;
         // labs
 
@@ -41,8 +42,9 @@ public class RoleDAO extends AbstractDAO {
 
             rs = preparedStatement.executeQuery();
             Logger.getLogger(RoleDAO.class.getName()).log(Level.INFO, "all good");
-        } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, "Failed", e);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+            throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
         }
         // labs
 
@@ -59,8 +61,10 @@ public class RoleDAO extends AbstractDAO {
                 role.setBezeichnung(rs.getString(1));
                 liste.add(role);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+            throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
+        
         } finally {
             rs.close();
         }
