@@ -7,33 +7,28 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Image;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConvertByteToImage {
+    private ConvertByteToImage() {
+    }
 
-    public static Image getImage(byte[] bytes)  {
+    public static Image getImage(byte[] bytes) {
         Image imageRes;
 
         try {
 
-            if(bytes == null) {
+            if (bytes == null) {
                 ThemeResource unknownPic = new ThemeResource("images/Unknown.png");
-                imageRes =  new Image("",unknownPic);
+                imageRes = new Image("", unknownPic);
                 imageRes.setHeight("40px");
                 imageRes.setWidth("40px");
+
                 return imageRes;
             }
-            byte[] bild = bytes;
-
-
-
-            StreamResource.StreamSource streamSource = new StreamResource.StreamSource() {
-                public InputStream getStream()
-                {
-                    return (bild == null) ? null : new ByteArrayInputStream(
-                            bild);
-                }
-            };
+            StreamResource.StreamSource streamSource = () -> (bytes == null) ? null : new ByteArrayInputStream(
+                    bytes);
             imageRes = new Image(
                     null, new StreamResource(
                     streamSource, "streamedSourceFromByteArray"));
@@ -44,16 +39,16 @@ public class ConvertByteToImage {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(ConvertByteToImage.class.getName()).log(Level.SEVERE, e.getMessage());
         } finally {
             try {
                 JDBCConnection.getInstance().closeConnection();
             } catch (DatabaseException e) {
-                e.printStackTrace();
+                Logger.getLogger(ConvertByteToImage.class.getName()).log(Level.SEVERE, e.getMessage());
             }
         }
         ThemeResource resource = new ThemeResource("img/RegisterStudent/Unknown.png");
-        imageRes = new Image(null,resource);
+        imageRes = new Image(null, resource);
         imageRes.setHeight("40px");
         imageRes.setWidth("40px");
         return imageRes;

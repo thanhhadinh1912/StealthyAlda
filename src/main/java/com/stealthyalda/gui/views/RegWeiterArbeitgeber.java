@@ -11,7 +11,6 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -23,7 +22,7 @@ import java.util.logging.Logger;
 /**
  * @author tdinh2s
  */
-public class RegWeiterArbeitgeber extends VerticalLayout implements View {
+public class RegWeiterArbeitgeber extends RegWeiter {
     private static final String WIDTH = "500px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
@@ -111,14 +110,16 @@ public class RegWeiterArbeitgeber extends VerticalLayout implements View {
             String anrede = userAnrede.getValue();
             String unternehmen = name.getValue();
             String userwohnort = strasse.getValue();
-            String userstrasse = "";
-            String hausnummer = "";
+            StringBuilder userstrasse = new StringBuilder();
+            StringBuilder hausnummer = new StringBuilder();
+            // TODO - add a field for "Hausnummer"
             if (userwohnort != null && !userwohnort.isEmpty()) {
                 for (char c : userwohnort.toCharArray()) {
                     if (Character.isDigit(c)) {
-                        hausnummer += c;
+
+                        hausnummer.append(c);
                     } else {
-                        userstrasse += c;
+                        userstrasse.append(c);
                     }
                 }
             }
@@ -128,7 +129,7 @@ public class RegWeiterArbeitgeber extends VerticalLayout implements View {
             // instance of control
             RegisterControl r = new RegisterControl();
             try {
-                r.registerArbeitgeber(anrede, unternehmen, userstrasse, userplz, userort, hausnummer, usertelefon);
+                r.registerArbeitgeber(anrede, unternehmen, userstrasse.toString(), userplz, userort, hausnummer.toString(), usertelefon);
             } catch (DatabaseException ex) {
                 Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
             }

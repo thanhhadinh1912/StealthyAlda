@@ -20,7 +20,7 @@ import java.util.logging.Level;
  * @author WINDOWS
  */
 public class AnforderungDAO extends AbstractDAO {
-    public static AnforderungDAO dao;
+    private static AnforderungDAO dao;
 
     private AnforderungDAO() {
 

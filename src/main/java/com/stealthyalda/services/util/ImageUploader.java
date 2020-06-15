@@ -14,12 +14,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author WINDOWS
  */
 public class ImageUploader implements Upload.Receiver, Upload.SucceededListener {
-    final static Image image = new Image();
+    static final Image image = new Image();
     static File file;
 
     public static File getFile() {
@@ -30,8 +32,7 @@ public class ImageUploader implements Upload.Receiver, Upload.SucceededListener 
         return image;
     }
 
-    public OutputStream receiveUpload(String filename,
-                                      String mimeType) {
+    public OutputStream receiveUpload(String filename, String mimeType) {
         // Create and return a file output stream
         FileOutputStream fos;
 
@@ -41,7 +42,7 @@ public class ImageUploader implements Upload.Receiver, Upload.SucceededListener 
         try {
             fos = new FileOutputStream(file);
         } catch (final IOException e) {
-            e.printStackTrace();
+            Logger.getLogger(ImageUploader.class.getName()).log(Level.SEVERE, e.getMessage());
             return null;
         }
         return fos;

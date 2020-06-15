@@ -35,6 +35,12 @@ public class RegisterControl {
 
     }
 
+    public void registerStudent(String anrede, String vorname, String nachname, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
+        // ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
+
+
+    }
+
 
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();

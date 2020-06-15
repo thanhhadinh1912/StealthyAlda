@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class RoleDAO extends AbstractDAO {
 
-    public static RoleDAO dao;
+    private static RoleDAO dao;
 
     private RoleDAO() {
 

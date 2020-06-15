@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class AdresseDAO extends AbstractDAO {
-    public static AdresseDAO dao = null;
+    private static AdresseDAO dao = null;
 
     private AdresseDAO() {
 

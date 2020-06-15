@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class ArbeitgeberDAO extends AbstractDAO {
-    public static ArbeitgeberDAO dao = null;
+    private static ArbeitgeberDAO dao = null;
 
     private ArbeitgeberDAO() {
 
