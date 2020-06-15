@@ -13,6 +13,7 @@ import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -129,7 +130,7 @@ public class RegisterseiteFuerArbeitgeber extends Register {
                     } catch (DatabaseException ex) {
                         Notification.show(FEHLER, "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
                         Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
-                        userRegister.setValue("");
+                        userRegister.setValue(register);
                         passwordRegister.setValue("");
 
                     }
@@ -140,6 +141,8 @@ public class RegisterseiteFuerArbeitgeber extends Register {
                     Benutzer current = new Benutzer();
                     current.setEmail(register);
                     current.setPasswort(password);
+                    current.setRole(role);
+                    current.setId(new Integer(VaadinSession.getCurrent().getAttribute("userId").toString()));
                     ((MyUI) UI.getCurrent()).setBenutzer(current);
                     ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
                     UI.getCurrent().addWindow(windowa);

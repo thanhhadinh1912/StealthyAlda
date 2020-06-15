@@ -40,6 +40,8 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         final NativeSelect<String> userAnrede = new NativeSelect<>();
 //
 // Add some items
+        // TODO - add validation and required fields
+
         userAnrede.setItems("Herr", "Frau");
         userAnrede.setCaption("Anrede");
         userAnrede.setWidth(WIDTH);

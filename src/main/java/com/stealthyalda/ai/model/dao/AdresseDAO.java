@@ -35,7 +35,7 @@ public class AdresseDAO extends AbstractDAO {
     }
 
     public boolean createAdresse(String strasse, int plz, String hausnummer, String ort) throws DatabaseException {
-        String sql = "insert into stealthyalda.stellenanzeige values(?,?,?,?,?,?);";
+        String sql = "insert into stealthyalda.adresse values(?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
@@ -43,12 +43,11 @@ public class AdresseDAO extends AbstractDAO {
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try {
-            statement.setInt(1, adresseID());
-            statement.setInt(2, plz);
-            statement.setString(3, strasse);
-            statement.setString(4, ort);
-            statement.setString(5, hausnummer);
-            statement.setInt(6, userid);
+            statement.setInt(1, plz);
+            statement.setString(2, strasse);
+            statement.setString(3, ort);
+            statement.setString(4, hausnummer);
+            statement.setInt(5, userid);
             statement.executeUpdate();
 
             //Nachtragliches Setzen der BuchungsID

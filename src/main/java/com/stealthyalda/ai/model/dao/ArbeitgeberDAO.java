@@ -37,7 +37,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
     }
 
     public boolean createArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        String sql = "insert into stealthyalda.benutzer(email, passwort, role, anrede, telefonnummer) values(?,?,?,?,?);" + "insert into stealthyalda.arbeitgeber(arbeitgeber_id,unternehmen,benutzer_id) values(?,?,?);";
+        String sql = "insert into stealthyalda.benutzer(email, passwort, role, anrede, telefonnummer) values(?,?,?,?,?);" + "insert into stealthyalda.arbeitgeber(unternehmen,benutzer_id) values(?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         int userid = user.getId();
@@ -50,15 +50,14 @@ public class ArbeitgeberDAO extends AbstractDAO {
             statement.setString(4, anrede);
             statement.setString(5, telefonnumer);
 
-            statement.setInt(6, arbeitgeberID());
-            statement.setString(7, unternehmen);
-            statement.setInt(8, userid);
+            statement.setString(6, unternehmen);
+            statement.setInt(7, userid);
             statement.executeUpdate();
             AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
 
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
             return false;
         }
     }
