@@ -85,7 +85,7 @@ public class BenutzerDAO extends AbstractDAO {
 
     public static Benutzer getBenutzer(String email, String password) throws DatabaseException, NoSuchUserOrPassword {
         ResultSet set;
-        final String USER_LOGIN_STATEMENT = "SELECT passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
+        final String USER_LOGIN_STATEMENT = "SELECT email, passwort, role, anrede, telefonnummer FROM stealthyalda.benutzer WHERE email = ?";
 
         try {
             // use prepared statements to mitigate sql injection
@@ -103,7 +103,7 @@ public class BenutzerDAO extends AbstractDAO {
         String dbPasswordHash = null;
         try {
             if (set.next()) {
-                dbPasswordHash = set.getString(1);
+                dbPasswordHash = set.getString(2);
             } else {
                 //Error Handling
                 throw new NoSuchUserOrPassword();
@@ -127,9 +127,10 @@ public class BenutzerDAO extends AbstractDAO {
             if (authenticator.authenticate(c, dbPasswordHash) == true) {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
-                benutzer.setRole(set.getString(2));
-                benutzer.setAnrede(set.getString(3));
-                benutzer.setTelefonnummer(set.getString(4));
+                benutzer.setPasswort(password);
+                benutzer.setRole(set.getString(3));
+                benutzer.setAnrede(set.getString(4));
+                benutzer.setTelefonnummer(set.getString(5));
                 return benutzer;
             } else {
                 throw new NoSuchUserOrPassword();

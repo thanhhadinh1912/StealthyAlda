@@ -2,9 +2,12 @@ package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
+import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmRegArbeitgeber;
 import com.stealthyalda.gui.windows.ConfirmRegStudent;
 import com.stealthyalda.services.db.JDBCConnection;
@@ -22,7 +25,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 public class Registerseite extends Register {
+    private String register;
+    private String password;
 
     public void setUp() {
         // validation experiment
@@ -110,8 +116,8 @@ public class Registerseite extends Register {
 
 
         buttonReg.addClickListener(clickEvent -> {
-            String register = userRegister.getValue();
-            String password = passwordRegister.getValue();
+            register = userRegister.getValue();
+            password = passwordRegister.getValue();
             String role = single.getValue();
 
             // instance of control
@@ -128,20 +134,28 @@ public class Registerseite extends Register {
                 userRegister.setValue(register);
                 passwordRegister.setValue("");
             }
+
+
             if (allChecksOkay) {
                 allChecksOkay = false;
                 try {
                     allChecksOkay = r.registerUser(register, password, role);
+                    Benutzer benutzer = BenutzerDAO.getBenutzer(register, password);
+                    ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
+
                 } catch (DatabaseException ex) {
                     Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
                     Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
                     userRegister.setValue("");
                     passwordRegister.setValue("");
 
+                } catch (NoSuchUserOrPassword ex) {
+                    Logger.getLogger(Registerseite.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
             if (allChecksOkay) {
+
                 if (role.equals(STUDENT)) {
                     ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                     UI.getCurrent().addWindow(window);

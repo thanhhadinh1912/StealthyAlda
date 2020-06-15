@@ -2,7 +2,11 @@ package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
+import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.ui.MyUI;
+import com.vaadin.ui.UI;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -29,6 +33,13 @@ public class RegisterControl {
         sendConfirmationEmail(email);
         return true;
     }
+    
+    public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException{
+       ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
+
+
+    }
+    
 
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();

@@ -137,8 +137,8 @@ public class RegisterseiteFuerArbeitgeber extends Register {
 
                 if (allChecksOkay) {
 
-                    ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
-                    UI.getCurrent().addWindow(windowa);
+                   // ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
+                   // UI.getCurrent().addWindow(windowa);
 
                 }
             } else {

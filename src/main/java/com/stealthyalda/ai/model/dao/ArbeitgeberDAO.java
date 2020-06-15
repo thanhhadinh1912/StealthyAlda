@@ -39,25 +39,26 @@ public class ArbeitgeberDAO extends AbstractDAO{
     }
     
     public boolean createArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException{
-        AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
-        String sql = "insert into stealthyalda.benutzer(anrede,telefonnummer) values(?,?);";
-        String sql2 = "insert into stealthyalda.arbeigeber(arbeitgeber_id,unternehmen,benutzer_id) values(?,?,?);";
+        String sql = "insert into stealthyalda.benutzer(benutzer_id, email, passwort, role, anrede, telefonnummer) values(?,?,?,?,?,?);"+ "insert into stealthyalda.arbeigeber(arbeitgeber_id,unternehmen,benutzer_id) values(?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         int userid = user.getId();
-        PreparedStatement statement2 = this.getPreparedStatement(sql2);
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try{
-            statement.setString(1, anrede);
-            statement.setString(2,telefonnumer);
-            
-            
-            statement2.setInt(1, arbeitgeberID());
-            statement2.setString(2,unternehmen);
-            statement2.setInt(3,userid);
+            statement.setInt(1,userid);
+            statement.setString(2,user.getEmail());
+            statement.setString(3,user.getPasswort());
+            statement.setString(4,user.getRole());
+            statement.setString(5,anrede);
+            statement.setString(6,telefonnumer);
+
+            statement.setInt(7, arbeitgeberID());
+            statement.setString(8,unternehmen);
+            statement.setInt(9,userid);
             statement.executeUpdate();
-            
+            AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
+
             //Nachtragliches Setzen der BuchungsID
             return true;
         }  catch (SQLException ex){

@@ -5,6 +5,8 @@
  */
 package com.stealthyalda.gui.windows;
 
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
@@ -31,6 +33,7 @@ public class ConfirmRegArbeitgeber extends Window {
         button.addClickListener(clickEvent -> {
             close();
             UI.getCurrent().getNavigator().navigateTo(Views.REGWEITERA);
+         
 
         });
         content.addComponent(button);
