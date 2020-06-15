@@ -7,17 +7,18 @@ package com.stealthyalda.ai.model.factories;
 
 import com.stealthyalda.ai.model.dtos.StellenanzeigeRequest;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 
 /**
- *
  * @author WINDOWS
  */
 public class StellenanzeigeFactory {
-    public static Stellenanzeige createStellenanzeige(StellenanzeigeRequest request, Arbeitgeber a){
+    private StellenanzeigeFactory() {
+    }
+
+    public static Stellenanzeige createStellenanzeige(StellenanzeigeRequest request, Arbeitgeber a) {
         Stellenanzeige s = new Stellenanzeige();
-        
+
         s.setArbeitgeberID(a.getArbeitgeber_id());
         s.setBeschreibung(request.getBeschreibung());
         s.setDatum(request.getDatum());

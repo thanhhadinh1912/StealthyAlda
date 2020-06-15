@@ -1,6 +1,6 @@
 package com.stealthyalda.ai.control.exceptions;
 
-public class UserExistsException extends Throwable {
+public class UserExistsException extends Exception {
     private String reason = null;
 
     public UserExistsException(String reason) {

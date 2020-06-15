@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmRegArbeitgeber;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Views;
@@ -136,9 +137,12 @@ public class RegisterseiteFuerArbeitgeber extends Register {
                 }
 
                 if (allChecksOkay) {
-
-                   // ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
-                   // UI.getCurrent().addWindow(windowa);
+                    Benutzer current = new Benutzer();
+                    current.setEmail(register);
+                    current.setPasswort(password);
+                    ((MyUI) UI.getCurrent()).setBenutzer(current);
+                    ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
+                    UI.getCurrent().addWindow(windowa);
 
                 }
             } else {

@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
@@ -9,14 +8,9 @@ import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.vaadin.ui.UI;
-import java.sql.Date;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +25,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
         return dao;
 
     }
-    
-    public boolean createStellenanzeige(Stellenanzeige s)throws DatabaseException{
+
+    public boolean createStellenanzeige(Stellenanzeige s) throws DatabaseException {
 
         String sql = "insert into stealthyalda.stellenanzeige values(default,?,?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
@@ -41,7 +35,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
         Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(userLogin);
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
-        try{
+        try {
             statement.setString(1, s.getTitel());
             statement.setString(2, s.getBeschreibung());
             statement.setString(3, s.getStatus());
@@ -49,40 +43,42 @@ public class StellenanzeigeDAO extends AbstractDAO {
             statement.setInt(5, a.getArbeitgeber_id());
             statement.setString(6, s.getOrt());
             statement.executeUpdate();
-            
+
             //Nachtragliches Setzen der BuchungsID
             setStellenanzeigesID(s);
             return true;
-        }  catch (SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
+
     private void setStellenanzeigesID(Stellenanzeige s) throws SQLException {
         Statement statement = this.getStatement();
         ResultSet rs = null;
 
-        try{
-            rs = statement.executeQuery("SELECT max(stealthyalda.stellenanzeige.stellenanzeige_id) FROM stealthyalda.stellenanzeige");
-            }
-        catch (SQLException ex){
-                Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         int currentValue = 0;
-        try{
+        try {
+            rs = statement.executeQuery("SELECT max(stealthyalda.stellenanzeige.stellenanzeige_id) FROM stealthyalda.stellenanzeige");
+
+            assert rs != null;
             rs.next();
-            currentValue=rs.getInt(1);
+            currentValue = rs.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
         }
+
         s.setStellenanzeigeID(currentValue);
     }
-    
+
 
     public List<StellenanzeigeDTO> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
         ResultSet rs = null;
 
+        List<StellenanzeigeDTO> liste = new ArrayList<>();
+        StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT" +
                 "  s.titel," +
                 "  s.beschreibung," +
@@ -101,19 +97,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
 
             rs = preparedStatement.executeQuery();
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
-        } catch (SQLException | DatabaseException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-
-        if (rs == null) {
-            return Collections.emptyList();
-        }
-        List<StellenanzeigeDTO> liste = new ArrayList<>();
-        StellenanzeigeDTO stellenanzeige = null;
-
-        try {
+            assert (rs != null);
             while (rs.next()) {
                 stellenanzeige = new StellenanzeigeDTO();
                 stellenanzeige.setTitel(rs.getString(1));
@@ -124,9 +108,13 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 stellenanzeige.setOrt(rs.getString(6));
                 liste.add(stellenanzeige);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
         }
+
         return liste;
     }
 

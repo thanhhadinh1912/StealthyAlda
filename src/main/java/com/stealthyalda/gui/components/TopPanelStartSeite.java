@@ -12,7 +12,7 @@ import java.io.File;
 
 
 public class TopPanelStartSeite extends HorizontalLayout {
-    private final Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+    private final transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
 
     public TopPanelStartSeite() {

@@ -47,7 +47,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         this.addComponent(accordion);
         this.setComponentAlignment(accordion, Alignment.MIDDLE_CENTER);
     }
-
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setUp();
 

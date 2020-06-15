@@ -3,7 +3,6 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.SucheEinfach;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
@@ -19,7 +18,7 @@ import java.util.List;
 public class Suchseite extends VerticalLayout implements View {
 
     private int anzahl = 0;
-    private StellenanzeigeDTO selected = null;
+    private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
 
@@ -33,10 +32,9 @@ public class Suchseite extends VerticalLayout implements View {
         Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
 
 
-//        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
 
 
-        GridLayout layout = new GridLayout(4, 1);
+
         //Textfeld Jobtitel, Unternehmen
         final TextField jobsearch = new TextField();
         jobsearch.setPlaceholder("Jobtitel, Unternehmen, ... ");
@@ -48,7 +46,7 @@ public class Suchseite extends VerticalLayout implements View {
         jobsearchOrt.setPlaceholder("Ort, Umkreis ");
         jobsearchOrt.setWidth("500px");
 
-//        Label label = new Label(benutzer.getVorname() + ", gebe den Ort ein: ");
+
         horizon.addComponents(jobsearch, jobsearchOrt, button);
         addComponent(horizon);
 
@@ -68,12 +66,10 @@ public class Suchseite extends VerticalLayout implements View {
         SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
 
         // Der Event Listener für den Grid
-        grid.addSelectionListener(event -> {
+        grid.addSelectionListener(event ->
 
             // Speichert den aktuell angewählten Wert bei klick auf die Zeile in der Var. "selected"
-            this.selected = selection.getValue();
-
-        });
+            this.selected = selection.getValue());
 
 
         // Event Listener für den Suchen Button
@@ -112,12 +108,7 @@ public class Suchseite extends VerticalLayout implements View {
 
 
         bewerben.addClickListener(e -> {
-            // Testweise Ausgabe der derzeitigen Selektion in einer Notification
 
-            //Notification.show(null, "Auswahl: " + this.selected.toString(), Notification.Type.WARNING_MESSAGE);
-
-//            BookingWindow window = new BookingWindow(MainView.this.selected);
-//            UI.getCurrent().addWindow(window);
         });
 
         // Grid und Buchen Button richtig anordnen
@@ -129,7 +120,7 @@ public class Suchseite extends VerticalLayout implements View {
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
 
-//        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
         if (user == null) {

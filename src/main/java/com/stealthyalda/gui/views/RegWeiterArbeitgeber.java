@@ -7,22 +7,16 @@ package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
-import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
-import static com.stealthyalda.gui.views.Register.STUDENT;
 import com.stealthyalda.gui.windows.ConfirmReg;
-import com.stealthyalda.gui.windows.ConfirmRegArbeitgeber;
-import com.stealthyalda.gui.windows.ConfirmRegStudent;
-import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +25,8 @@ import java.util.logging.Logger;
  */
 public class RegWeiterArbeitgeber extends VerticalLayout implements View {
     private static final String WIDTH = "500px";
-    Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+
     public void setUp() {
 
         TopPanelStartSeite panel = new TopPanelStartSeite();
@@ -61,16 +56,16 @@ public class RegWeiterArbeitgeber extends VerticalLayout implements View {
         HorizontalLayout hl2 = new HorizontalLayout();
         hl2.setWidth(WIDTH);
         final TextField email = new TextField();
-        email.setPlaceholder("E-Mail");
         email.setWidth("250px");
         email.setValue(user.getEmail());
+        email.setReadOnly(true);
         hl2.addComponent(email);
         hl2.setComponentAlignment(email, Alignment.MIDDLE_LEFT);
 
-        final TextField passwort = new TextField();
-        passwort.setPlaceholder("Passwort");
+        final PasswordField passwort = new PasswordField();
         passwort.setValue(user.getPasswort());
         passwort.setWidth("230px");
+        passwort.setReadOnly(true);
         hl2.addComponent(passwort);
         hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
 
@@ -118,20 +113,19 @@ public class RegWeiterArbeitgeber extends VerticalLayout implements View {
             String userwohnort = strasse.getValue();
             String userstrasse = "";
             String hausnummer = "";
-             if (userwohnort!= null && !userwohnort.isEmpty()) {
-        for (char c : userwohnort.toCharArray()) {
-            if (Character.isDigit(c)) {
-                hausnummer += c;
+            if (userwohnort != null && !userwohnort.isEmpty()) {
+                for (char c : userwohnort.toCharArray()) {
+                    if (Character.isDigit(c)) {
+                        hausnummer += c;
+                    } else {
+                        userstrasse += c;
+                    }
+                }
             }
-                else{
-                userstrasse +=c;
-            }
-        }
-    }
             String userort = ort.getValue();
             int userplz = Integer.parseInt(plz.getValue());
-            String usertelefon = telefon.getValue(); 
-                      // instance of control
+            String usertelefon = telefon.getValue();
+            // instance of control
             RegisterControl r = new RegisterControl();
             try {
                 r.registerArbeitgeber(anrede, unternehmen, userstrasse, userplz, userort, hausnummer, usertelefon);
@@ -142,9 +136,7 @@ public class RegWeiterArbeitgeber extends VerticalLayout implements View {
             UI.getCurrent().addWindow(window);
 
         });
-               
 
-  
 
         this.addComponent(ubermitteln);
         this.setComponentAlignment(ubermitteln, Alignment.MIDDLE_CENTER);

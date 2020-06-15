@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 public class MyUI extends UI {
 
 
-    private Benutzer benutzer = null;
+    private transient Benutzer benutzer = null;
 
     public Benutzer getBenutzer() {
         return benutzer;

@@ -4,9 +4,6 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
-import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.ui.MyUI;
-import com.vaadin.ui.UI;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -15,8 +12,6 @@ import java.util.logging.Logger;
 
 
 public class RegisterControl {
-    // prepared statement for insertion
-    //private static final String USER_INSERT_STATEMENT = "INSERT INTO stealthyalda.benutzer (email, passwort, role) VALUES (?,?,?)";
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         return BenutzerDAO.getInstance().checkUserExists(email);
@@ -33,13 +28,13 @@ public class RegisterControl {
         sendConfirmationEmail(email);
         return true;
     }
-    
-    public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException{
-       ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
+
+    public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
+        ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
 
 
     }
-    
+
 
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();

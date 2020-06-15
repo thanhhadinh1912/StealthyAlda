@@ -34,7 +34,6 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         logoandname.setComponentAlignment(upload, Alignment.BOTTOM_RIGHT);
 
         main.addComponent(logoandname);
-        //this.setComponentAlignment(logoandname, Alignment.TOP_LEFT);
 
         HorizontalLayout beschreibungandkontakt = new HorizontalLayout();
         beschreibungandkontakt.setWidth("1000px");

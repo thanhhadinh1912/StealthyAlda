@@ -55,8 +55,6 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         Image profilbild = new Image("", resource);
         vertical2.addComponent(profilbild);
         vertical2.setComponentAlignment(profilbild, Alignment.MIDDLE_RIGHT);
-        /*Label label = new Label("&nbsp;", ContentMode.HTML);
-        vertical2.addComponent(label);*/
         ImageUploader receiver = new ImageUploader();
         Upload upload = new Upload("", receiver);
         upload.addSucceededListener(receiver);
@@ -83,10 +81,5 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         this.setWidth("1150px");
         this.setHeight("600px");
 
-
-//        String name = benutzer.getName();
-//        if (name != null) {
-//            tfname.setValue(name);
-//        }
     }
 }

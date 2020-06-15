@@ -34,18 +34,13 @@ public class BenutzerDAO extends AbstractDAO {
 
         ResultSet set = null;
 
+        Benutzer benutzer = null;
         try {
             Statement statement = JDBCConnection.getInstance().getStatement();
             set = statement.executeQuery("SELECT * "
                     + "FROM stealthyalda.benutzer "
                     + "WHERE stealthyalda.benutzer.email = '" + email + "'");
-        } catch (SQLException | DatabaseException throwables) {
-            throwables.printStackTrace();
-            throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
-        }
-        boolean exist;
-        Benutzer benutzer = null;
-        try {
+
             while (set.next()) {
                 benutzer = new Benutzer();
                 benutzer.setId(set.getInt(1));
@@ -56,18 +51,19 @@ public class BenutzerDAO extends AbstractDAO {
                 benutzer.setRole(set.getString(6));
                 benutzer.setAdresse_id((set.getInt(7)));
             }
-
-            return benutzer;
-        } catch (SQLException throwables) {
+        } catch (SQLException | DatabaseException throwables) {
             throwables.printStackTrace();
+            throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
         } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
             JDBCConnection.getInstance().closeConnection();
         }
+
         return null;
     }
 
     public static String getUserRole(String email) {
-        ResultSet set;
+        ResultSet set = null;
         try {
             Statement statement = JDBCConnection.getInstance().getStatement();
             set = statement.executeQuery("SELECT role "
@@ -79,7 +75,10 @@ public class BenutzerDAO extends AbstractDAO {
             }
         } catch (SQLException | DatabaseException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
         }
+
         return null;
     }
 
@@ -138,6 +137,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            AbstractDAO.closeResultset(set);
             JDBCConnection.getInstance().closeConnection();
         }
         return null;
