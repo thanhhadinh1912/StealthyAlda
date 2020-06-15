@@ -77,7 +77,7 @@ public class JDBCConnection {
             if (this.conn.isClosed()) {
                 this.openConnection();
             }
-            return this.conn.prepareStatement(sql);
+            return this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException throwables) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, throwables);
             throw new DatabaseException("Fehler beim Zugriff auf die Datenbank! Sichere Verbindung vorhanden?");

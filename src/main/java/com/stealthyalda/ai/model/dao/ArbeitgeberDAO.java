@@ -37,25 +37,27 @@ public class ArbeitgeberDAO extends AbstractDAO {
     }
 
     public boolean createArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
+        String sql = "insert into stealthyalda.benutzer(email, passwort, role, anrede, telefonnummer) values(?,?,?,?,?);" + "insert into stealthyalda.arbeitgeber(unternehmen,benutzer_id) values(?,?);";
+        PreparedStatement statement = this.getPreparedStatement(sql);
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         int userid = user.getId();
 
-        String sql = "update stealthyalda.benutzer set anrede ='" + anrede + "', telefonnummer = '" + telefonnumer +"' where " +
-                "benutzer_id = '" + userid +"';"+ "insert into stealthyalda.arbeitgeber(arbeitgeber_id,unternehmen,benutzer_id) values(?,?,?);";
-        PreparedStatement statement = this.getPreparedStatement(sql);
-
-
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try {
-            statement.setInt(1, arbeitgeberID());
-            statement.setString(2, unternehmen);
-            statement.setInt(3, userid);
+            statement.setString(1, user.getEmail());
+            statement.setString(2, user.getPasswort());
+            statement.setString(3, user.getRole());
+            statement.setString(4, anrede);
+            statement.setString(5, telefonnumer);
+
+            statement.setString(6, unternehmen);
+            statement.setInt(7, userid);
             statement.executeUpdate();
             AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
 
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
             return false;
         }
     }
@@ -74,7 +76,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         if (rs != null) {
             try {
                 rs.next();
-                currentValue = rs.getInt(1)+1;
+                currentValue = rs.getInt(1);
             } catch (SQLException ex) {
                 Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
             } finally {

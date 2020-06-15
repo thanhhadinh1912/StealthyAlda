@@ -7,6 +7,7 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.PasswordAuthentication;
+import com.vaadin.server.VaadinSession;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -124,7 +125,7 @@ public class BenutzerDAO extends AbstractDAO {
         // check if hashes match
 
         try {
-            if (authenticator.authenticate(c, dbPasswordHash) == true) {
+            if (authenticator.authenticate(c, dbPasswordHash)) {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
                 benutzer.setPasswort(password);
@@ -210,7 +211,20 @@ public class BenutzerDAO extends AbstractDAO {
                 statement.setString(1, email);
                 statement.setString(2, passwordHash);
                 statement.setString(3, role);
-                statement.executeUpdate();
+                int rowsChanged = statement.executeUpdate();
+                if (rowsChanged == 0) {
+                    throw new SQLException("Creating user failed, no rows affected.");
+                }
+                ResultSet genKeys = statement.getGeneratedKeys();
+                if (genKeys.next()) {
+                    Long userId = genKeys.getLong(1);
+                    VaadinSession.getCurrent().setAttribute("userId", userId);
+                    logEntry("BenutzerDAO 222", Level.INFO,"Found userid: " + userId);
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+
                 return true;
             } catch (SQLException ex) {
                 logEntry(this.getClass().getName(),Level.SEVERE,ex.getMessage());
