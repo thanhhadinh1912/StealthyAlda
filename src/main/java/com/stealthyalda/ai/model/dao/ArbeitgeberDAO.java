@@ -57,7 +57,6 @@ public class ArbeitgeberDAO extends AbstractDAO {
             statement.executeUpdate();
             AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
 
-            //Nachtragliches Setzen der BuchungsID
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);

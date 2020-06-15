@@ -193,32 +193,54 @@ public class BenutzerDAO extends AbstractDAO {
         return checksOkay;
     }
 
-    public void createBenutzer(String email, String passwort, String role) throws DatabaseException {
+    public boolean createBenutzer(String email, String passwort, String role) throws DatabaseException {
 
         String sql;
-        sql = "INSERT INTO stealthyalda.benutzer(email, passwort, role) VALUES (?,?,?)";
-
-
+        sql = "INSERT INTO stealthyalda.benutzer(benutzer_id,email, passwort, role) VALUES (?,?,?,?)";
+        PreparedStatement statement = this.getPreparedStatement(sql);
         PasswordAuthentication hasher = new PasswordAuthentication();
 
         // convert to char[] as the string method is deprecated
         char[] c = passwort.toCharArray();
         String passwordHash = hasher.hash(c); // password hash
 
-        try {
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(sql);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, passwordHash);
-            preparedStatement.setString(3, role);
-            int row = preparedStatement.executeUpdate();
 
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, row);
-        } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+            try {
+                statement.setInt(1, benutzerID());
+                statement.setString(2, email);
+                statement.setString(3, passwordHash);
+                statement.setString(4, role);
+                statement.executeUpdate();
+                return true;
+            } catch (SQLException ex) {
+                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+
+    private int benutzerID() throws SQLException {
+        Statement statement = this.getStatement();
+        ResultSet rs = null;
+        int currentValue = 0;
+
+        try {
+            rs = statement.executeQuery("SELECT max(stealthyalda.benutzer.benutzer_id) FROM stealthyalda.benutzer");
+        } catch (SQLException ex) {
+            Logger.getLogger(BenutzerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
+        if (rs != null) {
+            try {
+                rs.next();
+                currentValue = rs.getInt(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            }
+        }
+        return currentValue;
     }
 
 

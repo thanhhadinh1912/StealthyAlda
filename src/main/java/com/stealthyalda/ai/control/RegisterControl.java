@@ -4,6 +4,9 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.services.util.Views;
+import com.vaadin.ui.UI;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -31,7 +34,7 @@ public class RegisterControl {
 
     public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
         ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
-
+        UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 
     }
 
