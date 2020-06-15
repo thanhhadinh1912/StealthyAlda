@@ -34,7 +34,6 @@ public class RegisterControl {
 
     public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
         ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
-        UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
 
     }
 

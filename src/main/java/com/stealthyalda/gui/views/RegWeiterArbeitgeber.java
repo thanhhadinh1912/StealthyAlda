@@ -133,7 +133,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
             } catch (DatabaseException ex) {
                 Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! Zurück zur Loginseite!");
+            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
             UI.getCurrent().addWindow(window);
 
         });
