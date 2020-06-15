@@ -51,8 +51,9 @@ public class BenutzerDAO extends AbstractDAO {
                 benutzer.setRole(set.getString(6));
                 benutzer.setAdresse_id((set.getInt(7)));
             }
-        } catch (SQLException | DatabaseException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, e.getMessage());
+
             throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
         } finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
@@ -94,9 +95,9 @@ public class BenutzerDAO extends AbstractDAO {
 
             // query!
             set = preparedStatement.executeQuery();
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
         } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
         String dbPasswordHash = null;
@@ -108,7 +109,7 @@ public class BenutzerDAO extends AbstractDAO {
                 throw new NoSuchUserOrPassword();
             }
         } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
         // user vorhanden. Jetzt Passwort hashes vergleichen
@@ -135,7 +136,7 @@ public class BenutzerDAO extends AbstractDAO {
                 throw new NoSuchUserOrPassword();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             AbstractDAO.closeResultset(set);
             JDBCConnection.getInstance().closeConnection();
@@ -153,7 +154,7 @@ public class BenutzerDAO extends AbstractDAO {
             statement.executeUpdate();
 
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
         } finally {
             JDBCConnection.getInstance().closeConnection();
         }
@@ -170,9 +171,9 @@ public class BenutzerDAO extends AbstractDAO {
             preparedStatement.setString(1, email);
 
             set = preparedStatement.executeQuery();
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, set);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
         } catch (SQLException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
             throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
         }
         try {
@@ -185,7 +186,7 @@ public class BenutzerDAO extends AbstractDAO {
             }
             checksOkay = true;
         } catch (SQLException ex) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             JDBCConnection.getInstance().closeConnection();
         }
@@ -196,7 +197,7 @@ public class BenutzerDAO extends AbstractDAO {
     public boolean createBenutzer(String email, String passwort, String role) throws DatabaseException {
 
         String sql;
-        sql = "INSERT INTO stealthyalda.benutzer(benutzer_id,email, passwort, role) VALUES (?,?,?,?)";
+        sql = "INSERT INTO stealthyalda.benutzer(email, passwort, role) VALUES (?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
         PasswordAuthentication hasher = new PasswordAuthentication();
 
@@ -206,42 +207,15 @@ public class BenutzerDAO extends AbstractDAO {
 
 
             try {
-                statement.setInt(1, benutzerID());
-                statement.setString(2, email);
-                statement.setString(3, passwordHash);
-                statement.setString(4, role);
+                statement.setString(1, email);
+                statement.setString(2, passwordHash);
+                statement.setString(3, role);
                 statement.executeUpdate();
                 return true;
             } catch (SQLException ex) {
-                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
+                logEntry(this.getClass().getName(),Level.SEVERE,ex.getMessage());
                 return false;
             }
         }
-
-    private int benutzerID() throws SQLException {
-        Statement statement = this.getStatement();
-        ResultSet rs = null;
-        int currentValue = 0;
-
-        try {
-            rs = statement.executeQuery("SELECT max(stealthyalda.benutzer.benutzer_id) FROM stealthyalda.benutzer");
-        } catch (SQLException ex) {
-            Logger.getLogger(BenutzerDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-        if (rs != null) {
-            try {
-                rs.next();
-                currentValue = rs.getInt(1);
-            } catch (SQLException ex) {
-                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
-            }
-        }
-        return currentValue;
-    }
-
 
 }

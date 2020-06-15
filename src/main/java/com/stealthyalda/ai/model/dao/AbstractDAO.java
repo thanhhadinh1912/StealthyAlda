@@ -44,5 +44,29 @@ public class AbstractDAO {
     protected void logEntry(String className, Level level, String message) {
         Logger.getLogger(className).log(level,message);
     }
+    protected int benutzerID() throws SQLException {
+        Statement statement = this.getStatement();
+        ResultSet rs = null;
+        int currentValue = 0;
+
+        try {
+            rs = statement.executeQuery("SELECT max(stealthyalda.benutzer.benutzer_id) FROM stealthyalda.benutzer");
+        } catch (SQLException ex) {
+            Logger.getLogger(BenutzerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+        if (rs != null) {
+            try {
+                rs.next();
+                currentValue = rs.getInt(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            }
+        }
+        return currentValue;
+    }
 }
 
