@@ -142,7 +142,6 @@ public class RegisterseiteFuerStudent extends Register {
                 ((MyUI) UI.getCurrent()).setBenutzer(current);
                 ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                 UI.getCurrent().addWindow(window);
-
             }
         });
 

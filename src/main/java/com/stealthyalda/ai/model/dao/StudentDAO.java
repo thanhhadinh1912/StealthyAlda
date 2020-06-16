@@ -3,6 +3,7 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.vaadin.ui.UI;
@@ -28,73 +29,45 @@ public class StudentDAO extends AbstractDAO {
         return dao;
     }
 
-    public boolean createStudent(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        String sql = "insert into stealthyalda.benutzer(email, passwort, role, anrede, telefonnummer) values(?,?,?,?,?);" + "insert into stealthyalda.arbeitgeber(unternehmen,benutzer_id) values(?,?);";
-        PreparedStatement statement = this.getPreparedStatement(sql);
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-        int userid = user.getId();
+    public boolean createStudent(String anrede, String vorname, String nachname , String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
+            Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+            int userid = user.getId();
 
-        //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
-        try {
-            statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPasswort());
-            statement.setString(3, user.getRole());
-            statement.setString(4, anrede);
-            statement.setString(5, telefonnumer);
-
-            statement.setString(6, unternehmen);
-            statement.setInt(7, userid);
-            statement.executeUpdate();
-            AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
-
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
-            return false;
-        }
-    }
-
-    private int arbeitgeberID() throws SQLException {
-        Statement statement = this.getStatement();
-        ResultSet rs = null;
-        int currentValue = 0;
-
-        try {
-            rs = statement.executeQuery("SELECT MAX(stealthyalda.arbeitgeber.arbeitgeber_id) FROM stealthyalda.arbeitgeber");
-        } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (rs != null) {
+            String sql = "update stealthyalda.benutzer set anrede ='" + anrede + "', telefonnummer = '" + telefonnumer +"' where " +
+                    "benutzer_id = '" + userid +"';"+ "insert into stealthyalda.student(vorname, nachname ,benutzer_id) values(?,?,?);";
+            PreparedStatement statement = this.getPreparedStatement(sql);
+            //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
             try {
-                rs.next();
-                currentValue = rs.getInt(1);
+                statement.setString(1, vorname);
+                
+                statement.setString(2, nachname);
+                statement.setInt(3, userid);
+                AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
+                statement.executeUpdate();
+                return true;
             } catch (SQLException ex) {
-                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                rs.close();
+                Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
+                return false;
             }
         }
 
-        return currentValue;
-    }
 
-    public Arbeitgeber getArbeitgeber(int benutzerid) {
+    public Student getStudent(int benutzerid) {
         ResultSet set = null;
         try {
             Statement statement = JDBCConnection.getInstance().getStatement();
             set = statement.executeQuery("SELECT * "
-                    + "FROM stealthyalda.arbeitgeber "
-                    + "WHERE stealthyalda.arbeitgeber.benutzer_id = '" + benutzerid + "'");
+                    + "FROM stealthyalda.student "
+                    + "WHERE stealthyalda.student.benutzer_id = '" + benutzerid + "'");
 
             if (set.next()) {
-                Arbeitgeber a = new Arbeitgeber();
-                a.setArbeitgeber_id(set.getInt(1));
-                a.setUnternehmen(set.getString(2));
-                a.setId(benutzerid);
-                a.setLogo(set.getByte(4));
-                a.setBeschreibung(set.getString(5));
-                return a;
+                Student s = new Student();
+                s.setStudent_id(set.getInt(1));
+                s.setNachname(set.getString(2));
+                s.setId(benutzerid);
+                s.setVorname(set.getString(4));
+                s.setProfilbild(set.getByte(5));
+                return s;
             }
         } catch (SQLException | DatabaseException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);

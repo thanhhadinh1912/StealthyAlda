@@ -5,18 +5,25 @@
  */
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.control.RegisterControl;
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author WINDOWS
  */
 public class RegWeiterStudent extends Register {
     private static final String WIDTH = "500px";
+    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
     public void setUp() {
         TopPanelStartSeite panel = new TopPanelStartSeite();
@@ -60,12 +67,16 @@ public class RegWeiterStudent extends Register {
         final TextField email = new TextField();
         email.setPlaceholder("E-Mail");
         email.setWidth("250px");
+        email.setValue(user.getEmail());
+        email.setReadOnly(true);
         hl2.addComponent(email);
         hl2.setComponentAlignment(email, Alignment.MIDDLE_LEFT);
 
         final TextField passwort = new TextField();
         passwort.setPlaceholder("Passwort");
+        passwort.setValue(user.getPasswort());
         passwort.setWidth("230px");
+        passwort.setReadOnly(true);
         hl2.addComponent(passwort);
         hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
 
@@ -110,7 +121,34 @@ public class RegWeiterStudent extends Register {
 
 
         ubermitteln.addClickListener(event -> {
-            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! Zurück zur Loginseite!");
+                        String anrede = userAnrede.getValue();
+            String uservorname = vorname.getValue();
+            String username = nachname.getValue();
+            String userwohnort = strasse.getValue();
+            StringBuilder userstrasse = new StringBuilder();
+            StringBuilder hausnummer = new StringBuilder();
+            // TODO - add a field for "Hausnummer"
+            if (userwohnort != null && !userwohnort.isEmpty()) {
+                for (char c : userwohnort.toCharArray()) {
+                    if (Character.isDigit(c)) {
+
+                        hausnummer.append(c);
+                    } else {
+                        userstrasse.append(c);
+                    }
+                }
+            }
+            String userort = ort.getValue();
+            int userplz = Integer.parseInt(plz.getValue());
+            String usertelefon = telefon.getValue();
+            // instance of control
+            RegisterControl r = new RegisterControl();
+            try {
+                r.registerStudent(anrede, uservorname, username, userstrasse.toString(), userplz, userort, hausnummer.toString(), usertelefon);
+            } catch (DatabaseException ex) {
+                Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
             UI.getCurrent().addWindow(window);
         });
 

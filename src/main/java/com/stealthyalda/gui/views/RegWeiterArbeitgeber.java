@@ -40,8 +40,6 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         final NativeSelect<String> userAnrede = new NativeSelect<>();
 //
 // Add some items
-        // TODO - add validation and required fields
-
         userAnrede.setItems("Herr", "Frau");
         userAnrede.setCaption("Anrede");
         userAnrede.setWidth(WIDTH);
@@ -135,7 +133,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
             } catch (DatabaseException ex) {
                 Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
+            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
             UI.getCurrent().addWindow(window);
 
         });
