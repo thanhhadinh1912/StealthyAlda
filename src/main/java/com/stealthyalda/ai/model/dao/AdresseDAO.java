@@ -34,10 +34,9 @@ public class AdresseDAO extends AbstractDAO {
         return dao;
     }
 
-    public boolean createAdresse(String strasse, int plz, String hausnummer, String ort) throws DatabaseException {
+    public void createAdresse(String strasse, int plz, String hausnummer, String ort) throws DatabaseException {
         String sql = "insert into stealthyalda.adresse values(?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
-
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         int userid = user.getId();
 
@@ -52,10 +51,9 @@ public class AdresseDAO extends AbstractDAO {
 
             //Nachtragliches Setzen der BuchungsID
 
-            return true;
+
         } catch (SQLException ex) {
             Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
     }
 
