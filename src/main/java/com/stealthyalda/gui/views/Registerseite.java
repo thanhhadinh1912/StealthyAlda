@@ -17,6 +17,7 @@ import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -140,22 +141,23 @@ public class Registerseite extends Register {
                 allChecksOkay = false;
                 try {
                     allChecksOkay = r.registerUser(register, password, role);
-                    Benutzer benutzer = BenutzerDAO.getBenutzer(register, password);
-                    ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
-
                 } catch (DatabaseException ex) {
-                    Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                    Notification.show(FEHLER, "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
                     Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
-                    userRegister.setValue("");
+                    userRegister.setValue(register);
                     passwordRegister.setValue("");
 
-                } catch (NoSuchUserOrPassword ex) {
-                    Logger.getLogger(Registerseite.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
-            if (allChecksOkay) {
 
+            if (allChecksOkay) {
+                Benutzer current = new Benutzer();
+                current.setEmail(register);
+                current.setPasswort(password);
+                current.setRole(role);
+                current.setId(new Integer(VaadinSession.getCurrent().getAttribute("userId").toString()));
+                ((MyUI) UI.getCurrent()).setBenutzer(current);
                 if (role.equals(STUDENT)) {
                     ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                     UI.getCurrent().addWindow(window);
@@ -163,7 +165,11 @@ public class Registerseite extends Register {
                     ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
                     UI.getCurrent().addWindow(windowa);
                 }
+
             }
+        else {
+        Notification.show(FEHLER, "Bitte beachten Sie die Hinweise in den Eingabefelder", Notification.Type.ERROR_MESSAGE);
+    }
         });
 
         this.addComponent(panel);

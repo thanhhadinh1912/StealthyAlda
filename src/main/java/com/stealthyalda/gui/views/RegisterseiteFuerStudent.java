@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmRegStudent;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Views;
@@ -12,6 +13,7 @@ import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -86,7 +88,6 @@ public class RegisterseiteFuerStudent extends Register {
         Button buttonReg = new Button("Registrieren");
         buttonReg.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-
         layout.addComponent(buttonReg);
         layout.setComponentAlignment(buttonReg, Alignment.MIDDLE_CENTER);
         Label label3 = new Label("oder", ContentMode.TEXT);
@@ -125,14 +126,20 @@ public class RegisterseiteFuerStudent extends Register {
                 } catch (DatabaseException ex) {
                     Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
                     Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);
-                    userRegister.setValue("");
+                    userRegister.setValue(register);
                     passwordRegister.setValue("");
 
                 }
 
             }
-            if (allChecksOkay) {
 
+            if (allChecksOkay) {
+                Benutzer current = new Benutzer();
+                current.setEmail(register);
+                current.setPasswort(password);
+                current.setRole(role);
+                current.setId(new Integer(VaadinSession.getCurrent().getAttribute("userId").toString()));
+                ((MyUI) UI.getCurrent()).setBenutzer(current);
                 ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                 UI.getCurrent().addWindow(window);
 
