@@ -13,6 +13,13 @@ public class Hardskill {
     private int hardskill_id;
     private String hardskill;
 
+    public Hardskill(String hardskill) {
+        this.hardskill = hardskill;
+    }
+
+    public Hardskill() {
+    }
+
     public int getHardskill_id() {
         return hardskill_id;
     }

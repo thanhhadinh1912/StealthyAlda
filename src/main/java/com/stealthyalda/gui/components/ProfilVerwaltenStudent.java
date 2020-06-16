@@ -1,5 +1,7 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.control.ProfilStudentControl;
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
@@ -10,11 +12,14 @@ import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
     public ProfilVerwaltenStudent() {
         Student current = StudentDAO.getInstance().getStudent(user.getId());
+        ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
@@ -40,11 +45,13 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
 
         TextArea hobby = new TextArea("Hobbys");
         hobby.setWidth("325px");
+        c.printHobby(user);
         horizon2.addComponent(hobby);
         horizon2.setComponentAlignment(hobby, Alignment.MIDDLE_LEFT);
 
         TextArea hardskill = new TextArea("Hardskills");
         hardskill.setWidth("325px");
+        hardskill.setValue(c.printHardskill(user));
         horizon2.addComponent(hardskill);
         horizon2.setComponentAlignment(hardskill, Alignment.MIDDLE_RIGHT);
         vartical1.addComponent(horizon2);
@@ -75,6 +82,7 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         TextArea softskill = new TextArea("Softskills");
         softskill.setWidth("275px");
         softskill.setHeight("117px");
+        softskill.setValue(c.printSoftskill(user));
         vertical2.addComponent(softskill);
         vertical2.setComponentAlignment(softskill, Alignment.BOTTOM_RIGHT);
 
@@ -85,6 +93,14 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         this.setComponentAlignment(horizon1, Alignment.TOP_CENTER);
 
         Button speichern = new Button("Speichern");
+        speichern.addClickListener(clickEvent -> {
+            String inputhardskill = hardskill.getValue();
+            try {
+                c.hardskillchange(user, inputhardskill);
+            } catch (DatabaseException ex) {
+                Logger.getLogger(ProfilVerwaltenStudent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         this.addComponent(speichern);
         this.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
 

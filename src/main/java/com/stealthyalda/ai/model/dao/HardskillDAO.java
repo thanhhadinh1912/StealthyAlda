@@ -5,8 +5,12 @@
  */
 package com.stealthyalda.ai.model.dao;
 
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.services.db.JDBCConnection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,6 +64,63 @@ public class HardskillDAO extends AbstractDAO {
             Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
         }
         return liste;
+    }
+    
+    public void deleteHardskillForUser(String hardskill) throws DatabaseException {
+        String sql;
+        sql = "DELETE FROM stealthyalda.studenet_hat_hardskill WHERE hardskill = '" + hardskill + "';";
+
+        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        try {
+            assert statement != null;
+            statement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+        } finally {
+            JDBCConnection.getInstance().closeConnection();
+        }
+
+    }
+    
+    public void createHardskillForUser(Hardskill hardskill, Student s){
+         String sql = "insert into stealthyalda.hardskill values(default,?);"
+                 + "update stealthyalda.student_hat_hardskill"
+                + " set hardskill_id ='" + hardskill.getHardskill_id() + "' where student_id = '" + s +"';";
+        PreparedStatement statement = this.getPreparedStatement(sql);
+         try{
+            statement.setString(1,hardskill.getHardskill());
+            setHardskillsID(hardskill);
+            statement.executeUpdate();
+         } catch (SQLException ex) {
+             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }
+    
+    private void setHardskillsID(Hardskill h) throws SQLException {
+        Statement statement = this.getStatement();
+        ResultSet rs = null;
+
+        try{
+            rs = statement.executeQuery("SELECT max(stealthyalda.hardskill.hardskill_id) FROM stealthyalda.hardskill");
+            }
+        catch (SQLException ex){
+                Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int currentValue = 0;
+        try{
+            rs.next();
+            currentValue=rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        h.setHardskill_id(currentValue);
+    }
+    
+    public void changeHardskill(int id, String hardskill){
+        String sql = "update stealthyalda.hardskill"
+                + " set hardskill ='" + hardskill + "' where hardskill_id = '" + id +"'";
     }
 }
 
