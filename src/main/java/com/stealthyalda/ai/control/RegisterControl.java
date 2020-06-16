@@ -4,6 +4,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
+import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.ui.UI;
@@ -38,8 +39,7 @@ public class RegisterControl {
     }
 
     public void registerStudent(String anrede, String vorname, String nachname, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        // ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
-
+        StudentDAO.getInstance().createStudent(anrede, vorname, nachname, strasse, plz, ort, hausnummer, telefonnumer);
 
     }
 
