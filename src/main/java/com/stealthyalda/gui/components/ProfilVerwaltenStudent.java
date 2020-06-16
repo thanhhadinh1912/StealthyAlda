@@ -1,5 +1,9 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -8,11 +12,17 @@ import com.vaadin.ui.*;
 import java.io.File;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
+    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
     public ProfilVerwaltenStudent() {
+        Student current = StudentDAO.getInstance().getStudent(user.getId());
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
+        String studentname = current.getVorname() + current.getNachname();
+        if(studentname.length()!= 0){
+            name.setValue(studentname);
+        }
         name.setWidth("700px");
         name.setHeight("40px");
         vartical1.addComponent(name);
