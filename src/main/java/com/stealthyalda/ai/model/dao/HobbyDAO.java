@@ -6,9 +6,7 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Hobby;
-import com.stealthyalda.ai.model.entities.Softskill;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class HobbyDAO extends AbstractDAO{
-             public static HobbyDAO dao = null;
+    private static HobbyDAO dao = null;
     private HobbyDAO(){
 
     }
@@ -34,7 +32,8 @@ public class HobbyDAO extends AbstractDAO{
     }
     public List<Hobby> getHobbysForUser(Benutzer user){
         Statement statement=this.getStatement();
-
+        List<Hobby> liste = new ArrayList<Hobby>();
+        Hobby hobby = null;
         ResultSet rs = null;
         try{
             String sql ="select h.hobby_id, h.hobby\n" +
@@ -43,14 +42,8 @@ public class HobbyDAO extends AbstractDAO{
 "inner join stealthyalda.student s on s.student_id = sh.student_id\n" +
 "where s.benutzer_id = '"+user.getId()+"';";
             rs = statement.executeQuery(sql);
-            }
-        catch (SQLException ex){
-            Logger.getLogger(HobbyDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(rs==null) return null;
-        List<Hobby> liste = new ArrayList<Hobby>();
-        Hobby hobby = null;
-        try {
+
+
             while (rs.next()){
                 hobby= new Hobby();
                 hobby.setHobby_id(rs.getInt(1));
@@ -60,6 +53,10 @@ public class HobbyDAO extends AbstractDAO{
 
         }catch (SQLException ex){
             Logger.getLogger(Hobby.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        finally {
+            closeResultset(rs);
         }
         return liste;
     }
