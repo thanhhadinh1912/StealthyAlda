@@ -2,9 +2,9 @@ package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.KontoControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.gui.windows.ConfirmationWindow;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
 
 public class KontoVerwaltung extends VerticalLayout {
     public KontoVerwaltung(){
@@ -78,7 +78,14 @@ public class KontoVerwaltung extends VerticalLayout {
         final Button andern = new Button("Ändern");
         changepassword.addComponent(andern);
         andern.addClickListener(clickEvent -> {
-            kc.changekonto(mail2.getValue(), alt.getValue(), neu.getValue());
+            String email = mail2.getValue();
+            String altpasswort = alt.getValue();
+            String neupasswort = neu.getValue();
+            Boolean check = kc.changekonto(email, altpasswort, neupasswort);
+            if(check){
+                ConfirmationWindow confirm = new ConfirmationWindow("Erfolgreich");
+                UI.getCurrent().addWindow(confirm);
+            }
                 });
 
         main.addComponent(deletekonto);

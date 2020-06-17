@@ -237,27 +237,29 @@ public class BenutzerDAO extends AbstractDAO {
             }
         }
 
-        public void changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
+        public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
             String sql;
-            sql = "update stealthyalda.benutzer set passswort = ? where email = ? and passwort = ?;";
+            sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
 
             PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
             PasswordAuthentication hasher = new PasswordAuthentication();
-            char[] c = neupasswort.toCharArray();
+            /*char[] c = neupasswort.toCharArray();
             String passwordHashneu = hasher.hash(c);
 
             char[] c2 = altpasswort.toCharArray();
-            String passwordHashalt = hasher.hash(c2);
+            String passwordHashalt = hasher.hash(c2);*/
 
             try {
                 assert statement != null;
-                statement.setString(1, passwordHashneu);
+                statement.setString(1, neupasswort);
                 statement.setString(2, email);
-                statement.setString(3, passwordHashalt);
+                statement.setString(3, altpasswort);
                 statement.executeUpdate();
+                return true;
 
             } catch (SQLException throwables) {
                 Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+                return false;
             } finally {
                 JDBCConnection.getInstance().closeConnection();
             }
