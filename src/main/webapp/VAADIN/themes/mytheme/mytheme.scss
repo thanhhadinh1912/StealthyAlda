@@ -143,10 +143,15 @@ $v-font-size: 18px;
      image: url("src/main/webapp/Image/background_home.jpg");
      }
      .startseite{
-     .v-loggedLabel{
-     caption-color: white
+     .v-loggedLabel {
+       caption-color: white
      }
      }
+  .suchseite{
+    .v-layout{
+      border:  1px solid black;;
+    }
+  }
 
 
 

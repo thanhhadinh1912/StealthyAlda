@@ -15469,3 +15469,7 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme .startseite .v-loggedLabel {
 	caption-color: white;
 }
+
+.mytheme .suchseite .v-layout {
+	border: 1px solid black;
+}

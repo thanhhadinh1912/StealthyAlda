@@ -121,34 +121,48 @@ public class Suchseite extends VerticalLayout implements View {
                     article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
                     VerticalLayout titelbeschreibung = new VerticalLayout();
                     HorizontalLayout info = new HorizontalLayout();
-                    Label stitel = new Label(suche.getTitel(), ContentMode.PREFORMATTED);
+                    Label stitel = new Label(suche.getTitel(), ContentMode.TEXT);
+                    stitel.setWidth("400px");
                     info.addComponent(stitel);
-                    Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.TEXT);
+
+
+                    Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
                     info.addComponent(sunternehmen);
+                    sunternehmen.setWidth("250px");
 
-                    Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.TEXT);
+                    Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
                     info.addComponent(sdatum);
+                    sdatum.setWidth("150px");
 
-                    Label sort = new Label(suche.getOrt(), ContentMode.TEXT);
+                    Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
                     info.addComponent(sort);
+                    sort.setWidth("125px");
 
-                    Label sstatus = new Label(suche.getStatus(), ContentMode.TEXT);
+                    Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
                     info.addComponent(sstatus);
+                    sstatus.setWidth("100px");
+
+                    info.setHeight("60px");
 
                     titelbeschreibung.addComponent(info);
-                    titelbeschreibung.setComponentAlignment(info, Alignment.TOP_LEFT);
 
-                    Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.TEXT);
+                    Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.PREFORMATTED);
+                    sbeschreibung.setHeight("80px");
+                    sbeschreibung.setWidth("875px");
                     titelbeschreibung.addComponent(sbeschreibung);
-                    titelbeschreibung.setComponentAlignment(sbeschreibung, Alignment.BOTTOM_LEFT);
+
+                    titelbeschreibung.setWidth("570px");
+                    titelbeschreibung.setHeight("140px");
                     article.addComponent(titelbeschreibung);
-                    article.setStyleName("layout-with-border");
+                    article.setStyleName("suchseite");
+                    article.setComponentAlignment(titelbeschreibung, Alignment.MIDDLE_CENTER);
 
                     scrollableLayout.addComponent(article);
 
 
                 }
                 addComponent(scrollableLayout);
+                setComponentAlignment(scrollableLayout, Alignment.MIDDLE_CENTER);
 
             }
         });
