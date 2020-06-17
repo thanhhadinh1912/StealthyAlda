@@ -2,6 +2,7 @@ package com.stealthyalda.gui.ui;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.views.*;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
@@ -42,9 +43,9 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        String sess = VaadinSession.getCurrent().toString();
-        Logger.getLogger(MyUI.class.getName()).log(Level.INFO, sess);
-
+        VaadinSession sess = VaadinSession.getCurrent();
+        String mySession = sess.toString();
+        Logger.getLogger(MyUI.class.getName()).log(Level.INFO, mySession);
         Navigator navi = new Navigator(this, this);
         navi.addView(Views.MAIN, Suchseite.class);
         navi.addView(Views.LOGIN, Loginseite.class);
@@ -59,6 +60,7 @@ public class MyUI extends UI {
         navi.addView(Views.DASHBOARDA, DashboardArbeitgeber.class);
         navi.addView(Views.STELLENANZEIGE, Stellenanzeige.class);
 
+        this.benutzer = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);
 
     }

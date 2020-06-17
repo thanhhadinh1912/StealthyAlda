@@ -5,8 +5,8 @@ import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 public class LoginControl {
@@ -23,6 +23,7 @@ public class LoginControl {
         ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
 
         // Der Benutzer ist vorhanden
+        UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, benutzer);
 
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
@@ -31,6 +32,7 @@ public class LoginControl {
 
     public static void logoutUser() {
         UI.getCurrent().close();
+        UI.getCurrent().getSession().close();
         UI.getCurrent().getPage().setLocation("/");
     }
 }
