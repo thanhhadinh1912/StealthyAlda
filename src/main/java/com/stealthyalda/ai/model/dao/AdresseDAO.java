@@ -11,9 +11,7 @@ import com.stealthyalda.gui.ui.MyUI;
 import com.vaadin.ui.UI;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +33,7 @@ public class AdresseDAO extends AbstractDAO {
     }
 
     public void createAdresse(String strasse, int plz, String hausnummer, String ort) throws DatabaseException {
-        String sql = "insert into stealthyalda.adresse values(?,?,?,?,?);";
+        String sql = "INSERT INTO stealthyalda.adresse (plz, strasse, ort, haus_nr, benutzer_id) values(?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
         int userid = user.getId();
@@ -53,33 +51,8 @@ public class AdresseDAO extends AbstractDAO {
 
 
         } catch (SQLException ex) {
-            Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
         }
-    }
-
-    private int adresseID() throws SQLException {
-        Statement statement = this.getStatement();
-        ResultSet rs = null;
-        int currentValue = 0;
-
-        try {
-            rs = statement.executeQuery("SELECT max(stealthyalda.adresse.adresse_id) FROM stealthyalda.adresse");
-        } catch (SQLException ex) {
-            Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-        if (rs != null) {
-            try {
-                rs.next();
-                currentValue = rs.getInt(1);
-            } catch (SQLException ex) {
-                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
-            }
-        }
-        return currentValue;
     }
 
 

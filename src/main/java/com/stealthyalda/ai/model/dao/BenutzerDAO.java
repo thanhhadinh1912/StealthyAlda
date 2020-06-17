@@ -4,6 +4,7 @@ import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
+import com.stealthyalda.ai.model.dtos.DTOs;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.PasswordAuthentication;
@@ -232,11 +233,14 @@ public class BenutzerDAO extends AbstractDAO {
 
                 return true;
             } catch (SQLException ex) {
-                logEntry(this.getClass().getName(),Level.SEVERE,ex.getMessage());
+                logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
                 return false;
             }
-        }
+    }
 
+    public void updateStammdaten(DTOs u, String anrede, Benutzer user) {
+
+<<<<<<< HEAD
         public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
             String sql;
             sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
@@ -265,4 +269,25 @@ public class BenutzerDAO extends AbstractDAO {
             }
         }
 
+=======
+        String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
+                "SET " +
+                "anrede = ?, " +
+                "telefonnummer =  ? " +
+                "WHERE " +
+                "benutzer_id = ?;";
+        PreparedStatement statement = this.getPreparedStatement(updateBenutzerTbl);
+
+        try {
+            statement.setString(1, anrede);
+            statement.setString(2, u.getTelefonnummer());
+            statement.setInt(3, user.getId());
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
+
+        }
+    }
+>>>>>>> cf47a1c6d97c6edcb594a4dfe30d94d0c0d1a1bf
 }

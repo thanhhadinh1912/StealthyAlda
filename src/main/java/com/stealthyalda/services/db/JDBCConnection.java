@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class JDBCConnection {
     private static JDBCConnection connection = null;
-    private final String url = "jdbc:postgresql://dumbo.inf.h-brs.de:5432/wrast2s";
+    private final String url = "jdbc:postgresql://dumbo.inf.h-brs.de:5432/wrast2s?allowMultiQueries=true";
     private Connection conn;
 
     private JDBCConnection() throws DatabaseException {

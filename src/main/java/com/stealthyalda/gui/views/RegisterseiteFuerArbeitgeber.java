@@ -117,7 +117,7 @@ public class RegisterseiteFuerArbeitgeber extends Register {
                 try {
                     allChecksOkay = r.checkUserExists(register);
                 } catch (UserExistsException ex) {
-                    Notification.show(FEHLER, "Registrierung nicht erfolgreich: " + ex.getMessage(), Notification.Type.ERROR_MESSAGE);
+                    Notification.show(FEHLER, "Registrierung nicht erfolgreich: " + ex.getReason(), Notification.Type.ERROR_MESSAGE);
                     userRegister.setValue(register); // let them not have to input the email again
                     passwordRegister.setValue("");
                 } catch (DatabaseException dbException) {

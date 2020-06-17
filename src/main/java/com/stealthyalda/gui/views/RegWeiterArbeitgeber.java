@@ -7,6 +7,8 @@ package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.Adresse;
+import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
@@ -128,13 +130,23 @@ public class RegWeiterArbeitgeber extends RegWeiter {
             String usertelefon = telefon.getValue();
             // instance of control
             RegisterControl r = new RegisterControl();
+            UnternehmenDTO ag = new UnternehmenDTO();
             try {
-                r.registerArbeitgeber(anrede, unternehmen, userstrasse.toString(), userplz, userort, hausnummer.toString(), usertelefon);
+                ag.setAdresse(new Adresse(userstrasse.toString(), userplz, hausnummer.toString(), userort));
+                ag.setTelefonnummer(usertelefon);
+                ag.setUnternehmen(unternehmen);
+
+                r.registerArbeitgeber(ag, anrede);
+                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
+                UI.getCurrent().addWindow(window);
             } catch (DatabaseException ex) {
-                Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, ex.getReason());
+                Notification.show(FEHLER, "Ihre Daten konnten nicht gespeichert werden: " + ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                telefon.setValue(usertelefon);
+                ort.setValue(userort);
+                plz.setValue(String.valueOf(userplz));
+                strasse.setValue(userstrasse.toString());
             }
-            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
-            UI.getCurrent().addWindow(window);
 
         });
 
