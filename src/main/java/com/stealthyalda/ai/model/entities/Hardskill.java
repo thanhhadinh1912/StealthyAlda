@@ -11,10 +11,10 @@ package com.stealthyalda.ai.model.entities;
  */
 public class Hardskill {
     private int hardskill_id;
-    private String hardskill;
+    private String name;
 
     public Hardskill(String hardskill) {
-        this.hardskill = hardskill;
+        this.name = hardskill;
     }
 
     public Hardskill() {
@@ -29,11 +29,11 @@ public class Hardskill {
     }
 
     public String getHardskill() {
-        return hardskill;
+        return name;
     }
 
     public void setHardskill(String hardskill) {
-        this.hardskill = hardskill;
+        this.name = hardskill;
     }
     
 }

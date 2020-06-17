@@ -21,7 +21,6 @@ import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
-    private int anzahl = 0;
     private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
@@ -32,19 +31,12 @@ public class Suchseite extends VerticalLayout implements View {
 
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        //Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
 
-
-
-
-
-        //Textfeld Jobtitel, Unternehmen
         final TextField jobsearch = new TextField();
         jobsearch.setPlaceholder("Jobtitel, Unternehmen, ... ");
         jobsearch.setWidth("500px");
 
 
-//Textfelt Passwort
         final TextField jobsearchOrt = new TextField();
         jobsearchOrt.setPlaceholder("Ort, Umkreis ");
         jobsearchOrt.setWidth("500px");
@@ -63,8 +55,8 @@ public class Suchseite extends VerticalLayout implements View {
         grid.setStyleName("gridSuche");
 
 
-        GridLayout MainFutter = new GridLayout(6, 6);
-        MainFutter.setSizeFull();
+        GridLayout mainFutter = new GridLayout(6, 6);
+        mainFutter.setSizeFull();
 
         SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
 
@@ -86,26 +78,6 @@ public class Suchseite extends VerticalLayout implements View {
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
-                /*anzahl += 1;
-
-                //erstmal alles löschen
-                grid.removeAllColumns();
-                grid.setCaption("Treffer für " + titel + " " + ort + " (Anzahl der Suchen: " + anzahl + ")");
-                grid.setItems(liste);
-                // neue Items hinzufügen
-                grid.setItems(liste);
-
-                // Columns definieren
-                grid.addColumn(StellenanzeigeDTO::getTitel).setCaption("Titel");
-                grid.addColumn(StellenanzeigeDTO::getBeschreibung).setCaption("Beschreibung");
-                grid.addColumn(StellenanzeigeDTO::getArbeitgeber).setCaption("Unternehmen");
-                grid.addColumn(StellenanzeigeDTO::getDatum).setCaption("Datum");
-                grid.addColumn(StellenanzeigeDTO::getOrt).setCaption("Ort");
-                grid.addColumn(StellenanzeigeDTO::getStatus).setCaption("Status");
-
-                addComponent(grid);
-                addComponent(bewerben);
-                setComponentAlignment(bewerben, Alignment.MIDDLE_CENTER);*/
                 for(int i=0; i<liste.size();i++){
                     StellenanzeigeDTO suche= liste.get(i);
                     HorizontalLayout article = new HorizontalLayout();
@@ -153,10 +125,7 @@ public class Suchseite extends VerticalLayout implements View {
                     article.setComponentAlignment(titelbeschreibung, Alignment.MIDDLE_CENTER);
 
                     scrollableLayout.addComponent(article);
-                    article.addLayoutClickListener(event -> {
-                        UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE);
-                            }
-                    );
+                    article.addLayoutClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE) );
 
                 }
                 addComponent(scrollableLayout);

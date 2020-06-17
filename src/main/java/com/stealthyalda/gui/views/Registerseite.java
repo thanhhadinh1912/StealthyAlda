@@ -2,9 +2,7 @@ package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
-import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;

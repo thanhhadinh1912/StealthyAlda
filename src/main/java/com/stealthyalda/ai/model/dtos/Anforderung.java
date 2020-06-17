@@ -10,14 +10,14 @@ package com.stealthyalda.ai.model.dtos;
  * @author WINDOWS
  */
 public class Anforderung {
-    private String anforderung;
+    private String name;
 
     public String getAnforderung() {
-        return anforderung;
+        return name;
     }
 
     public void setAnforderung(String anforderung) {
-        this.anforderung = anforderung;
+        this.name = anforderung;
     }
     
     

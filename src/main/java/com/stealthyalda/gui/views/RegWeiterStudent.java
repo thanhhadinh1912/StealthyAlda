@@ -22,6 +22,8 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class RegWeiterStudent extends Register {
+    private String w = "250px";
+    private String w2 = "230px";
     private static final String WIDTH = "500px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
@@ -49,13 +51,13 @@ public class RegWeiterStudent extends Register {
         hl1.setWidth(WIDTH);
         final TextField vorname = new TextField();
         vorname.setPlaceholder("Vorname");
-        vorname.setWidth("250px");
+        vorname.setWidth(w);
         hl1.addComponent(vorname);
         hl1.setComponentAlignment(vorname, Alignment.MIDDLE_LEFT);
 
         final TextField nachname = new TextField();
         nachname.setPlaceholder("Nachname");
-        nachname.setWidth("230px");
+        nachname.setWidth(w2);
         hl1.addComponent(nachname);
         hl1.setComponentAlignment(nachname, Alignment.MIDDLE_RIGHT);
 
@@ -66,7 +68,7 @@ public class RegWeiterStudent extends Register {
         hl2.setWidth(WIDTH);
         final TextField email = new TextField();
         email.setPlaceholder("E-Mail");
-        email.setWidth("250px");
+        email.setWidth(w);
         email.setValue(user.getEmail());
         email.setReadOnly(true);
         hl2.addComponent(email);
@@ -75,7 +77,7 @@ public class RegWeiterStudent extends Register {
         final TextField passwort = new TextField();
         passwort.setPlaceholder("Passwort");
         passwort.setValue(user.getPasswort());
-        passwort.setWidth("230px");
+        passwort.setWidth(w2);
         passwort.setReadOnly(true);
         hl2.addComponent(passwort);
         hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
@@ -87,13 +89,13 @@ public class RegWeiterStudent extends Register {
         hl3.setWidth(WIDTH);
         final TextField strasse = new TextField();
         strasse.setPlaceholder("Straße");
-        strasse.setWidth("250px");
+        strasse.setWidth(w);
         hl3.addComponent(strasse);
         hl3.setComponentAlignment(strasse, Alignment.MIDDLE_LEFT);
 
         final TextField plz = new TextField();
         plz.setPlaceholder("PLZ");
-        plz.setWidth("230px");
+        plz.setWidth(w2);
         hl3.addComponent(plz);
         hl3.setComponentAlignment(plz, Alignment.MIDDLE_RIGHT);
 
@@ -127,7 +129,6 @@ public class RegWeiterStudent extends Register {
             String userwohnort = strasse.getValue();
             StringBuilder userstrasse = new StringBuilder();
             StringBuilder hausnummer = new StringBuilder();
-            // TODO - add a field for "Hausnummer"
             if (userwohnort != null && !userwohnort.isEmpty()) {
                 for (char c : userwohnort.toCharArray()) {
                     if (Character.isDigit(c)) {
