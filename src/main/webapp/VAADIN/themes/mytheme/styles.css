@@ -2,19 +2,19 @@
 	background-color: white;
 	border: 0px #ffffff;
 	padding: 10px;
-	font-family: Verdana;
+	font-family: Verdana, sans-serif;
 	color: #0f2a54;
 }
 
 .headlabel {
-	font-family: Verdana;
+	font-family: Verdana, sans-serif;
 	color: #0f2a54;
 	padding: 10px;
 	font-size: 14px;
 }
 
 .loggedLabel {
-	font-family: Verdana;
+	font-family: Verdana, sans-serif;
 	color: #0f2a54;
 	padding: 10px;
 	font-size: 14px;
@@ -15445,8 +15445,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-textfield {
 	background-color: white;
-	caption-color: black;
-	color: black;
+}
+
+.mytheme .v-textfield .v-textfield-caption {
+	color: #000000;
 }
 
 .mytheme .v-textarea {
@@ -15463,11 +15465,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-background {
-	image: url("src/main/webapp/Image/background_home.jpg");
+	image: url("Image/background_home.jpg");
 }
 
-.mytheme .startseite .v-loggedLabel {
-	caption-color: white;
+.mytheme .startseite .v-loggedLabel .v-loggedLabel-caption {
+	color: white;
 }
 
 .mytheme .suchseite .v-layout {

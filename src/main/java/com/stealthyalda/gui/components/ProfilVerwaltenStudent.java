@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ProfilVerwaltenStudent extends VerticalLayout {
     private String w = "700px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-    public ProfilVerwaltenStudent() {
+    public ProfilVerwaltenStudent() throws DatabaseException {
         Student current = StudentDAO.getInstance().getStudent(user.getId());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();

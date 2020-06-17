@@ -6,7 +6,7 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import java.util.List;
 
 public class SucheEinfach {
-    public static SucheEinfach search = null;
+    private static SucheEinfach search = null;
 
     private SucheEinfach() {
 
