@@ -150,7 +150,6 @@ public class Suchseite extends VerticalLayout implements View {
                     titelbeschreibung.setWidth("570px");
                     titelbeschreibung.setHeight("140px");
                     article.addComponent(titelbeschreibung);
-                    article.setStyleName("suchseite");
                     article.setComponentAlignment(titelbeschreibung, Alignment.MIDDLE_CENTER);
 
                     scrollableLayout.addComponent(article);
