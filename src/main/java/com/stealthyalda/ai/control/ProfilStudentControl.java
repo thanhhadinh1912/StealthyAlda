@@ -24,13 +24,10 @@ import java.util.List;
  * @author WINDOWS
  */
 public class ProfilStudentControl {
-    public ProfilStudentControl(){
-        
-    }
+
     public String printHardskill(Benutzer user){
         String print="";
-        List<Hardskill> liste = new ArrayList<Hardskill>();
-        liste = HardskillDAO.getInstance().getHardskillsForUser(user);
+        List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         for(int i=0;i<liste.size();i++){
             print += liste.get(i).getHardskill() +"\n";
 }
@@ -38,8 +35,7 @@ public class ProfilStudentControl {
     }
     public String printSoftskill(Benutzer user){
         String print="";
-        List<Softskill> liste = new ArrayList<Softskill>();
-        liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
+        List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         for(int i=0;i<liste.size();i++){
             print += liste.get(i).getSoftskill() +"\n";
 }
@@ -48,8 +44,7 @@ public class ProfilStudentControl {
     
     public String printHobby(Benutzer user){
         String print="";
-        List<Hobby> liste = new ArrayList<Hobby>();
-        liste = HobbyDAO.getInstance().getHobbysForUser(user);
+        List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         for(int i=0;i<liste.size();i++){
             print += liste.get(i).getHobby() +"\n";
 }
@@ -59,8 +54,7 @@ public class ProfilStudentControl {
     public void hardskillchange(Benutzer user, String input) throws DatabaseException{
         List<String> listStr = new ArrayList();
         listStr.addAll(Arrays.asList(input.split("\n")));
-        List<Hardskill> liste = new ArrayList<Hardskill>();
-        liste = HardskillDAO.getInstance().getHardskillsForUser(user);
+        List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
          for(int i=0;i<liste.size();i++){
             HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskill_id(),s);

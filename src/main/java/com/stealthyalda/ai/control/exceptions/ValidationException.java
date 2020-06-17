@@ -3,7 +3,7 @@ package com.stealthyalda.ai.control.exceptions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ValidationException extends Throwable {
+public class ValidationException extends Exception {
     private final List<String> failures = new ArrayList<>();
 
     public ValidationException(String reason) {

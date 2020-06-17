@@ -34,7 +34,7 @@ public class HardskillDAO extends AbstractDAO {
         }
         return dao;
     }
-    public List<Hardskill> getHardskillsForUser(Benutzer user){
+    public List<Hardskill> getHardskillsForUser(Benutzer user) throws DatabaseException {
         Statement statement=this.getStatement();
 
         ResultSet rs = null;
@@ -49,7 +49,8 @@ public class HardskillDAO extends AbstractDAO {
         catch (SQLException ex){
             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(rs==null) return null;
+        
+        if(rs==null) return (List<Hardskill>) rs;
         List<Hardskill> liste = new ArrayList<Hardskill>();
         Hardskill hardskill = null;
         try {
@@ -62,6 +63,9 @@ public class HardskillDAO extends AbstractDAO {
 
         }catch (SQLException ex){
             Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            JDBCConnection.getInstance().closeConnection();
         }
         return liste;
     }
@@ -83,7 +87,7 @@ public class HardskillDAO extends AbstractDAO {
 
     }
     
-    public void createHardskillForUser(Hardskill hardskill, Student s){
+    public void createHardskillForUser(Hardskill hardskill, Student s) throws DatabaseException {
          String sql = "insert into stealthyalda.hardskill values(default,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
         
@@ -99,7 +103,7 @@ public class HardskillDAO extends AbstractDAO {
          }
     }
     
-    private void setHardskillsID(Hardskill h) throws SQLException {
+    private void setHardskillsID(Hardskill h) throws SQLException, DatabaseException {
         Statement statement = this.getStatement();
         ResultSet rs = null;
 
@@ -108,6 +112,8 @@ public class HardskillDAO extends AbstractDAO {
             }
         catch (SQLException ex){
                 Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            JDBCConnection.getInstance().closeConnection();
         }
 
         int currentValue = 0;

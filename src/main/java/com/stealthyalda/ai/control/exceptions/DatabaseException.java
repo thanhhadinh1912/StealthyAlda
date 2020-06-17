@@ -1,6 +1,6 @@
 package com.stealthyalda.ai.control.exceptions;
 
-public class DatabaseException extends Throwable {
+public class DatabaseException extends Exception {
     private String reason = null;
 
     public DatabaseException(String reason) {
