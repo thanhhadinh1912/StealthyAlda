@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.gui.ui.MyUI;
@@ -46,7 +45,7 @@ public class StudentDAO extends AbstractDAO {
                 statement.executeUpdate();
                 return true;
             } catch (SQLException ex) {
-                Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
+                Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
                 return false;
             }
         }

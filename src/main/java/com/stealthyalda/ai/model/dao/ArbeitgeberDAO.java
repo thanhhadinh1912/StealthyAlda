@@ -6,6 +6,7 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
@@ -15,7 +16,6 @@ import com.vaadin.ui.UI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class ArbeitgeberDAO extends AbstractDAO {
     private static ArbeitgeberDAO dao = null;
 
+    private final Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
     private ArbeitgeberDAO() {
 
     }
@@ -36,60 +37,31 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return dao;
     }
 
-    public boolean createArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+    public void insertArbeitgeber(UnternehmenDTO unternehmen) throws DatabaseException {
         int userid = user.getId();
-
-        String sql = "update stealthyalda.benutzer set anrede ='" + anrede + "', telefonnummer = '" + telefonnumer +"' where " +
-                "benutzer_id = '" + userid +"';"+ "insert into stealthyalda.arbeitgeber(unternehmen,benutzer_id) values(?,?);";
-        PreparedStatement statement = this.getPreparedStatement(sql);
-
-
-        //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
-        try {
-            statement.setString(1, unternehmen);
-            statement.setInt(2, userid);
-            AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
-            statement.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
-            return false;
-        }
+        newArbeitgeber(unternehmen, userid);
     }
 
-    private int arbeitgeberID() throws SQLException {
-        Statement statement = this.getStatement();
-        ResultSet rs = null;
-        int currentValue = 0;
-
+    private void newArbeitgeber(UnternehmenDTO u, int userId) {
+        String newArbeitgeber = "INSERT INTO stealthyalda.arbeitgeber(unternehmen,benutzer_id) VALUES(?,?);";
+        PreparedStatement stmt = this.getPreparedStatement(newArbeitgeber);
         try {
-            rs = statement.executeQuery("SELECT MAX(stealthyalda.arbeitgeber.arbeitgeber_id) FROM stealthyalda.arbeitgeber");
+            stmt.setString(1, u.getUnternehmen());
+            stmt.setInt(2, userId);
         } catch (SQLException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
 
-        if (rs != null) {
-            try {
-                rs.next();
-                currentValue = rs.getInt(1);
-            } catch (SQLException ex) {
-                Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                rs.close();
-            }
-        }
-
-        return currentValue;
     }
 
     public Arbeitgeber getArbeitgeber(int benutzerid) {
         ResultSet set = null;
-        try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * "
-                    + "FROM stealthyalda.arbeitgeber "
-                    + "WHERE stealthyalda.arbeitgeber.benutzer_id = '" + benutzerid + "'");
+        String arbeitgeberQuery = "SELECT * "
+                + "FROM stealthyalda.arbeitgeber "
+                + "WHERE stealthyalda.arbeitgeber.benutzer_id = ?";
+        try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(arbeitgeberQuery)) {
+            statement.setInt(1, benutzerid);
+            set = statement.executeQuery();
 
             if (set.next()) {
                 Arbeitgeber a = new Arbeitgeber();
@@ -105,6 +77,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         } finally {
             closeResultset(set);
         }
+
         return null;
     }
 

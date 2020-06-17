@@ -5,8 +5,9 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.services.util.Views;
+import com.stealthyalda.gui.ui.MyUI;
 import com.vaadin.ui.UI;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -33,9 +34,14 @@ public class RegisterControl {
         return true;
     }
 
-    public void registerArbeitgeber(String anrede, String unternehmen, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        ArbeitgeberDAO.getInstance().createArbeitgeber(anrede, unternehmen, strasse, plz, ort, hausnummer, telefonnumer);
-
+    public void registerArbeitgeber(UnternehmenDTO u, String anrede) throws DatabaseException {
+        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+        try {
+            ArbeitgeberDAO.getInstance().insertArbeitgeber(u);
+            BenutzerDAO.getInstance().updateStammdaten(u, anrede, user);
+        } catch (DatabaseException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public void registerStudent(String anrede, String vorname, String nachname, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
