@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class ProfilStudentControl {
 
-    public String printHardskill(Benutzer user){
+    public String printHardskill(Benutzer user) throws DatabaseException{
         String print="";
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         for(int i=0;i<liste.size();i++){
