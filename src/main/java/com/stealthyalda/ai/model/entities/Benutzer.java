@@ -8,7 +8,7 @@ public class Benutzer {
     private int id;
     private String anrede;
     private String role;
-    
+
 
     public String getRole() {
         return role;

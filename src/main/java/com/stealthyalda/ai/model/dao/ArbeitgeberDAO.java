@@ -26,6 +26,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
     private static ArbeitgeberDAO dao = null;
 
     private final Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+
     private ArbeitgeberDAO() {
 
     }
@@ -48,6 +49,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         try {
             stmt.setString(1, u.getUnternehmen());
             stmt.setInt(2, userId);
+            stmt.executeQuery();
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }

@@ -24,7 +24,7 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
-        String studentname = current.getVorname() + current.getNachname();
+        String studentname = current.getVorname() + " " + current.getNachname();
         if(studentname.length()!= 0){
             name.setValue(studentname);
         }

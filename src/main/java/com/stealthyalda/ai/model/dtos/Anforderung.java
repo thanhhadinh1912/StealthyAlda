@@ -6,7 +6,6 @@
 package com.stealthyalda.ai.model.dtos;
 
 /**
- *
  * @author WINDOWS
  */
 public class Anforderung {
@@ -19,6 +18,6 @@ public class Anforderung {
     public void setAnforderung(String anforderung) {
         this.anforderung = anforderung;
     }
-    
-    
+
+
 }

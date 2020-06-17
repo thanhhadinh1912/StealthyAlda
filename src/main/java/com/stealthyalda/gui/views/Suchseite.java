@@ -12,16 +12,16 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 
 import java.io.File;
 import java.util.List;
-import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
-    private int anzahl = 0;
+    private final int anzahl = 0;
     private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
@@ -33,9 +33,6 @@ public class Suchseite extends VerticalLayout implements View {
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         //Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
-
-
-
 
 
         //Textfeld Jobtitel, Unternehmen
@@ -71,8 +68,8 @@ public class Suchseite extends VerticalLayout implements View {
         // Der Event Listener für den Grid
         grid.addSelectionListener(event ->
 
-            // Speichert den aktuell angewählten Wert bei klick auf die Zeile in der Var. "selected"
-            this.selected = selection.getValue());
+                // Speichert den aktuell angewählten Wert bei klick auf die Zeile in der Var. "selected"
+                this.selected = selection.getValue());
 
 
         // Event Listener für den Suchen Button
@@ -106,8 +103,8 @@ public class Suchseite extends VerticalLayout implements View {
                 addComponent(grid);
                 addComponent(bewerben);
                 setComponentAlignment(bewerben, Alignment.MIDDLE_CENTER);*/
-                for(int i=0; i<liste.size();i++){
-                    StellenanzeigeDTO suche= liste.get(i);
+                for (int i = 0; i < liste.size(); i++) {
+                    StellenanzeigeDTO suche = liste.get(i);
                     HorizontalLayout article = new HorizontalLayout();
                     String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
                     FileResource resource = new FileResource(new File(basepath +
@@ -126,7 +123,7 @@ public class Suchseite extends VerticalLayout implements View {
                     info.addComponent(sunternehmen);
                     sunternehmen.setWidth("250px");
 
-                    Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
+                    Label sdatum = new Label(suche.getDatum().toString(), ContentMode.PREFORMATTED);
                     info.addComponent(sdatum);
                     sdatum.setWidth("150px");
 
@@ -154,7 +151,7 @@ public class Suchseite extends VerticalLayout implements View {
 
                     scrollableLayout.addComponent(article);
                     article.addLayoutClickListener(event -> {
-                        UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE);
+                                UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE);
                             }
                     );
 
@@ -166,7 +163,6 @@ public class Suchseite extends VerticalLayout implements View {
         });
 
 
-
         // Grid und Buchen Button richtig anordnen
 
 
@@ -175,7 +171,6 @@ public class Suchseite extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
 
 
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();

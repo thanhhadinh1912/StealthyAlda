@@ -6,7 +6,8 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.Adresse;
+import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
@@ -15,6 +16,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -121,7 +123,7 @@ public class RegWeiterStudent extends Register {
 
 
         ubermitteln.addClickListener(event -> {
-                        String anrede = userAnrede.getValue();
+            String anrede = userAnrede.getValue();
             String uservorname = vorname.getValue();
             String username = nachname.getValue();
             String userwohnort = strasse.getValue();
@@ -143,10 +145,16 @@ public class RegWeiterStudent extends Register {
             String usertelefon = telefon.getValue();
             // instance of control
             RegisterControl r = new RegisterControl();
+            StudentDTO studi = new StudentDTO();
             try {
-                r.registerStudent(anrede, uservorname, username, userstrasse.toString(), userplz, userort, hausnummer.toString(), usertelefon);
-            } catch (DatabaseException ex) {
-                Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, null, ex);
+                studi.setAnrede(anrede);
+                studi.setVorname(uservorname);
+                studi.setNachname(username);
+                studi.setTelefonnummer(usertelefon);
+                studi.setAdresse(new Adresse(userstrasse.toString(), userplz, hausnummer.toString(), userort));
+                r.registerStudent(studi);
+            } catch (Exception e) {
+                Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
             }
             ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
             UI.getCurrent().addWindow(window);

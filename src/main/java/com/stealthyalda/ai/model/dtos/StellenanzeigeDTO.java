@@ -8,7 +8,6 @@ package com.stealthyalda.ai.model.dtos;
 import java.util.Date;
 
 /**
- *
  * @author WINDOWS
  */
 public class StellenanzeigeDTO {

@@ -6,15 +6,14 @@
 package com.stealthyalda.ai.model.entities;
 
 /**
- *
  * @author WINDOWS
  */
-public class Arbeitgeber extends Benutzer{
+public class Arbeitgeber extends Benutzer {
     private byte logo;
     private String beschreibung;
     private String unternehmen;
     private int arbeitgeber_id;
-    
+
 
     public byte getLogo() {
         return logo;

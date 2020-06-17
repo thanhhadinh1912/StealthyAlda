@@ -146,7 +146,7 @@ public class BenutzerDAO extends AbstractDAO {
         return null;
     }
 
-    public  void deleteUser(String email, String passwort) throws DatabaseException {
+    public void deleteUser(String email, String passwort) throws DatabaseException {
         String sql;
         sql = "DELETE FROM stealthyalda.benutzer WHERE email = ? AND passwort = ?;";
 
@@ -213,63 +213,32 @@ public class BenutzerDAO extends AbstractDAO {
         String passwordHash = hasher.hash(c); // password hash
 
 
-            try {
-                statement.setString(1, email);
-                statement.setString(2, passwordHash);
-                statement.setString(3, role);
-                int rowsChanged = statement.executeUpdate();
-                if (rowsChanged == 0) {
-                    throw new SQLException("Creating user failed, no rows affected.");
-                }
-                ResultSet genKeys = statement.getGeneratedKeys();
-                if (genKeys.next()) {
-                    Long userId = genKeys.getLong(1);
-                    VaadinSession.getCurrent().setAttribute("userId", userId);
-                    logEntry("BenutzerDAO 222", Level.INFO,"Found userid: " + userId);
-                }
-                else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
-                }
-
-                return true;
-            } catch (SQLException ex) {
-                logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
-                return false;
+        try {
+            statement.setString(1, email);
+            statement.setString(2, passwordHash);
+            statement.setString(3, role);
+            int rowsChanged = statement.executeUpdate();
+            if (rowsChanged == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
             }
+            ResultSet genKeys = statement.getGeneratedKeys();
+            if (genKeys.next()) {
+                Long userId = genKeys.getLong(1);
+                VaadinSession.getCurrent().setAttribute("userId", userId);
+                logEntry("BenutzerDAO 222", Level.INFO, "Found userid: " + userId);
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+
+            return true;
+        } catch (SQLException ex) {
+            logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
+            return false;
+        }
     }
 
     public void updateStammdaten(DTOs u, String anrede, Benutzer user) {
 
-<<<<<<< HEAD
-        public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
-            String sql;
-            sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
-
-            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
-            PasswordAuthentication hasher = new PasswordAuthentication();
-            /*char[] c = neupasswort.toCharArray();
-            String passwordHashneu = hasher.hash(c);
-
-            char[] c2 = altpasswort.toCharArray();
-            String passwordHashalt = hasher.hash(c2);*/
-
-            try {
-                assert statement != null;
-                statement.setString(1, neupasswort);
-                statement.setString(2, email);
-                statement.setString(3, altpasswort);
-                statement.executeUpdate();
-                return true;
-
-            } catch (SQLException throwables) {
-                Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
-                return false;
-            } finally {
-                JDBCConnection.getInstance().closeConnection();
-            }
-        }
-
-=======
         String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
                 "SET " +
                 "anrede = ?, " +
@@ -289,5 +258,32 @@ public class BenutzerDAO extends AbstractDAO {
 
         }
     }
->>>>>>> cf47a1c6d97c6edcb594a4dfe30d94d0c0d1a1bf
+
+    public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
+        String sql;
+        sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
+
+        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        PasswordAuthentication hasher = new PasswordAuthentication();
+            /*char[] c = neupasswort.toCharArray();
+            String passwordHashneu = hasher.hash(c);
+
+            char[] c2 = altpasswort.toCharArray();
+            String passwordHashalt = hasher.hash(c2);*/
+
+        try {
+            assert statement != null;
+            statement.setString(1, neupasswort);
+            statement.setString(2, email);
+            statement.setString(3, altpasswort);
+            statement.executeUpdate();
+            return true;
+
+        } catch (SQLException throwables) {
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+            return false;
+        } finally {
+            JDBCConnection.getInstance().closeConnection();
+        }
+    }
 }

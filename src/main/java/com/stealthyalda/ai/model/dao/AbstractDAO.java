@@ -13,6 +13,16 @@ import java.util.logging.Logger;
 
 public class AbstractDAO {
 
+    protected static void closeResultset(ResultSet r) {
+        if (r != null) {
+            try {
+                r.close();
+            } catch (SQLException throwables) {
+                Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+            }
+        }
+    }
+
     protected Statement getStatement() {
         Statement statement = null;
         try {
@@ -24,26 +34,19 @@ public class AbstractDAO {
     }
 
     protected PreparedStatement getPreparedStatement(String sql) {
-        Statement statement = null;
+        PreparedStatement statement = null;
         try {
             statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         } catch (DatabaseException ex) {
             Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (PreparedStatement) statement;
+        return statement;
     }
-    protected static void closeResultset(ResultSet r) {
-        if(r != null) {
-            try {
-                r.close();
-            } catch (SQLException throwables) {
-                Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
-            }
-        }
-    }
+
     protected void logEntry(String className, Level level, String message) {
-        Logger.getLogger(className).log(level,message);
+        Logger.getLogger(className).log(level, message);
     }
+
     protected int benutzerID() throws SQLException {
         Statement statement = this.getStatement();
         ResultSet rs = null;

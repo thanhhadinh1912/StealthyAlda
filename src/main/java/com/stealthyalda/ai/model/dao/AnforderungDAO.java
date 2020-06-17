@@ -35,7 +35,6 @@ public class AnforderungDAO extends AbstractDAO {
     }
 
     /**
-     *
      * @param s Stellenanzeige
      * @return list of Stellenanzeigen
      * @throws DatabaseException if something goes horribly wrong

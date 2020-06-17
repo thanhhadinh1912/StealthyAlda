@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 
 
 public class RegisterControl {
-
+    Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         return BenutzerDAO.getInstance().checkUserExists(email);
     }
@@ -35,7 +36,7 @@ public class RegisterControl {
     }
 
     public void registerArbeitgeber(UnternehmenDTO u, String anrede) throws DatabaseException {
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+
         try {
             ArbeitgeberDAO.getInstance().insertArbeitgeber(u);
             BenutzerDAO.getInstance().updateStammdaten(u, anrede, user);
@@ -44,12 +45,14 @@ public class RegisterControl {
         }
     }
 
-    public void registerStudent(String anrede, String vorname, String nachname, String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-        StudentDAO.getInstance().createStudent(anrede, vorname, nachname, strasse, plz, ort, hausnummer, telefonnumer);
-
+    public void registerStudent(StudentDTO studi) {
+        try{
+            StudentDAO.getInstance().newStudent(studi);
+            BenutzerDAO.getInstance().updateStammdaten(studi, studi.getAnrede(), user);
+        } catch (Exception e) {
+            Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
     }
-
-
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();
 

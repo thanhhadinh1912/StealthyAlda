@@ -5,11 +5,11 @@ import com.stealthyalda.ai.model.dao.BenutzerDAO;
 
 public class KontoControl {
     public boolean deletekonto(String email, String password) throws DatabaseException {
-        BenutzerDAO.getInstance().deleteUser(email,password);
+        BenutzerDAO.getInstance().deleteUser(email, password);
         return true;
     }
 
-    public boolean changekonto(String email, String altpassword, String neupassword){
+    public boolean changekonto(String email, String altpassword, String neupassword) {
         Boolean check = false;
         try {
             check = BenutzerDAO.getInstance().changepassword(email, altpassword, neupassword);

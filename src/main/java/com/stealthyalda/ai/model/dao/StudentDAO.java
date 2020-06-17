@@ -1,6 +1,7 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.gui.ui.MyUI;
@@ -15,41 +16,32 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StudentDAO extends AbstractDAO {
-    private static StudentDAO  dao = null;
+    private static StudentDAO dao = null;
+    Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
-    private StudentDAO () {
+    private StudentDAO() {
 
     }
 
-    public static StudentDAO  getInstance() {
+    public static StudentDAO getInstance() {
         if (dao == null) {
-            dao = new StudentDAO ();
+            dao = new StudentDAO();
         }
         return dao;
     }
 
-    public boolean createStudent(String anrede, String vorname, String nachname , String strasse, int plz, String ort, String hausnummer, String telefonnumer) throws DatabaseException {
-            Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-            int userid = user.getId();
-
-            String sql = "update stealthyalda.benutzer set anrede ='" + anrede + "', telefonnummer = '" + telefonnumer +"' where " +
-                    "benutzer_id = '" + userid +"';"+ "insert into stealthyalda.student(vorname, nachname ,benutzer_id) values(?,?,?);";
-            PreparedStatement statement = this.getPreparedStatement(sql);
-            //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
-            try {
-                statement.setString(1, vorname);
-                
-                statement.setString(2, nachname);
-                statement.setInt(3, userid);
-                AdresseDAO.getInstance().createAdresse(strasse, plz, hausnummer, ort);
-                statement.executeUpdate();
-                return true;
-            } catch (SQLException ex) {
-                Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-                return false;
-            }
+    public void newStudent(StudentDTO studi) {
+        String sql = "INSERT INTO stealthyalda.student(vorname, nachname ,benutzer_id) VALUES(?,?,?);";
+        PreparedStatement stmt = this.getPreparedStatement(sql);
+        try {
+            stmt.setString(1, studi.getVorname());
+            stmt.setString(2, studi.getNachname());
+            stmt.setInt(3, user.getId());
+            stmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-
+    }
 
     public Student getStudent(int benutzerid) {
         ResultSet set = null;

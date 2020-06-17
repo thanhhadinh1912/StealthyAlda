@@ -6,7 +6,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 
 public class Stellenanzeige extends VerticalLayout implements View {
-    public void setup(){
+    public void setup() {
         this.addComponent(new TopPanel());
         setMargin(true);
 
@@ -22,13 +22,14 @@ public class Stellenanzeige extends VerticalLayout implements View {
         horizontalLayout.addComponent(bewerben);
         content.addComponent(horizontalLayout);
         horizontalLayout.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
-        content.setComponentAlignment(horizontalLayout,Alignment.BOTTOM_CENTER);
+        content.setComponentAlignment(horizontalLayout, Alignment.BOTTOM_CENTER);
 
         panel.setContent(content);
 
         this.addComponent(panel);
         this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
     }
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setup();
     }
