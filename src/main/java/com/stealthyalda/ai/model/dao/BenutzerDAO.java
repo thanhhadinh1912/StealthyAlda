@@ -145,13 +145,18 @@ public class BenutzerDAO extends AbstractDAO {
         return null;
     }
 
-    public static void deleteUser(String email) throws DatabaseException {
+    public  void deleteUser(String email, String passwort) throws DatabaseException {
         String sql;
-        sql = "DELETE FROM stealthyalda.benutzer WHERE email = '" + email + "'";
+        sql = "DELETE FROM stealthyalda.benutzer WHERE email = ? AND passwort = ?;";
 
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+        PasswordAuthentication hasher = new PasswordAuthentication();
+        char[] c = passwort.toCharArray();
+        String passwordHash = hasher.hash(c);
         try {
             assert statement != null;
+            statement.setString(1, email);
+            statement.setString(2, passwordHash);
             statement.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -229,6 +234,32 @@ public class BenutzerDAO extends AbstractDAO {
             } catch (SQLException ex) {
                 logEntry(this.getClass().getName(),Level.SEVERE,ex.getMessage());
                 return false;
+            }
+        }
+
+        public void changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
+            String sql;
+            sql = "update stealthyalda.benutzer set passswort = ? where email = ? and passwort = ?;";
+
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+            PasswordAuthentication hasher = new PasswordAuthentication();
+            char[] c = neupasswort.toCharArray();
+            String passwordHashneu = hasher.hash(c);
+
+            char[] c2 = altpasswort.toCharArray();
+            String passwordHashalt = hasher.hash(c2);
+
+            try {
+                assert statement != null;
+                statement.setString(1, passwordHashneu);
+                statement.setString(2, email);
+                statement.setString(3, passwordHashalt);
+                statement.executeUpdate();
+
+            } catch (SQLException throwables) {
+                Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+            } finally {
+                JDBCConnection.getInstance().closeConnection();
             }
         }
 

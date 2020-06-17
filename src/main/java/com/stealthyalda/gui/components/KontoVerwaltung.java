@@ -1,11 +1,14 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.control.KontoControl;
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class KontoVerwaltung extends VerticalLayout {
     public KontoVerwaltung(){
+        KontoControl kc = new KontoControl();
 
         VerticalLayout top = new VerticalLayout();
         top.setWidth("1000px");
@@ -43,6 +46,13 @@ public class KontoVerwaltung extends VerticalLayout {
 
 
         final Button delete = new Button("Löschen");
+        delete.addClickListener(clickEvent -> {
+            try {
+                kc.deletekonto(mail.getValue(), passwort.getValue());
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        });
         deletekonto.addComponent(delete);
         
         VerticalLayout changepassword = new VerticalLayout();
@@ -67,6 +77,9 @@ public class KontoVerwaltung extends VerticalLayout {
 
         final Button andern = new Button("Ändern");
         changepassword.addComponent(andern);
+        andern.addClickListener(clickEvent -> {
+            kc.changekonto(mail2.getValue(), alt.getValue(), neu.getValue());
+                });
 
         main.addComponent(deletekonto);
         main.setComponentAlignment(deletekonto, Alignment.TOP_LEFT);
