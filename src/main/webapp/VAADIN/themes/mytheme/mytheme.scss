@@ -34,7 +34,7 @@
 $v-app-loading-text: "Blueprint Valo";
 $v-background-color: #0f2a54;
 $v-focus-color: #fff;
-$v-background-image: url("Image/background_home.jpg");
+//$v-background-image: url("Image/background_home.jpg");
 $v-panel-background-color: $v-background-color;
 $v-overlay-background-color: $v-background-color;
 $valo-menu-background-color: $v-background-color;
@@ -54,7 +54,7 @@ $v-font-size: 18px;
 .body{
      //$v-background-color: black;
      //$v-background-color: transparent; 
-     $v-background-image: url("Image/background_home.jpg");
+     //$v-background-image: url("Image/background_home.jpg");
 }
 
 .login .v-panel-content {
@@ -141,7 +141,7 @@ $v-font-size: 18px;
      }
      }
      .v-background{
-     image: url("Image/background_home.jpg");
+     //image: url("Image/background_home.jpg");
      }
      .startseite{
      .v-loggedLabel {
