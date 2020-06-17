@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
 import com.vaadin.navigator.View;
@@ -40,7 +41,7 @@ public class DashboardStudent extends VerticalLayout implements View {
         final Layout tab3 = new VerticalLayout();
         accordion.addTab(tab3, "Bewerbungen");
 
-        final Layout tab4 = new VerticalLayout();
+        final Layout tab4 = new KontoVerwaltung();
         accordion.addTab(tab4, "Konto");
 
         accordion.setWidth("1200px");
