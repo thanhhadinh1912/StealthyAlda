@@ -9,11 +9,16 @@ import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 
+import java.io.File;
 import java.util.List;
+import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
@@ -21,7 +26,6 @@ public class Suchseite extends VerticalLayout implements View {
     private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
-
         this.addComponent(new TopPanel());
 
         setMargin(true);
@@ -78,8 +82,11 @@ public class Suchseite extends VerticalLayout implements View {
             String ort = jobsearchOrt.getValue();
             String titel = jobsearch.getValue();
 
-            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByOrt(titel, ort);
-
+            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
+            VerticalLayout scrollableLayout = new VerticalLayout();
+            /*for(int i = 0; i< 100; i++){
+                scrollableLayout.add(createCard());
+            }*/
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
@@ -103,6 +110,46 @@ public class Suchseite extends VerticalLayout implements View {
                 addComponent(grid);
                 addComponent(bewerben);
                 setComponentAlignment(bewerben, Alignment.MIDDLE_CENTER);
+                for(int i=0; i<liste.size();i++){
+                    StellenanzeigeDTO suche= liste.get(i);
+                    HorizontalLayout article = new HorizontalLayout();
+                    String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+                    FileResource resource = new FileResource(new File(basepath +
+                            "/Image/Unknown_profil.png"));
+                    Image profilbild = new Image("", resource);
+                    article.addComponent(profilbild);
+                    article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
+                    VerticalLayout titelbeschreibung = new VerticalLayout();
+                    HorizontalLayout info = new HorizontalLayout();
+                    Label stitel = new Label(suche.getTitel(), ContentMode.PREFORMATTED);
+                    info.addComponent(stitel);
+                    Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.TEXT);
+                    info.addComponent(sunternehmen);
+
+                    Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.TEXT);
+                    info.addComponent(sdatum);
+
+                    Label sort = new Label(suche.getOrt(), ContentMode.TEXT);
+                    info.addComponent(sort);
+
+                    Label sstatus = new Label(suche.getStatus(), ContentMode.TEXT);
+                    info.addComponent(sstatus);
+
+                    titelbeschreibung.addComponent(info);
+                    titelbeschreibung.setComponentAlignment(info, Alignment.TOP_LEFT);
+
+                    Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.TEXT);
+                    titelbeschreibung.addComponent(sbeschreibung);
+                    titelbeschreibung.setComponentAlignment(sbeschreibung, Alignment.BOTTOM_LEFT);
+                    article.addComponent(titelbeschreibung);
+                    article.setStyleName("layout-with-border");
+
+                    scrollableLayout.addComponent(article);
+
+
+                }
+                addComponent(scrollableLayout);
+
             }
         });
 
@@ -116,6 +163,7 @@ public class Suchseite extends VerticalLayout implements View {
 
     }
 
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
@@ -126,7 +174,6 @@ public class Suchseite extends VerticalLayout implements View {
         if (user == null) {
             UI.getCurrent().getNavigator().navigateTo((Views.LOGIN));
         } else {
-
             this.setUp();
 
         }

@@ -66,9 +66,9 @@ public class HardskillDAO extends AbstractDAO {
         return liste;
     }
     
-    public void deleteHardskillForUser(String hardskill) throws DatabaseException {
+    public void deleteHardskillForUser(int h,Student s) throws DatabaseException {
         String sql;
-        sql = "DELETE FROM stealthyalda.studenet_hat_hardskill WHERE hardskill = '" + hardskill + "';";
+        sql = "DELETE FROM stealthyalda.student_hat_hardskill WHERE hardskill_id = '" + h + "' AND student_id = '"+s.getStudent_id()+"';";
 
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {
@@ -84,14 +84,16 @@ public class HardskillDAO extends AbstractDAO {
     }
     
     public void createHardskillForUser(Hardskill hardskill, Student s){
-         String sql = "insert into stealthyalda.hardskill values(default,?);"
-                 + "update stealthyalda.student_hat_hardskill"
-                + " set hardskill_id ='" + hardskill.getHardskill_id() + "' where student_id = '" + s +"';";
+         String sql = "insert into stealthyalda.hardskill values(default,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
+        
          try{
             statement.setString(1,hardskill.getHardskill());
             setHardskillsID(hardskill);
             statement.executeUpdate();
+            String sql2 =  "insert into stealthyalda.student_hat_hardskill values(" + s.getStudent_id() +", " + hardskill.getHardskill_id() +");";
+            PreparedStatement statement2 = this.getPreparedStatement(sql2);
+            statement2.executeUpdate();
          } catch (SQLException ex) {
              Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -118,10 +120,7 @@ public class HardskillDAO extends AbstractDAO {
         h.setHardskill_id(currentValue);
     }
     
-    public void changeHardskill(int id, String hardskill){
-        String sql = "update stealthyalda.hardskill"
-                + " set hardskill ='" + hardskill + "' where hardskill_id = '" + id +"'";
-    }
+    
 }
 
 

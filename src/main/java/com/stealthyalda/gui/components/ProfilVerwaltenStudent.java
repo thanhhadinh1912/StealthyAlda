@@ -95,6 +95,8 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         Button speichern = new Button("Speichern");
         speichern.addClickListener(clickEvent -> {
             String inputhardskill = hardskill.getValue();
+            String inputsoftskill = softskill.getValue();
+            String inputhobby = hobby.getValue();
             try {
                 c.hardskillchange(user, inputhardskill);
             } catch (DatabaseException ex) {

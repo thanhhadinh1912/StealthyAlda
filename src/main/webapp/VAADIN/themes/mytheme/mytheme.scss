@@ -84,6 +84,9 @@ $v-font-size: 18px;
   font-size: 14px;
 
 }
+.layout-with-border {
+  border: 1px solid black;
+}
 
 
 @import "../valo/valo.scss";
@@ -144,6 +147,7 @@ $v-font-size: 18px;
      caption-color: white
      }
      }
+
 
 
 

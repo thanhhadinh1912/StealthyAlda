@@ -63,7 +63,7 @@ public class ProfilStudentControl {
         liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
          for(int i=0;i<liste.size();i++){
-            HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskill());
+            HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskill_id(),s);
          }
         
         for(int i=1; i<listStr.size(); i++){
@@ -72,5 +72,7 @@ public class ProfilStudentControl {
         }
         
 }
+    
+    
     }
 

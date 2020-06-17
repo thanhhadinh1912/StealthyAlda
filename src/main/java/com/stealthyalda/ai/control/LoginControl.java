@@ -6,6 +6,7 @@ import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 public class LoginControl {

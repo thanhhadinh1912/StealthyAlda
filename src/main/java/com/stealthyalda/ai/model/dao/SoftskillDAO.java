@@ -5,9 +5,13 @@
  */
 package com.stealthyalda.ai.model.dao;
 
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Softskill;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.services.db.JDBCConnection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -62,6 +66,8 @@ public class SoftskillDAO extends AbstractDAO{
         }
         return liste;
     }
+
+    
+    
+    
 }
-
-

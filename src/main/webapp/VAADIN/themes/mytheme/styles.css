@@ -20,6 +20,10 @@
 	font-size: 14px;
 }
 
+.layout-with-border {
+	border: 1px solid black;
+}
+
 /**
  * Checks if a list contains a certain value.
  * 

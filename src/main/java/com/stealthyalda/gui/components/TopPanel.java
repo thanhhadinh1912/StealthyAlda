@@ -1,9 +1,12 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.LoginControl;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -30,7 +33,7 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerStudent.addStyleName("toppanelbutton");
         buttonFuerStudent.addClickListener(event ->
-                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS)
+        UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS)
         );
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
