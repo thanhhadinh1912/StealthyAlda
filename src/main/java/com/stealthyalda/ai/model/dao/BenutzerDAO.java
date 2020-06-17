@@ -80,7 +80,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException | DatabaseException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
+            closeResultset(set);
         }
 
         return null;
@@ -212,7 +212,7 @@ public class BenutzerDAO extends AbstractDAO {
         // convert to char[] as the string method is deprecated
         char[] c = passwort.toCharArray();
         String passwordHash = hasher.hash(c); // password hash
-
+        ResultSet genKeys = null;
 
             try {
                 statement.setString(1, email);
@@ -222,7 +222,7 @@ public class BenutzerDAO extends AbstractDAO {
                 if (rowsChanged == 0) {
                     throw new SQLException("Creating user failed, no rows affected.");
                 }
-                ResultSet genKeys = statement.getGeneratedKeys();
+                genKeys = statement.getGeneratedKeys();
                 if (genKeys.next()) {
                     Long userId = genKeys.getLong(1);
                     VaadinSession.getCurrent().setAttribute("userId", userId);
@@ -236,6 +236,9 @@ public class BenutzerDAO extends AbstractDAO {
             } catch (SQLException ex) {
                 logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
                 return false;
+            }
+            finally {
+                closeResultset(genKeys);
             }
     }
 
