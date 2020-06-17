@@ -124,7 +124,9 @@ $v-font-size: 18px;
      }
      .v-textfield{
      background-color: white;
-     caption-color: #000000;
+     .v-textfield-caption{
+      color: #000000;
+     }
      }
      .v-textarea {
      overflow-y: auto ! important;
@@ -143,7 +145,9 @@ $v-font-size: 18px;
      }
      .startseite{
      .v-loggedLabel {
-       caption-color: white;
+         .v-loggedLabel-caption{
+             color: white;
+         }
      }
      }
   .suchseite{
