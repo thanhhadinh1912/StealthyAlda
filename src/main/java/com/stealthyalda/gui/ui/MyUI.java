@@ -57,7 +57,7 @@ public class MyUI extends UI {
         navi.addView(Views.REGWEITERA, RegWeiterArbeitgeber.class);
         navi.addView(Views.DASHBOARDS, DashboardStudent.class);
         navi.addView(Views.DASHBOARDA, DashboardArbeitgeber.class);
-
+        navi.addView(Views.STELLENANZEIGE, Stellenanzeige.class);
 
         UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);
 

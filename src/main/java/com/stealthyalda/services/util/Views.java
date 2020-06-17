@@ -13,5 +13,6 @@ public class Views {
     public static final String REGWEITERA = "richtenkontoarbeitgeber";
     public static final String DASHBOARDA = "unternehmen/dashboard";
     public static final String DASHBOARDS = "student/dashboard";
+    public static final String STELLENANZEIGE = "suche/stellenanzeige/jobtitel/";
 
 }

@@ -5,7 +5,6 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.gui.windows.StellenanzeigeWindow;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -13,7 +12,6 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 
@@ -34,7 +32,7 @@ public class Suchseite extends VerticalLayout implements View {
 
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
+        //Button bewerben = new Button("Einfach bewerben", FontAwesome.BOOK);
 
 
 
@@ -157,8 +155,7 @@ public class Suchseite extends VerticalLayout implements View {
 
                     scrollableLayout.addComponent(article);
                     article.addLayoutClickListener(event -> {
-                        StellenanzeigeWindow stellenanzeigeWindow = new StellenanzeigeWindow();
-                        UI.getCurrent().addWindow(stellenanzeigeWindow);
+                        UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE);
                             }
                     );
 
@@ -170,9 +167,6 @@ public class Suchseite extends VerticalLayout implements View {
         });
 
 
-        bewerben.addClickListener(event -> {
-
-        });
 
         // Grid und Buchen Button richtig anordnen
 
