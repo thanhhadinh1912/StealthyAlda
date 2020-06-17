@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class HardskillDAO extends AbstractDAO {
-     public static HardskillDAO dao = null;
+    private static HardskillDAO dao = null;
     private HardskillDAO(){
 
     }
@@ -36,24 +36,16 @@ public class HardskillDAO extends AbstractDAO {
     }
     public List<Hardskill> getHardskillsForUser(Benutzer user) throws DatabaseException {
         Statement statement=this.getStatement();
-
+        List<Hardskill> liste = new ArrayList <>();
         ResultSet rs = null;
-        try{
-            String sql ="select h.hardskill_id, h.hardskill\n" +
-"from stealthyalda.hardskill h\n" +
-"inner join  stealthyalda.student_hat_hardskill sh on sh.hardskill_id = h.hardskill_id\n" +
-"inner join stealthyalda.student s on s.student_id = sh.student_id\n" +
-"where s.benutzer_id = '"+user.getId()+"';";
-            rs = statement.executeQuery(sql);
-            }
-        catch (SQLException ex){
-            Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        if(rs==null) return (List<Hardskill>) rs;
-        List<Hardskill> liste = new ArrayList<Hardskill>();
-        Hardskill hardskill = null;
         try {
+            String sql = "select h.hardskill_id, h.hardskill\n" +
+                    "from stealthyalda.hardskill h\n" +
+                    "inner join  stealthyalda.student_hat_hardskill sh on sh.hardskill_id = h.hardskill_id\n" +
+                    "inner join stealthyalda.student s on s.student_id = sh.student_id\n" +
+                    "where s.benutzer_id = '" + user.getId() + "';";
+            rs = statement.executeQuery(sql);
+            Hardskill hardskill = null;
             while (rs.next()){
                 hardskill= new Hardskill();
                 hardskill.setHardskill_id(rs.getInt(1));
@@ -65,7 +57,7 @@ public class HardskillDAO extends AbstractDAO {
             Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally {
-            JDBCConnection.getInstance().closeConnection();
+            closeResultset(rs);
         }
         return liste;
     }
@@ -109,21 +101,17 @@ public class HardskillDAO extends AbstractDAO {
 
         try{
             rs = statement.executeQuery("SELECT max(stealthyalda.hardskill.hardskill_id) FROM stealthyalda.hardskill");
-            }
-        catch (SQLException ex){
-                Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-            JDBCConnection.getInstance().closeConnection();
-        }
-
-        int currentValue = 0;
-        try{
+            int currentValue = 0;
             rs.next();
             currentValue=rs.getInt(1);
+            h.setHardskill_id(currentValue);
         } catch (SQLException ex) {
             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        h.setHardskill_id(currentValue);
+        finally {
+            closeResultset(rs);
+        }
+
     }
     
     
