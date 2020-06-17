@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.gui.windows.StellenanzeigeWindow;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -84,13 +85,10 @@ public class Suchseite extends VerticalLayout implements View {
 
             List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
             VerticalLayout scrollableLayout = new VerticalLayout();
-            /*for(int i = 0; i< 100; i++){
-                scrollableLayout.add(createCard());
-            }*/
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
-                anzahl += 1;
+                /*anzahl += 1;
 
                 //erstmal alles löschen
                 grid.removeAllColumns();
@@ -109,7 +107,7 @@ public class Suchseite extends VerticalLayout implements View {
 
                 addComponent(grid);
                 addComponent(bewerben);
-                setComponentAlignment(bewerben, Alignment.MIDDLE_CENTER);
+                setComponentAlignment(bewerben, Alignment.MIDDLE_CENTER);*/
                 for(int i=0; i<liste.size();i++){
                     StellenanzeigeDTO suche= liste.get(i);
                     HorizontalLayout article = new HorizontalLayout();
@@ -158,7 +156,11 @@ public class Suchseite extends VerticalLayout implements View {
                     article.setComponentAlignment(titelbeschreibung, Alignment.MIDDLE_CENTER);
 
                     scrollableLayout.addComponent(article);
-
+                    article.addLayoutClickListener(event -> {
+                        StellenanzeigeWindow stellenanzeigeWindow = new StellenanzeigeWindow();
+                        UI.getCurrent().addWindow(stellenanzeigeWindow);
+                            }
+                    );
 
                 }
                 addComponent(scrollableLayout);
@@ -168,7 +170,7 @@ public class Suchseite extends VerticalLayout implements View {
         });
 
 
-        bewerben.addClickListener(e -> {
+        bewerben.addClickListener(event -> {
 
         });
 
