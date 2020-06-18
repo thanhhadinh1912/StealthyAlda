@@ -11,7 +11,7 @@ package com.stealthyalda.ai.model.entities;
  */
 public class Hobby {
     private int hobby_id;
-    private String hobby;
+    private String name;
 
     public int getHobby_id() {
         return hobby_id;
@@ -22,11 +22,11 @@ public class Hobby {
     }
 
     public String getHobby() {
-        return hobby;
+        return name;
     }
 
     public void setHobby(String hobby) {
-        this.hobby = hobby;
+        this.name = hobby;
     }
     
 }

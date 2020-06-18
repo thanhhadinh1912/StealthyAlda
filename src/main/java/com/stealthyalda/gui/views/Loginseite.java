@@ -12,7 +12,6 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -21,6 +20,7 @@ import java.io.File;
 
 
 public class Loginseite extends VerticalLayout implements View {
+    private String n = "&nbsp";
 
     public void setUp() {
 
@@ -70,7 +70,7 @@ public class Loginseite extends VerticalLayout implements View {
 
         layout.addComponent(userLogin, 0, 3, 3, 3);
         layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
-        Label label5 = new Label("&nbsp;", ContentMode.HTML);
+        Label label5 = new Label(n, ContentMode.HTML);
         layout.addComponent(label5, 0, 4, 3, 4);
 
         layout.addComponent(passwordField, 0, 5, 3, 5);
@@ -91,7 +91,7 @@ public class Loginseite extends VerticalLayout implements View {
         layout.setComponentAlignment(checkbox1, Alignment.MIDDLE_LEFT);
 
 //Platzhalter
-        Label label2 = new Label("&nbsp;", ContentMode.HTML);
+        Label label2 = new Label(n, ContentMode.HTML);
         layout.addComponent(label2, 0, 7, 3, 7);
 
 //Button zum Login + Symbol auf Button
@@ -110,7 +110,7 @@ public class Loginseite extends VerticalLayout implements View {
         layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);
 
 
-        Label label4 = new Label("&nbsp;", ContentMode.HTML);
+        Label label4 = new Label(n, ContentMode.HTML);
         layout.addComponent(label4, 0, 11, 3, 11);
         panel.setContent(layout);
         panel.setSizeUndefined();

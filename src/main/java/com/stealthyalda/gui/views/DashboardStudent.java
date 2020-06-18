@@ -1,14 +1,17 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DashboardStudent extends VerticalLayout implements View {
-    public void setUp() {
+    public void setUp() throws DatabaseException {
 
         this.addComponent(new TopPanel());
 
@@ -50,7 +53,13 @@ public class DashboardStudent extends VerticalLayout implements View {
     }
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        this.setUp();
+
+        try {
+            this.setUp();
+        } catch (DatabaseException ex) {
+            Logger.getLogger(DashboardStudent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }
 }

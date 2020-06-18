@@ -6,9 +6,9 @@
 package com.stealthyalda.gui.windows;
 
 /**
+ *
  * @author WINDOWS
  */
-
 import com.vaadin.ui.*;
 
 public class ConfirmationWindow extends Window {
@@ -23,7 +23,7 @@ public class ConfirmationWindow extends Window {
         setContent(content);
 
         Button buchungsButton = new Button("OK");
-        buchungsButton.addClickListener(clickEvent -> close());
+        buchungsButton.addClickListener(newevent -> close());
         content.addComponent(buchungsButton);
         content.setComponentAlignment(buchungsButton, Alignment.MIDDLE_CENTER);
     }

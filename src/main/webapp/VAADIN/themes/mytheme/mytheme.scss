@@ -34,7 +34,7 @@
 $v-app-loading-text: "Blueprint Valo";
 $v-background-color: #0f2a54;
 $v-focus-color: #fff;
-$v-background-image: url("src/main/webapp/Image/background_home.jpg");
+//$v-background-image: url("Image/background_home.jpg");
 $v-panel-background-color: $v-background-color;
 $v-overlay-background-color: $v-background-color;
 $valo-menu-background-color: $v-background-color;
@@ -49,27 +49,28 @@ $v-textfield-shadow: false;
 $v-border: 1px solid (v-tint 1.5);
 $v-textfield-background-color: $v-background-color;
 $v-font-family: sans-serif;
-$v-font-size: 18px;
+$v-font-size: 18px; 
 
-.body {
-  //$v-background-color: black;
-  //$v-background-color: transparent;
-  $v-background-image: url("src/main/webapp/Image/background_home.jpg");
+.body{
+     //$v-background-color: black;
+     //$v-background-color: transparent; 
+     //$v-background-image: url("Image/background_home.jpg");
 }
 
 .login .v-panel-content {
   background-color: white;
   border: 0px #ffffff;
   padding: 10px;
-  font-family: Verdana;
+  font-family: Verdana, sans-serif;;
   color: #0f2a54;
-  //background-image: url("Image/background_home.jpg");
+ //background-image: url("Image/background_home.jpg");
 }
+
 
 
 .headlabel {
 
-  font-family: Verdana;
+  font-family: Verdana, sans-serif;;
   color: #0f2a54;
   padding: 10px;
   font-size: 14px;
@@ -77,81 +78,85 @@ $v-font-size: 18px;
 }
 
 .loggedLabel {
-  font-family: Verdana;
+  font-family: Verdana, sans-serif;;
   color: #0f2a54;
   padding: 10px;
   font-size: 14px;
 
 }
-
 .layout-with-border {
   border: 1px solid black;
 }
 
 
-// @import "../valo/valo.scss";
+@import "../valo/valo.scss";
 
 @mixin mytheme {
   @include valo;
 
-  .link {
-    padding: 5px 10px !important;
-    background-color: transparent !important;
-    color: black !important;
-    border: 1px solid transparent !important;
-    border-radius: 4px !important;
-    height: auto !important;
-    min-width: 100px !important;
-    font-size: small !important;
-    -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
-    -moz-transition: all 200ms ease-in-out !important; /* WebKit */
-    -o-transition: all 200ms ease-in-out !important; /* Opera */
-    transition: all 200ms ease-in-out !important; /* Standard */
-  }
+.link{
+        padding: 5px 10px !important;
+        background-color: transparent !important;
+        color: black !important;
+        border: 1px solid transparent !important;
+        border-radius: 4px !important;
+        height: auto !important;
+        min-width: 100px !important;
+        font-size: small !important;
+        -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
+        -moz-transition: all 200ms ease-in-out !important; /* WebKit */
+        -o-transition: all 200ms ease-in-out !important; /* Opera */
+        transition: all 200ms ease-in-out !important; /* Standard */
+   }
 
-  .link:hover {
-    color: white !important;
-    background-color: #464646 !important;
-    text-decoration: none !important;
-  }
-  .v-button {
-    //margin: 10px;
+   .link:hover{
+       color: white !important;
+       background-color: #464646 !important;
+       text-decoration: none !important;
+   }
+    .v-button {
+       //margin: 10px;
 
-    /* A nested selector to increase specificity */
-    .v-button-caption {
-      color: black;
-    }
-  }
-  .v-textfield {
-    background-color: white;
-    caption-color: black;
-    color: black;
-  }
-  .v-textarea {
-    overflow-y: auto ! important;
-    background-color: white;
-  }
-  .v-panel {
-    background-color: white;
-  }
-  .toppanelbutton {
-    .v-button-caption {
+       /* A nested selector to increase specificity */
+       .v-button-caption {
+         color: black;
+       }
+     }
+     .v-textfield{
+     background-color: white;
+     .v-textfield-caption{
+      color: #000000;
+     }
+     }
+     .v-textarea {
+     overflow-y: auto ! important;
+     background-color: white;
+     }
+     .v-panel{
+     background-color:white;
+     }
+     .toppanelbutton{
+     .v-button-caption {
       color: white;
+     }
+     }
+     .v-background{
+     //image: url("Image/background_home.jpg");
+     }
+     .startseite{
+     .v-loggedLabel {
+         .v-loggedLabel-caption{
+             color: white;
+         }
+     }
+     }
+  .suchseite{
+    .v-layout{
+      border:  1px solid black;;
     }
   }
-  .v-background {
-    image: url("src/main/webapp/Image/background_home.jpg");
-  }
-  .startseite {
-    .v-loggedLabel {
-      caption-color: white
-    }
-  }
-  .suchseite {
-    .v-layout {
-      border: 1px solid black;;
-    }
-  }
+
+
 
 
 }

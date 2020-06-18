@@ -16,8 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
+    private String w = "700px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-    public ProfilVerwaltenStudent() {
+    public ProfilVerwaltenStudent() throws DatabaseException {
         Student current = StudentDAO.getInstance().getStudent(user.getId());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
@@ -28,20 +29,20 @@ public class ProfilVerwaltenStudent extends VerticalLayout {
         if(studentname.length()!= 0){
             name.setValue(studentname);
         }
-        name.setWidth("700px");
+        name.setWidth(w);
         name.setHeight("40px");
         vartical1.addComponent(name);
         vartical1.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 
         TextArea area = new TextArea("Job Erfahrungen:");
-        area.setWidth("700px");
+        area.setWidth(w);
         area.setHeight("200px");
         vartical1.addComponent(area);
         vartical1.setComponentAlignment(area, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout horizon2 = new HorizontalLayout();
         horizon2.setHeight("75px");
-        horizon2.setWidth("700px");
+        horizon2.setWidth(w);
 
         TextArea hobby = new TextArea("Hobbys");
         hobby.setWidth("325px");

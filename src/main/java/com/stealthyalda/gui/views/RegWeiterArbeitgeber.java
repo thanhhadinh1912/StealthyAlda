@@ -114,7 +114,6 @@ public class RegWeiterArbeitgeber extends RegWeiter {
             String userwohnort = strasse.getValue();
             StringBuilder userstrasse = new StringBuilder();
             StringBuilder hausnummer = new StringBuilder();
-            // TODO - add a field for "Hausnummer"
             if (userwohnort != null && !userwohnort.isEmpty()) {
                 for (char c : userwohnort.toCharArray()) {
                     if (Character.isDigit(c)) {
