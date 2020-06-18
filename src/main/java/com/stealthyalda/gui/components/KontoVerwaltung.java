@@ -7,6 +7,7 @@ import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 public class KontoVerwaltung extends VerticalLayout {
+    private final String w = "300px";
     public KontoVerwaltung(){
         KontoControl kc = new KontoControl();
 
@@ -15,7 +16,6 @@ public class KontoVerwaltung extends VerticalLayout {
         top.setHeight("150px");
         Label label = new Label("<b> Kontoverwaltung </b>", ContentMode.HTML);
         label.addStyleName("mytitle");
-        //label.addStyleName(ValoTheme.LABEL_H1);
         top.addComponent(label);
 
         Label label2 = new Label("Sie können hier Ihr Konto löschen oder Ihr Passwort ändern.");
@@ -23,8 +23,6 @@ public class KontoVerwaltung extends VerticalLayout {
 
         this.addComponent(top);
         this.setComponentAlignment(top, Alignment.TOP_CENTER);
-        /*Label label3 = new Label("&nbsp;", ContentMode.HTML);
-        this.addComponent(label3);*/
 
         HorizontalLayout main = new HorizontalLayout();
         main.setWidth("1000px");
@@ -34,18 +32,18 @@ public class KontoVerwaltung extends VerticalLayout {
 
         deletekonto.addComponent(loschen);
 
-        final TextField mail = new TextField();
+        TextField mail = new TextField();
         mail.setPlaceholder("E-Mail Adresse");
-        mail.setWidth("300px");
+        mail.setWidth(w);
         deletekonto.addComponent(mail);
 
-        final TextField passwort = new TextField();
+        TextField passwort = new TextField();
         passwort.setPlaceholder("Passwort");
-        passwort.setWidth("300px");
+        passwort.setWidth(w);
         deletekonto.addComponent(passwort);
 
 
-        final Button delete = new Button("Löschen");
+        Button delete = new Button("Löschen");
         delete.addClickListener(clickEvent -> {
             try {
                 kc.deletekonto(mail.getValue(), passwort.getValue());
@@ -62,17 +60,17 @@ public class KontoVerwaltung extends VerticalLayout {
 
         final TextField mail2 = new TextField();
         mail2.setPlaceholder("E-Mail Adresse");
-        mail2.setWidth("300px");
+        mail2.setWidth(w);
         changepassword.addComponent(mail2);
 
         final TextField alt = new TextField();
         alt.setPlaceholder("Altes Passwort");
-        alt.setWidth("300px");
+        alt.setWidth(w);
         changepassword.addComponent(alt);
 
         final TextField neu = new TextField();
         neu.setPlaceholder("Neues Passwort");
-        neu.setWidth("300px");
+        neu.setWidth(w);
         changepassword.addComponent(neu);
 
         final Button andern = new Button("Ändern");

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class BenutzerDAO extends AbstractDAO {
 
     private static BenutzerDAO dao = null;
+    private static String exception = "Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen";
 
     private BenutzerDAO() {
 
@@ -79,7 +80,7 @@ public class BenutzerDAO extends AbstractDAO {
         } catch (SQLException | DatabaseException ex) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
+            closeResultset(set);
         }
 
         return null;
@@ -100,7 +101,7 @@ public class BenutzerDAO extends AbstractDAO {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
         } catch (SQLException e) {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+            throw new DatabaseException(exception);
         }
         String dbPasswordHash = null;
         try {
@@ -146,7 +147,7 @@ public class BenutzerDAO extends AbstractDAO {
         return null;
     }
 
-    public void deleteUser(String email, String passwort) throws DatabaseException {
+    public  void deleteUser(String email, String passwort) throws DatabaseException {
         String sql;
         sql = "DELETE FROM stealthyalda.benutzer WHERE email = ? AND passwort = ?;";
 
@@ -181,7 +182,7 @@ public class BenutzerDAO extends AbstractDAO {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
         } catch (SQLException e) {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException("Fehler im SQL-Befehl! Bitte den Programmier benachrichtigen");
+            throw new DatabaseException(exception);
         }
         try {
             set.next();
@@ -211,34 +212,37 @@ public class BenutzerDAO extends AbstractDAO {
         // convert to char[] as the string method is deprecated
         char[] c = passwort.toCharArray();
         String passwordHash = hasher.hash(c); // password hash
+        ResultSet genKeys = null;
 
+            try {
+                statement.setString(1, email);
+                statement.setString(2, passwordHash);
+                statement.setString(3, role);
+                int rowsChanged = statement.executeUpdate();
+                if (rowsChanged == 0) {
+                    throw new SQLException("Creating user failed, no rows affected.");
+                }
+                genKeys = statement.getGeneratedKeys();
+                if (genKeys.next()) {
+                    Long userId = genKeys.getLong(1);
+                    VaadinSession.getCurrent().setAttribute("userId", userId);
+                    logEntry("BenutzerDAO 222", Level.INFO,"Found userid: " + userId);
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
 
-        try {
-            statement.setString(1, email);
-            statement.setString(2, passwordHash);
-            statement.setString(3, role);
-            int rowsChanged = statement.executeUpdate();
-            if (rowsChanged == 0) {
-                throw new SQLException("Creating user failed, no rows affected.");
+                return true;
+            } catch (SQLException ex) {
+                logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
+                return false;
             }
-            ResultSet genKeys = statement.getGeneratedKeys();
-            if (genKeys.next()) {
-                Long userId = genKeys.getLong(1);
-                VaadinSession.getCurrent().setAttribute("userId", userId);
-                logEntry("BenutzerDAO 222", Level.INFO, "Found userid: " + userId);
-            } else {
-                throw new SQLException("Creating user failed, no ID obtained.");
+            finally {
+                closeResultset(genKeys);
             }
-
-            return true;
-        } catch (SQLException ex) {
-            logEntry(this.getClass().getName(), Level.SEVERE, ex.getMessage());
-            return false;
-        }
     }
 
     public void updateStammdaten(DTOs u, String anrede, Benutzer user) {
-
         String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
                 "SET " +
                 "anrede = ?, " +
@@ -259,31 +263,30 @@ public class BenutzerDAO extends AbstractDAO {
         }
     }
 
-    public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
-        String sql;
-        sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
 
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
-        PasswordAuthentication hasher = new PasswordAuthentication();
-            /*char[] c = neupasswort.toCharArray();
-            String passwordHashneu = hasher.hash(c);
 
-            char[] c2 = altpasswort.toCharArray();
-            String passwordHashalt = hasher.hash(c2);*/
+        public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
+            String sql;
+            sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
 
-        try {
-            assert statement != null;
-            statement.setString(1, neupasswort);
-            statement.setString(2, email);
-            statement.setString(3, altpasswort);
-            statement.executeUpdate();
-            return true;
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
 
-        } catch (SQLException throwables) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
-            return false;
-        } finally {
-            JDBCConnection.getInstance().closeConnection();
+            try {
+                assert statement != null;
+                statement.setString(1, neupasswort);
+                statement.setString(2, email);
+                statement.setString(3, altpasswort);
+                statement.executeUpdate();
+                return true;
+
+            } catch (SQLException throwables) {
+                Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+                return false;
+            } finally {
+                JDBCConnection.getInstance().closeConnection();
+            }
         }
-    }
+
+
+
 }

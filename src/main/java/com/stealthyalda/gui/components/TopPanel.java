@@ -1,12 +1,9 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.LoginControl;
-import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -14,6 +11,7 @@ import java.io.File;
 
 
 public class TopPanel extends HorizontalLayout {
+    private String t = "toppanelbutton";
 
 
     public TopPanel() {
@@ -31,7 +29,7 @@ public class TopPanel extends HorizontalLayout {
         Button buttonFuerStudent = new Button("Für Studenten");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonFuerStudent.addStyleName("toppanelbutton");
+        buttonFuerStudent.addStyleName(t);
         buttonFuerStudent.addClickListener(event ->
         UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS)
         );
@@ -39,17 +37,14 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonFuerArbeitgeber.addStyleName("toppanelbutton");
-        buttonFuerArbeitgeber.addClickListener(event -> {
-            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
-
-        });
+        buttonFuerArbeitgeber.addStyleName(t);
+        buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA));
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
 
 
         Button buttonAbmelden = new Button("Abmelden");
         buttonAbmelden.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonAbmelden.addStyleName("toppanelbutton");
+        buttonAbmelden.addStyleName(t);
         buttonAbmelden.addClickListener(event -> LoginControl.logoutUser());
         gridTop.addComponent(buttonAbmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);
