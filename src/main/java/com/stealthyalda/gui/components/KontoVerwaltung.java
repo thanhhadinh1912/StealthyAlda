@@ -37,7 +37,7 @@ public class KontoVerwaltung extends VerticalLayout {
         mail.setWidth(w);
         deletekonto.addComponent(mail);
 
-        TextField passwort = new TextField();
+        PasswordField passwort = new PasswordField();
         passwort.setPlaceholder("Passwort");
         passwort.setWidth(w);
         deletekonto.addComponent(passwort);
@@ -63,12 +63,12 @@ public class KontoVerwaltung extends VerticalLayout {
         mail2.setWidth(w);
         changepassword.addComponent(mail2);
 
-        final TextField alt = new TextField();
+        final PasswordField alt = new PasswordField();
         alt.setPlaceholder("Altes Passwort");
         alt.setWidth(w);
         changepassword.addComponent(alt);
 
-        final TextField neu = new TextField();
+        final PasswordField neu = new PasswordField();
         neu.setPlaceholder("Neues Passwort");
         neu.setWidth(w);
         changepassword.addComponent(neu);

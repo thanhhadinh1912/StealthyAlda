@@ -76,7 +76,7 @@ public class RegWeiterStudent extends Register {
         hl2.addComponent(email);
         hl2.setComponentAlignment(email, Alignment.MIDDLE_LEFT);
 
-        final TextField passwort = new TextField();
+        final PasswordField passwort = new PasswordField();
         passwort.setPlaceholder("Passwort");
         passwort.setValue(user.getPasswort());
         passwort.setWidth(w2);
