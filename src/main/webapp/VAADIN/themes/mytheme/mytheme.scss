@@ -34,7 +34,7 @@
 $v-app-loading-text: "Blueprint Valo";
 $v-background-color: #0f2a54;
 $v-focus-color: #fff;
-//$v-background-image: url("Image/background_home.jpg");
+$v-background-image: url("src/main/webapp/Image/background_home.jpg");
 $v-panel-background-color: $v-background-color;
 $v-overlay-background-color: $v-background-color;
 $valo-menu-background-color: $v-background-color;
@@ -49,19 +49,19 @@ $v-textfield-shadow: false;
 $v-border: 1px solid (v-tint 1.5);
 $v-textfield-background-color: $v-background-color;
 $v-font-family: sans-serif;
-$v-font-size: 18px; 
+$v-font-size: 18px;
 
 .body{
      //$v-background-color: black;
-     //$v-background-color: transparent; 
-     //$v-background-image: url("Image/background_home.jpg");
+     //$v-background-color: transparent;
+     $v-background-image: url("src/main/webapp/Image/background_home.jpg");
 }
 
 .login .v-panel-content {
   background-color: white;
   border: 0px #ffffff;
   padding: 10px;
-  font-family: Verdana, sans-serif;;
+  font-family: Verdana;
   color: #0f2a54;
  //background-image: url("Image/background_home.jpg");
 }
@@ -70,7 +70,7 @@ $v-font-size: 18px;
 
 .headlabel {
 
-  font-family: Verdana, sans-serif;;
+  font-family: Verdana;
   color: #0f2a54;
   padding: 10px;
   font-size: 14px;
@@ -78,7 +78,7 @@ $v-font-size: 18px;
 }
 
 .loggedLabel {
-  font-family: Verdana, sans-serif;;
+  font-family: Verdana;
   color: #0f2a54;
   padding: 10px;
   font-size: 14px;
@@ -124,9 +124,8 @@ $v-font-size: 18px;
      }
      .v-textfield{
      background-color: white;
-     .v-textfield-caption{
-      color: #000000;
-     }
+     caption-color: black;
+     color: black;
      }
      .v-textarea {
      overflow-y: auto ! important;
@@ -134,6 +133,7 @@ $v-font-size: 18px;
      }
      .v-panel{
      background-color:white;
+       caption-color: black;
      }
      .toppanelbutton{
      .v-button-caption {
@@ -141,13 +141,11 @@ $v-font-size: 18px;
      }
      }
      .v-background{
-     //image: url("Image/background_home.jpg");
+     image: url("src/main/webapp/Image/background_home.jpg");
      }
      .startseite{
      .v-loggedLabel {
-         .v-loggedLabel-caption{
-             color: white;
-         }
+       caption-color: white
      }
      }
   .suchseite{
