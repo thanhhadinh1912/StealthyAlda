@@ -4,6 +4,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.icons.VaadinIcons;
@@ -42,6 +43,8 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         Button add = new Button(VaadinIcons.PLUS);
         top.addComponent(add);
         add.addClickListener(clickEvent -> {
+            ((MyUI) UI.getCurrent()).setBenutzer(user);
+            UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
             UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGEERSTELLEN);
         });
         tab1.addComponent(top);

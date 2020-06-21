@@ -79,11 +79,11 @@ public class StellenanzeigeErstellen  extends VerticalLayout implements View {
 
     }
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        /*if (user != null) {
-            UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+        if (user == null) {
+            UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);
 
-        } else {*/
+        } else {
             this.setUp();
-
+        }
     }
 }
