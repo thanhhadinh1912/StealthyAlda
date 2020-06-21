@@ -40,7 +40,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             statement.setString(1, s.getTitel());
             statement.setString(2, s.getBeschreibung());
             statement.setString(3, s.getStatus());
-            statement.setDate(4, (Date) s.getDatum());
+            statement.setDate(4, Date.valueOf(s.getDatum()));
             statement.setInt(5, a.getArbeitgeber_id());
             statement.setString(6, s.getOrt());
             statement.executeUpdate();
@@ -104,7 +104,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 stellenanzeige.setTitel(rs.getString(1));
                 stellenanzeige.setBeschreibung(rs.getString(2));
                 stellenanzeige.setStatus(rs.getString(3));
-                stellenanzeige.setDatum(rs.getDate(4));
+                stellenanzeige.setDatum(rs.getDate(4).toLocalDate());
                 stellenanzeige.setArbeitgeber(rs.getString(5));
                 stellenanzeige.setOrt(rs.getString(6));
                 liste.add(stellenanzeige);

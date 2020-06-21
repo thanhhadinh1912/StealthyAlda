@@ -6,6 +6,7 @@
 package com.stealthyalda.ai.model.dtos;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * @author WINDOWS
@@ -15,7 +16,7 @@ public class StellenanzeigeRequest {
     private String beschreibung;
     private String ort;
     private Anforderung anforderung;
-    private Date datum;
+    private LocalDate datum;
     private String status;
 
     public String getStatus() {
@@ -26,11 +27,11 @@ public class StellenanzeigeRequest {
         this.status = status;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 

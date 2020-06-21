@@ -87,7 +87,7 @@ public class StellenanzeigeErstellen  extends VerticalLayout implements View {
             Stellenanzeige a = new Stellenanzeige();
             a.setTitel(titel.getValue());
             a.setBeschreibung(beschreibung.getValue());
-            a.setDatum((Date) date.getData());
+            a.setDatum(date.getValue());
             a.setStatus(status.getValue());
             a.setOrt(ort.getValue());
             ConfirmStellenanzeige confirm = new ConfirmStellenanzeige(a);
