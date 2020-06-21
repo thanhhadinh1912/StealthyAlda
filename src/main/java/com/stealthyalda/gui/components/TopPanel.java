@@ -51,7 +51,7 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
         buttonFuerArbeitgeber.addClickListener(clickEvent -> {
-            if(user.equals("Arbeitgeber")) {
+            if(user.getRole().equals("Arbeitgeber")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
