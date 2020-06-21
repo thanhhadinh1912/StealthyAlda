@@ -39,7 +39,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         tab1.addComponent(bewerber);
         accordion.addTab(tab1, "Dashboard");
 
-        final Layout tab2 = new ProfilVerwaltenArbeitgeber();
+        final Layout tab2 = new ProfilVerwaltenArbeitgeber(user);
         accordion.addTab(tab2, "Profil verwalten");
 
         final Layout tab3 = new VerticalLayout();

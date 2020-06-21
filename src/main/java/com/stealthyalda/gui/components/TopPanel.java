@@ -46,7 +46,8 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
         buttonFuerArbeitgeber.addClickListener(clickEvent -> {
-            Benutzer current  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+            ((MyUI) UI.getCurrent()).setBenutzer(user);
+            UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
             UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
         });
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);

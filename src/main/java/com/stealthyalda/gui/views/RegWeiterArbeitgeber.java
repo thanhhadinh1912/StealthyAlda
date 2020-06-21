@@ -137,6 +137,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
 
                 r.registerArbeitgeber(ag, anrede);
                 ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
+                ((MyUI) UI.getCurrent()).setBenutzer(null);
                 UI.getCurrent().addWindow(window);
             } catch (DatabaseException ex) {
                 Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, ex.getReason());

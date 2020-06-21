@@ -158,6 +158,7 @@ public class RegWeiterStudent extends Register {
                 Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
             }
             ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
+            ((MyUI) UI.getCurrent()).setBenutzer(null);
             UI.getCurrent().addWindow(window);
         });
 

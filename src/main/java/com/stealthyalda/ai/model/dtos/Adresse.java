@@ -16,6 +16,9 @@ private String ort;
     private int plz;
     private String hausnummer;
     private int adresseID;
+    public  Adresse (){
+
+    }
 
     public Adresse(String strasse, int plz, String hausnummer, String ort) {
         this.strasse = strasse;
@@ -62,6 +65,11 @@ private String ort;
 
     public void setAdresseID(int id) {
         this.adresseID = id;
+    }
+
+    public String toString(){
+
+        return strasse + hausnummer + "\n" + Integer.toString(plz) + ort;
     }
 }
 
