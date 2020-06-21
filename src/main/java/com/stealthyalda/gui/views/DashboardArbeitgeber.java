@@ -5,11 +5,11 @@ import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.services.util.Roles;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
-
 public class DashboardArbeitgeber extends VerticalLayout implements View {
     public void setUp() {
 
@@ -33,11 +33,21 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         // Create the accordion
         final Accordion accordion = new Accordion();
         final Layout tab1 = new VerticalLayout();
+        final HorizontalLayout top = new HorizontalLayout();
         Label news = new Label("News");
+        news.setWidth("1100px");
         Label bewerber = new Label("Aktuelle Bewerber");
-        tab1.addComponent(news);
+        top.addComponent(news);
+        Button add = new Button(VaadinIcons.PLUS);
+        top.addComponent(add);
+        add.addClickListener(clickEvent -> {
+            
+        });
+        tab1.addComponent(top);
         tab1.addComponent(bewerber);
+
         accordion.addTab(tab1, "Dashboard");
+
 
         final Layout tab2 = new ProfilVerwaltenArbeitgeber(user);
         accordion.addTab(tab2, "Profil verwalten");
