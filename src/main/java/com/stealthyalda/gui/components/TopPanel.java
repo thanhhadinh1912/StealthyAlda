@@ -36,9 +36,14 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerStudent.addStyleName(t);
         buttonFuerStudent.addClickListener(clickEvent -> {
-            ((MyUI) UI.getCurrent()).setBenutzer(user);
-            UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
-            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
+            if (user.getRole().equals("Student")) {
+                ((MyUI) UI.getCurrent()).setBenutzer(user);
+                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
+                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
+            }
+            else{
+                Notification.show("Fehler", "Seite ist nur für Student verfügbar", Notification.Type.ERROR_MESSAGE);
+            }
         });
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
@@ -46,9 +51,15 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
         buttonFuerArbeitgeber.addClickListener(clickEvent -> {
-            ((MyUI) UI.getCurrent()).setBenutzer(user);
-            UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
-            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
+            if(user.equals("Arbeitgeber")) {
+                ((MyUI) UI.getCurrent()).setBenutzer(user);
+                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
+                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
+            }
+            else{
+                Notification.show("Fehler", "Seite ist nur für Arbeitgeber verfügbar", Notification.Type.ERROR_MESSAGE);
+
+            }
         });
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
 
