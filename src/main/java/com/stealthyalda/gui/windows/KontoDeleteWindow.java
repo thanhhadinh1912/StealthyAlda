@@ -1,6 +1,7 @@
 package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.ai.control.KontoControl;
+import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
@@ -52,8 +53,9 @@ public class KontoDeleteWindow extends Window {
         ja.addClickListener(clickEvent -> {
             KontoControl kc = new KontoControl();
             try {
-                close();
                 kc.deletekonto(mail, password);
+                LoginControl.logoutUser();
+                close();
             } catch (DatabaseException ex) {
                 Logger.getLogger(KontoDeleteWindow.class.getName()).log(Level.SEVERE, null, ex);
             } 
