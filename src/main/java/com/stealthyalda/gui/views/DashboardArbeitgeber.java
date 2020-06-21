@@ -5,6 +5,7 @@ import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.services.util.Roles;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -41,7 +42,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         Button add = new Button(VaadinIcons.PLUS);
         top.addComponent(add);
         add.addClickListener(clickEvent -> {
-            
+            UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGEERSTELLEN);
         });
         tab1.addComponent(top);
         tab1.addComponent(bewerber);

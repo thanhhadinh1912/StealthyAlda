@@ -14,5 +14,6 @@ public class Views {
     public static final String DASHBOARDA = "unternehmen/dashboard";
     public static final String DASHBOARDS = "student/dashboard";
     public static final String STELLENANZEIGE = "suche/stellenanzeige/jobtitel/";
+    public static final String STELLENANZEIGEERSTELLEN = "unternehmen/stellenanzeige";
 
 }
