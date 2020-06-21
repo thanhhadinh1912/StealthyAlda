@@ -124,8 +124,9 @@ $v-font-size: 18px;
      }
      .v-textfield{
      background-color: white;
-     caption-color: black;
-     color: black;
+       .v-textfield-caption {
+         color: black;
+       }
      }
      .v-textarea {
      overflow-y: auto ! important;
@@ -133,7 +134,9 @@ $v-font-size: 18px;
      }
      .v-panel{
      background-color:white;
-       caption-color: black;
+       .v-textarea-caption{
+         color: black;
+       }
      }
      .toppanelbutton{
      .v-button-caption {
@@ -141,11 +144,13 @@ $v-font-size: 18px;
      }
      }
      .v-background{
-     image: url("src/main/webapp/Image/background_home.jpg");
+     //image: url("src/main/webapp/Image/background_home.jpg");
      }
      .startseite{
      .v-loggedLabel {
-       caption-color: white
+       .v-loggedLabel.v-button-caption{
+         color: white;
+       }
      }
      }
   .suchseite{
