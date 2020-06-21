@@ -7,8 +7,10 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.ImageUploader;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 
 import java.io.File;
@@ -17,9 +19,8 @@ import java.util.logging.Logger;
 
 public class ProfilVerwaltenStudent extends VerticalLayout {
     private String w = "700px";
-    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-    public ProfilVerwaltenStudent() throws DatabaseException {
-        Student current = StudentDAO.getInstance().getStudent(user.getId());
+    public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
+        Student current = StudentDAO.getInstance().getStudent(user.getEmail());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();

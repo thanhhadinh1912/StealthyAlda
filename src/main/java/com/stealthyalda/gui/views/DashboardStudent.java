@@ -1,19 +1,24 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DashboardStudent extends VerticalLayout implements View {
     public void setUp() throws DatabaseException {
-
-        this.addComponent(new TopPanel());
+        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
 
         HorizontalLayout horizon = new HorizontalLayout();
         final TextField jobsearch = new TextField();
@@ -37,8 +42,7 @@ public class DashboardStudent extends VerticalLayout implements View {
         tab1.addComponent(news);
         tab1.addComponent(bewerber);
         accordion.addTab(tab1, "Dashboard");
-
-        final Layout tab2 = new ProfilVerwaltenStudent();
+        final Layout tab2 = new ProfilVerwaltenStudent(user);
         accordion.addTab(tab2, "Profil verwalten");
 
         final Layout tab3 = new VerticalLayout();

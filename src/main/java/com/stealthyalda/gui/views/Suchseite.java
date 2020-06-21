@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -12,6 +13,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 
@@ -24,7 +26,8 @@ public class Suchseite extends VerticalLayout implements View {
     private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
-        this.addComponent(new TopPanel());
+        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
 
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();

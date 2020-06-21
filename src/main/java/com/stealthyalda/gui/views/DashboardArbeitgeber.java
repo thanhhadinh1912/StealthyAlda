@@ -1,16 +1,20 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 
 public class DashboardArbeitgeber extends VerticalLayout implements View {
     public void setUp() {
 
-        this.addComponent(new TopPanel());
+        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
 
         HorizontalLayout horizon = new HorizontalLayout();
         final TextField jobsearch = new TextField();

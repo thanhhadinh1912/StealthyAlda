@@ -70,7 +70,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
                 a.setArbeitgeber_id(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(benutzerid);
-                a.setLogo(set.getByte(4));
+                //a.setLogo(set.getByte(4));
                 a.setBeschreibung(set.getString(5));
                 return a;
             }

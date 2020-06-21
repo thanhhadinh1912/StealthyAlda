@@ -68,4 +68,32 @@ public class StudentDAO extends AbstractDAO {
         return null;
     }
 
+    public Student getStudent(String email) {
+        ResultSet set = null;
+        try {
+            Statement statement = JDBCConnection.getInstance().getStatement();
+            set = statement.executeQuery("SELECT * \n" +
+                    "FROM stealthyalda.student s\n" +
+                    "JOIN stealthyalda.benutzer b ON  s.benutzer_id = b.benutzer_id\n" +
+                    "WHERE b.email = '"+email+"';");
+
+            if (set.next()) {
+                Student s = new Student();
+                s.setStudent_id(set.getInt(1));
+                s.setNachname(set.getString(2));
+                s.setId(set.getInt(3));
+                s.setVorname(set.getString(4));
+                //s.setProfilbild(set.getByte(5));
+                s.setEmail(email);
+                s.setRole(set.getString(11));
+                return s;
+            }
+        } catch (SQLException | DatabaseException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeResultset(set);
+        }
+        return null;
+    }
+
 }

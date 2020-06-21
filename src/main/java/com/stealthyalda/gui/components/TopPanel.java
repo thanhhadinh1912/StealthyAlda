@@ -1,9 +1,13 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.LoginControl;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -14,7 +18,8 @@ public class TopPanel extends HorizontalLayout {
     private String t = "toppanelbutton";
 
 
-    public TopPanel() {
+    public TopPanel(Benutzer user) {
+
         this.setSizeFull();
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -30,15 +35,20 @@ public class TopPanel extends HorizontalLayout {
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerStudent.addStyleName(t);
-        buttonFuerStudent.addClickListener(event ->
-        UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS)
-        );
+        buttonFuerStudent.addClickListener(clickEvent -> {
+            ((MyUI) UI.getCurrent()).setBenutzer(user);
+            UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
+            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
+        });
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
-        buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA));
+        buttonFuerArbeitgeber.addClickListener(clickEvent -> {
+            Benutzer current  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+            UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
+        });
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
 
 
