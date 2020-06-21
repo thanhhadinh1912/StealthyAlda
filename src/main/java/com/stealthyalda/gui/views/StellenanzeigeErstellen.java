@@ -5,9 +5,12 @@
  */
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.control.StellenanzeigeControl;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.gui.windows.ConfirmStellenanzeige;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.View;
@@ -16,6 +19,8 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+
+import java.util.Date;
 
 /**
  *
@@ -55,14 +60,41 @@ public class StellenanzeigeErstellen  extends VerticalLayout implements View {
         anforderung.setWidth(WIDTH);
         mainlayout.addComponent(anforderung);
 
+        HorizontalLayout datestatus = new HorizontalLayout();
+        datestatus.setWidth(WIDTH);
+
+        // Create a DateField with the default style
+        DateField date = new DateField("Datum");
+        date.setWidth("350px");
+        datestatus.addComponent(date);
+
+        TextField status = new TextField("Status");
+        status.setWidth("350px");
+        datestatus.addComponent(status);
+        datestatus.setComponentAlignment(status, Alignment.MIDDLE_RIGHT);
+        mainlayout.addComponent(datestatus);
+
         HorizontalLayout bottom = new HorizontalLayout();
         bottom.setWidth("900px");
         Button zuruck = new Button("Zurück");
+        zuruck.addClickListener(clickEvent -> UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA));
         zuruck.setWidth(WIDTHB);
         bottom.addComponent(zuruck);
         bottom.setComponentAlignment(zuruck, Alignment.MIDDLE_LEFT);
 
         Button abschicken = new Button("Abschicken");
+        abschicken.addClickListener(clickEvent -> {
+            Stellenanzeige a = new Stellenanzeige();
+            a.setTitel(titel.getValue());
+            a.setBeschreibung(beschreibung.getValue());
+            a.setDatum((Date) date.getData());
+            a.setStatus(status.getValue());
+            a.setOrt(ort.getValue());
+            ConfirmStellenanzeige confirm = new ConfirmStellenanzeige(a);
+
+            UI.getCurrent().addWindow(confirm);
+
+        });
         abschicken.setWidth(WIDTHB);
         bottom.addComponent(abschicken);
         bottom.setComponentAlignment(abschicken, Alignment.MIDDLE_RIGHT);

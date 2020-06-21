@@ -7,6 +7,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.ui.UI;
 
 import java.sql.*;
@@ -30,9 +31,9 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         String sql = "insert into stealthyalda.stellenanzeige values(default,?,?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-        int userLogin = user.getId();
-        Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(userLogin);
+        Benutzer user = (Benutzer) UI.getCurrent().getSession().getAttribute(Roles.CURRENTUSER);
+        String email = user.getEmail();
+        Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(email);
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try {
