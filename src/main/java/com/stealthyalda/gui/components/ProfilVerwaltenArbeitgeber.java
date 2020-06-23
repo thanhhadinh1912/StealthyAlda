@@ -65,8 +65,8 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
         HorizontalLayout bottom = new HorizontalLayout();
-        bottom.setWidth("950px");
-        bottom.setHeight("200px");
+        bottom.setHeight("240px");
+
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
         StringBuilder print = new StringBuilder();
@@ -80,14 +80,14 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         }
         stellenanzeige.setValue(String.valueOf(print));
         stellenanzeige.setWidth("650px");
-        stellenanzeige.setHeight("220px");
+        stellenanzeige.setHeight("200px");
         bottom.addComponent(stellenanzeige);
         bottom.setComponentAlignment(stellenanzeige,Alignment.BOTTOM_LEFT);
 
 
         VerticalLayout kontaktandadresse = new VerticalLayout();
         kontaktandadresse.setWidth("300px");
-        kontaktandadresse.setHeight("220px");
+        kontaktandadresse.setHeight("200px");
 
         TextArea kontakte = new TextArea();
         kontakte.setValue("Tel " + current.getTelefonnummer());
@@ -105,7 +105,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
             anfahrt.setValue(a.toString());
         }
         anfahrt.setWidth("300px");
-        anfahrt.setHeight("75px");
+        anfahrt.setHeight("80px");
         kontaktandadresse.addComponent(anfahrt);
 
         bottom.addComponent(kontaktandadresse);
