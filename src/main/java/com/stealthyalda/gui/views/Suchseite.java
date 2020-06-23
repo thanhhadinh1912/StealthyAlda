@@ -45,9 +45,6 @@ public class Suchseite extends VerticalLayout implements View {
         ComboBox<String> search = new ComboBox<>();
         search.setPlaceholder("Jobtitel, Unternehmen, ... ");
         search.setWidth("500px");
-        /*search.addValueChangeListener(event -> {
-            liste = stellenSuchenOnFly(search.getValue(), "");
-        });*/
         SearchService service = new SearchService();
         search.setDataProvider(service::fetch, service::count);
 
@@ -57,13 +54,6 @@ public class Suchseite extends VerticalLayout implements View {
         OrtService ortService = new OrtService();
         searchort.setDataProvider(ortService::fetch, ortService::count);
 
-        /*final TextField jobsearch = new TextField();
-        jobsearch.setPlaceholder("Jobtitel, Unternehmen, ... ");
-        jobsearch.setWidth("500px");*/
-
-        /*final TextField jobsearchOrt = new TextField();
-        jobsearchOrt.setPlaceholder("Ort, Umkreis ");
-        jobsearchOrt.setWidth("500px");*/
 
 
         horizon.addComponents(search, searchort, button);
@@ -102,18 +92,22 @@ public class Suchseite extends VerticalLayout implements View {
 
                     Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
                     info.addComponent(sunternehmen);
+                    info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
                     sunternehmen.setWidth("250px");
 
                     Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
                     info.addComponent(sdatum);
+                    info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
                     sdatum.setWidth("150px");
 
                     Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
                     info.addComponent(sort);
+                    info.setComponentAlignment(sort, Alignment.TOP_CENTER);
                     sort.setWidth("125px");
 
                     Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
                     info.addComponent(sstatus);
+                    info.setComponentAlignment(sstatus, Alignment.TOP_CENTER);
                     sstatus.setWidth("100px");
 
                     info.setHeight("60px");
@@ -128,7 +122,7 @@ public class Suchseite extends VerticalLayout implements View {
                     titelbeschreibung.setWidth("570px");
                     titelbeschreibung.setHeight("140px");
                     article.addComponent(titelbeschreibung);
-                    article.setComponentAlignment(titelbeschreibung, Alignment.MIDDLE_CENTER);
+                    article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
 
                     scrollableLayout.addComponent(article);
                     article.addLayoutClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE) );
@@ -160,16 +154,5 @@ public class Suchseite extends VerticalLayout implements View {
 
         }
     }
-    /*public static List<StellenanzeigeDTO> stellenSuchenOnFly(String titelorarbeitgeber, String ort) {
-        List<StellenanzeigeDTO> data = container.getListe().stream().peek(c -> {
-            if(c.getArbeitgeber() == null) c.setArbeitgeber("");
-            if(c.getTitel() == null) c.setTitel("");
-            if(c.getOrt() == null) c.setOrt("");
-        }).filter( suche -> suche.getTitel().equals(titelorarbeitgeber) || suche.getArbeitgeber().equals(titelorarbeitgeber)
-                || suche.getOrt().equals(ort)
-        ).collect(Collectors.toList());
-
-        return data;
-    }*/
 
 }
