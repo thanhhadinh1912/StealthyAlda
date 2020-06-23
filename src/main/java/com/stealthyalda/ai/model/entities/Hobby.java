@@ -6,19 +6,18 @@
 package com.stealthyalda.ai.model.entities;
 
 /**
- *
  * @author WINDOWS
  */
 public class Hobby {
-    private int hobby_id;
+    private int hobbyId;
     private String name;
 
-    public int getHobby_id() {
-        return hobby_id;
+    public int getHobbyId() {
+        return hobbyId;
     }
 
-    public void setHobby_id(int hobby_id) {
-        this.hobby_id = hobby_id;
+    public void setHobbyId(int hobbyId) {
+        this.hobbyId = hobbyId;
     }
 
     public String getHobby() {
@@ -28,5 +27,5 @@ public class Hobby {
     public void setHobby(String hobby) {
         this.name = hobby;
     }
-    
+
 }

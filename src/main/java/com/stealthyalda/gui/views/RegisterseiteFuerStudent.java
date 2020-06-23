@@ -8,6 +8,7 @@ import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmRegStudent;
 import com.stealthyalda.services.db.JDBCConnection;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.data.validator.StringLengthValidator;
@@ -102,6 +103,7 @@ public class RegisterseiteFuerStudent extends Register {
 
 
         buttonReg.addClickListener(clickEvent -> {
+            binder.validate();
             String register = userRegister.getValue();
             String password = passwordRegister.getValue();
             String role = single.getValue();
@@ -140,6 +142,7 @@ public class RegisterseiteFuerStudent extends Register {
                 current.setRole(role);
                 current.setId(new Integer(VaadinSession.getCurrent().getAttribute("userId").toString()));
                 ((MyUI) UI.getCurrent()).setBenutzer(current);
+                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, current);
                 ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
                 UI.getCurrent().addWindow(window);
             }

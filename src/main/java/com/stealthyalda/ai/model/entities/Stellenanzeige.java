@@ -1,13 +1,13 @@
 package com.stealthyalda.ai.model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Stellenanzeige {
     private int stellenanzeigeID;
     private String titel;
     private String beschreibung;
     private String status;
-    private Date datum;
+    private LocalDate datum;
     private int arbeitgeberID;
     private String ort;
 
@@ -60,11 +60,11 @@ public class Stellenanzeige {
         this.status = status;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 
-    public void setDatum(Date datum) {
+    public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
 }

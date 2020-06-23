@@ -1,6 +1,9 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.LoginControl;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -11,10 +14,11 @@ import java.io.File;
 
 
 public class TopPanel extends HorizontalLayout {
-    private String t = "toppanelbutton";
+    private final String t = "toppanelbutton";
 
 
-    public TopPanel() {
+    public TopPanel(Benutzer user) {
+
         this.setSizeFull();
 
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
@@ -30,15 +34,30 @@ public class TopPanel extends HorizontalLayout {
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerStudent.addStyleName(t);
-        buttonFuerStudent.addClickListener(event ->
-        UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS)
-        );
+        buttonFuerStudent.addClickListener(clickEvent -> {
+            if (user.getRole().equals("Student")) {
+                ((MyUI) UI.getCurrent()).setBenutzer(user);
+                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
+                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
+            } else {
+                Notification.show("Fehler", "Seite ist nur für Student verfügbar", Notification.Type.ERROR_MESSAGE);
+            }
+        });
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
-        buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA));
+        buttonFuerArbeitgeber.addClickListener(clickEvent -> {
+            if (user.getRole().equals("Arbeitgeber")) {
+                ((MyUI) UI.getCurrent()).setBenutzer(user);
+                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
+                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
+            } else {
+                Notification.show("Fehler", "Seite ist nur für Arbeitgeber verfügbar", Notification.Type.ERROR_MESSAGE);
+
+            }
+        });
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
 
 

@@ -38,7 +38,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return dao;
     }
 
-    public void insertArbeitgeber(UnternehmenDTO unternehmen) throws DatabaseException {
+    public void insertArbeitgeber(UnternehmenDTO unternehmen) {
         int userid = user.getId();
         newArbeitgeber(unternehmen, userid);
     }
@@ -49,7 +49,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         try {
             stmt.setString(1, u.getUnternehmen());
             stmt.setInt(2, userId);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -67,7 +67,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
 
             if (set.next()) {
                 Arbeitgeber a = new Arbeitgeber();
-                a.setArbeitgeber_id(set.getInt(1));
+                a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(benutzerid);
                 a.setLogo(set.getByte(4));
@@ -82,6 +82,39 @@ public class ArbeitgeberDAO extends AbstractDAO {
 
         return null;
     }
+
+    public Arbeitgeber getArbeitgeber(String email) {
+        ResultSet set = null;
+        String arbeitgeberQuery = "SELECT * \n" +
+                "FROM stealthyalda.arbeitgeber a\n" +
+                "JOIN stealthyalda.benutzer b ON  a.benutzer_id = b.benutzer_id\n" +
+                "WHERE b.email = ?;";
+        try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(arbeitgeberQuery)) {
+            statement.setString(1, email);
+            set = statement.executeQuery();
+
+            if (set.next()) {
+                Arbeitgeber a = new Arbeitgeber();
+                a.setArbeitgeberId(set.getInt(1));
+                a.setUnternehmen(set.getString(2));
+                a.setId(set.getInt(3));
+                //a.setLogo(set.getByte(4));
+                a.setBeschreibung(set.getString(5));
+                a.setTelefonnummer(set.getString(7));
+                a.setAnrede(set.getString(8));
+                a.setEmail(email);
+                a.setRole(set.getString(11));
+                return a;
+            }
+        } catch (SQLException | DatabaseException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeResultset(set);
+        }
+
+        return null;
+    }
+
 
 }
 

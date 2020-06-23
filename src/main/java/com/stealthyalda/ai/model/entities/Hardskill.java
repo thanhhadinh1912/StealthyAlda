@@ -6,11 +6,10 @@
 package com.stealthyalda.ai.model.entities;
 
 /**
- *
  * @author WINDOWS
  */
 public class Hardskill {
-    private int hardskill_id;
+    private int hardskillId;
     private String name;
 
     public Hardskill(String hardskill) {
@@ -20,12 +19,12 @@ public class Hardskill {
     public Hardskill() {
     }
 
-    public int getHardskill_id() {
-        return hardskill_id;
+    public int getHardskillId() {
+        return hardskillId;
     }
 
-    public void setHardskill_id(int hardskill_id) {
-        this.hardskill_id = hardskill_id;
+    public void setHardskillId(int hardskillId) {
+        this.hardskillId = hardskillId;
     }
 
     public String getHardskill() {
@@ -35,5 +34,5 @@ public class Hardskill {
     public void setHardskill(String hardskill) {
         this.name = hardskill;
     }
-    
+
 }

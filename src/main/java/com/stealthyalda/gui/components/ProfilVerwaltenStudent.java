@@ -5,7 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
-import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.gui.views.Studis;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -15,18 +15,18 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProfilVerwaltenStudent extends VerticalLayout {
-    private String w = "700px";
-    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-    public ProfilVerwaltenStudent() throws DatabaseException {
-        Student current = StudentDAO.getInstance().getStudent(user.getId());
+public class ProfilVerwaltenStudent extends Studis {
+    private final String w = "700px";
+
+    public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
+        Student current = StudentDAO.getInstance().getStudent(user.getEmail());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
         String studentname = current.getVorname() + " " + current.getNachname();
-        if(studentname.length()!= 0){
+        if (studentname.length() != 0) {
             name.setValue(studentname);
         }
         name.setWidth(w);

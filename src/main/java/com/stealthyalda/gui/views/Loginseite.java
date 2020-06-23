@@ -20,7 +20,7 @@ import java.io.File;
 
 
 public class Loginseite extends VerticalLayout implements View {
-    private String n = "&nbsp";
+    private final String n = "&nbsp";
 
     public void setUp() {
 

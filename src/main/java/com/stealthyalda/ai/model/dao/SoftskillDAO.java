@@ -50,15 +50,14 @@ public class SoftskillDAO extends AbstractDAO {
 
             while (rs.next()) {
                 softskill = new Softskill();
-                softskill.setSoftskill_id(rs.getInt(1));
+                softskill.setSoftskillId(rs.getInt(1));
                 softskill.setSoftskill(rs.getString(2));
                 liste.add(softskill);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally {
+        } finally {
             closeResultset(rs);
         }
         return liste;

@@ -5,8 +5,8 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.ui.UI;
 
 import java.sql.*;
@@ -26,21 +26,21 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
-    public boolean createStellenanzeige(Stellenanzeige s) throws DatabaseException {
+    public boolean createStellenanzeige(Stellenanzeige s) {
 
         String sql = "insert into stealthyalda.stellenanzeige values(default,?,?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
-        Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
-        int userLogin = user.getId();
-        Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(userLogin);
+        Benutzer user = (Benutzer) UI.getCurrent().getSession().getAttribute(Roles.CURRENTUSER);
+        String email = user.getEmail();
+        Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(email);
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try {
             statement.setString(1, s.getTitel());
             statement.setString(2, s.getBeschreibung());
             statement.setString(3, s.getStatus());
-            statement.setDate(4, (Date) s.getDatum());
-            statement.setInt(5, a.getArbeitgeber_id());
+            statement.setDate(4, Date.valueOf(s.getDatum()));
+            statement.setInt(5, a.getArbeitgeberId());
             statement.setString(6, s.getOrt());
             statement.executeUpdate();
 
@@ -103,7 +103,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 stellenanzeige.setTitel(rs.getString(1));
                 stellenanzeige.setBeschreibung(rs.getString(2));
                 stellenanzeige.setStatus(rs.getString(3));
-                stellenanzeige.setDatum(rs.getDate(4));
+                stellenanzeige.setDatum(rs.getDate(4).toLocalDate());
                 stellenanzeige.setArbeitgeber(rs.getString(5));
                 stellenanzeige.setOrt(rs.getString(6));
                 liste.add(stellenanzeige);

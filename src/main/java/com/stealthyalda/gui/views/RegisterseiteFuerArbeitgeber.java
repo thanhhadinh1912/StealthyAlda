@@ -105,7 +105,7 @@ public class RegisterseiteFuerArbeitgeber extends Register {
         buttonReg.addClickListener(clickEvent -> {
 
             binder.validate();
-            if (binder.isValid()) {
+            if (binder.validate().isOk()) {
                 String register = userRegister.getValue();
                 String password = passwordRegister.getValue();
                 String role = single.getValue();

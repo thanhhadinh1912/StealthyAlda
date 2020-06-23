@@ -6,13 +6,14 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.RegisterControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.Adresse;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.vaadin.data.validator.RegexpValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -75,17 +76,36 @@ public class RegWeiterArbeitgeber extends RegWeiter {
 
         HorizontalLayout hl3 = new HorizontalLayout();
         hl3.setWidth(WIDTH);
+        hl3.setSpacing(true);
+
+        HorizontalLayout streetNrPlz = new HorizontalLayout();
+        streetNrPlz.setSpacing(true);
+        streetNrPlz.setWidth("250px");
+
+
         final TextField strasse = new TextField();
         strasse.setPlaceholder("Straße");
-        strasse.setWidth("250px");
+        strasse.setWidth("75%");
         hl3.addComponent(strasse);
         hl3.setComponentAlignment(strasse, Alignment.MIDDLE_LEFT);
 
         final TextField plz = new TextField();
         plz.setPlaceholder("PLZ");
-        plz.setWidth("230px");
-        hl3.addComponent(plz);
-        hl3.setComponentAlignment(plz, Alignment.MIDDLE_RIGHT);
+        plz.setWidth("75%");
+        streetNrPlz.addComponent(plz);
+        streetNrPlz.setComponentAlignment(plz, Alignment.MIDDLE_LEFT);
+
+
+        final TextField nummer = new TextField();
+        nummer.setPlaceholder("Nr");
+        nummer.setWidth("55%");
+        streetNrPlz.addComponent(nummer);
+        streetNrPlz.setComponentAlignment(nummer, Alignment.MIDDLE_CENTER);
+
+
+        hl3.addComponent(streetNrPlz);
+        hl3.setComponentAlignment(streetNrPlz, Alignment.MIDDLE_LEFT);
+
 
         this.addComponent(hl3);
         this.setComponentAlignment(hl3, Alignment.MIDDLE_CENTER);
@@ -108,43 +128,66 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         final Button ubermitteln = new Button();
         ubermitteln.setCaption("Übermitteln");
         ubermitteln.setWidth(WIDTH);
+
+
+        binder.forField(strasse).asRequired("Sie müssen eine Gültige Strassenname eingeben")
+                .withValidator(new StringLengthValidator("Eingebene Straße nicht gültig", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(plz).asRequired("Sie müssen eine Gültige PLZ eingeben")
+                .withValidator(new StringLengthValidator("Eingebene PLZ nicht gültig", 4, 5))
+                .withValidator(new RegexpValidator("PLZ darf nur Zahlen enthalten", "^[0-9]*$"))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(nummer).asRequired("Sie müssen eine Gültige Hausnummer eingeben")
+                .withValidator(new StringLengthValidator("Eingebene Hausnummer nicht gültig", 1, 4))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(ort).asRequired("Sie müssen ein Ort eingeben")
+                .withValidator(new StringLengthValidator("Ort ist nicht gültig", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+        binder.forField(name).asRequired("Sie müssen eine Name eingeben")
+                .withValidator(new StringLengthValidator("Vorname(n) zu kurz", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(telefon).asRequired("Sie müssen eine Telefonnummer eingeben")
+                .withValidator(new RegexpValidator("Telefonnummer darf nur Zahlen enthalten", "^[0-9]*$"))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
         ubermitteln.addClickListener(event -> {
-            String anrede = userAnrede.getValue();
-            String unternehmen = name.getValue();
-            String userwohnort = strasse.getValue();
-            StringBuilder userstrasse = new StringBuilder();
-            StringBuilder hausnummer = new StringBuilder();
-            if (userwohnort != null && !userwohnort.isEmpty()) {
-                for (char c : userwohnort.toCharArray()) {
-                    if (Character.isDigit(c)) {
+            binder.validate();
 
-                        hausnummer.append(c);
-                    } else {
-                        userstrasse.append(c);
-                    }
+            if (binder.validate().isOk()) {
+                String anrede = userAnrede.getValue();
+                String unternehmen = name.getValue();
+                String userstrasse = strasse.getValue();
+                String hausnummer = nummer.getValue();
+                String userort = ort.getValue();
+                int userplz = Integer.parseInt(plz.getValue());
+                String usertelefon = telefon.getValue();
+
+                // instance of control
+                RegisterControl r = new RegisterControl();
+                UnternehmenDTO ag = new UnternehmenDTO();
+                try {
+                    ag.setAdresse(new Adresse(userstrasse, userplz, hausnummer, userort));
+                    ag.setTelefonnummer(usertelefon);
+                    ag.setUnternehmen(unternehmen);
+
+                    r.registerArbeitgeber(ag, anrede);
+                    ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
+                    ((MyUI) UI.getCurrent()).setBenutzer(null);
+                    UI.getCurrent().addWindow(window);
+                } catch (Exception ex) {
+                    Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+                    Notification.show(FEHLER, "Ihre Daten konnten nicht gespeichert werden: " + ex.getMessage(), Notification.Type.ERROR_MESSAGE);
+                    telefon.setValue(usertelefon);
+                    ort.setValue(userort);
+                    plz.setValue(String.valueOf(userplz));
+                    strasse.setValue(userstrasse);
                 }
-            }
-            String userort = ort.getValue();
-            int userplz = Integer.parseInt(plz.getValue());
-            String usertelefon = telefon.getValue();
-            // instance of control
-            RegisterControl r = new RegisterControl();
-            UnternehmenDTO ag = new UnternehmenDTO();
-            try {
-                ag.setAdresse(new Adresse(userstrasse.toString(), userplz, hausnummer.toString(), userort));
-                ag.setTelefonnummer(usertelefon);
-                ag.setUnternehmen(unternehmen);
-
-                r.registerArbeitgeber(ag, anrede);
-                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
-                UI.getCurrent().addWindow(window);
-            } catch (DatabaseException ex) {
-                Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, ex.getReason());
-                Notification.show(FEHLER, "Ihre Daten konnten nicht gespeichert werden: " + ex.getReason(), Notification.Type.ERROR_MESSAGE);
-                telefon.setValue(usertelefon);
-                ort.setValue(userort);
-                plz.setValue(String.valueOf(userplz));
-                strasse.setValue(userstrasse.toString());
+            } else {
+                Notification.show(FEHLER, "Beachten Sie die Hinweise neben den Feldern!", Notification.Type.ERROR_MESSAGE);
             }
 
         });

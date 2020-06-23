@@ -6,17 +6,28 @@
 package com.stealthyalda.ai.model.dtos;
 
 /**
- *
  * @author WINDOWS
  */
 public class Adresse {
-    
-private String ort;
+
+    private String ort;
     private String strasse;
     private int plz;
     private String hausnummer;
     private int adresseID;
 
+    public Adresse() {
+
+    }
+
+    /**
+     * Constructor with params
+     *
+     * @param strasse    street name
+     * @param plz        postal code
+     * @param hausnummer house number
+     * @param ort        city
+     */
     public Adresse(String strasse, int plz, String hausnummer, String ort) {
         this.strasse = strasse;
         this.plz = plz;
@@ -60,8 +71,22 @@ private String ort;
         return adresseID;
     }
 
+    /**
+     * Set the the db id of this objects' content
+     *
+     * @param id id of the address from the db
+     */
     public void setAdresseID(int id) {
         this.adresseID = id;
+    }
+
+    /**
+     * Stringify an address
+     *
+     * @return String of address
+     */
+    public String toString() {
+        return new StringBuilder().append(strasse).append(" ").append(hausnummer).append("\n").append(plz).append(ort).toString();
     }
 }
 

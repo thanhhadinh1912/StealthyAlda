@@ -1,14 +1,16 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.KontoControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.windows.ConfirmationWindow;
+import com.stealthyalda.gui.windows.KontoDeleteWindow;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 public class KontoVerwaltung extends VerticalLayout {
     private final String w = "300px";
-    public KontoVerwaltung(){
+
+    public KontoVerwaltung(Benutzer user) {
         KontoControl kc = new KontoControl();
 
         VerticalLayout top = new VerticalLayout();
@@ -37,7 +39,7 @@ public class KontoVerwaltung extends VerticalLayout {
         mail.setWidth(w);
         deletekonto.addComponent(mail);
 
-        TextField passwort = new TextField();
+        PasswordField passwort = new PasswordField();
         passwort.setPlaceholder("Passwort");
         passwort.setWidth(w);
         deletekonto.addComponent(passwort);
@@ -45,11 +47,8 @@ public class KontoVerwaltung extends VerticalLayout {
 
         Button delete = new Button("Löschen");
         delete.addClickListener(clickEvent -> {
-            try {
-                kc.deletekonto(mail.getValue(), passwort.getValue());
-            } catch (DatabaseException e) {
-                e.printStackTrace();
-            }
+            KontoDeleteWindow deleteWindow = new KontoDeleteWindow(mail.getValue(), passwort.getValue());
+            UI.getCurrent().addWindow(deleteWindow);
         });
         deletekonto.addComponent(delete);
         
@@ -60,15 +59,16 @@ public class KontoVerwaltung extends VerticalLayout {
 
         final TextField mail2 = new TextField();
         mail2.setPlaceholder("E-Mail Adresse");
+        mail2.setValue(user.getEmail());
         mail2.setWidth(w);
         changepassword.addComponent(mail2);
 
-        final TextField alt = new TextField();
+        final PasswordField alt = new PasswordField();
         alt.setPlaceholder("Altes Passwort");
         alt.setWidth(w);
         changepassword.addComponent(alt);
 
-        final TextField neu = new TextField();
+        final PasswordField neu = new PasswordField();
         neu.setPlaceholder("Neues Passwort");
         neu.setWidth(w);
         changepassword.addComponent(neu);

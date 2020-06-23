@@ -6,13 +6,12 @@
 package com.stealthyalda.ai.model.entities;
 
 /**
- *
  * @author WINDOWS
  */
-public class Student extends Benutzer{
+public class Student extends Benutzer {
     private String nachname;
     private String vorname;
-    private int student_id;
+    private int studentId;
     private byte profilbild;
 
     public String getNachname() {
@@ -31,12 +30,12 @@ public class Student extends Benutzer{
         this.vorname = vorname;
     }
 
-    public int getStudent_id() {
-        return student_id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     public byte getProfilbild() {

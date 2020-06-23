@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
@@ -12,19 +13,21 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 
 import java.io.File;
 import java.util.List;
-import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
     private transient StellenanzeigeDTO selected = null;
 
     public void setUp() {
-        this.addComponent(new TopPanel());
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
 
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
@@ -78,8 +81,8 @@ public class Suchseite extends VerticalLayout implements View {
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
-                for(int i=0; i<liste.size();i++){
-                    StellenanzeigeDTO suche= liste.get(i);
+                for (int i = 0; i < liste.size(); i++) {
+                    StellenanzeigeDTO suche = liste.get(i);
                     HorizontalLayout article = new HorizontalLayout();
                     String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
                     FileResource resource = new FileResource(new File(basepath +
@@ -135,7 +138,6 @@ public class Suchseite extends VerticalLayout implements View {
         });
 
 
-
         // Grid und Buchen Button richtig anordnen
 
 
@@ -144,7 +146,6 @@ public class Suchseite extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
 
 
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();

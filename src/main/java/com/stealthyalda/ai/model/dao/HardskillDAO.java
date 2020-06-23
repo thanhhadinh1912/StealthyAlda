@@ -55,7 +55,7 @@ public class HardskillDAO extends AbstractDAO {
 
             while (resultSet.next()) {
                 hardskill = new Hardskill();
-                hardskill.setHardskill_id(resultSet.getInt(1));
+                hardskill.setHardskillId(resultSet.getInt(1));
                 hardskill.setHardskill(resultSet.getString(2));
                 liste.add(hardskill);
             }
@@ -71,7 +71,7 @@ public class HardskillDAO extends AbstractDAO {
 
     public void deleteHardskillForUser(int h, Student s) throws DatabaseException {
         String sql;
-        sql = "DELETE FROM stealthyalda.student_hat_hardskill WHERE hardskill_id = '" + h + "' AND student_id = '" + s.getStudent_id() + "';";
+        sql = "DELETE FROM stealthyalda.student_hat_hardskill WHERE hardskill_id = '" + h + "' AND student_id = '" + s.getStudentId() + "';";
 
         PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         try {
@@ -94,7 +94,7 @@ public class HardskillDAO extends AbstractDAO {
             statement.setString(1, hardskill.getHardskill());
             setHardskillsID(hardskill);
             statement.executeUpdate();
-            String sql2 = "insert into stealthyalda.student_hat_hardskill values(" + s.getStudent_id() + ", " + hardskill.getHardskill_id() + ");";
+            String sql2 = "insert into stealthyalda.student_hat_hardskill values(" + s.getStudentId() + ", " + hardskill.getHardskillId() + ");";
             PreparedStatement statement2 = this.getPreparedStatement(sql2);
             statement2.executeUpdate();
         } catch (SQLException ex) {
@@ -110,7 +110,7 @@ public class HardskillDAO extends AbstractDAO {
             int currentValue = 0;
             rs.next();
             currentValue = rs.getInt(1);
-            h.setHardskill_id(currentValue);
+            h.setHardskillId(currentValue);
         } catch (SQLException ex) {
             Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
         }

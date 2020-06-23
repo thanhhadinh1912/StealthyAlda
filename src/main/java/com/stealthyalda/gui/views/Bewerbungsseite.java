@@ -1,14 +1,18 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.navigator.View;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
 public class Bewerbungsseite extends VerticalLayout implements View {
     public void setUp() {
-        this.addComponent(new TopPanel());
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
 
         VerticalLayout main = new VerticalLayout();
         Label titel = new Label("<b> Bewerbungsunterlage </b>", ContentMode.HTML);

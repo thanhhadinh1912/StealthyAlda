@@ -1,13 +1,17 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
+import com.stealthyalda.services.util.Roles;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 
 public class Stellenanzeige extends VerticalLayout implements View {
     public void setup() {
-        this.addComponent(new TopPanel());
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        this.addComponent(new TopPanel(user));
         setMargin(true);
 
         Panel panel = new Panel();
@@ -29,6 +33,7 @@ public class Stellenanzeige extends VerticalLayout implements View {
         this.addComponent(panel);
         this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
     }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setup();
