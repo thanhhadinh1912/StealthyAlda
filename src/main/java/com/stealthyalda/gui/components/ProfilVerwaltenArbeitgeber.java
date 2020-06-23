@@ -1,6 +1,6 @@
 package com.stealthyalda.gui.components;
 
-import com.stealthyalda.ai.control.exceptions.ProfilArbeitgeberControl;
+import com.stealthyalda.ai.control.ProfilArbeitgeberControl;
 import com.stealthyalda.ai.control.exceptions.ProfilUnternehmenControl;
 import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
@@ -71,11 +71,11 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
         StringBuilder print = new StringBuilder();
         ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
-        List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(current.getArbeitgeberId());
+        List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(nameUnternehmen);
         if(stellenanzeigen!=null){
             for(int i=0; i<stellenanzeigen.size();i++){
-                print.append(stellenanzeigen.get(i).getTitel());
-                print.append("\t");
+                StellenanzeigeDTO s = stellenanzeigen.get(i);
+                print.append(Integer.toString(i+1) + ". " + s.getTitel() + "\n");
             }
         }
         stellenanzeige.setValue(String.valueOf(print));

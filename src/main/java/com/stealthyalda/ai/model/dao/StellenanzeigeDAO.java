@@ -72,24 +72,29 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         s.setStellenanzeigeID(currentValue);
     }
-    public List<StellenanzeigeDTO> getStellenanzeigeByArbeitgeber(int arbeitgeberid){
+    public List<StellenanzeigeDTO> getStellenanzeigeByArbeitgeber(String arbeitgeber){
         ResultSet set = null;
         List<StellenanzeigeDTO> liste = new ArrayList<>();
-        StellenanzeigeDTO s = new StellenanzeigeDTO();
-        String sql = "SELECT *" +
-                "FROM stealthyalda.stellenanzeige" +
-                "WHERE arbeitgeber_id = ?";
+        String sql = "select *\n" +
+                "from stealthyalda.stellenanzeige s\n" +
+                "join stealthyalda.arbeitgeber a\n" +
+                "on s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "where a.unternehmen = ? order by s.stellenanzeige_id";
         try{
             PreparedStatement statement = this.getPreparedStatement(sql);
-            statement.setInt(1, arbeitgeberid);
+            statement.setString(1, arbeitgeber);
             set = statement.executeQuery();
+            assert (set != null);
+            while (set.next()) {
+                StellenanzeigeDTO s = new StellenanzeigeDTO();
                 s.setTitel(set.getString(2));
                 s.setBeschreibung(set.getString(3));
                 s.setStatus(set.getString(4));
-                s.setOrt(set.getString(6));
-            if (set.next()) {
-
+                s.setDatum(set.getDate(5).toLocalDate());
+                s.setOrt(set.getString(7));
+                liste.add(s);
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
