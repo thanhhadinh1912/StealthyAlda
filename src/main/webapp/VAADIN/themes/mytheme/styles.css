@@ -1079,7 +1079,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "8.10.5";
+    content: "8.10.4";
 }
 
 .v-widget {
@@ -1852,14 +1852,14 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-app-loading:after {
-	position: fixed;
-	z-index: 100;
-	top: 45%;
-	padding-top: 49px;
-	text-align: center;
-	left: 0;
-	right: 0;
-	content: "Blueprint Valo";
+    position: fixed;
+    z-index: 100;
+    top: 45%;
+    padding-top: 49px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    content: "Stealthy_Alda";
 }
 
 .mytheme .v-loading-indicator {
@@ -15448,7 +15448,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-textfield .v-textfield-caption {
-	color: black;
+	color: #000000;
 }
 
 .mytheme .v-textarea {
@@ -15460,15 +15460,11 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: white;
 }
 
-.mytheme .v-panel .v-textarea-caption {
-	color: black;
-}
-
 .mytheme .toppanelbutton .v-button-caption {
 	color: white;
 }
 
-.mytheme .startseite .v-loggedLabel .v-loggedLabel.v-button-caption {
+.mytheme .startseite .v-loggedLabel .v-loggedLabel-caption {
 	color: white;
 }
 

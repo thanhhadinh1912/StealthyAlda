@@ -1,7 +1,7 @@
 package com.stealthyalda.ai.model.entities;
 
 public class Benutzer {
-    private int adresse_id;
+    private int adresseId;
     private String email;
     private String passwort;
     private String telefonnummer = null;
@@ -18,12 +18,12 @@ public class Benutzer {
         this.role = role;
     }
 
-    public int getAdresse_id() {
-        return adresse_id;
+    public int getAdresseId() {
+        return adresseId;
     }
 
-    public void setAdresse_id(int adresse_id) {
-        this.adresse_id = adresse_id;
+    public void setAdresseId(int adresseId) {
+        this.adresseId = adresseId;
     }
 
     public String getEmail() {

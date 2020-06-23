@@ -40,7 +40,7 @@ public class RoleDAO extends AbstractDAO {
             rs = preparedStatement.executeQuery();
             Logger.getLogger(RoleDAO.class.getName()).log(Level.INFO, "all good");
         } catch (SQLException throwables) {
-            logEntry(this.getClass().getName(),Level.SEVERE, throwables.getMessage());
+            logEntry(this.getClass().getName(), Level.SEVERE, throwables.getMessage());
             throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
         }
         // labs
@@ -56,7 +56,7 @@ public class RoleDAO extends AbstractDAO {
                 liste.add(role);
             }
         } catch (SQLException throwables) {
-            logEntry(this.getClass().getName(),Level.SEVERE, throwables.getMessage());
+            logEntry(this.getClass().getName(), Level.SEVERE, throwables.getMessage());
             throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
 
         } finally {

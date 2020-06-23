@@ -38,7 +38,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return dao;
     }
 
-    public void insertArbeitgeber(UnternehmenDTO unternehmen) throws DatabaseException {
+    public void insertArbeitgeber(UnternehmenDTO unternehmen) {
         int userid = user.getId();
         newArbeitgeber(unternehmen, userid);
     }
@@ -49,7 +49,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         try {
             stmt.setString(1, u.getUnternehmen());
             stmt.setInt(2, userId);
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -67,10 +67,10 @@ public class ArbeitgeberDAO extends AbstractDAO {
 
             if (set.next()) {
                 Arbeitgeber a = new Arbeitgeber();
-                a.setArbeitgeber_id(set.getInt(1));
+                a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(benutzerid);
-                //a.setLogo(set.getByte(4));
+                a.setLogo(set.getByte(4));
                 a.setBeschreibung(set.getString(5));
                 return a;
             }
@@ -95,7 +95,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
 
             if (set.next()) {
                 Arbeitgeber a = new Arbeitgeber();
-                a.setArbeitgeber_id(set.getInt(1));
+                a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(set.getInt(3));
                 //a.setLogo(set.getByte(4));

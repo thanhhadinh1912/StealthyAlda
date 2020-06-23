@@ -2,8 +2,6 @@ package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.ai.control.StellenanzeigeControl;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.services.util.Views;
-import com.vaadin.event.ShortcutAction;
 import com.vaadin.ui.*;
 
 public class ConfirmStellenanzeige extends Window {

@@ -3,6 +3,9 @@ package com.stealthyalda.ai.control;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class KontoControl {
     public boolean deletekonto(String email, String password) throws DatabaseException {
         BenutzerDAO.getInstance().deleteUser(email, password);
@@ -14,7 +17,7 @@ public class KontoControl {
         try {
             check = BenutzerDAO.getInstance().changepassword(email, altpassword, neupassword);
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            Logger.getLogger(KontoControl.class.getName()).log(Level.SEVERE, e.getReason(), e);
             return false;
         }
         return check;

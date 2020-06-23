@@ -5,11 +5,9 @@
  */
 package com.stealthyalda.gui.views;
 
-import com.stealthyalda.ai.control.StellenanzeigeControl;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.TopPanel;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmStellenanzeige;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
@@ -20,16 +18,14 @@ import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
-import java.util.Date;
-
 /**
- *
  * @author WINDOWS
  */
-public class StellenanzeigeErstellen  extends VerticalLayout implements View {
+public class StellenanzeigeErstellen extends VerticalLayout implements View {
+    final transient Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
     final private String WIDTH = "750px";
     final private String WIDTHB = "150px";
-    final transient Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+
     public void setUp() {
 
         this.addComponent(new TopPanel(user));
@@ -110,6 +106,7 @@ public class StellenanzeigeErstellen  extends VerticalLayout implements View {
         this.setComponentAlignment(main, Alignment.MIDDLE_CENTER);
 
     }
+
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         if (user == null) {
             UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);

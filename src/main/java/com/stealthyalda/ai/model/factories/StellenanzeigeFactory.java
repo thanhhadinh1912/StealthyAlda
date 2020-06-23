@@ -19,7 +19,7 @@ public class StellenanzeigeFactory {
     public static Stellenanzeige createStellenanzeige(StellenanzeigeRequest request, Arbeitgeber a) {
         Stellenanzeige s = new Stellenanzeige();
 
-        s.setArbeitgeberID(a.getArbeitgeber_id());
+        s.setArbeitgeberID(a.getArbeitgeberId());
         s.setBeschreibung(request.getBeschreibung());
         s.setDatum(request.getDatum());
         s.setOrt(request.getOrt());

@@ -10,7 +10,7 @@ import java.io.File;
 
 
 public class TopPanelStartSeite extends HorizontalLayout {
-    private String t = "toppanelbutton";
+    private final String t = "toppanelbutton";
 
 
     public TopPanelStartSeite() {

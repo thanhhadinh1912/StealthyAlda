@@ -6,19 +6,18 @@
 package com.stealthyalda.ai.model.entities;
 
 /**
- *
  * @author WINDOWS
  */
 public class Softskill {
-    private int softskill_id;
+    private int softskillId;
     private String name;
 
-    public int getSoftskill_id() {
-        return softskill_id;
+    public int getSoftskillId() {
+        return softskillId;
     }
 
-    public void setSoftskill_id(int softskill_id) {
-        this.softskill_id = softskill_id;
+    public void setSoftskillId(int softskillId) {
+        this.softskillId = softskillId;
     }
 
     public String getSoftskill() {
@@ -28,5 +27,5 @@ public class Softskill {
     public void setSoftskill(String softskill) {
         this.name = softskill;
     }
-    
+
 }

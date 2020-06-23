@@ -17,53 +17,54 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author WINDOWS
  */
 public class ProfilStudentControl {
-    public String printHardskill(Benutzer user){
-        String print="";
-        List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
-        for(int i=0;i<liste.size();i++){
-            print += liste.get(i).getHardskill() +"\n";
-}
-        return print;
-    }
-    public String printSoftskill(Benutzer user){
+    public String printHardskill(Benutzer user) {
         StringBuilder print = new StringBuilder();
-        List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
-        for(int i=0;i<liste.size();i++){
-            print.append(liste.get(i).getSoftskill());
+        List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
+        for (Hardskill hardskill : liste) {
+            print.append(hardskill.getHardskill());
             print.append("\n");
-}
+        }
         return print.toString();
     }
-    
-    public String printHobby(Benutzer user){
-        String print="";
+
+    public String printSoftskill(Benutzer user) {
+        StringBuilder print = new StringBuilder();
+        List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
+        for (int i = 0; i < liste.size(); i++) {
+            print.append(liste.get(i).getSoftskill());
+            print.append("\n");
+        }
+        return print.toString();
+    }
+
+    public String printHobby(Benutzer user) {
+        String print = "";
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
-        for(int i=0;i<liste.size();i++){
-            print += liste.get(i).getHobby() +"\n";
-}
+        for (int i = 0; i < liste.size(); i++) {
+            print += liste.get(i).getHobby() + "\n";
+        }
         return print;
     }
-    
-    public void hardskillchange(Benutzer user, String input) throws DatabaseException{
+
+    public void hardskillchange(Benutzer user, String input) throws DatabaseException {
         List<String> listStr = new ArrayList<>();
         listStr.addAll(Arrays.asList(input.split("\n")));
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
-         for(int i=0;i<liste.size();i++){
-            HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskill_id(),s);
-         }
-        
-        for(int i=1; i<listStr.size(); i++){
+        for (int i = 0; i < liste.size(); i++) {
+            HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskillId(), s);
+        }
+
+        for (int i = 1; i < listStr.size(); i++) {
             Hardskill hardskill = new Hardskill(listStr.get(i));
             HardskillDAO.getInstance().createHardskillForUser(hardskill, s);
         }
-        
-}
-    
-    
+
     }
+
+
+}
 

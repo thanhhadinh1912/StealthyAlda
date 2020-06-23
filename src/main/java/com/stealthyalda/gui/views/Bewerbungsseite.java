@@ -11,7 +11,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class Bewerbungsseite extends VerticalLayout implements View {
     public void setUp() {
-        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         this.addComponent(new TopPanel(user));
 
         VerticalLayout main = new VerticalLayout();

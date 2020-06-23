@@ -1,7 +1,6 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.KontoControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.windows.ConfirmationWindow;
 import com.stealthyalda.gui.windows.KontoDeleteWindow;
@@ -10,7 +9,8 @@ import com.vaadin.ui.*;
 
 public class KontoVerwaltung extends VerticalLayout {
     private final String w = "300px";
-    public KontoVerwaltung(Benutzer user){
+
+    public KontoVerwaltung(Benutzer user) {
         KontoControl kc = new KontoControl();
 
         VerticalLayout top = new VerticalLayout();
@@ -36,7 +36,6 @@ public class KontoVerwaltung extends VerticalLayout {
 
         TextField mail = new TextField();
         mail.setPlaceholder("E-Mail Adresse");
-        mail.setValue(user.getEmail());
         mail.setWidth(w);
         deletekonto.addComponent(mail);
 

@@ -5,19 +5,17 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
-import com.stealthyalda.services.util.Views;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DashboardStudent extends VerticalLayout implements View {
+public class DashboardStudent extends Studis {
     public void setUp() throws DatabaseException {
-        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         this.addComponent(new TopPanel(user));
 
         HorizontalLayout horizon = new HorizontalLayout();
@@ -55,13 +53,15 @@ public class DashboardStudent extends VerticalLayout implements View {
         this.addComponent(accordion);
         this.setComponentAlignment(accordion, Alignment.MIDDLE_CENTER);
     }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-
-        try {
-            this.setUp();
-        } catch (DatabaseException ex) {
-            Logger.getLogger(DashboardStudent.class.getName()).log(Level.SEVERE, null, ex);
+        if (isLoggedIn()) {
+            try {
+                this.setUp();
+            } catch (DatabaseException ex) {
+                Logger.getLogger(DashboardStudent.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            }
         }
 
 

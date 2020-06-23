@@ -7,7 +7,6 @@ import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -15,7 +14,7 @@ import java.io.File;
 
 
 public class TopPanel extends HorizontalLayout {
-    private String t = "toppanelbutton";
+    private final String t = "toppanelbutton";
 
 
     public TopPanel(Benutzer user) {
@@ -40,8 +39,7 @@ public class TopPanel extends HorizontalLayout {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
-            }
-            else{
+            } else {
                 Notification.show("Fehler", "Seite ist nur für Student verfügbar", Notification.Type.ERROR_MESSAGE);
             }
         });
@@ -51,12 +49,11 @@ public class TopPanel extends HorizontalLayout {
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addStyleName(t);
         buttonFuerArbeitgeber.addClickListener(clickEvent -> {
-            if(user.getRole().equals("Arbeitgeber")) {
+            if (user.getRole().equals("Arbeitgeber")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
-            }
-            else{
+            } else {
                 Notification.show("Fehler", "Seite ist nur für Arbeitgeber verfügbar", Notification.Type.ERROR_MESSAGE);
 
             }

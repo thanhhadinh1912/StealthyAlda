@@ -1,7 +1,6 @@
 package com.stealthyalda.services.util;
 
 public class Views {
-    private Views(){}
     public static final String MAIN = "suche";
     public static final String LOGIN = "login";
     public static final String REGISTER = "register";
@@ -15,5 +14,8 @@ public class Views {
     public static final String DASHBOARDS = "student/dashboard";
     public static final String STELLENANZEIGE = "suche/stellenanzeige/jobtitel/";
     public static final String STELLENANZEIGEERSTELLEN = "unternehmen/stellenanzeige";
+
+    private Views() {
+    }
 
 }

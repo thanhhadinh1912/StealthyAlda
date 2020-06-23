@@ -5,7 +5,6 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Roles;
 import com.vaadin.ui.UI;
@@ -27,7 +26,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
-    public boolean createStellenanzeige(Stellenanzeige s) throws DatabaseException {
+    public boolean createStellenanzeige(Stellenanzeige s) {
 
         String sql = "insert into stealthyalda.stellenanzeige values(default,?,?,?,?,?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
@@ -41,7 +40,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             statement.setString(2, s.getBeschreibung());
             statement.setString(3, s.getStatus());
             statement.setDate(4, Date.valueOf(s.getDatum()));
-            statement.setInt(5, a.getArbeitgeber_id());
+            statement.setInt(5, a.getArbeitgeberId());
             statement.setString(6, s.getOrt());
             statement.executeUpdate();
 

@@ -3,10 +3,10 @@ package com.stealthyalda.gui.windows;
 import com.stealthyalda.ai.control.KontoControl;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,7 +36,7 @@ public class KontoDeleteWindow extends Window {
         janein.addComponent(ja);
         janein.setComponentAlignment(ja, Alignment.MIDDLE_RIGHT);
 
-        Label platz = new Label("&nbsp" , ContentMode.HTML);
+        Label platz = new Label("&nbsp", ContentMode.HTML);
         content.addComponent(platz);
 
         content.addComponent(janein);
@@ -58,7 +58,7 @@ public class KontoDeleteWindow extends Window {
                 close();
             } catch (DatabaseException ex) {
                 Logger.getLogger(KontoDeleteWindow.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
 
         });
 

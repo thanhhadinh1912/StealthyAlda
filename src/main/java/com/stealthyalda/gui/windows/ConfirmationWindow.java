@@ -6,9 +6,9 @@
 package com.stealthyalda.gui.windows;
 
 /**
- *
  * @author WINDOWS
  */
+
 import com.vaadin.ui.*;
 
 public class ConfirmationWindow extends Window {

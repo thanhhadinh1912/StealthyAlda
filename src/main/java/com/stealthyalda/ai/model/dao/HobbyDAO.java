@@ -50,7 +50,7 @@ public class HobbyDAO extends AbstractDAO {
             Hobby hobby = null;
             while (resultSet.next()) {
                 hobby = new Hobby();
-                hobby.setHobby_id(resultSet.getInt(1));
+                hobby.setHobbyId(resultSet.getInt(1));
                 hobby.setHobby(resultSet.getString(2));
                 liste.add(hobby);
             }

@@ -12,7 +12,7 @@ public class Arbeitgeber extends Benutzer {
     private byte logo;
     private String beschreibung;
     private String unternehmen;
-    private int arbeitgeber_id;
+    private int arbeitgeberId;
 
 
     public byte getLogo() {
@@ -39,11 +39,11 @@ public class Arbeitgeber extends Benutzer {
         this.unternehmen = unternehmen;
     }
 
-    public int getArbeitgeber_id() {
-        return arbeitgeber_id;
+    public int getArbeitgeberId() {
+        return arbeitgeberId;
     }
 
-    public void setArbeitgeber_id(int arbeitgeber_id) {
-        this.arbeitgeber_id = arbeitgeber_id;
+    public void setArbeitgeberId(int arbeitgeberId) {
+        this.arbeitgeberId = arbeitgeberId;
     }
 }

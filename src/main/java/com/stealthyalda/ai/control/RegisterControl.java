@@ -2,6 +2,7 @@ package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
+import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.dao.StudentDAO;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 
 public class RegisterControl {
     Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
         return BenutzerDAO.getInstance().checkUserExists(email);
     }
@@ -35,24 +37,28 @@ public class RegisterControl {
         return true;
     }
 
-    public void registerArbeitgeber(UnternehmenDTO u, String anrede) throws DatabaseException {
-
-        try {
-            ArbeitgeberDAO.getInstance().insertArbeitgeber(u);
-            BenutzerDAO.getInstance().updateStammdaten(u, anrede, user);
-        } catch (DatabaseException e) {
-            throw new DatabaseException(e.getMessage());
-        }
+    public void registerArbeitgeber(UnternehmenDTO u, String anrede) {
+        ArbeitgeberDAO.getInstance().insertArbeitgeber(u);
+        BenutzerDAO.getInstance().updateStammdaten(u, anrede, user);
+        AdresseDAO.getInstance().addAdresse(u.getAdresse(), user.getId());
     }
 
+    /**
+     * register a student user
+     *
+     * @param studi - A DTO of type Student
+     */
     public void registerStudent(StudentDTO studi) {
-        try{
+
+        try {
             StudentDAO.getInstance().newStudent(studi);
+            AdresseDAO.getInstance().addAdresse(studi.getAdresse(), user.getId());
             BenutzerDAO.getInstance().updateStammdaten(studi, studi.getAnrede(), user);
         } catch (Exception e) {
             Logger.getLogger(RegisterControl.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
     }
+
     private void sendConfirmationEmail(String email) {
         HtmlEmail mail = new HtmlEmail();
 

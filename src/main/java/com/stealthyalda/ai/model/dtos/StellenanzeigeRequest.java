@@ -5,7 +5,6 @@
  */
 package com.stealthyalda.ai.model.dtos;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 /**

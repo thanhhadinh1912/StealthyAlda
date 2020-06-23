@@ -7,7 +7,6 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 public class LoginControl {
@@ -19,6 +18,8 @@ public class LoginControl {
     public static void checkAuthentification(String email, String password) throws NoSuchUserOrPassword, DatabaseException {
 
         Benutzer benutzer = BenutzerDAO.getBenutzer(email, password);
+
+
         ((MyUI) UI.getCurrent()).setBenutzer(benutzer);
 
         // Der Benutzer ist vorhanden

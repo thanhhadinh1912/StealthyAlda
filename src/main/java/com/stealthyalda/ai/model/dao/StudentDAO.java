@@ -32,12 +32,24 @@ public class StudentDAO extends AbstractDAO {
 
     public void newStudent(StudentDTO studi) {
         String sql = "INSERT INTO stealthyalda.student(vorname, nachname ,benutzer_id) VALUES(?,?,?);";
-        PreparedStatement stmt = this.getPreparedStatement(sql);
-        try {
+        try (PreparedStatement stmt = this.getPreparedStatement(sql)) {
             stmt.setString(1, studi.getVorname());
             stmt.setString(2, studi.getNachname());
             stmt.setInt(3, user.getId());
-            stmt.executeQuery();
+
+            int rowsChanged = stmt.executeUpdate();
+            if (rowsChanged == 0) {
+                throw new SQLException("Creating user failed, no rows affected.");
+            }
+            ResultSet nextKey = stmt.getGeneratedKeys();
+
+            if (nextKey.next()) {
+                int studentId = nextKey.getInt(1);
+                studi.setStudentId(studentId);
+                logEntry("BenutzerDAO", Level.INFO, "Found studentid: " + studentId);
+            } else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -53,7 +65,7 @@ public class StudentDAO extends AbstractDAO {
 
             if (set.next()) {
                 Student s = new Student();
-                s.setStudent_id(set.getInt(1));
+                s.setStudentId(set.getInt(1));
                 s.setNachname(set.getString(2));
                 s.setId(benutzerid);
                 s.setVorname(set.getString(4));
@@ -75,15 +87,14 @@ public class StudentDAO extends AbstractDAO {
             set = statement.executeQuery("SELECT * \n" +
                     "FROM stealthyalda.student s\n" +
                     "JOIN stealthyalda.benutzer b ON  s.benutzer_id = b.benutzer_id\n" +
-                    "WHERE b.email = '"+email+"';");
+                    "WHERE b.email = '" + email + "';");
 
             if (set.next()) {
                 Student s = new Student();
-                s.setStudent_id(set.getInt(1));
+                s.setStudentId(set.getInt(1));
                 s.setNachname(set.getString(2));
                 s.setId(set.getInt(3));
                 s.setVorname(set.getString(4));
-                //s.setProfilbild(set.getByte(5));
                 s.setEmail(email);
                 s.setRole(set.getString(11));
                 return s;

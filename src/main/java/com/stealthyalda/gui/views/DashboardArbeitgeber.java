@@ -17,7 +17,7 @@ import com.vaadin.ui.*;
 public class DashboardArbeitgeber extends VerticalLayout implements View {
     public void setUp() {
 
-        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         this.addComponent(new TopPanel(user));
 
         HorizontalLayout horizon = new HorizontalLayout();
@@ -68,6 +68,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         this.addComponent(accordion);
         this.setComponentAlignment(accordion, Alignment.MIDDLE_CENTER);
     }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setUp();

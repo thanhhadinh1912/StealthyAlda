@@ -12,6 +12,8 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.vaadin.data.validator.RegexpValidator;
+import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -24,10 +26,10 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class RegWeiterStudent extends Register {
-    private String w = "250px";
-    private String w2 = "230px";
     private static final String WIDTH = "500px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
+    private final String w = "250px";
+    private final String w2 = "230px";
 
     public void setUp() {
         TopPanelStartSeite panel = new TopPanelStartSeite();
@@ -87,19 +89,41 @@ public class RegWeiterStudent extends Register {
         this.addComponent(hl2);
         this.setComponentAlignment(hl2, Alignment.MIDDLE_CENTER);
 
+        /// start edits
         HorizontalLayout hl3 = new HorizontalLayout();
         hl3.setWidth(WIDTH);
+        hl3.setSpacing(true);
+
+        HorizontalLayout streetNrPlz = new HorizontalLayout();
+        streetNrPlz.setSpacing(true);
+        streetNrPlz.setWidth(w);
+
+
         final TextField strasse = new TextField();
         strasse.setPlaceholder("Straße");
-        strasse.setWidth(w);
+        strasse.setWidth("75%");
         hl3.addComponent(strasse);
         hl3.setComponentAlignment(strasse, Alignment.MIDDLE_LEFT);
 
+
         final TextField plz = new TextField();
         plz.setPlaceholder("PLZ");
-        plz.setWidth(w2);
-        hl3.addComponent(plz);
-        hl3.setComponentAlignment(plz, Alignment.MIDDLE_RIGHT);
+        plz.setWidth("75%");
+        streetNrPlz.addComponent(plz);
+        streetNrPlz.setComponentAlignment(plz, Alignment.MIDDLE_LEFT);
+
+
+        final TextField nummer = new TextField();
+        nummer.setPlaceholder("Nr");
+        nummer.setWidth("55%");
+        streetNrPlz.addComponent(nummer);
+        streetNrPlz.setComponentAlignment(nummer, Alignment.MIDDLE_CENTER);
+
+
+        hl3.addComponent(streetNrPlz);
+        hl3.setComponentAlignment(streetNrPlz, Alignment.MIDDLE_LEFT);
+
+        /// end edits
 
         this.addComponent(hl3);
         this.setComponentAlignment(hl3, Alignment.MIDDLE_CENTER);
@@ -123,43 +147,65 @@ public class RegWeiterStudent extends Register {
         ubermitteln.setCaption("Übermitteln");
         ubermitteln.setWidth(WIDTH);
 
+        binder.forField(strasse).asRequired("Sie müssen eine Gültige Strassenname eingeben")
+                .withValidator(new StringLengthValidator("Eingebene Straße nicht gültig", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(plz).asRequired("Sie müssen eine Gültige PLZ eingeben")
+                .withValidator(new StringLengthValidator("Eingebene PLZ nicht gültig", 4, 5))
+                .withValidator(new RegexpValidator("PLZ darf nur Zahlen enthalten", "^[0-9]*$"))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(nummer).asRequired("Sie müssen eine Gültige Hausnummer eingeben")
+                .withValidator(new StringLengthValidator("Eingebene Hausnummer nicht gültig", 1, 4))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(ort).asRequired("Sie müssen ein Ort eingeben")
+                .withValidator(new StringLengthValidator("Ort ist nicht gültig", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+        binder.forField(vorname).asRequired("Sie müssen Ihre Vorname(n) eingeben")
+                .withValidator(new StringLengthValidator("Vorname(n) zu kurz", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+        binder.forField(nachname).asRequired("Sie müssen Ihre Nachname(n) eingeben")
+                .withValidator(new StringLengthValidator("Nachname(n) zu kurz", 3, 30))
+                .bind(Benutzer::getRole, Benutzer::setRole);
+
+        binder.forField(telefon).asRequired("Sie müssen eine Telefonnummer eingeben")
+                .withValidator(new RegexpValidator("Telefonnummer darf nur Zahlen enthalten", "^[0-9]*$"))
+                .bind(Benutzer::getRole, Benutzer::setRole);
 
         ubermitteln.addClickListener(event -> {
-            String anrede = userAnrede.getValue();
-            String uservorname = vorname.getValue();
-            String username = nachname.getValue();
-            String userwohnort = strasse.getValue();
-            StringBuilder userstrasse = new StringBuilder();
-            StringBuilder hausnummer = new StringBuilder();
-            if (userwohnort != null && !userwohnort.isEmpty()) {
-                for (char c : userwohnort.toCharArray()) {
-                    if (Character.isDigit(c)) {
+            binder.validate();
+            if (binder.validate().isOk()) {
 
-                        hausnummer.append(c);
-                    } else {
-                        userstrasse.append(c);
-                    }
+
+                String anrede = userAnrede.getValue();
+                String uservorname = vorname.getValue();
+                String username = nachname.getValue();
+                String userstrasse = strasse.getValue();
+                String hausnummer = nummer.getValue();
+                String userort = ort.getValue();
+                int userplz = Integer.parseInt(plz.getValue());
+                String usertelefon = telefon.getValue();
+                // instance of control
+                RegisterControl r = new RegisterControl();
+                StudentDTO studi = new StudentDTO();
+                try {
+                    studi.setAnrede(anrede);
+                    studi.setVorname(uservorname);
+                    studi.setNachname(username);
+                    studi.setTelefonnummer(usertelefon);
+                    studi.setAdresse(new Adresse(userstrasse, userplz, hausnummer, userort));
+                    r.registerStudent(studi);
+                } catch (Exception e) {
+                    Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
                 }
+                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
+                UI.getCurrent().addWindow(window);
+            } else {
+                Notification.show(FEHLER, "Beachten Sie die Hinweise neben den Feldern!", Notification.Type.ERROR_MESSAGE);
             }
-            String userort = ort.getValue();
-            int userplz = Integer.parseInt(plz.getValue());
-            String usertelefon = telefon.getValue();
-            // instance of control
-            RegisterControl r = new RegisterControl();
-            StudentDTO studi = new StudentDTO();
-            try {
-                studi.setAnrede(anrede);
-                studi.setVorname(uservorname);
-                studi.setNachname(username);
-                studi.setTelefonnummer(usertelefon);
-                studi.setAdresse(new Adresse(userstrasse.toString(), userplz, hausnummer.toString(), userort));
-                r.registerStudent(studi);
-            } catch (Exception e) {
-                Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
-            }
-            ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
-            ((MyUI) UI.getCurrent()).setBenutzer(null);
-            UI.getCurrent().addWindow(window);
+
         });
 
         this.addComponent(ubermitteln);

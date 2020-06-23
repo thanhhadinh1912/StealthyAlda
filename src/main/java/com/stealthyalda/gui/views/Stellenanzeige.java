@@ -10,7 +10,7 @@ import com.vaadin.ui.*;
 
 public class Stellenanzeige extends VerticalLayout implements View {
     public void setup() {
-        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         this.addComponent(new TopPanel(user));
         setMargin(true);
 
@@ -33,6 +33,7 @@ public class Stellenanzeige extends VerticalLayout implements View {
         this.addComponent(panel);
         this.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
     }
+
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setup();
