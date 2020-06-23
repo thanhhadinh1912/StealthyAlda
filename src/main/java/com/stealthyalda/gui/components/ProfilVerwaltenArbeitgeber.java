@@ -79,6 +79,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
             }
         }
         stellenanzeige.setValue(String.valueOf(print));
+        stellenanzeige.setReadOnly(true);
         stellenanzeige.setWidth("650px");
         stellenanzeige.setHeight("200px");
         bottom.addComponent(stellenanzeige);
