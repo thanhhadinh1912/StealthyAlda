@@ -79,17 +79,10 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
-        String getStellenanzeigen = "SELECT" +
-                "  s.titel," +
-                "  s.beschreibung," +
-                "  s.status," +
-                "  s.datum," +
-                "  a.unternehmen," +
-                "  s.ort " +
-                "FROM" +
-                " stealthyalda.stellenanzeige s, stealthyalda.arbeitgeber a " +
-                "WHERE s.arbeitgeber_id = a.arbeitgeber_id " +
-                "AND ort LIKE '%" + ort + "%' " +
+        String getStellenanzeigen = " SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
+                "FROM stealthyalda.stellenanzeige s\n" +
+                "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
+                "WHERE ort LIKE '%" + ort + "%' " +
                 "OR unternehmen LIKE '%" + titelorunternehmen + "%' " +
                 "OR titel LIKE '%" + titelorunternehmen + "%'";
         try {

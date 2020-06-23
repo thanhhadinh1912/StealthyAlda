@@ -64,7 +64,7 @@ public class SearchDAO extends AbstractDAO{
 
         try {
             Statement statement = this.getStatement();
-            set = statement.executeQuery("SELECT ort FROM stealthyalda.adresse order by ort");
+            set = statement.executeQuery("SELECT ort FROM stealthyalda.stellenanzeige order by ort");
             while (true) {
                 assert set != null;
                 if (!set.next()) break;
