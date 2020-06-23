@@ -41,11 +41,11 @@ public class RegWeiterStudent extends Register {
         label.addStyleName(ValoTheme.LABEL_H1);
         this.addComponent(label);
         this.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
-        final NativeSelect<String> userAnrede = new NativeSelect<>();
+        final ComboBox<String> userAnrede = new ComboBox<>();
 //
 // Add some items
         userAnrede.setItems("Herr", "Frau");
-        userAnrede.setCaption("Anrede");
+        userAnrede.setPlaceholder("Anrede");
         userAnrede.setWidth(WIDTH);
         this.addComponent(userAnrede);
         this.setComponentAlignment(userAnrede, Alignment.MIDDLE_CENTER);

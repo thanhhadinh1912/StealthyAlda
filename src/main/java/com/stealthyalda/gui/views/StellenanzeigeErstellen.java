@@ -64,7 +64,8 @@ public class StellenanzeigeErstellen extends VerticalLayout implements View {
         date.setWidth("350px");
         datestatus.addComponent(date);
 
-        TextField status = new TextField("Status");
+        ComboBox status = new ComboBox("Status");
+        status.setItems("Offen", "Pausiert", "Geschlossen");
         status.setWidth("350px");
         datestatus.addComponent(status);
         datestatus.setComponentAlignment(status, Alignment.MIDDLE_RIGHT);
@@ -84,7 +85,7 @@ public class StellenanzeigeErstellen extends VerticalLayout implements View {
             a.setTitel(titel.getValue());
             a.setBeschreibung(beschreibung.getValue());
             a.setDatum(date.getValue());
-            a.setStatus(status.getValue());
+            a.setStatus((String) status.getValue());
             a.setOrt(ort.getValue());
             ConfirmStellenanzeige confirm = new ConfirmStellenanzeige(a);
 
