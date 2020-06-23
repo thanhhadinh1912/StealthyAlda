@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.control.exceptions.ProfilArbeitgeberControl;
 import com.stealthyalda.ai.control.exceptions.ProfilUnternehmenControl;
 import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
@@ -11,10 +12,12 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
     private static final String PX1000 = "1000px";
@@ -50,46 +53,70 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
 
         main.addComponent(logoandname);
 
-        HorizontalLayout beschreibungandkontakt = new HorizontalLayout();
-        beschreibungandkontakt.setWidth(PX1000);
-
         // Create the beschreibungDesUnternehmens
         TextArea beschreibungDesUnternehmens = new TextArea("Kurze Beschreibung des Unternehmens");
         String beschreibung = current.getBeschreibung();
         if (beschreibung != null) {
             beschreibungDesUnternehmens.setValue(current.getBeschreibung());
         }
-        beschreibungDesUnternehmens.setHeight("75px");
-        beschreibungDesUnternehmens.setWidth("650px");
-        beschreibungandkontakt.addComponent(beschreibungDesUnternehmens);
-        beschreibungandkontakt.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
+        beschreibungDesUnternehmens.setHeight("90px");
+        beschreibungDesUnternehmens.setWidth(PX1000);
+        main.addComponent(beschreibungDesUnternehmens);
+        main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
-        TextArea kontakte = new TextArea("Shortlink mit Icons");
-        kontakte.setValue(current.getTelefonnummer());
-        kontakte.setHeight("75px");
-        kontakte.setWidth("300px");
-        beschreibungandkontakt.addComponent(kontakte);
-        beschreibungandkontakt.setComponentAlignment(kontakte, Alignment.TOP_RIGHT);
-        main.addComponent(beschreibungandkontakt);
+        HorizontalLayout bottom = new HorizontalLayout();
+        bottom.setWidth("950px");
+        bottom.setHeight("200px");
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
-        stellenanzeige.setWidth(PX1000);
-        stellenanzeige.setHeight("200px");
-        main.addComponent(stellenanzeige);
+        StringBuilder print = new StringBuilder();
+        ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
+        List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(current.getArbeitgeberId());
+        if(stellenanzeigen!=null){
+            for(int i=0; i<stellenanzeigen.size();i++){
+                print.append(stellenanzeigen.get(i).getTitel());
+                print.append("\t");
+            }
+        }
+        stellenanzeige.setValue(String.valueOf(print));
+        stellenanzeige.setWidth("650px");
+        stellenanzeige.setHeight("220px");
+        bottom.addComponent(stellenanzeige);
+        bottom.setComponentAlignment(stellenanzeige,Alignment.BOTTOM_LEFT);
 
-        // TODO: split address in str, nr & plz
+
+        VerticalLayout kontaktandadresse = new VerticalLayout();
+        kontaktandadresse.setWidth("300px");
+        kontaktandadresse.setHeight("220px");
+
+        TextArea kontakte = new TextArea();
+        kontakte.setValue("Tel " + current.getTelefonnummer());
+        kontakte.setHeight("75px");
+        kontakte.setWidth("300px");
+        kontaktandadresse.addComponent(kontakte);
+        kontaktandadresse.setComponentAlignment(kontakte,Alignment.TOP_RIGHT);
+
+        Label platz = new Label("&nbsp;", ContentMode.HTML);
+        kontaktandadresse.addComponent(platz);
+
         TextArea anfahrt = new TextArea("Adresse");
-        Adresse a = AdresseDAO.getInstance().getAdresse(current.getId());
+        Adresse a = AdresseDAO.getInstance().getAdresse(user.getId());
         if (a != null) {
             anfahrt.setValue(a.toString());
         }
-        anfahrt.setWidth(PX1000);
-        anfahrt.setHeight("100px");
-        main.addComponent(anfahrt);
+        anfahrt.setWidth("300px");
+        anfahrt.setHeight("75px");
+        kontaktandadresse.addComponent(anfahrt);
+
+        bottom.addComponent(kontaktandadresse);
+        bottom.setComponentAlignment(kontaktandadresse,Alignment.TOP_RIGHT);
+        main.addComponent(bottom);
+
 
         Button speichern = new Button("Speichern");
         main.addComponent(speichern);
         main.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
+        main.setHeight("700px");
 
         this.addComponent(main);
         this.setHeight("700px");

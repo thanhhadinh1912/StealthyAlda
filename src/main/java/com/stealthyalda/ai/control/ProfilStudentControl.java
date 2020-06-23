@@ -25,7 +25,7 @@ public class ProfilStudentControl {
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         for (Hardskill hardskill : liste) {
             print.append(hardskill.getHardskill());
-            print.append("\n");
+            print.append("\t");
         }
         return print.toString();
     }
@@ -35,7 +35,7 @@ public class ProfilStudentControl {
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         for (int i = 0; i < liste.size(); i++) {
             print.append(liste.get(i).getSoftskill());
-            print.append("\n");
+            print.append("\t");
         }
         return print.toString();
     }
@@ -44,14 +44,14 @@ public class ProfilStudentControl {
         String print = "";
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         for (int i = 0; i < liste.size(); i++) {
-            print += liste.get(i).getHobby() + "\n";
+            print += liste.get(i).getHobby() + "\t";
         }
         return print;
     }
 
     public void hardskillchange(Benutzer user, String input) throws DatabaseException {
         List<String> listStr = new ArrayList<>();
-        listStr.addAll(Arrays.asList(input.split("\n")));
+        listStr.addAll(Arrays.asList(input.split("\t")));
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
         for (int i = 0; i < liste.size(); i++) {

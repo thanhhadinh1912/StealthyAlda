@@ -72,6 +72,32 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         s.setStellenanzeigeID(currentValue);
     }
+    public List<StellenanzeigeDTO> getStellenanzeigeByArbeitgeber(int arbeitgeberid){
+        ResultSet set = null;
+        List<StellenanzeigeDTO> liste = new ArrayList<>();
+        StellenanzeigeDTO s = new StellenanzeigeDTO();
+        String sql = "SELECT *" +
+                "FROM stealthyalda.stellenanzeige" +
+                "WHERE arbeitgeber_id = ?";
+        try{
+            PreparedStatement statement = this.getPreparedStatement(sql);
+            statement.setInt(1, arbeitgeberid);
+            set = statement.executeQuery();
+                s.setTitel(set.getString(2));
+                s.setBeschreibung(set.getString(3));
+                s.setStatus(set.getString(4));
+                s.setOrt(set.getString(6));
+            if (set.next()) {
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
+        }
+        return liste;
+    }
 
 
     public List<StellenanzeigeDTO> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
