@@ -1,10 +1,13 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.SucheEinfach;
+import com.stealthyalda.ai.model.dao.SearchService;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.services.util.DataSource;
+import com.stealthyalda.services.util.OrtService;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
@@ -14,16 +17,19 @@ import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
+
 
 import java.io.File;
 import java.util.List;
+
 import com.vaadin.shared.ui.ContentMode;
+
 
 public class Suchseite extends VerticalLayout implements View {
 
     private transient StellenanzeigeDTO selected = null;
+    private List<StellenanzeigeDTO> liste = null;
 
     public void setUp() {
         Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
@@ -35,48 +41,45 @@ public class Suchseite extends VerticalLayout implements View {
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        final TextField jobsearch = new TextField();
+
+        ComboBox<String> search = new ComboBox<>();
+        search.setPlaceholder("Jobtitel, Unternehmen, ... ");
+        search.setWidth("500px");
+        /*search.addValueChangeListener(event -> {
+            liste = stellenSuchenOnFly(search.getValue(), "");
+        });*/
+        SearchService service = new SearchService();
+        search.setDataProvider(service::fetch, service::count);
+
+        ComboBox<String> searchort = new ComboBox<>();
+        searchort.setPlaceholder("Ort, Umkreis ");
+        searchort.setWidth("500px");
+        OrtService ortService = new OrtService();
+        searchort.setDataProvider(ortService::fetch, ortService::count);
+
+        /*final TextField jobsearch = new TextField();
         jobsearch.setPlaceholder("Jobtitel, Unternehmen, ... ");
-        jobsearch.setWidth("500px");
+        jobsearch.setWidth("500px");*/
 
-
-        final TextField jobsearchOrt = new TextField();
+        /*final TextField jobsearchOrt = new TextField();
         jobsearchOrt.setPlaceholder("Ort, Umkreis ");
-        jobsearchOrt.setWidth("500px");
+        jobsearchOrt.setWidth("500px");*/
 
 
-        horizon.addComponents(jobsearch, jobsearchOrt, button);
+        horizon.addComponents(search, searchort, button);
         addComponent(horizon);
 
 
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
         horizon.setComponentAlignment(button, Alignment.BOTTOM_RIGHT);
 
-        Grid<StellenanzeigeDTO> grid = new Grid<>();
-        grid.setSizeFull();
-        grid.setHeightMode(HeightMode.UNDEFINED);
-        grid.setStyleName("gridSuche");
-
-
-        GridLayout mainFutter = new GridLayout(6, 6);
-        mainFutter.setSizeFull();
-
-        SingleSelect<StellenanzeigeDTO> selection = grid.asSingleSelect();
-
-        // Der Event Listener für den Grid
-        grid.addSelectionListener(event ->
-
-            // Speichert den aktuell angewählten Wert bei klick auf die Zeile in der Var. "selected"
-            this.selected = selection.getValue());
-
-
         // Event Listener für den Suchen Button
         button.addClickListener(e -> {
 
-            String ort = jobsearchOrt.getValue();
-            String titel = jobsearch.getValue();
+            String ort = search.getValue();
+            String titel = search.getValue();
 
-            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
+            liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
             VerticalLayout scrollableLayout = new VerticalLayout();
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
@@ -148,8 +151,6 @@ public class Suchseite extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-
-
         Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
         if (user == null) {
@@ -159,4 +160,16 @@ public class Suchseite extends VerticalLayout implements View {
 
         }
     }
+    /*public static List<StellenanzeigeDTO> stellenSuchenOnFly(String titelorarbeitgeber, String ort) {
+        List<StellenanzeigeDTO> data = container.getListe().stream().peek(c -> {
+            if(c.getArbeitgeber() == null) c.setArbeitgeber("");
+            if(c.getTitel() == null) c.setTitel("");
+            if(c.getOrt() == null) c.setOrt("");
+        }).filter( suche -> suche.getTitel().equals(titelorarbeitgeber) || suche.getArbeitgeber().equals(titelorarbeitgeber)
+                || suche.getOrt().equals(ort)
+        ).collect(Collectors.toList());
+
+        return data;
+    }*/
+
 }

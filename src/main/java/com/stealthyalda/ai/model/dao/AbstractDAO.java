@@ -66,7 +66,7 @@ public class AbstractDAO {
             } catch (SQLException ex) {
                 Logger.getLogger(AdresseDAO.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
-                com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+                closeResultset(rs);
             }
         }
         return currentValue;

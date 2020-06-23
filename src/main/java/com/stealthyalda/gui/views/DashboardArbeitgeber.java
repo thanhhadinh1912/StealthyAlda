@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.views;
 
+
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
@@ -12,6 +13,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
+
 public class DashboardArbeitgeber extends VerticalLayout implements View {
     public void setUp() {
 
