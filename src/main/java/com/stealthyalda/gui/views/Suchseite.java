@@ -68,70 +68,17 @@ public class Suchseite extends VerticalLayout implements View {
 
             String ort = search.getValue();
             String titel = search.getValue();
-
+            VerticalLayout sucheLayout = new VerticalLayout();
             liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
-            VerticalLayout scrollableLayout = new VerticalLayout();
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
-                for(int i=0; i<liste.size();i++){
-                    StellenanzeigeDTO suche= liste.get(i);
-                    HorizontalLayout article = new HorizontalLayout();
-                    String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-                    FileResource resource = new FileResource(new File(basepath +
-                            "/Image/Unknown_profil.png"));
-                    Image profilbild = new Image("", resource);
-                    article.addComponent(profilbild);
-                    article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
-                    VerticalLayout titelbeschreibung = new VerticalLayout();
-                    HorizontalLayout info = new HorizontalLayout();
-                    Label stitel = new Label(suche.getTitel(), ContentMode.TEXT);
-                    stitel.setWidth("400px");
-                    info.addComponent(stitel);
-
-
-                    Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
-                    info.addComponent(sunternehmen);
-                    info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
-                    sunternehmen.setWidth("250px");
-
-                    Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
-                    info.addComponent(sdatum);
-                    info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
-                    sdatum.setWidth("150px");
-
-                    Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
-                    info.addComponent(sort);
-                    info.setComponentAlignment(sort, Alignment.TOP_CENTER);
-                    sort.setWidth("125px");
-
-                    Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
-                    info.addComponent(sstatus);
-                    info.setComponentAlignment(sstatus, Alignment.TOP_CENTER);
-                    sstatus.setWidth("100px");
-
-                    info.setHeight("60px");
-
-                    titelbeschreibung.addComponent(info);
-
-                    Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.PREFORMATTED);
-                    sbeschreibung.setHeight("80px");
-                    sbeschreibung.setWidth("875px");
-                    titelbeschreibung.addComponent(sbeschreibung);
-
-                    titelbeschreibung.setWidth("570px");
-                    titelbeschreibung.setHeight("140px");
-                    article.addComponent(titelbeschreibung);
-                    article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
-
-                    scrollableLayout.addComponent(article);
-                    article.addLayoutClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE) );
-
-                }
-                addComponent(scrollableLayout);
-                setComponentAlignment(scrollableLayout, Alignment.MIDDLE_CENTER);
-
+                sucheLayout = printergebnis(liste);
             }
+                addComponent(sucheLayout);
+                setComponentAlignment(sucheLayout, Alignment.MIDDLE_CENTER);
+
+
         });
 
 
@@ -139,6 +86,62 @@ public class Suchseite extends VerticalLayout implements View {
         // Grid und Buchen Button richtig anordnen
 
 
+    }
+
+    public VerticalLayout printergebnis(List<StellenanzeigeDTO>liste){
+        VerticalLayout scrollableLayout = new VerticalLayout();
+        for(int i=0; i<liste.size();i++){
+            StellenanzeigeDTO suche= liste.get(i);
+            HorizontalLayout article = new HorizontalLayout();
+            String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+            FileResource resource = new FileResource(new File(basepath +
+                    "/Image/Unknown_profil.png"));
+            Image profilbild = new Image("", resource);
+            article.addComponent(profilbild);
+            article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
+            VerticalLayout titelbeschreibung = new VerticalLayout();
+            HorizontalLayout info = new HorizontalLayout();
+            Label stitel = new Label(suche.getTitel(), ContentMode.TEXT);
+            stitel.setWidth("400px");
+            info.addComponent(stitel);
+
+            Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
+            info.addComponent(sunternehmen);
+            info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
+            sunternehmen.setWidth("250px");
+
+            Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
+            info.addComponent(sdatum);
+            info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
+            sdatum.setWidth("150px");
+
+            Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
+            info.addComponent(sort);
+            info.setComponentAlignment(sort, Alignment.TOP_CENTER);
+            sort.setWidth("175px");
+
+            Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
+            info.addComponent(sstatus);
+            info.setComponentAlignment(sstatus, Alignment.TOP_CENTER);
+            sstatus.setWidth("75px");
+
+            info.setHeight("60px");
+
+            titelbeschreibung.addComponent(info);
+
+            /*Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.PREFORMATTED);
+            sbeschreibung.setHeight("80px");
+            sbeschreibung.setWidth("875px");
+            titelbeschreibung.addComponent(sbeschreibung);*/
+
+            article.addComponent(titelbeschreibung);
+            article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
+
+            scrollableLayout.addComponent(article);
+            article.addLayoutClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE) );
+
+        }
+        return scrollableLayout;
     }
 
 
