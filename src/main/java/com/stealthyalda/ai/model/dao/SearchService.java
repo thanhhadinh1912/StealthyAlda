@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SearchService extends AbstractDAO {
-        public static SearchService dao = null;
-        private static List< String> liste =  new ArrayList<String>();
+public class SearchService{
+        private static List< String> liste =  new ArrayList<>();
 
         public SearchService() {
             liste = SearchDAO.getInstance().getJobtitelOrArbeitgeber();

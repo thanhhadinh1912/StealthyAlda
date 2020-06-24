@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class OrtService {
-    public static OrtService dao = null;
-    private static List< String> liste =  new ArrayList<String>();
+    private static List< String> liste =  new ArrayList<>();
 
     public OrtService() {
         liste = SearchDAO.getInstance().getOrt();

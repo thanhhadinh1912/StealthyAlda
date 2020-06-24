@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SearchDAO extends AbstractDAO{
     private static SearchDAO dao;
@@ -43,13 +45,14 @@ public class SearchDAO extends AbstractDAO{
                 if(!set2.next()) break;
                 liste.add(set2.getString(1));
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 JDBCConnection.getInstance().closeConnection();
             } catch (DatabaseException e) {
-                e.printStackTrace();
+                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
+
             }
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set2);
@@ -74,13 +77,13 @@ public class SearchDAO extends AbstractDAO{
                 liste.add(set.getString(1));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         finally {
             try {
                 JDBCConnection.getInstance().closeConnection();
             } catch (DatabaseException e) {
-                e.printStackTrace();
+                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
             }
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
         }

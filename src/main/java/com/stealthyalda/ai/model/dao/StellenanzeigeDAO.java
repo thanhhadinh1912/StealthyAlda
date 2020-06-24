@@ -95,10 +95,10 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 liste.add(s);
             }
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        finally {
+        catch (SQLException ex) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }        finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
         }
         return liste;
