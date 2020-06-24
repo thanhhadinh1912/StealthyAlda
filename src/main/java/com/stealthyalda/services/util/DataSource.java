@@ -26,7 +26,7 @@ public class DataSource {
     }
 
     public void loadsuche(String titelorunternehmen, String ort){
-            liste = StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehmen(titelorunternehmen, ort);
+            liste = StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehmen(titelorunternehmen, ort);
 
     }
     public Stream<StellenanzeigeDTO> fetchJoborArbeitgeber(StellenanzeigeDTO filter, int offset, int limit) {

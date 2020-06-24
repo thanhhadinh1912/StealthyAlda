@@ -36,7 +36,7 @@ public class DashboardStudent extends Studis {
         final Button buttonsearch = new Button("Jobs finden!");
         buttonsearch.setWidth("200px");
         buttonsearch.addClickListener(clickEvent ->  {
-            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(jobsearch.getValue(), "");
+            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
             Panel ergebnisse = new Suchseite().printergebnis(liste);
             this.addComponent(ergebnisse);
         });
