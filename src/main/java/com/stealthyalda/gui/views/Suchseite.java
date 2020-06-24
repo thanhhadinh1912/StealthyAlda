@@ -78,8 +78,9 @@ public class Suchseite extends VerticalLayout implements View {
             }
             else {*/
             if(titel!=null){
-                    if(ort.length()==0)  liste = SucheEinfach.getInstance().getStellenanzeigeByJob(titel);
-                    else liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel,ort);
+                if(ort!=null) liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel,ort);
+
+                else  liste = SucheEinfach.getInstance().getStellenanzeigeByJob(titel);
                 }
            else liste = SucheEinfach.getInstance().getStellenanzeigeByLocation(ort);
 

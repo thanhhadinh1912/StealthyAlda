@@ -108,15 +108,23 @@ public class StellenanzeigeDAO extends AbstractDAO {
     public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
         ResultSet rs = null;
 
-        List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
                 "WHERE s.ort LIKE '%"+ort+"%'\n";
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
+
+        return liste;
+    }
+
+    private List<StellenanzeigeDTO> hilfe(String sql){
+        ResultSet rs = null;
+        List<StellenanzeigeDTO> liste = new ArrayList<>();
+        StellenanzeigeDTO stellenanzeige = null;
         try {
             // use prepared stmt
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(sql);
 
             rs = preparedStatement.executeQuery();
             assert (rs != null);
@@ -143,47 +151,20 @@ public class StellenanzeigeDAO extends AbstractDAO {
     public List<StellenanzeigeDTO> getStellenanzeigeByJobTitelOrUnternehmen(String titelorunternehmen){
         ResultSet rs = null;
 
-        List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
                 "WHERE a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
                 "OR s.titel LIKE '%"+titelorunternehmen+"%'";
-        try {
-            // use prepared stmt
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
-
-            rs = preparedStatement.executeQuery();
-            assert (rs != null);
-            while (rs.next()) {
-                stellenanzeige = new StellenanzeigeDTO();
-                stellenanzeige.setTitel(rs.getString(1));
-                stellenanzeige.setBeschreibung(rs.getString(2));
-                stellenanzeige.setStatus(rs.getString(3));
-                stellenanzeige.setDatum(rs.getDate(4).toLocalDate());
-                stellenanzeige.setArbeitgeber(rs.getString(5));
-                stellenanzeige.setOrt(rs.getString(6));
-                liste.add(stellenanzeige);
-            }
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
-        } catch (SQLException | DatabaseException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
-        }
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
     }
 
-
-
-
-
     public List<StellenanzeigeDTO> getStellenanzeigeByLocationAndJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
         ResultSet rs = null;
 
-        List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
@@ -191,28 +172,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 "WHERE s.ort LIKE '%"+ort+"%'\n" +
                 "OR a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
                 "OR s.titel LIKE '%"+titelorunternehmen+"%'";
-        try {
-            // use prepared stmt
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
-
-            rs = preparedStatement.executeQuery();
-            assert (rs != null);
-            while (rs.next()) {
-                stellenanzeige = new StellenanzeigeDTO();
-                stellenanzeige.setTitel(rs.getString(1));
-                stellenanzeige.setBeschreibung(rs.getString(2));
-                stellenanzeige.setStatus(rs.getString(3));
-                stellenanzeige.setDatum(rs.getDate(4).toLocalDate());
-                stellenanzeige.setArbeitgeber(rs.getString(5));
-                stellenanzeige.setOrt(rs.getString(6));
-                liste.add(stellenanzeige);
-            }
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
-        } catch (SQLException | DatabaseException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
-        }
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
     }
