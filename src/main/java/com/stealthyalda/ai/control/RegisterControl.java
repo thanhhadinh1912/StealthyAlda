@@ -32,9 +32,9 @@ public class RegisterControl {
      * @throws DatabaseException When murphy is around
      */
     public boolean registerUser(String email, String password, String role) throws DatabaseException {
-        BenutzerDAO.getInstance().createBenutzer(email, password, role);
+        boolean erg= BenutzerDAO.getInstance().createBenutzer(email, password, role);
         sendConfirmationEmail(email);
-        return true;
+        return  erg;
     }
 
     public void registerArbeitgeber(UnternehmenDTO u, String anrede) {
