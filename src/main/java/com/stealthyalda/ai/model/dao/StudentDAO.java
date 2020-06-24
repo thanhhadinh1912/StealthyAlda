@@ -31,6 +31,7 @@ public class StudentDAO extends AbstractDAO {
     }
 
     public void newStudent(StudentDTO studi) {
+        ResultSet nextKey = null;
         String sql = "INSERT INTO stealthyalda.student(vorname, nachname ,benutzer_id) VALUES(?,?,?);";
         try (PreparedStatement stmt = this.getPreparedStatement(sql)) {
             stmt.setString(1, studi.getVorname());
@@ -41,7 +42,7 @@ public class StudentDAO extends AbstractDAO {
             if (rowsChanged == 0) {
                 throw new SQLException("Creating user failed, no rows affected.");
             }
-            ResultSet nextKey = stmt.getGeneratedKeys();
+            nextKey = stmt.getGeneratedKeys();
 
             if (nextKey.next()) {
                 int studentId = nextKey.getInt(1);
@@ -52,6 +53,8 @@ public class StudentDAO extends AbstractDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } finally {
+            closeResultset(nextKey);
         }
     }
 
