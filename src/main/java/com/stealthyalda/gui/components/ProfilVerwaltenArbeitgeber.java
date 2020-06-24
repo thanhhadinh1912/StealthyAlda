@@ -24,6 +24,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
     private static final String PX1000 = "1000px";
 
     public ProfilVerwaltenArbeitgeber(Benutzer user) {
+        boolean isadmin = user.getRole().equals("admin");
         Arbeitgeber current = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
         VerticalLayout main = new VerticalLayout();
         HorizontalLayout logoandname = new HorizontalLayout();
@@ -36,9 +37,11 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         Uploader x = new Uploader();
         x.init("basic");
         TextField name = new TextField();
-        String nameUnternehmen = current.getUnternehmen();
         name.setPlaceholder("Name des Unternehmens");
-        if (nameUnternehmen.length() != 0) name.setValue(nameUnternehmen);
+        if(!isadmin) {
+            String nameUnternehmen = current.getUnternehmen();
+            if (nameUnternehmen.length() != 0) name.setValue(nameUnternehmen);
+        }
         name.setWidth("580px");
         name.setHeight("60px");
         logoandname.addComponent(name);
@@ -56,9 +59,11 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
 
         // Create the beschreibungDesUnternehmens
         TextArea beschreibungDesUnternehmens = new TextArea("Kurze Beschreibung des Unternehmens");
-        String beschreibung = current.getBeschreibung();
-        if (beschreibung != null) {
-            beschreibungDesUnternehmens.setValue(current.getBeschreibung());
+        if(!isadmin) {
+            String beschreibung = current.getBeschreibung();
+            if (beschreibung != null) {
+                beschreibungDesUnternehmens.setValue(current.getBeschreibung());
+            }
         }
         beschreibungDesUnternehmens.setHeight("90px");
         beschreibungDesUnternehmens.setWidth(PX1000);
@@ -70,16 +75,18 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
 
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
-        StringBuilder print = new StringBuilder();
-        ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
-        List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(nameUnternehmen);
-        if(stellenanzeigen!=null){
-            for(int i=0; i<stellenanzeigen.size();i++){
-                StellenanzeigeDTO s = stellenanzeigen.get(i);
-                print.append((i + 1) + ". " + s.getTitel() + "\n");
+        if(!isadmin) {
+            StringBuilder print = new StringBuilder();
+            ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
+            List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(current.getUnternehmen());
+            if (stellenanzeigen != null) {
+                for (int i = 0; i < stellenanzeigen.size(); i++) {
+                    StellenanzeigeDTO s = stellenanzeigen.get(i);
+                    print.append((i + 1) + ". " + s.getTitel() + "\n");
+                }
             }
+            stellenanzeige.setValue(String.valueOf(print));
         }
-        stellenanzeige.setValue(String.valueOf(print));
         stellenanzeige.setReadOnly(true);
         stellenanzeige.setWidth("650px");
         stellenanzeige.setHeight("200px");
@@ -92,7 +99,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         kontaktandadresse.setHeight("200px");
 
         TextArea kontakte = new TextArea();
-        kontakte.setValue("Tel " + current.getTelefonnummer());
+        if(!isadmin) kontakte.setValue("Tel " + current.getTelefonnummer());
         kontakte.setHeight("75px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
@@ -105,34 +112,44 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         // split
         HorizontalLayout anfahrt = new HorizontalLayout();
         TextField strasse = new TextField();
-        Adresse addrUnternehmen = AdresseDAO.getInstance().getAdresse(current.getId());
-        String strasseUnternehmen = addrUnternehmen.getStrasse();
+        TextField hausNummer = new TextField();
+        TextField plz = new TextField();
+        new NumeralFieldFormatter("", "", 1).extend(plz);
+        TextField ort = new TextField();
+
+
+
+
         strasse.setPlaceholder("Strassenname des Unternehmens");
-        if (strasseUnternehmen.length() != 0) strasse.setValue(strasseUnternehmen);
+        if(!isadmin){
+            Adresse addrUnternehmen = AdresseDAO.getInstance().getAdresse(current.getId());
+            String strasseUnternehmen = addrUnternehmen.getStrasse();
+            if (strasseUnternehmen.length() != 0) strasse.setValue(strasseUnternehmen);
+            String strNr = addrUnternehmen.getHausnummer(); String ortUnt = addrUnternehmen.getOrt();
+            if (strNr.length() != 0) hausNummer.setValue(strNr);
+            int plzUnt = addrUnternehmen.getPlz();
+            if (plzUnt != 0) plz.setValue(String.valueOf(plzUnt));
+            if (ortUnt.length() != 0) ort.setValue("Bitte eingeben!");
+
+        }
         strasse.setWidth("580px");
         strasse.setHeight("60px");
 
 
-        TextField hausNummer = new TextField();
-        String strNr = addrUnternehmen.getHausnummer();
+
         hausNummer.setPlaceholder("Hausnummer des Unternehmens");
-        if (strNr.length() != 0) hausNummer.setValue(strNr);
         hausNummer.setWidth("580px");
         hausNummer.setHeight("60px");
 
 
-        TextField plz = new TextField();
-        new NumeralFieldFormatter("", "", 1).extend(plz);
-        int plzUnt = addrUnternehmen.getPlz();
+
+
         plz.setPlaceholder("Postleitzahl des Unternehmens");
-        if (plzUnt != 0) plz.setValue(String.valueOf(plzUnt));
         plz.setWidth("580px");
         plz.setHeight("60px");
 
-        TextField ort = new TextField();
-        String ortUnt = addrUnternehmen.getOrt();
         plz.setPlaceholder("Ort des Unternehmens");
-        if (ortUnt.length() != 0) ort.setValue("Bitte eingeben!");
+
         plz.setWidth("580px");
         plz.setHeight("60px");
 

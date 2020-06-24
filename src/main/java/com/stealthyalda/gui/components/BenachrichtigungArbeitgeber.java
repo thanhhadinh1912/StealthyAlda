@@ -22,15 +22,18 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
         Label titelstellenanzeige = new Label("<b> Ihre Stellenanzeigen </b>", ContentMode.HTML);
         content.addComponent(titelstellenanzeige);
 
-        List<StellenanzeigeDTO> jobangebot = new ProfilArbeitgeberControl().getStellenanzeige(ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail()).getUnternehmen());
-        for(int i=0; i<jobangebot.size(); i++){
-            HorizontalLayout joblayout = new HorizontalLayout();
-            Label job = new Label(Integer.toString(i+1)+"." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
-            Button jobangebotbearbeiten = new Button(VaadinIcons.PENCIL);
-            //jobangebotbearbeiten.addClickListener(clickEvent -> {});
-            joblayout.addComponent(job);
-            joblayout.addComponent(jobangebotbearbeiten);
-            content.addComponent(joblayout);
+        if(!user.getRole().equals("admin")) {
+
+            List<StellenanzeigeDTO> jobangebot = new ProfilArbeitgeberControl().getStellenanzeige(ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail()).getUnternehmen());
+            for (int i = 0; i < jobangebot.size(); i++) {
+                HorizontalLayout joblayout = new HorizontalLayout();
+                Label job = new Label(Integer.toString(i + 1) + "." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
+                Button jobangebotbearbeiten = new Button(VaadinIcons.PENCIL);
+                //jobangebotbearbeiten.addClickListener(clickEvent -> {});
+                joblayout.addComponent(job);
+                joblayout.addComponent(jobangebotbearbeiten);
+                content.addComponent(joblayout);
+            }
         }
         this.addComponent(content);
     }

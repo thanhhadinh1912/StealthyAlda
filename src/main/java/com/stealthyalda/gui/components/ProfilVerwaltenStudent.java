@@ -19,15 +19,18 @@ public class ProfilVerwaltenStudent extends Studis {
     private final String w = "700px";
 
     public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
+        boolean isadmin = user.getRole().equals("admin");
         Student current = StudentDAO.getInstance().getStudent(user.getEmail());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
-        String studentname = current.getVorname() + " " + current.getNachname();
-        if (studentname.length() != 0) {
-            name.setValue(studentname);
+        if(!isadmin) {
+            String studentname = current.getVorname() + " " + current.getNachname();
+            if (studentname.length() != 0) {
+                name.setValue(studentname);
+            }
         }
         name.setWidth(w);
         name.setHeight("40px");
