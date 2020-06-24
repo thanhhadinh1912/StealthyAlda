@@ -37,7 +37,7 @@ public class DashboardStudent extends Studis {
         buttonsearch.setWidth("200px");
         buttonsearch.addClickListener(clickEvent ->  {
             List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(jobsearch.getValue(), "");
-            VerticalLayout ergebnisse = new Suchseite().printergebnis(liste);
+            Panel ergebnisse = new Suchseite().printergebnis(liste);
             this.addComponent(ergebnisse);
         });
         horizon.addComponent(buttonsearch);

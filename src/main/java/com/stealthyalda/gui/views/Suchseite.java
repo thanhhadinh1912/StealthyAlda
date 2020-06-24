@@ -63,20 +63,23 @@ public class Suchseite extends VerticalLayout implements View {
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
         horizon.setComponentAlignment(button, Alignment.BOTTOM_RIGHT);
 
+        VerticalLayout show = new VerticalLayout();
         // Event Listener für den Suchen Button
         button.addClickListener(e -> {
-
+            Panel sucheLayout = new Panel();
             String ort = search.getValue();
             String titel = search.getValue();
-            VerticalLayout sucheLayout = new VerticalLayout();
             liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
             if (ort.equals("") && titel.equals("")) {
                 Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
+                show.removeAllComponents();
                 sucheLayout = printergebnis(liste);
+                show.addComponent(sucheLayout);
+                addComponent(show);
+                setComponentAlignment(show, Alignment.MIDDLE_CENTER);
             }
-                addComponent(sucheLayout);
-                setComponentAlignment(sucheLayout, Alignment.MIDDLE_CENTER);
+
 
 
         });
@@ -88,8 +91,10 @@ public class Suchseite extends VerticalLayout implements View {
 
     }
 
-    public VerticalLayout printergebnis(List<StellenanzeigeDTO>liste){
+    public Panel printergebnis(List<StellenanzeigeDTO>liste){
         VerticalLayout scrollableLayout = new VerticalLayout();
+        Panel main = new Panel();
+        if(liste.size()!=0){
         for(int i=0; i<liste.size();i++){
             StellenanzeigeDTO suche= liste.get(i);
             HorizontalLayout article = new HorizontalLayout();
@@ -108,12 +113,12 @@ public class Suchseite extends VerticalLayout implements View {
             Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
             info.addComponent(sunternehmen);
             info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
-            sunternehmen.setWidth("250px");
+            sunternehmen.setWidth("200px");
 
             Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
             info.addComponent(sdatum);
             info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
-            sdatum.setWidth("150px");
+            sdatum.setWidth("100px");
 
             Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
             info.addComponent(sort);
@@ -138,10 +143,13 @@ public class Suchseite extends VerticalLayout implements View {
             article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
 
             scrollableLayout.addComponent(article);
+
             article.addLayoutClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGE) );
 
         }
-        return scrollableLayout;
+        }
+        main.setContent(scrollableLayout);
+        return main;
     }
 
 
