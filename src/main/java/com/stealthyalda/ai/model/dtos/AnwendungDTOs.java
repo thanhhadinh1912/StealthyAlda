@@ -4,6 +4,6 @@ public interface AnwendungDTOs {
 
     public String toString();
 
-    public boolean equals (AnwendungDTOs anwendung);
+    public boolean gleich(AnwendungDTOs anwendung);
 
 }

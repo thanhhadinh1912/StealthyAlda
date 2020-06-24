@@ -27,7 +27,7 @@ public class StepstoneDTO implements AnwendungDTOs {
     }
 
     @Override
-    public boolean equals(AnwendungDTOs application) {
+    public boolean gleich(AnwendungDTOs application) {
         return (application instanceof StepstoneDTO
                 && this.getApplicationText().equals(((StepstoneDTO) application).getApplicationText()));
     }

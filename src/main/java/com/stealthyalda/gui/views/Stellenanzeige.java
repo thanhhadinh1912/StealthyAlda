@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.control.exceptions.ToogleRouter;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.services.util.Roles;
@@ -20,6 +21,8 @@ public class Stellenanzeige extends VerticalLayout implements View {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.setWidth("800px");
         Button zuruck = new Button("Zurück");
+        /*ToogleRouter toogleRouter = new ToogleRouter();
+        if(toogleRouter.isEnabled())*/
         Button bewerben = new Button("Bewerben");
         horizontalLayout.addComponent(zuruck);
         horizontalLayout.setComponentAlignment(zuruck, Alignment.MIDDLE_LEFT);

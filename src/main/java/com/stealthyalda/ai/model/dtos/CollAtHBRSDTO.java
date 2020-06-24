@@ -24,7 +24,7 @@ public class CollAtHBRSDTO implements AnwendungDTOs {
     }
 
     @Override
-    public boolean equals(AnwendungDTOs obj) {
+    public boolean gleich(AnwendungDTOs obj) {
         if (this == obj) {
             return true;
         }
