@@ -43,14 +43,13 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
             if (nameUnternehmen.length() != 0) name.setValue(nameUnternehmen);
         }
         name.setWidth("580px");
-        name.setHeight("60px");
+        name.setHeight("50px");
         logoandname.addComponent(name);
-        logoandname.setComponentAlignment(name, Alignment.BOTTOM_CENTER);
-        logoandname.setComponentAlignment(logo, Alignment.TOP_LEFT);
+        logoandname.setComponentAlignment(name,Alignment.MIDDLE_CENTER);
 
 
         logoandname.addComponent(x);
-        logoandname.setComponentAlignment(x, Alignment.BOTTOM_RIGHT);
+        logoandname.setComponentAlignment(x, Alignment.MIDDLE_RIGHT);
 
         main.addComponent(logoandname);
 
@@ -70,11 +69,12 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         main.addComponent(beschreibungDesUnternehmens);
         main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
+
         HorizontalLayout bottom = new HorizontalLayout();
-        bottom.setHeight("240px");
 
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
+        stellenanzeige.setPlaceholder("Stellenanzeige");
         if(!isadmin) {
             StringBuilder print = new StringBuilder();
             ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
@@ -88,29 +88,24 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
             stellenanzeige.setValue(String.valueOf(print));
         }
         stellenanzeige.setReadOnly(true);
-        stellenanzeige.setWidth("650px");
-        stellenanzeige.setHeight("200px");
+        stellenanzeige.setWidth("645px");
+        stellenanzeige.setHeight("250px");
         bottom.addComponent(stellenanzeige);
-        bottom.setComponentAlignment(stellenanzeige,Alignment.BOTTOM_LEFT);
+        bottom.setComponentAlignment(stellenanzeige,Alignment.MIDDLE_LEFT);
 
 
         VerticalLayout kontaktandadresse = new VerticalLayout();
-        kontaktandadresse.setWidth("300px");
-        kontaktandadresse.setHeight("200px");
 
-        TextArea kontakte = new TextArea();
+        TextArea kontakte = new TextArea("Kontakt");
         if(!isadmin) kontakte.setValue("Tel " + current.getTelefonnummer());
-        kontakte.setHeight("75px");
+        kontakte.setHeight("50px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
-        kontaktandadresse.setComponentAlignment(kontakte, Alignment.TOP_RIGHT);
 
-        Label platz = new Label("&nbsp;", ContentMode.HTML);
-        kontaktandadresse.addComponent(platz);
+        Label ad = new Label("Adresse");
+        kontaktandadresse.addComponent(ad);
 
 
-        // split
-        HorizontalLayout anfahrt = new HorizontalLayout();
         TextField strasse = new TextField();
         TextField hausNummer = new TextField();
         TextField plz = new TextField();
@@ -118,58 +113,63 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         TextField ort = new TextField();
 
 
+        HorizontalLayout strassehnr = new HorizontalLayout();
 
-
-        strasse.setPlaceholder("Strassenname des Unternehmens");
+        strasse.setPlaceholder("Strasse");
         if(!isadmin){
             Adresse addrUnternehmen = AdresseDAO.getInstance().getAdresse(current.getId());
             String strasseUnternehmen = addrUnternehmen.getStrasse();
             if (strasseUnternehmen.length() != 0) strasse.setValue(strasseUnternehmen);
-            String strNr = addrUnternehmen.getHausnummer(); String ortUnt = addrUnternehmen.getOrt();
+            String strNr = addrUnternehmen.getHausnummer();
+            String ortUnt = addrUnternehmen.getOrt();
             if (strNr.length() != 0) hausNummer.setValue(strNr);
             int plzUnt = addrUnternehmen.getPlz();
             if (plzUnt != 0) plz.setValue(String.valueOf(plzUnt));
-            if (ortUnt.length() != 0) ort.setValue("Bitte eingeben!");
+            if (ortUnt.length() != 0) ort.setValue(ortUnt);
+                else ort.setValue("Bitte eingeben!");
 
         }
-        strasse.setWidth("580px");
+        strasse.setWidth("150px");
         strasse.setHeight("60px");
+        strassehnr.addComponent(strasse);
 
 
-
-        hausNummer.setPlaceholder("Hausnummer des Unternehmens");
-        hausNummer.setWidth("580px");
+        hausNummer.setPlaceholder("Hausnummer");
+        hausNummer.setWidth("130px");
         hausNummer.setHeight("60px");
+        strassehnr.addComponent(hausNummer);
 
 
-
-
-        plz.setPlaceholder("Postleitzahl des Unternehmens");
-        plz.setWidth("580px");
+        HorizontalLayout plzort = new HorizontalLayout();
+        plz.setPlaceholder("Postleitzahl");
+        plz.setWidth("150px");
         plz.setHeight("60px");
 
-        plz.setPlaceholder("Ort des Unternehmens");
+        ort.setPlaceholder("Ort ");
 
-        plz.setWidth("580px");
-        plz.setHeight("60px");
+        ort.setWidth("130px");
+        ort.setHeight("60px");
 
-        anfahrt.addComponents(strasse, hausNummer, plz, ort);
+        plzort.addComponent(plz);
+        plzort.addComponent(ort);
+
+        kontaktandadresse.addComponent(strassehnr);
+        kontaktandadresse.addComponent(plzort);
         // end split
 
-        kontaktandadresse.addComponent(anfahrt);
 
         bottom.addComponent(kontaktandadresse);
-        bottom.setComponentAlignment(kontaktandadresse, Alignment.TOP_RIGHT);
+        bottom.setComponentAlignment(kontaktandadresse,Alignment.MIDDLE_RIGHT);
+
         main.addComponent(bottom);
 
 
         Button speichern = new Button("Speichern");
         main.addComponent(speichern);
-        main.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
-        main.setHeight("700px");
+        main.setComponentAlignment(speichern,Alignment.TOP_CENTER);
 
         this.addComponent(main);
-        this.setHeight("700px");
+        this.setHeight("800px");
         this.setComponentAlignment(main, Alignment.TOP_CENTER);
         // TODO add validators/binders
         speichern.addClickListener(event -> {
