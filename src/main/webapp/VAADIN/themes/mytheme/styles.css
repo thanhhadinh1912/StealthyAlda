@@ -2,7 +2,7 @@
 	background-color: white;
 	border: 0px #ffffff;
 	padding: 10px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	color: #0f2a54;
 }
 
@@ -15408,7 +15408,7 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px !important;
 	height: auto !important;
 	min-width: 100px !important;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	font-size: 25px;
 	-webkit-transition: all 200ms ease-in-out !important;
 	-moz-transition: all 200ms ease-in-out !important;
@@ -15458,13 +15458,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .STARTSEITE-label {
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	font-size: 70px;
 	color: white;
 }
 
 .mytheme .STARTSEITE-label2 {
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	font-size: 20px;
 	color: white;
 }
@@ -15477,7 +15477,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 28px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
@@ -15515,28 +15515,28 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .LOGINSEITE-anmelden {
 	font-size: 25px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-registrieren {
 	font-size: 25px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-willkommen {
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-pwVergessen {
 	font-size: 12px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	display: inline;
 }
 
 .mytheme .LOGINSEITE-check {
 	font-size: 12px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-login {
@@ -15547,7 +15547,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
@@ -15586,7 +15586,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
@@ -15625,7 +15625,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
@@ -15664,7 +15664,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
@@ -15703,7 +15703,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
-	font-family: "OCR A Extended";
+	font-family: "OCR A Extended", sans-serif;
 	padding-top: 0px;
 	padding-right: 5px;
 	padding-bottom: 0px;
