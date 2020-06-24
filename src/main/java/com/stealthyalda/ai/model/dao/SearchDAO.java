@@ -34,7 +34,10 @@ public class SearchDAO extends AbstractDAO{
                 if (!set.next()) break;
                 liste.add(set.getString(1));
             }
-             set2 = statement.executeQuery("SELECT unternehmen FROM stealthyalda.arbeitgeber ");
+             set2 = statement.executeQuery("select distinct a.unternehmen\n" +
+                     "from stealthyalda.arbeitgeber a\n" +
+                     "join stealthyalda.stellenanzeige s\n" +
+                     "on s.arbeitgeber_id = a.arbeitgeber_id");
             while (true){
                 assert set2 != null;
                 if(!set2.next()) break;
