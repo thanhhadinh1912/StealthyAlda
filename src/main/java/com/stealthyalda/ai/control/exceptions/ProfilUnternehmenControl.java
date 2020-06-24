@@ -9,4 +9,9 @@ public class ProfilUnternehmenControl {
 
         return false;
     }
+
+    public void updateBeschreibung() {
+        // continue here. update above DTO
+    }
+
 }

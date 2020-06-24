@@ -120,7 +120,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
             binder.validate();
 
             if (binder.validate().isOk()) {
-                String anrede = (String) userAnrede.getValue();
+                String anrede = userAnrede.getValue().toString();
                 String unternehmen = name.getValue();
                 String userstrasse = strasse.getValue();
                 String hausnummer = nummer.getValue();

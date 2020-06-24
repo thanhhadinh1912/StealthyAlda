@@ -1,9 +1,12 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.LoginControl;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
 
@@ -17,7 +20,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
     public TopPanelStartSeite() {
 
         this.setSizeFull();
-
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/stealthyalda1.png"));
@@ -44,8 +47,13 @@ public class TopPanelStartSeite extends HorizontalLayout {
         Button buttonAnmelden = new Button("Anmelden");
         buttonAnmelden.addStyleName(ValoTheme.BUTTON_LINK);
         buttonAnmelden.addStyleName(t);
+
         buttonAnmelden.addClickListener(event -> {
-            LoginControl.logoutUser();
+            if (user != null) {
+                LoginControl.logoutUser();
+            } else {
+                UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+            }
         });
         gridTop.addComponent(buttonAnmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);

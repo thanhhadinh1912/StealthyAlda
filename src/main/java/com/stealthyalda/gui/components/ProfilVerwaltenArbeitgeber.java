@@ -9,11 +9,12 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.services.util.ImageUploader;
+import com.stealthyalda.services.util.Uploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -26,17 +27,14 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         Arbeitgeber current = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
         VerticalLayout main = new VerticalLayout();
         HorizontalLayout logoandname = new HorizontalLayout();
-        ImageUploader receiver = new ImageUploader();
-        Upload upload = new Upload("", receiver);
-        upload.addSucceededListener(receiver);
-        upload.setButtonCaption("Logo hochladen");
-        upload.setImmediateMode(true);
+
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
                 "/Image/Unknown_profil.png"));
         Image logo = new Image("", resource);
         logoandname.addComponent(logo);
-
+        Uploader x = new Uploader();
+        x.init("basic");
         TextField name = new TextField();
         String nameUnternehmen = current.getUnternehmen();
         name.setPlaceholder("Name des Unternehmens");
@@ -48,10 +46,13 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         logoandname.setComponentAlignment(logo, Alignment.TOP_LEFT);
 
 
-        logoandname.addComponent(upload);
-        logoandname.setComponentAlignment(upload, Alignment.BOTTOM_RIGHT);
+        logoandname.addComponent(x);
+        logoandname.setComponentAlignment(x, Alignment.BOTTOM_RIGHT);
 
         main.addComponent(logoandname);
+
+        HorizontalLayout beschreibungandkontakt = new HorizontalLayout();
+        beschreibungandkontakt.setWidth(PX1000);
 
         // Create the beschreibungDesUnternehmens
         TextArea beschreibungDesUnternehmens = new TextArea("Kurze Beschreibung des Unternehmens");
@@ -75,7 +76,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         if(stellenanzeigen!=null){
             for(int i=0; i<stellenanzeigen.size();i++){
                 StellenanzeigeDTO s = stellenanzeigen.get(i);
-                print.append(Integer.toString(i+1) + ". " + s.getTitel() + "\n");
+                print.append((i + 1) + ". " + s.getTitel() + "\n");
             }
         }
         stellenanzeige.setValue(String.valueOf(print));
@@ -95,22 +96,53 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         kontakte.setHeight("75px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
-        kontaktandadresse.setComponentAlignment(kontakte,Alignment.TOP_RIGHT);
+        kontaktandadresse.setComponentAlignment(kontakte, Alignment.TOP_RIGHT);
 
         Label platz = new Label("&nbsp;", ContentMode.HTML);
         kontaktandadresse.addComponent(platz);
 
-        TextArea anfahrt = new TextArea("Adresse");
-        Adresse a = AdresseDAO.getInstance().getAdresse(user.getId());
-        if (a != null) {
-            anfahrt.setValue(a.toString());
-        }
-        anfahrt.setWidth("300px");
-        anfahrt.setHeight("80px");
+
+        // split
+        HorizontalLayout anfahrt = new HorizontalLayout();
+        TextField strasse = new TextField();
+        Adresse addrUnternehmen = AdresseDAO.getInstance().getAdresse(current.getId());
+        String strasseUnternehmen = addrUnternehmen.getStrasse();
+        strasse.setPlaceholder("Strassenname des Unternehmens");
+        if (strasseUnternehmen.length() != 0) strasse.setValue(strasseUnternehmen);
+        strasse.setWidth("580px");
+        strasse.setHeight("60px");
+
+
+        TextField hausNummer = new TextField();
+        String strNr = addrUnternehmen.getHausnummer();
+        hausNummer.setPlaceholder("Hausnummer des Unternehmens");
+        if (strNr.length() != 0) hausNummer.setValue(strNr);
+        hausNummer.setWidth("580px");
+        hausNummer.setHeight("60px");
+
+
+        TextField plz = new TextField();
+        new NumeralFieldFormatter("", "", 1).extend(plz);
+        int plzUnt = addrUnternehmen.getPlz();
+        plz.setPlaceholder("Postleitzahl des Unternehmens");
+        if (plzUnt != 0) plz.setValue(String.valueOf(plzUnt));
+        plz.setWidth("580px");
+        plz.setHeight("60px");
+
+        TextField ort = new TextField();
+        String ortUnt = addrUnternehmen.getOrt();
+        plz.setPlaceholder("Ort des Unternehmens");
+        if (ortUnt.length() != 0) ort.setValue("Bitte eingeben!");
+        plz.setWidth("580px");
+        plz.setHeight("60px");
+
+        anfahrt.addComponents(strasse, hausNummer, plz, ort);
+        // end split
+
         kontaktandadresse.addComponent(anfahrt);
 
         bottom.addComponent(kontaktandadresse);
-        bottom.setComponentAlignment(kontaktandadresse,Alignment.TOP_RIGHT);
+        bottom.setComponentAlignment(kontaktandadresse, Alignment.TOP_RIGHT);
         main.addComponent(bottom);
 
 
@@ -140,6 +172,8 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
             company.setUnternehmen(unternehmensName);
             company.setTelefonnummer(telefonNummer);
             company.setArbeitgeberId(current.getArbeitgeberId());
+            company.setAdresse(new Adresse(strasse.getValue(), Integer.parseInt(plz.getValue()), hausNummer.getValue(), ort.getValue()));
+            // TODO: implement unnecessary updates when nothing has changed
             pc.updateProfileUnternehmen(company, new Adresse());
         });
 

@@ -86,6 +86,6 @@ public class AdresseDAO extends AbstractDAO {
             closeResultset(set);
         }
 
-        return null;
+        return new Adresse();
     }
 }
