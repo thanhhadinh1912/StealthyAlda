@@ -15,12 +15,16 @@ public class KontoControl {
 
     public boolean changekonto(String email, String altpassword, String neupassword) {
         Boolean check = false;
+        if (altpassword.equals(neupassword)) {
+            return check; // ;)
+        }
         try {
             check = BenutzerDAO.getInstance().changepassword(email, altpassword, neupassword);
         } catch (DatabaseException e) {
             Logger.getLogger(KontoControl.class.getName()).log(Level.SEVERE, e.getReason(), e);
             return false;
         }
+
         return check;
     }
 }

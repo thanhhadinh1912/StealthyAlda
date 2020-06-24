@@ -1,9 +1,9 @@
 .login .v-panel-content {
-	background-color: white;
-	border: 0px #ffffff;
-	padding: 10px;
-	font-family: "OCR A Extended";
-	color: #0f2a54;
+    background-color: white;
+    border: 0px #ffffff;
+    padding: 10px;
+    font-family: "OCR A Extended", sans-serif;
+    color: #0f2a54;
 }
 
 .layout-with-border {
@@ -15401,19 +15401,19 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .link {
-	padding: 5px 10px !important;
-	background-color: transparent !important;
-	color: black !important;
-	border: 1px solid transparent !important;
-	border-radius: 4px !important;
-	height: auto !important;
-	min-width: 100px !important;
-	font-family: "OCR A Extended";
-	font-size: 25px;
-	-webkit-transition: all 200ms ease-in-out !important;
-	-moz-transition: all 200ms ease-in-out !important;
-	-o-transition: all 200ms ease-in-out !important;
-	transition: all 200ms ease-in-out !important;
+    padding: 5px 10px !important;
+    background-color: transparent !important;
+    color: black !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    height: auto !important;
+    min-width: 100px !important;
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 25px;
+    -webkit-transition: all 200ms ease-in-out !important;
+    -moz-transition: all 200ms ease-in-out !important;
+    -o-transition: all 200ms ease-in-out !important;
+    transition: all 200ms ease-in-out !important;
 }
 
 .mytheme .link:hover {
@@ -15458,34 +15458,34 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .STARTSEITE-label {
-	font-family: "OCR A Extended";
-	font-size: 70px;
-	color: white;
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 70px;
+    color: white;
 }
 
 .mytheme .STARTSEITE-label2 {
-	font-family: "OCR A Extended";
-	font-size: 20px;
-	color: white;
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 20px;
+    color: white;
 }
 
 .mytheme .STARTSEITE-los {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #00A2E8;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 28px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00A2E8;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .STARTSEITE-los span {
@@ -15514,48 +15514,48 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .LOGINSEITE-anmelden {
-	font-size: 25px;
-	font-family: "OCR A Extended";
+    font-size: 25px;
+    font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-registrieren {
-	font-size: 25px;
-	font-family: "OCR A Extended";
+    font-size: 25px;
+    font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-willkommen {
-	font-size: 20px;
-	font-family: "OCR A Extended";
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-pwVergessen {
-	font-size: 12px;
-	font-family: "OCR A Extended";
-	display: inline;
+    font-size: 12px;
+    font-family: "OCR A Extended", sans-serif;
+    display: inline;
 }
 
 .mytheme .LOGINSEITE-check {
-	font-size: 12px;
-	font-family: "OCR A Extended";
+    font-size: 12px;
+    font-family: "OCR A Extended", sans-serif;
 }
 
 .mytheme .LOGINSEITE-login {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .LOGINSEITE-login span {
@@ -15579,22 +15579,22 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .REGISTERSEITE-registrieren {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .LOGINSEITE-registrieren span {
@@ -15618,22 +15618,22 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .REGISTERSEITEArbeitgeber-registrieren {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .REGISTERSEITEArbeitgeber-registrieren span {
@@ -15657,22 +15657,22 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .REGISTERSEITEStudent-registrieren {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .REGISTERSEITEStudent-registrieren span {
@@ -15696,22 +15696,22 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .SUCHSEITE-suchen {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended";
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .SUCHSEITE-suchen span {

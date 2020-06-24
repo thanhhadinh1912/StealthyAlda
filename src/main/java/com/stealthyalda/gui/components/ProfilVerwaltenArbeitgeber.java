@@ -1,7 +1,6 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.ProfilArbeitgeberControl;
-import com.stealthyalda.ai.control.exceptions.ProfilUnternehmenControl;
 import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dtos.Adresse;
@@ -12,19 +11,17 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.util.Uploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import java.io.File;
-import java.time.LocalDate;
 import java.util.List;
 
-public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
+public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
     private static final String PX1000 = "1000px";
 
     public ProfilVerwaltenArbeitgeber(Benutzer user) {
-        boolean isadmin = user.getRole().equals("admin");
+        super(user);
         Arbeitgeber current = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
         VerticalLayout main = new VerticalLayout();
         HorizontalLayout logoandname = new HorizontalLayout();
@@ -38,19 +35,18 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         x.init("basic");
         TextField name = new TextField();
         name.setPlaceholder("Name des Unternehmens");
-        if(!isadmin) {
+        if (!isAdmin) {
             String nameUnternehmen = current.getUnternehmen();
             if (nameUnternehmen.length() != 0) name.setValue(nameUnternehmen);
         }
         name.setWidth("580px");
-        name.setHeight("60px");
+        name.setHeight("50px");
         logoandname.addComponent(name);
-        logoandname.setComponentAlignment(name, Alignment.BOTTOM_CENTER);
-        logoandname.setComponentAlignment(logo, Alignment.TOP_LEFT);
+        logoandname.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 
 
         logoandname.addComponent(x);
-        logoandname.setComponentAlignment(x, Alignment.BOTTOM_RIGHT);
+        logoandname.setComponentAlignment(x, Alignment.MIDDLE_RIGHT);
 
         main.addComponent(logoandname);
 
@@ -59,7 +55,7 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
 
         // Create the beschreibungDesUnternehmens
         TextArea beschreibungDesUnternehmens = new TextArea("Kurze Beschreibung des Unternehmens");
-        if(!isadmin) {
+        if (!isAdmin) {
             String beschreibung = current.getBeschreibung();
             if (beschreibung != null) {
                 beschreibungDesUnternehmens.setValue(current.getBeschreibung());
@@ -70,47 +66,43 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         main.addComponent(beschreibungDesUnternehmens);
         main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
+
         HorizontalLayout bottom = new HorizontalLayout();
-        bottom.setHeight("240px");
 
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
-        if(!isadmin) {
+        stellenanzeige.setPlaceholder("Stellenanzeige");
+        if (!isAdmin) {
             StringBuilder print = new StringBuilder();
             ProfilArbeitgeberControl profilArbeitgeberControl = new ProfilArbeitgeberControl();
             List<StellenanzeigeDTO> stellenanzeigen = profilArbeitgeberControl.getStellenanzeige(current.getUnternehmen());
             if (stellenanzeigen != null) {
                 for (int i = 0; i < stellenanzeigen.size(); i++) {
                     StellenanzeigeDTO s = stellenanzeigen.get(i);
-                    print.append((i + 1) + ". " + s.getTitel() + "\n");
+                    print.append(i + 1).append(". ").append(s.getTitel()).append("\n");
                 }
             }
             stellenanzeige.setValue(String.valueOf(print));
         }
         stellenanzeige.setReadOnly(true);
-        stellenanzeige.setWidth("650px");
-        stellenanzeige.setHeight("200px");
+        stellenanzeige.setWidth("645px");
+        stellenanzeige.setHeight("250px");
         bottom.addComponent(stellenanzeige);
-        bottom.setComponentAlignment(stellenanzeige,Alignment.BOTTOM_LEFT);
+        bottom.setComponentAlignment(stellenanzeige, Alignment.MIDDLE_LEFT);
 
 
         VerticalLayout kontaktandadresse = new VerticalLayout();
-        kontaktandadresse.setWidth("300px");
-        kontaktandadresse.setHeight("200px");
 
-        TextArea kontakte = new TextArea();
-        if(!isadmin) kontakte.setValue("Tel " + current.getTelefonnummer());
-        kontakte.setHeight("75px");
+        TextArea kontakte = new TextArea("Kontakt");
+        if (!isAdmin) kontakte.setValue("Tel " + current.getTelefonnummer());
+        kontakte.setHeight("50px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
-        kontaktandadresse.setComponentAlignment(kontakte, Alignment.TOP_RIGHT);
 
-        Label platz = new Label("&nbsp;", ContentMode.HTML);
-        kontaktandadresse.addComponent(platz);
+        Label ad = new Label("Adresse");
+        kontaktandadresse.addComponent(ad);
 
 
-        // split
-        HorizontalLayout anfahrt = new HorizontalLayout();
         TextField strasse = new TextField();
         TextField hausNummer = new TextField();
         TextField plz = new TextField();
@@ -118,80 +110,86 @@ public class ProfilVerwaltenArbeitgeber extends VerticalLayout {
         TextField ort = new TextField();
 
 
+        HorizontalLayout strassehnr = new HorizontalLayout();
 
+        strasse.setPlaceholder("Strasse");
 
-        strasse.setPlaceholder("Strassenname des Unternehmens");
-        if(!isadmin){
+        if (!isAdmin) {
             Adresse addrUnternehmen = AdresseDAO.getInstance().getAdresse(current.getId());
             String strasseUnternehmen = addrUnternehmen.getStrasse();
             if (strasseUnternehmen.length() != 0) strasse.setValue(strasseUnternehmen);
-            String strNr = addrUnternehmen.getHausnummer(); String ortUnt = addrUnternehmen.getOrt();
+            String strNr = addrUnternehmen.getHausnummer();
+            String ortUnt = addrUnternehmen.getOrt();
             if (strNr.length() != 0) hausNummer.setValue(strNr);
             int plzUnt = addrUnternehmen.getPlz();
             if (plzUnt != 0) plz.setValue(String.valueOf(plzUnt));
-            if (ortUnt.length() != 0) ort.setValue("Bitte eingeben!");
+            if (ortUnt.length() != 0) ort.setValue(ortUnt);
+            else ort.setValue("Bitte eingeben!");
 
         }
-        strasse.setWidth("580px");
+        strasse.setWidth("150px");
         strasse.setHeight("60px");
+        strassehnr.addComponent(strasse);
 
 
-
-        hausNummer.setPlaceholder("Hausnummer des Unternehmens");
-        hausNummer.setWidth("580px");
+        hausNummer.setPlaceholder("Hausnummer");
+        hausNummer.setCaption("Hausnummer");
+        hausNummer.setWidth("130px");
         hausNummer.setHeight("60px");
+        strassehnr.addComponent(hausNummer);
 
 
-
-
-        plz.setPlaceholder("Postleitzahl des Unternehmens");
-        plz.setWidth("580px");
+        HorizontalLayout plzort = new HorizontalLayout();
+        plz.setCaption("Postleitzahl");
+        plz.setPlaceholder("Postleitzahl");
+        plz.setWidth("150px");
         plz.setHeight("60px");
 
-        plz.setPlaceholder("Ort des Unternehmens");
+        ort.setPlaceholder("Ort ");
 
-        plz.setWidth("580px");
-        plz.setHeight("60px");
+        ort.setWidth("130px");
+        ort.setHeight("60px");
 
-        anfahrt.addComponents(strasse, hausNummer, plz, ort);
+        plzort.addComponent(plz);
+        plzort.addComponent(ort);
+
+        kontaktandadresse.addComponent(strassehnr);
+        kontaktandadresse.addComponent(plzort);
         // end split
 
-        kontaktandadresse.addComponent(anfahrt);
 
         bottom.addComponent(kontaktandadresse);
-        bottom.setComponentAlignment(kontaktandadresse, Alignment.TOP_RIGHT);
+        bottom.setComponentAlignment(kontaktandadresse, Alignment.MIDDLE_RIGHT);
+
         main.addComponent(bottom);
 
 
         Button speichern = new Button("Speichern");
         main.addComponent(speichern);
-        main.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
-        main.setHeight("700px");
+        main.setComponentAlignment(speichern, Alignment.TOP_CENTER);
 
         this.addComponent(main);
-        this.setHeight("700px");
+        this.setHeight("800px");
         this.setComponentAlignment(main, Alignment.TOP_CENTER);
         // TODO add validators/binders
         speichern.addClickListener(event -> {
-            ProfilUnternehmenControl pc = new ProfilUnternehmenControl();
+            ProfilArbeitgeberControl pc = new ProfilArbeitgeberControl();
             String unternehmensName = name.getValue();
             String beschreibungKurz = beschreibungDesUnternehmens.getValue();
             String telefonNummer = kontakte.getValue();
-            String stellenAnzeige = stellenanzeige.getValue();
-            // TODO save address too
-            UnternehmenDTO company = new UnternehmenDTO();
-            StellenanzeigeDTO jobOffer = new StellenanzeigeDTO();
-            jobOffer.setArbeitgeber(unternehmensName);
-            jobOffer.setBeschreibung(stellenAnzeige);
-            jobOffer.setDatum(LocalDate.now());
 
+
+            UnternehmenDTO company = new UnternehmenDTO();
             company.setBeschreibung(beschreibungKurz);
             company.setUnternehmen(unternehmensName);
             company.setTelefonnummer(telefonNummer);
             company.setArbeitgeberId(current.getArbeitgeberId());
             company.setAdresse(new Adresse(strasse.getValue(), Integer.parseInt(plz.getValue()), hausNummer.getValue(), ort.getValue()));
+            company.getAdresse().setAdresseID(user.getAdresseId());
+
+
             // TODO: implement unnecessary updates when nothing has changed
-            pc.updateProfileUnternehmen(company, new Adresse());
+            pc.updateArbeitgeberprofil(company);
         });
 
     }

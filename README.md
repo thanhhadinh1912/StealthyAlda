@@ -1,5 +1,5 @@
-StealthyAlda - Develop 
+StealthyAlda
 ==============
 
-Use this to sandbox
+Where murphy lives
 
