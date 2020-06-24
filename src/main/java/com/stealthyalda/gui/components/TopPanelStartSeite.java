@@ -15,6 +15,8 @@ import java.io.File;
 
 public class TopPanelStartSeite extends HorizontalLayout {
     private final String t = "toppanelbutton";
+    public static final String CLASSNAME ="TopPanelSTART";
+
 
 
     public TopPanelStartSeite() {
@@ -23,10 +25,12 @@ public class TopPanelStartSeite extends HorizontalLayout {
         Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
         FileResource resource = new FileResource(new File(basepath +
-                "/Image/stealthyalda1.png"));
+                "/Image/stealthyalda.png"));
         Image logo = new Image("", resource);
         GridLayout gridTop = new GridLayout(8, 1);
         gridTop.setSizeFull();
+        logo.setPrimaryStyleName(CLASSNAME + "-logo");
+
 
         gridTop.addComponent(logo, 0, 0);
         Button buttonFuerStudent = new Button("Für Studenten");
@@ -37,7 +41,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
         buttonFuerStudent.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFUERSTUDENT));
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
-        Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
+        Button buttonFuerArbeitgeber = new Button("Für Unternehmen");
         buttonFuerArbeitgeber.addStyleName(t);
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFUERARBEITGEBER));

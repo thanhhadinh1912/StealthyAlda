@@ -30,6 +30,8 @@ import static com.stealthyalda.services.util.Roles.STUDENT;
 public class Registerseite extends Register {
     private String register;
     private String password;
+    public static final String CLASSNAME ="REGISTERSEITE";
+
 
 
     public void setUp() {

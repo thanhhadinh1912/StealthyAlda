@@ -28,6 +28,9 @@ import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
+    public static final String CLASSNAME ="SUCHSEITE";
+
+
     private transient StellenanzeigeDTO selected = null;
     private List<StellenanzeigeDTO> liste = null;
 
@@ -40,6 +43,7 @@ public class Suchseite extends VerticalLayout implements View {
 
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        button.setPrimaryStyleName(CLASSNAME + "-suchen");
 
 
         ComboBox<String> search = new ComboBox<>();

@@ -2,22 +2,8 @@
 	background-color: white;
 	border: 0px #ffffff;
 	padding: 10px;
-	font-family: Verdana, sans-serif;
+	font-family: "OCR A Extended";
 	color: #0f2a54;
-}
-
-.headlabel {
-	font-family: Verdana, sans-serif;
-	color: #0f2a54;
-	padding: 10px;
-	font-size: 14px;
-}
-
-.loggedLabel {
-	font-family: Verdana, sans-serif;
-	color: #0f2a54;
-	padding: 10px;
-	font-size: 14px;
 }
 
 .layout-with-border {
@@ -1820,14 +1806,10 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme.v-app, .mytheme.v-app-loading {
-	font: 300 18px/1.55 sans-serif;
+	font: 300 18px/1.55 "OCR A Extended";
 	color: #acc0df;
 	background-color: #0f2a54;
 	cursor: default;
-}
-
-.v-mac .mytheme.v-app, .v-mac .mytheme.v-app-loading {
-	font-family: "Helvetica Neue", sans-serif;
 }
 
 .mytheme .v-app-loading {
@@ -15426,7 +15408,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px !important;
 	height: auto !important;
 	min-width: 100px !important;
-	font-size: small !important;
+	font-family: "OCR A Extended";
+	font-size: 25px;
 	-webkit-transition: all 200ms ease-in-out !important;
 	-moz-transition: all 200ms ease-in-out !important;
 	-o-transition: all 200ms ease-in-out !important;
@@ -15437,10 +15420,6 @@ div.v-layout.v-horizontal.v-widget {
 	color: white !important;
 	background-color: #464646 !important;
 	text-decoration: none !important;
-}
-
-.mytheme .v-button .v-button-caption {
-	color: black;
 }
 
 .mytheme .v-textfield {
@@ -15464,10 +15443,293 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .startseite .v-loggedLabel .v-loggedLabel-caption {
+.mytheme .suchseite .v-layout {
+	border: 1px solid black;
+}
+
+.mytheme .v-button {
+	color: white;
+	background: #0be881;
+}
+
+.mytheme .TopPanelSTART-logo {
+	height: 270px;
+	width: 270px;
+}
+
+.mytheme .STARTSEITE-label {
+	font-family: "OCR A Extended";
+	font-size: 70px;
 	color: white;
 }
 
-.mytheme .suchseite .v-layout {
-	border: 1px solid black;
+.mytheme .STARTSEITE-label2 {
+	font-family: "OCR A Extended";
+	font-size: 20px;
+	color: white;
+}
+
+.mytheme .STARTSEITE-los {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #00A2E8;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 28px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.mytheme .STARTSEITE-los span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.8s;
+}
+
+.mytheme .STARTSEITE-los span:after {
+	content: "\00bb";
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.8s;
+}
+
+.mytheme .STARTSEITE-los:hover span {
+	padding-right: 25px;
+}
+
+.mytheme .STARTSEITE-los:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .LOGINSEITE-anmelden {
+	font-size: 25px;
+	font-family: "OCR A Extended";
+}
+
+.mytheme .LOGINSEITE-registrieren {
+	font-size: 25px;
+	font-family: "OCR A Extended";
+}
+
+.mytheme .LOGINSEITE-willkommen {
+	font-size: 20px;
+	font-family: "OCR A Extended";
+}
+
+.mytheme .LOGINSEITE-pwVergessen {
+	font-size: 12px;
+	font-family: "OCR A Extended";
+	display: inline;
+}
+
+.mytheme .LOGINSEITE-check {
+	font-size: 12px;
+	font-family: "OCR A Extended";
+}
+
+.mytheme .LOGINSEITE-login {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #3C96D2;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.mytheme .LOGINSEITE-login span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-login span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-login:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITE-registrieren {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #3C96D2;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.mytheme .LOGINSEITE-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #3C96D2;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: #3C96D2;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .SUCHSEITE-suchen {
+	display: inline;
+	border-radius: 4px;
+	background-color: #3C96D2;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	font-family: "OCR A Extended";
+	padding-top: 0px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+	padding-left: 5px;
+	width: 150px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 0.5px;
+}
+
+.mytheme .SUCHSEITE-suchen span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .SUCHSEITE-suchen span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .SUCHSEITE-suchen:hover span:after {
+	opacity: 1;
+	right: 0;
 }

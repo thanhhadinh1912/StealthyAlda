@@ -48,7 +48,8 @@ $v-textfield-bevel: false;
 $v-textfield-shadow: false;
 $v-border: 1px solid (v-tint 1.5);
 $v-textfield-background-color: $v-background-color;
-$v-font-family: sans-serif;
+//$v-font-family: sans-serif;
+$v-font-family: "OCR A Extended";
 $v-font-size: 18px;
 
 .body {
@@ -57,36 +58,39 @@ $v-font-size: 18px;
   //$v-background-image: url("Image/background_home.jpg");
 }
 
+//LOGINSEITE
 .login .v-panel-content {
   background-color: white;
   border: 0px #ffffff;
   padding: 10px;
-  font-family: Verdana, sans-serif;;
+  font-family: "OCR A Extended";
   color: #0f2a54;
   //background-image: url("Image/background_home.jpg");
 }
 
 
-.headlabel {
+//.headlabel {
+// font-family: Verdana, sans-serif;;
+//color: #0f2a54;
+//color: palegreen;
+// padding: 10px;
+// font-size: 14px;
 
-  font-family: Verdana, sans-serif;;
-  color: #0f2a54;
-  padding: 10px;
-  font-size: 14px;
+//}
 
-}
+//.loggedLabel {
+// font-family: Verdana, sans-serif;;
+// color: #0f2a54;
+// padding: 10px;
+// font-size: 14px;
 
-.loggedLabel {
-  font-family: Verdana, sans-serif;;
-  color: #0f2a54;
-  padding: 10px;
-  font-size: 14px;
-
-}
+//}
 
 .layout-with-border {
   border: 1px solid black;
 }
+
+
 
 
 @import "../valo/valo.scss";
@@ -102,7 +106,9 @@ $v-font-size: 18px;
     border-radius: 4px !important;
     height: auto !important;
     min-width: 100px !important;
-    font-size: small !important;
+    font-family: "OCR A Extended";
+    //font-size: small !important;
+    font-size: 25px;
     -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
     -moz-transition: all 200ms ease-in-out !important; /* WebKit */
     -o-transition: all 200ms ease-in-out !important; /* Opera */
@@ -114,14 +120,8 @@ $v-font-size: 18px;
     background-color: #464646 !important;
     text-decoration: none !important;
   }
-  .v-button {
-    //margin: 10px;
 
-    /* A nested selector to increase specificity */
-    .v-button-caption {
-      color: black;
-    }
-  }
+  //TEXTFELDER
   .v-textfield {
     background-color: white;
 
@@ -141,21 +141,329 @@ $v-font-size: 18px;
       color: white;
     }
   }
-  .v-background {
-    //image: url("Image/background_home.jpg");
-  }
-  .startseite {
-    .v-loggedLabel {
-      .v-loggedLabel-caption {
-        color: white;
-      }
-    }
-  }
+
   .suchseite {
     .v-layout {
       border: 1px solid black;;
     }
   }
+  .v-button{
+    color: white;
+    background: #0be881;
+  }
+
+  //----------------------------------------------------\\
 
 
+
+  //TopPanelSTART -> LOGO
+  .TopPanelSTART-logo{
+    height: 270px;
+    width: 270px;
+  }
+
+  //--------------------STARTSEITE-----------------------------\\
+
+  //Startseite LABEL-ANFANG
+  .STARTSEITE-label{
+    font-family: "OCR A Extended";
+    font-size: 70px;
+    color: white;
+  }
+  //Startseite LABEL-ENDE
+
+  //Startseite LABEL2-ANFANG
+  .STARTSEITE-label2{
+    font-family: "OCR A Extended";
+    font-size: 20px;
+    color: white;
+  }
+  //Startseite LABEL2-ENDE
+
+
+  //Startseite Button -LOS ANFANG
+  .STARTSEITE-los {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00A2E8;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .STARTSEITE-los span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.8s;
+  }
+
+  .STARTSEITE-los span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.8s;
+  }
+
+  .STARTSEITE-los:hover span {
+    padding-right: 25px;
+  }
+
+  .STARTSEITE-los:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  //Startseite Button -LOS ENDE
+
+  //------------------------LOGINSEITE-----------------\\
+
+  //LOGINSEITE Button oben Anmelden
+  .LOGINSEITE-anmelden{
+    font-size: 25px;
+    font-family: "OCR A Extended";
+  }
+
+  //LOGINSEITE Button oben Registrieren
+  .LOGINSEITE-registrieren{
+    font-size: 25px;
+    font-family: "OCR A Extended";
+  }
+
+  //LOGINSEITE LABEL Willkommen zurück
+  .LOGINSEITE-willkommen{
+    font-size: 20px;
+    font-family: "OCR A Extended";
+  }
+  //LOGINSEITE Button Password vergessen
+  .LOGINSEITE-pwVergessen{
+    font-size: 12px;
+    font-family: "OCR A Extended";
+    display: inline;
+  }
+  //LOGINSEITE Checkbox Angemeldet bleiben
+  .LOGINSEITE-check{
+    font-size: 12px;
+    font-family: "OCR A Extended";
+  }
+
+  //Loginseite Button -LOGIN ANFANG
+  .LOGINSEITE-login {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .LOGINSEITE-login span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .LOGINSEITE-login span:after {
+    //content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .LOGINSEITE-login:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  //Loginseite Button -LOGIN ENDE
+
+
+  //------------------REGISTRIERSEITE-----------\\
+
+  .REGISTERSEITE-registrieren{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .LOGINSEITE-registrieren span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .LOGINSEITE-registrieren span:after {
+    //content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .LOGINSEITE-registrieren:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  //------------------REGISTRIERSEITEArbeitgeber-----------\\
+
+  .REGISTERSEITEArbeitgeber-registrieren{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .REGISTERSEITEArbeitgeber-registrieren span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .REGISTERSEITEArbeitgeber-registrieren span:after {
+    //content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .REGISTERSEITEArbeitgeber-registrieren:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+  //------------------REGISTRIERSEITEStudent-----------\\
+
+  .REGISTERSEITEStudent-registrieren{
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .REGISTERSEITEStudent-registrieren span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .REGISTERSEITEStudent-registrieren span:after {
+    //content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .REGISTERSEITEStudent-registrieren:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  //------------------SUCHSEITE-----------\\
+
+  .SUCHSEITE-suchen{
+    display: inline;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended";
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 0.5px;
+  }
+
+  .SUCHSEITE-suchen span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .SUCHSEITE-suchen span:after {
+    //content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+
+  .SUCHSEITE-suchen:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
 }
