@@ -38,7 +38,9 @@ public class RegWeiterStudent extends Register {
         panel.setHeight("50px");
         this.addComponent(panel);
         setMargin(true);
-        Titel label = new Titel("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        Label label = new Label("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        label.addStyleName("mytitle");
+        label.addStyleName(ValoTheme.LABEL_H1);
         haupt.addComponent(label);
         haupt.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
         final ComboBox<String> userAnrede = new AnredeField();

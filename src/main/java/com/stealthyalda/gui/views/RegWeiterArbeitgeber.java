@@ -42,7 +42,9 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         panel.setHeight("50px");
         this.addComponent(panel);
         setMargin(true);
-        Titel titel = new Titel("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        Label titel = new Label("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        titel.addStyleName("mytitle");
+        titel.addStyleName(ValoTheme.LABEL_H1);
         main.addComponent(titel);
         final AnredeField userAnrede = new AnredeField();
         main.addComponent(userAnrede);

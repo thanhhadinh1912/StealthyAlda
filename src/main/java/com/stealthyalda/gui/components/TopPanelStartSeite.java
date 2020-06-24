@@ -1,5 +1,6 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -43,7 +44,9 @@ public class TopPanelStartSeite extends HorizontalLayout {
         Button buttonAnmelden = new Button("Anmelden");
         buttonAnmelden.addStyleName(ValoTheme.BUTTON_LINK);
         buttonAnmelden.addStyleName(t);
-        buttonAnmelden.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.LOGIN));
+        buttonAnmelden.addClickListener(event -> {
+            LoginControl.logoutUser();
+        });
         gridTop.addComponent(buttonAnmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);
         gridTop.setComponentAlignment(buttonFuerArbeitgeber, Alignment.MIDDLE_RIGHT);
