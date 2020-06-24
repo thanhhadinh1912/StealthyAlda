@@ -12,6 +12,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.*;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
@@ -136,7 +137,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
                     ag.setUnternehmen(unternehmen);
 
                     r.registerArbeitgeber(ag, anrede);
-                    ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ");
+                    ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ", Views.LOGIN);
                     ((MyUI) UI.getCurrent()).setBenutzer(null);
                     UI.getCurrent().addWindow(window);
                 } catch (Exception ex) {

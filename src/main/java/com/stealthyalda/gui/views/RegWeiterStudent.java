@@ -12,6 +12,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.*;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
@@ -154,7 +155,7 @@ public class RegWeiterStudent extends Register {
                 } catch (Exception e) {
                     Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
                 }
-                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!");
+                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!", Views.LOGIN);
                 UI.getCurrent().addWindow(window);
             } else {
                 Notification.show(FEHLER, "Beachten Sie die Hinweise neben den Feldern!", Notification.Type.ERROR_MESSAGE);

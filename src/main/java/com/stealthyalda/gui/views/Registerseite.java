@@ -6,8 +6,7 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.gui.windows.ConfirmRegArbeitgeber;
-import com.stealthyalda.gui.windows.ConfirmRegStudent;
+import com.stealthyalda.gui.windows.ConfirmReg;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.data.Binder;
@@ -156,10 +155,10 @@ public class Registerseite extends Register {
                 current.setId(new Integer(VaadinSession.getCurrent().getAttribute("userId").toString()));
                 ((MyUI) UI.getCurrent()).setBenutzer(current);
                 if (role.equals(STUDENT)) {
-                    ConfirmRegStudent window = new ConfirmRegStudent("Richten Sie Ihr Konto ein!");
+                    ConfirmReg window = new ConfirmReg("Richten Sie Ihr Konto ein!",Views.REGWEITERS);
                     UI.getCurrent().addWindow(window);
                 } else {
-                    ConfirmRegArbeitgeber windowa = new ConfirmRegArbeitgeber("Richten Sie Ihr Konto ein!");
+                    ConfirmReg windowa = new ConfirmReg("Richten Sie Ihr Konto ein!",Views.REGWEITERA);
                     UI.getCurrent().addWindow(windowa);
                 }
 

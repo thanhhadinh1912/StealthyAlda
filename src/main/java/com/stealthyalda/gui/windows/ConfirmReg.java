@@ -14,7 +14,7 @@ import com.vaadin.ui.*;
  */
 public class ConfirmReg extends Window {
 
-    public ConfirmReg(String text) {
+    public ConfirmReg(String text, String view) {
         super("Success!"); //Set Window caption
         center();
 
@@ -28,7 +28,7 @@ public class ConfirmReg extends Window {
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         button.addClickListener(clickEvent -> {
             close();
-            UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+            UI.getCurrent().getNavigator().navigateTo(view);
 
         });
         content.addComponent(button);
