@@ -9,7 +9,7 @@ import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.model.dtos.Adresse;
 import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.components.*;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
 import com.vaadin.data.validator.RegexpValidator;
@@ -33,112 +33,64 @@ public class RegWeiterStudent extends Register {
 
     public void setUp() {
         TopPanelStartSeite panel = new TopPanelStartSeite();
+        VerticalLayout haupt = new VerticalLayout();
+        haupt.setWidth(WIDTH);
         panel.setHeight("50px");
         this.addComponent(panel);
         setMargin(true);
-        Label label = new Label("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
-        label.addStyleName("mytitle");
-        label.addStyleName(ValoTheme.LABEL_H1);
-        this.addComponent(label);
-        this.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
-        final ComboBox<String> userAnrede = new ComboBox<>();
-//
-// Add some items
-        userAnrede.setItems("Herr", "Frau");
-        userAnrede.setPlaceholder("Anrede");
-        userAnrede.setWidth(WIDTH);
-        this.addComponent(userAnrede);
-        this.setComponentAlignment(userAnrede, Alignment.MIDDLE_CENTER);
-
+        Titel label = new Titel("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        haupt.addComponent(label);
+        haupt.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+        final ComboBox<String> userAnrede = new AnredeField();
+        haupt.addComponent(userAnrede);
 
         HorizontalLayout hl1 = new HorizontalLayout();
-        hl1.setWidth(WIDTH);
-        final TextField vorname = new TextField();
-        vorname.setPlaceholder("Vorname");
-        vorname.setWidth(w);
+        hl1.setWidth("515px");
+        final TextFieldForRegWeiter vorname = new TextFieldForRegWeiter("Vorname",w);
         hl1.addComponent(vorname);
         hl1.setComponentAlignment(vorname, Alignment.MIDDLE_LEFT);
 
-        final TextField nachname = new TextField();
-        nachname.setPlaceholder("Nachname");
-        nachname.setWidth(w2);
+        final TextFieldForRegWeiter nachname = new TextFieldForRegWeiter("Nachname", w2);
         hl1.addComponent(nachname);
         hl1.setComponentAlignment(nachname, Alignment.MIDDLE_RIGHT);
 
-        this.addComponent(hl1);
-        this.setComponentAlignment(hl1, Alignment.MIDDLE_CENTER);
+        haupt.addComponent(hl1);
 
-        HorizontalLayout hl2 = new HorizontalLayout();
-        hl2.setWidth(WIDTH);
-        final TextField email = new TextField();
-        email.setPlaceholder("E-Mail");
-        email.setWidth(w);
-        email.setValue(user.getEmail());
-        email.setReadOnly(true);
-        hl2.addComponent(email);
-        hl2.setComponentAlignment(email, Alignment.MIDDLE_LEFT);
+        EmailPasworrtField hl2 = new EmailPasworrtField(user);
 
-        final PasswordField passwort = new PasswordField();
-        passwort.setPlaceholder("Passwort");
-        passwort.setValue(user.getPasswort());
-        passwort.setWidth(w2);
-        passwort.setReadOnly(true);
-        hl2.addComponent(passwort);
-        hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
-
-        this.addComponent(hl2);
-        this.setComponentAlignment(hl2, Alignment.MIDDLE_CENTER);
+        haupt.addComponent(hl2);
 
         /// start edits
-        HorizontalLayout hl3 = new HorizontalLayout();
-        hl3.setWidth(WIDTH);
-        hl3.setSpacing(true);
-
-        HorizontalLayout streetNrPlz = new HorizontalLayout();
-        streetNrPlz.setSpacing(true);
-        streetNrPlz.setWidth(w);
+        HorizontalLayout streetNr = new HorizontalLayout();
+        streetNr.setSpacing(true);
+        streetNr.setWidth("515px");
 
 
-        final TextField strasse = new TextField();
-        strasse.setPlaceholder("Straße");
-        strasse.setWidth("75%");
-        hl3.addComponent(strasse);
-        hl3.setComponentAlignment(strasse, Alignment.MIDDLE_LEFT);
+        final TextFieldForRegWeiter strasse = new TextFieldForRegWeiter("Straße", w);
+        streetNr.addComponent(strasse);
 
 
-        final TextField plz = new TextField();
-        plz.setPlaceholder("PLZ");
-        plz.setWidth("75%");
-        streetNrPlz.addComponent(plz);
-        streetNrPlz.setComponentAlignment(plz, Alignment.MIDDLE_LEFT);
+        final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", w2);
+        streetNr.addComponent(nummer);
+        streetNr.setComponentAlignment(nummer,Alignment.MIDDLE_RIGHT);
 
+        final HorizontalLayout plzort = new HorizontalLayout();
+        plzort.setWidth("515px");
 
-        final TextField nummer = new TextField();
-        nummer.setPlaceholder("Nr");
-        nummer.setWidth("55%");
-        streetNrPlz.addComponent(nummer);
-        streetNrPlz.setComponentAlignment(nummer, Alignment.MIDDLE_CENTER);
+        final TextFieldForRegWeiter plz = new TextFieldForRegWeiter("PLZ", w);
+        plzort.addComponent(plz);
 
+        haupt.addComponent(streetNr);
 
-        hl3.addComponent(streetNrPlz);
-        hl3.setComponentAlignment(streetNrPlz, Alignment.MIDDLE_LEFT);
+        final TextFieldForRegWeiter ort = new TextFieldForRegWeiter("Ort", w2);
+        plzort.addComponent(ort);
+        plzort.setComponentAlignment(ort, Alignment.MIDDLE_RIGHT);
 
-        /// end edits
+        haupt.addComponent(plzort);
 
-        this.addComponent(hl3);
-        this.setComponentAlignment(hl3, Alignment.MIDDLE_CENTER);
+        final TextFieldForRegWeiter telefon = new TextFieldForRegWeiter("Telefon", WIDTH);
+        haupt.addComponent(telefon);
 
-        final TextField ort = new TextField();
-        ort.setPlaceholder("Ort");
-        ort.setWidth(WIDTH);
-        this.addComponent(ort);
-        this.setComponentAlignment(ort, Alignment.MIDDLE_CENTER);
-
-        final TextField telefon = new TextField();
-        telefon.setPlaceholder("Telefon");
-        telefon.setWidth(WIDTH);
-        this.addComponent(telefon);
-        this.setComponentAlignment(telefon, Alignment.MIDDLE_CENTER);
 
         final Label label2 = new Label("&nbsp;", ContentMode.HTML);
         this.addComponent(label2);
@@ -207,9 +159,10 @@ public class RegWeiterStudent extends Register {
             }
 
         });
-
-        this.addComponent(ubermitteln);
-        this.setComponentAlignment(ubermitteln, Alignment.MIDDLE_CENTER);
+        haupt.addComponent(ubermitteln);
+        haupt.setComponentAlignment(ubermitteln, Alignment.MIDDLE_CENTER);
+        this.addComponent(haupt);
+        this.setComponentAlignment(haupt, Alignment.MIDDLE_CENTER);
     }
 
     @Override

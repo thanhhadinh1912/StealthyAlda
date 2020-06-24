@@ -9,7 +9,7 @@ import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.model.dtos.Adresse;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.components.TopPanelStartSeite;
+import com.stealthyalda.gui.components.*;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
 import com.vaadin.data.validator.RegexpValidator;
@@ -42,37 +42,15 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         panel.setHeight("50px");
         this.addComponent(panel);
         setMargin(true);
-        Label label = new Label("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
-        label.addStyleName("mytitle");
-        label.addStyleName(ValoTheme.LABEL_H1);
-        main.addComponent(label);
-        final ComboBox userAnrede = new ComboBox();
-//
-// Add some items
-        userAnrede.setItems("Herr", "Frau");
-        userAnrede.setPlaceholder("Anrede");
-        userAnrede.setWidth(WIDTH);
+        Titel titel = new Titel("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
+        main.addComponent(titel);
+        final AnredeField userAnrede = new AnredeField();
         main.addComponent(userAnrede);
 
-        final TextField name = new TextField();
-        name.setPlaceholder("Unternehmensname mit Rechtsform");
-        name.setWidth(WIDTH);
+        final TextFieldForRegWeiter name = new TextFieldForRegWeiter("Unternehmensname mit Rechtsform", WIDTH);
         main.addComponent(name);
 
-        HorizontalLayout hl2 = new HorizontalLayout();
-        hl2.setWidth(WIDTH);
-        final TextField email = new TextField();
-        email.setWidth("250px");
-        email.setValue(user.getEmail());
-        email.setReadOnly(true);
-        hl2.addComponent(email);
-
-        final PasswordField passwort = new PasswordField();
-        passwort.setValue(user.getPasswort());
-        passwort.setWidth("230px");
-        passwort.setReadOnly(true);
-        hl2.addComponent(passwort);
-        hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
+        HorizontalLayout hl2 = new EmailPasworrtField(user);
 
         main.addComponent(hl2);
 
@@ -81,50 +59,35 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         streetNr.setWidth("515px");
 
 
-        final TextField strasse = new TextField();
-        strasse.setPlaceholder("Straße");
-        strasse.setWidth(WIDTHB1);
+        final TextFieldForRegWeiter strasse = new TextFieldForRegWeiter("Straße", WIDTHB1);
         streetNr.addComponent(strasse);
 
 
-        final TextField nummer = new TextField();
-        nummer.setPlaceholder("Nr");
-        nummer.setWidth(WIDTHB2);
+        final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", WIDTHB2);
         streetNr.addComponent(nummer);
         streetNr.setComponentAlignment(nummer,Alignment.MIDDLE_RIGHT);
 
         final HorizontalLayout plzort = new HorizontalLayout();
         plzort.setWidth("515px");
 
-        final TextField plz = new TextField();
-        plz.setPlaceholder("PLZ");
-        plz.setWidth(WIDTHB1);
+        final TextFieldForRegWeiter plz = new TextFieldForRegWeiter("PLZ", WIDTHB1);
         plzort.addComponent(plz);
-
-
 
         main.addComponent(streetNr);
 
-        final TextField ort = new TextField();
-        ort.setPlaceholder("Ort");
-        ort.setWidth(WIDTHB2);
+        final TextFieldForRegWeiter ort = new TextFieldForRegWeiter("Ort", WIDTHB2);
         plzort.addComponent(ort);
         plzort.setComponentAlignment(ort, Alignment.MIDDLE_RIGHT);
 
         main.addComponent(plzort);
 
-        final TextField telefon = new TextField();
-        telefon.setPlaceholder("Telefon");
-        telefon.setWidth(WIDTH);
+        final TextFieldForRegWeiter telefon = new TextFieldForRegWeiter("Telefon", WIDTH);
         main.addComponent(telefon);
 
         final Label label2 = new Label("&nbsp;", ContentMode.HTML);
         main.addComponent(label2);
 
-        final Button ubermitteln = new Button();
-        ubermitteln.setCaption("Übermitteln");
-        ubermitteln.setWidth(WIDTH);
-
+        final Button ubermitteln = new ButtonComponent("Übermitteln", WIDTH);
 
         binder.forField(strasse).asRequired("Sie müssen eine Gültige Strassenname eingeben")
                 .withValidator(new StringLengthValidator("Eingebene Straße nicht gültig", 3, 30))
