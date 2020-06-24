@@ -37,7 +37,7 @@ public class Uploader extends CustomComponent {
         class ImageReceiver implements Receiver, SucceededListener {
             private static final long serialVersionUID = -1276759102490466761L;
 
-            public File file;
+            private File file;
 
             public OutputStream receiveUpload(String filename,
                                               String mimeType) {
