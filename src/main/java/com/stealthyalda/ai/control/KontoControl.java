@@ -7,9 +7,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class KontoControl {
-    public boolean deletekonto(String email, String password) throws DatabaseException {
+
+    public void deletekonto(String email, String password) throws DatabaseException {
         BenutzerDAO.getInstance().deleteUser(email, password);
-        return true;
+
     }
 
     public boolean changekonto(String email, String altpassword, String neupassword) {
