@@ -12,12 +12,15 @@ public class CollAtHBRSDTO implements AnwendungDTOs {
     private String beschreibung;
     private String arbeitgeber;
     private Date datum;
+    private String vorname;
+    private String nachname;
+    private String email;
     private String applicationText;
 
 
     @Override
     public String toString() {
-        return "CollAtHBRS{" + " stellenid =" + stellenid + "," + "title=" + title + ", status=" + status + ", beschreibung=" + beschreibung + ", arbeitgeber=" + arbeitgeber + ", datum=" + datum + ", applicationText=" + applicationText + '}';
+        return "CollAtHBRS{" + " stellenid =" + stellenid + "," + "title=" + title + ", status=" + status + ", beschreibung=" + beschreibung + ", arbeitgeber=" + arbeitgeber + ", datum=" + datum +" + " + " vorname =" + vorname + "," + "nachname=" + nachname + ", email=" + email + ","+ " applicationText=" + applicationText + '}';
     }
 
     @Override
@@ -55,11 +58,11 @@ public class CollAtHBRSDTO implements AnwendungDTOs {
 
     }
 
-        public int getstellenid () {
+        public int getStellenid () {
             return stellenid;
         }
 
-        public void setstellenid(int stellenid){
+        public void setStellenid(int stellenid){
             this.stellenid = stellenid;
         }
 
@@ -103,6 +106,31 @@ public class CollAtHBRSDTO implements AnwendungDTOs {
         public void setDatum (Date datum){
             this.datum = datum;
         }
+
+    public String getvorname () {
+        return vorname;
+    }
+
+    public void setvorname (String vorname){
+        this.vorname = vorname;
+    }
+
+    public String getNachname () {
+        return nachname;
+    }
+
+    public void setNachname (String nachname){
+        this.nachname = nachname;
+    }
+
+    public String getEmail () {
+        return email;
+    }
+
+    public void setEmail (String email){
+        this.email = email;
+    }
+
 
         public String getApplicationText () {
             return applicationText;
