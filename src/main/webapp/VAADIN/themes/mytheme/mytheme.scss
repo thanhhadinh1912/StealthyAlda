@@ -63,7 +63,7 @@ $v-font-size: 18px;
   background-color: white;
   border: 0px #ffffff;
   padding: 10px;
-  font-family: "OCR A Extended";
+  font-family: "OCR A Extended", sans-serif;
   color: #0f2a54;
   //background-image: url("Image/background_home.jpg");
 }
@@ -106,7 +106,7 @@ $v-font-size: 18px;
     border-radius: 4px !important;
     height: auto !important;
     min-width: 100px !important;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     //font-size: small !important;
     font-size: 25px;
     -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
@@ -166,7 +166,7 @@ $v-font-size: 18px;
 
   //Startseite LABEL-ANFANG
   .STARTSEITE-label{
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     font-size: 70px;
     color: white;
   }
@@ -174,7 +174,7 @@ $v-font-size: 18px;
 
   //Startseite LABEL2-ANFANG
   .STARTSEITE-label2{
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     font-size: 20px;
     color: white;
   }
@@ -190,7 +190,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 28px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
@@ -232,30 +232,30 @@ $v-font-size: 18px;
   //LOGINSEITE Button oben Anmelden
   .LOGINSEITE-anmelden{
     font-size: 25px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
   }
 
   //LOGINSEITE Button oben Registrieren
   .LOGINSEITE-registrieren{
     font-size: 25px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
   }
 
   //LOGINSEITE LABEL Willkommen zurück
   .LOGINSEITE-willkommen{
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
   }
   //LOGINSEITE Button Password vergessen
   .LOGINSEITE-pwVergessen{
     font-size: 12px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     display: inline;
   }
   //LOGINSEITE Checkbox Angemeldet bleiben
   .LOGINSEITE-check{
     font-size: 12px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
   }
 
   //Loginseite Button -LOGIN ANFANG
@@ -267,7 +267,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
@@ -311,7 +311,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
@@ -352,7 +352,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
@@ -393,7 +393,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
@@ -435,7 +435,7 @@ $v-font-size: 18px;
     color: #FFFFFF;
     text-align: center;
     font-size: 20px;
-    font-family: "OCR A Extended";
+    font-family: "OCR A Extended", sans-serif;
     padding-top: 0px;
     padding-right: 5px;
     padding-bottom: 0px;
