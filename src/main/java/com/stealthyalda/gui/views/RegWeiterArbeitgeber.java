@@ -27,9 +27,16 @@ import java.util.logging.Logger;
  */
 public class RegWeiterArbeitgeber extends RegWeiter {
     private static final String WIDTH = "500px";
+    private static final String WIDTHB1 = "250px";
+    private static final String WIDTHB2 = "230px";
+
+
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
     public void setUp() {
+
+        VerticalLayout main = new VerticalLayout();
+        main.setWidth(WIDTH);
 
         TopPanelStartSeite panel = new TopPanelStartSeite();
         panel.setHeight("50px");
@@ -38,22 +45,19 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         Label label = new Label("<b> Richten Sie Ihr Konto ein! </b>", ContentMode.HTML);
         label.addStyleName("mytitle");
         label.addStyleName(ValoTheme.LABEL_H1);
-        this.addComponent(label);
-        this.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
+        main.addComponent(label);
         final ComboBox userAnrede = new ComboBox();
 //
 // Add some items
         userAnrede.setItems("Herr", "Frau");
         userAnrede.setPlaceholder("Anrede");
         userAnrede.setWidth(WIDTH);
-        this.addComponent(userAnrede);
-        this.setComponentAlignment(userAnrede, Alignment.MIDDLE_CENTER);
+        main.addComponent(userAnrede);
 
         final TextField name = new TextField();
         name.setPlaceholder("Unternehmensname mit Rechtsform");
         name.setWidth(WIDTH);
-        this.addComponent(name);
-        this.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
+        main.addComponent(name);
 
         HorizontalLayout hl2 = new HorizontalLayout();
         hl2.setWidth(WIDTH);
@@ -62,7 +66,6 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         email.setValue(user.getEmail());
         email.setReadOnly(true);
         hl2.addComponent(email);
-        hl2.setComponentAlignment(email, Alignment.MIDDLE_LEFT);
 
         final PasswordField passwort = new PasswordField();
         passwort.setValue(user.getPasswort());
@@ -71,59 +74,52 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         hl2.addComponent(passwort);
         hl2.setComponentAlignment(passwort, Alignment.MIDDLE_RIGHT);
 
-        this.addComponent(hl2);
-        this.setComponentAlignment(hl2, Alignment.MIDDLE_CENTER);
+        main.addComponent(hl2);
 
-        HorizontalLayout hl3 = new HorizontalLayout();
-        hl3.setWidth(WIDTH);
-        hl3.setSpacing(true);
-
-        HorizontalLayout streetNrPlz = new HorizontalLayout();
-        streetNrPlz.setSpacing(true);
-        streetNrPlz.setWidth("250px");
+        HorizontalLayout streetNr = new HorizontalLayout();
+        streetNr.setSpacing(true);
+        streetNr.setWidth("515px");
 
 
         final TextField strasse = new TextField();
         strasse.setPlaceholder("Straße");
-        strasse.setWidth("75%");
-        hl3.addComponent(strasse);
-        hl3.setComponentAlignment(strasse, Alignment.MIDDLE_LEFT);
-
-        final TextField plz = new TextField();
-        plz.setPlaceholder("PLZ");
-        plz.setWidth("75%");
-        streetNrPlz.addComponent(plz);
-        streetNrPlz.setComponentAlignment(plz, Alignment.MIDDLE_LEFT);
+        strasse.setWidth(WIDTHB1);
+        streetNr.addComponent(strasse);
 
 
         final TextField nummer = new TextField();
         nummer.setPlaceholder("Nr");
-        nummer.setWidth("55%");
-        streetNrPlz.addComponent(nummer);
-        streetNrPlz.setComponentAlignment(nummer, Alignment.MIDDLE_CENTER);
+        nummer.setWidth(WIDTHB2);
+        streetNr.addComponent(nummer);
+        streetNr.setComponentAlignment(nummer,Alignment.MIDDLE_RIGHT);
+
+        final HorizontalLayout plzort = new HorizontalLayout();
+        plzort.setWidth("515px");
+
+        final TextField plz = new TextField();
+        plz.setPlaceholder("PLZ");
+        plz.setWidth(WIDTHB1);
+        plzort.addComponent(plz);
 
 
-        hl3.addComponent(streetNrPlz);
-        hl3.setComponentAlignment(streetNrPlz, Alignment.MIDDLE_LEFT);
 
-
-        this.addComponent(hl3);
-        this.setComponentAlignment(hl3, Alignment.MIDDLE_CENTER);
+        main.addComponent(streetNr);
 
         final TextField ort = new TextField();
         ort.setPlaceholder("Ort");
-        ort.setWidth(WIDTH);
-        this.addComponent(ort);
-        this.setComponentAlignment(ort, Alignment.MIDDLE_CENTER);
+        ort.setWidth(WIDTHB2);
+        plzort.addComponent(ort);
+        plzort.setComponentAlignment(ort, Alignment.MIDDLE_RIGHT);
+
+        main.addComponent(plzort);
 
         final TextField telefon = new TextField();
         telefon.setPlaceholder("Telefon");
         telefon.setWidth(WIDTH);
-        this.addComponent(telefon);
-        this.setComponentAlignment(telefon, Alignment.MIDDLE_CENTER);
+        main.addComponent(telefon);
 
         final Label label2 = new Label("&nbsp;", ContentMode.HTML);
-        this.addComponent(label2);
+        main.addComponent(label2);
 
         final Button ubermitteln = new Button();
         ubermitteln.setCaption("Übermitteln");
@@ -193,8 +189,9 @@ public class RegWeiterArbeitgeber extends RegWeiter {
         });
 
 
-        this.addComponent(ubermitteln);
-        this.setComponentAlignment(ubermitteln, Alignment.MIDDLE_CENTER);
+        main.addComponent(ubermitteln);
+        this.addComponent(main);
+        this.setComponentAlignment(main, Alignment.MIDDLE_CENTER);
 
 
     }
