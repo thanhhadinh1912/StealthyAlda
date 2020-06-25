@@ -21,6 +21,7 @@ import java.io.File;
 
 public class Loginseite extends VerticalLayout implements View {
     private final String n = "&nbsp";
+    public static final String CLASSNAME="LOGINSEITE";
 
     public void setUp() {
 
@@ -53,17 +54,17 @@ public class Loginseite extends VerticalLayout implements View {
 //Vertikales Layout + Hinzufügen der Textfelder
         GridLayout layout = new GridLayout(4, 12);
         Button buttonAn = new Button("Anmelden");
-        Button butonReg = new Button("Registrieren");
+        Button buttonReg = new Button("Registrieren");
         buttonAn.addStyleName(ValoTheme.BUTTON_LINK);
         buttonAn.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.LOGIN));
-        butonReg.addStyleName(ValoTheme.BUTTON_LINK);
-        butonReg.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTER));
+        buttonReg.addStyleName(ValoTheme.BUTTON_LINK);
+        buttonReg.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTER));
         layout.addComponent(buttonAn, 0, 0);
         layout.setComponentAlignment(buttonAn, Alignment.MIDDLE_CENTER);
         layout.addComponent(logo, 1, 0, 2, 0);
         layout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
-        layout.addComponent(butonReg, 3, 0);
-        layout.setComponentAlignment(butonReg, Alignment.MIDDLE_CENTER);
+        layout.addComponent(buttonReg, 3, 0);
+        layout.setComponentAlignment(buttonReg, Alignment.MIDDLE_CENTER);
         Label label = new Label("Willkommen zurück!", ContentMode.PREFORMATTED);
         layout.addComponent(label, 0, 1, 3, 1);
         layout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
@@ -96,18 +97,11 @@ public class Loginseite extends VerticalLayout implements View {
 
 //Button zum Login + Symbol auf Button
 
-        Button butonLogin = new Button("Anmelden");
-        butonLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-
-
-        layout.addComponent(butonLogin, 0, 8, 3, 8);
-        layout.setComponentAlignment(butonLogin, Alignment.MIDDLE_CENTER);
-        Label label3 = new Label("oder", ContentMode.TEXT);
-        layout.addComponent(label3, 0, 9, 3, 9);
-        layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
-        Button butonLoginMitGoogle = new Button("Mit Google Anmelden");
-        layout.addComponent(butonLoginMitGoogle, 0, 10, 3, 10);
-        layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);
+        Button buttonLogin = new Button("Anmelden");
+        buttonAn.setPrimaryStyleName(CLASSNAME + "-login");
+        buttonLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        layout.addComponent(buttonLogin, 0, 8, 3, 8);
+        layout.setComponentAlignment(buttonLogin, Alignment.MIDDLE_CENTER);
 
 
         Label label4 = new Label(n, ContentMode.HTML);
@@ -116,7 +110,7 @@ public class Loginseite extends VerticalLayout implements View {
         panel.setSizeUndefined();
 
 
-        butonLogin.addClickListener(clickEvent -> {
+        buttonLogin.addClickListener(clickEvent -> {
             String login = userLogin.getValue();
             String password = passwordField.getValue();
 

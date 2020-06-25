@@ -23,7 +23,6 @@ public class TopPanelStartSeite extends HorizontalLayout {
                 "/Image/stealthyalda1.png"));
         Image logo = new Image("", resource);
         GridLayout gridTop = new GridLayout(8, 1);
-        gridTop.setSizeFull();
 
         gridTop.addComponent(logo, 0, 0);
         Button buttonFuerStudent = new Button("Für Studenten");

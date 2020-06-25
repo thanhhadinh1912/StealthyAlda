@@ -19,6 +19,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * @author WINDOWS
  */
 public class Startseite extends VerticalLayout implements View {
+    public static final String CLASSNAME = "STARTSEITE";
     public void setUp() {
 
 //Gesamtgröße des Bildschirms auf komplette Größe beziehen
@@ -42,7 +43,10 @@ public class Startseite extends VerticalLayout implements View {
         label2.setStyleName("startseite");
         layout.addComponent(label2, 1, 0);
         layout.setComponentAlignment(label2, Alignment.BOTTOM_CENTER);
+
+        //Button-Los
         Button button = new Button("Los");
+        button.setPrimaryStyleName(CLASSNAME + "-los");
         button.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.LOGIN));
         layout.addComponent(button, 1, 1);
         layout.setComponentAlignment(button, Alignment.TOP_CENTER);
