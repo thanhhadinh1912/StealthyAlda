@@ -103,8 +103,6 @@ public class StellenanzeigeErstellen extends VerticalLayout implements View {
                 list.add(anforderung1);
             }
             a.setAnforderungs(list);
-
-            new StellenanzeigeControl().erstellen(a);
             ConfirmStellenanzeige confirm = new ConfirmStellenanzeige(a);
 
             UI.getCurrent().addWindow(confirm);
