@@ -70,7 +70,6 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
         HorizontalLayout bottom = new HorizontalLayout();
-        bottom.setHeight("240px");
 
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
@@ -89,18 +88,17 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         }
         stellenanzeige.setReadOnly(true);
         stellenanzeige.setWidth("650px");
-        stellenanzeige.setHeight("200px");
+        stellenanzeige.setHeight("240px");
         bottom.addComponent(stellenanzeige);
-        bottom.setComponentAlignment(stellenanzeige, Alignment.MIDDLE_LEFT);
+        bottom.setComponentAlignment(stellenanzeige,Alignment.MIDDLE_LEFT);
 
 
         VerticalLayout kontaktandadresse = new VerticalLayout();
         kontaktandadresse.setWidth("300px");
-        kontaktandadresse.setHeight("200px");
 
         TextArea kontakte = new TextArea("Kontakt");
         if (!isAdmin) kontakte.setValue("Tel " + current.getTelefonnummer());
-        kontakte.setHeight("50px");
+        kontakte.setHeight("70px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
 
@@ -133,27 +131,25 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
         }
         strasse.setWidth("150px");
-        strasse.setHeight("60px");
+        strasse.setHeight("50px");
         strassehnr.addComponent(strasse);
 
 
         hausNummer.setPlaceholder("Hausnummer");
-        hausNummer.setCaption("Hausnummer");
         hausNummer.setWidth("130px");
-        hausNummer.setHeight("60px");
+        hausNummer.setHeight("50px");
         strassehnr.addComponent(hausNummer);
 
 
         HorizontalLayout plzort = new HorizontalLayout();
-        plz.setCaption("Postleitzahl");
         plz.setPlaceholder("Postleitzahl");
         plz.setWidth("150px");
-        plz.setHeight("60px");
+        plz.setHeight("50px");
 
         ort.setPlaceholder("Ort ");
 
         ort.setWidth("130px");
-        ort.setHeight("60px");
+        ort.setHeight("50px");
 
         plzort.addComponent(plz);
         plzort.addComponent(ort);
@@ -164,7 +160,7 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
 
         bottom.addComponent(kontaktandadresse);
-        bottom.setComponentAlignment(kontaktandadresse,Alignment.MIDDLE_RIGHT);
+        bottom.setComponentAlignment(kontaktandadresse,Alignment.TOP_RIGHT);
         main.addComponent(bottom);
 
 
