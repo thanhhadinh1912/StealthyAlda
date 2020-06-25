@@ -181,5 +181,37 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         return liste;
     }
+    public StellenanzeigeDTO getJobangebot(int stellenanzeige_id){
+        String sql = "SELECT * \n" +
+                "FROM stealthyalda.stellenanzeige s\n" +
+                "JOIN stealthyalda.arbeitgeber a\n" +
+                "ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "WHERE s.stellenanzeige_id = '"+stellenanzeige_id+"';";
+        ResultSet rs = null;
+        StellenanzeigeDTO stellenanzeige = new StellenanzeigeDTO();
+        try {
+            // use prepared stmt
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(sql);
+            rs = preparedStatement.executeQuery();
+            assert (rs != null);
+            while (rs.next()) {
+                Arbeitgeber a = new Arbeitgeber();
+                stellenanzeige.setStellenanzeigeID(rs.getInt(1));
+                stellenanzeige.setTitel(rs.getString(2));
+                stellenanzeige.setBeschreibung(rs.getString(3));
+                stellenanzeige.setStatus(rs.getString(4));
+                stellenanzeige.setDatum(rs.getDate(5).toLocalDate());
+                stellenanzeige.setOrt(rs.getString(7));
+                a = ArbeitgeberDAO.getInstance().getArbeitgeberFromArbeitgeberid(rs.getInt(8));
+                stellenanzeige.setUnternehmen(a);
+            }
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+        }
+return stellenanzeige;
+    }
 
 }

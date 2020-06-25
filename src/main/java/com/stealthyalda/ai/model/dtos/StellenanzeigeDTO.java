@@ -5,6 +5,7 @@
  */
 package com.stealthyalda.ai.model.dtos;
 
+import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 
 import java.time.LocalDate;
@@ -19,6 +20,15 @@ public class StellenanzeigeDTO extends Stellenanzeige {
     private LocalDate datum;
     private String arbeitgeber;
     private String ort;
+    private Arbeitgeber unternehmen;
+
+    public Arbeitgeber getUnternehmen() {
+        return unternehmen;
+    }
+
+    public void setUnternehmen(Arbeitgeber unternehmen) {
+        this.unternehmen = unternehmen;
+    }
 
     public String getTitel() {
         return titel;
