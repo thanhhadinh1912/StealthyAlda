@@ -1,6 +1,5 @@
 package com.stealthyalda.gui.views;
 
-import com.stealthyalda.ai.control.exceptions.ToogleRouter;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.services.util.Roles;

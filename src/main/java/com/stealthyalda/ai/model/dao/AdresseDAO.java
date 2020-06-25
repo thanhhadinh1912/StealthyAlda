@@ -89,7 +89,7 @@ public class AdresseDAO extends AbstractDAO {
         return new Adresse();
     }
 
-    public void updateAdresse(Adresse adresse) {
+    public boolean updateAdresse(Adresse adresse) {
         String sqlArbeitgeber = "UPDATE stealthyalda.adresse " +
                 "SET strasse = ? " +
                 ", haus_nr = ? " +
@@ -103,8 +103,10 @@ public class AdresseDAO extends AbstractDAO {
             stmt.setString(4, adresse.getOrt());
             stmt.setInt(5, adresse.getAdresseID());
             stmt.executeUpdate();
+            return true;
         } catch (Exception e) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
         }
     }
 }

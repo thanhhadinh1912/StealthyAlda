@@ -239,7 +239,7 @@ public class BenutzerDAO extends AbstractDAO {
         }
     }
 
-    public void updateStammdaten(DTOs u, String anrede, Benutzer user) {
+    public boolean updateStammdaten(DTOs u, String anrede, Benutzer user) {
         String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
                 "SET " +
                 "anrede = ?, " +
@@ -253,9 +253,11 @@ public class BenutzerDAO extends AbstractDAO {
             statement.setString(2, u.getTelefonnummer());
             statement.setInt(3, user.getId());
             statement.executeUpdate();
+            return true;
 
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
+            return false;
 
         }
     }

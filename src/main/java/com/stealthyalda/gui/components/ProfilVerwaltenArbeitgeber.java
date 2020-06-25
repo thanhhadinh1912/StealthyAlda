@@ -9,7 +9,9 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.windows.ConfirmReg;
 import com.stealthyalda.services.util.Uploader;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.shared.ui.ContentMode;
@@ -97,7 +99,7 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         kontaktandadresse.setWidth("300px");
 
         TextArea kontakte = new TextArea("Kontakt");
-        if (!isAdmin) kontakte.setValue("Tel " + current.getTelefonnummer());
+        if (!isAdmin) kontakte.setValue(current.getTelefonnummer());
         kontakte.setHeight("70px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
@@ -189,7 +191,11 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
 
             // TODO: implement unnecessary updates when nothing has changed
-            pc.updateArbeitgeberprofil(company);
+            boolean isokay = pc.updateArbeitgeberprofil(company);
+            if(isokay){
+                ConfirmReg confirm = new ConfirmReg("Die Änderung wurde gespeichert", Views.DASHBOARDA);
+                UI.getCurrent().addWindow(confirm);
+            }
         });
 
     }

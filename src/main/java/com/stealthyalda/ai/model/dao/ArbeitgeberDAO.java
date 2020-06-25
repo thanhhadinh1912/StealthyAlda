@@ -115,7 +115,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return null;
     }
 
-    public void updateArbeitgeber(UnternehmenDTO unternehmen) {
+    public boolean updateArbeitgeber(UnternehmenDTO unternehmen) {
         String sqlArbeitgeber = "UPDATE stealthyalda.arbeitgeber " +
                 "SET unternehmen = ? " +
                 ", beschreibung = ? " +
@@ -125,8 +125,10 @@ public class ArbeitgeberDAO extends AbstractDAO {
             stmt.setString(2, unternehmen.getBeschreibung());
             stmt.setInt(3, unternehmen.getArbeitgeberId());
             stmt.executeUpdate();
+            return true;
         } catch (Exception e) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
         }
     }
 
