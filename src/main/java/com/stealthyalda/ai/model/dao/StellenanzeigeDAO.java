@@ -1,6 +1,7 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
@@ -46,6 +47,10 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
             //Nachtragliches Setzen der BuchungsID
             setStellenanzeigesID(s);
+            List<Anforderung> list = s.getAnforderungs();
+            for (int i=0; i<list.size();i++){
+                AnforderungDAO.getInstance().createAnforderung(s.getStellenanzeigeID(),list.get(i).getAnforderung());
+            }
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
