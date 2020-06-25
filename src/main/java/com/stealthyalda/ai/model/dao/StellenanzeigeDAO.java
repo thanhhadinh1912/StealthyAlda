@@ -27,6 +27,43 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
+    public Stellenanzeige getStellenanzeige(String jobtitel,  String beschreibung, String ort, String status){
+        String sql = "select * from stealthyalda.stellenanzeige where titel = ?" +
+                "and beschreibung = ?" +
+                "and ort = ?" +
+                "and status = ?;";
+        ResultSet rs = null;
+        StellenanzeigeDTO stellenanzeige = new StellenanzeigeDTO();
+        try {
+            // use prepared stmt
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+            statement.setString(1, jobtitel);
+            statement.setString(2, beschreibung);
+            statement.setString(3, ort);
+            statement.setString(4, status);
+            rs = statement.executeQuery();
+            assert (rs != null);
+            while (rs.next()) {
+                Arbeitgeber a = new Arbeitgeber();
+                stellenanzeige.setStellenanzeigeID(rs.getInt(1));
+                stellenanzeige.setTitel(rs.getString(2));
+                stellenanzeige.setBeschreibung(rs.getString(3));
+                stellenanzeige.setStatus(rs.getString(4));
+                stellenanzeige.setDatum(rs.getDate(5).toLocalDate());
+                stellenanzeige.setOrt(rs.getString(7));
+                a = ArbeitgeberDAO.getInstance().getArbeitgeberFromArbeitgeberid(rs.getInt(6));
+                stellenanzeige.setUnternehmen(a);
+            }
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+        }
+        return stellenanzeige;
+
+    }
+
     public boolean createStellenanzeige(Stellenanzeige s) {
 
         String sql = "insert into stealthyalda.stellenanzeige values(default,?,?,?,?,?,?);";
@@ -181,6 +218,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         return liste;
     }
+
     public StellenanzeigeDTO getJobangebot(int stellenanzeige_id){
         String sql = "SELECT * \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +

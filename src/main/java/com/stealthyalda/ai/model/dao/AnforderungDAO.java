@@ -35,18 +35,17 @@ public class AnforderungDAO extends AbstractDAO {
     }
 
     /**
-     * @param s Stellenanzeige
      * @return list of Stellenanzeigen
      * @throws DatabaseException if something goes horribly wrong
      */
-    public List<Anforderung> getAnforderungForStellenanzeige(Stellenanzeige s) throws DatabaseException {
+    public List<Anforderung> getAnforderungForStellenanzeige(int stellenanzeigeid) throws DatabaseException {
         Statement statement = this.getStatement();
 
         ResultSet rs = null;
         List<Anforderung> liste = new ArrayList<>();
         Anforderung anforderung = null;
         try {
-            rs = statement.executeQuery("SELECT anforderung FROM stealthyalda.anforderung WHERE stealthyalda.anforderung.stellenanzeige_id = '" + s.getStellenanzeigeID() + "'");
+            rs = statement.executeQuery("SELECT anforderung FROM stealthyalda.anforderung WHERE stealthyalda.anforderung.stellenanzeige_id = '" + stellenanzeigeid + "'");
 
             while (rs.next()) {
                 anforderung = new Anforderung();
