@@ -66,5 +66,8 @@ public class ProfilStudentControl {
     }
 
 
+    public void updateStudentProfile() {
+
+    }
 }
 

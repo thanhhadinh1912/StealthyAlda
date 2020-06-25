@@ -19,7 +19,14 @@ public class SucheEinfach {
         return search;
     }
 
-    public List<StellenanzeigeDTO> getStellenanzeigeByLocationOrJobTitelOrUnternehment(String titel, String ort) {
-        return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehmen(titel, ort);
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocationAndJobTitelOrUnternehment(String titel, String ort) {
+        return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehmen(titel, ort);
+    }
+
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
+        return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocation(ort);
+    }
+    public List<StellenanzeigeDTO> getStellenanzeigeByJob(String job){
+        return StellenanzeigeDAO.getInstance().getStellenanzeigeByJobTitelOrUnternehmen(job);
     }
 }

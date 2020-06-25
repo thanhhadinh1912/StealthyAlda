@@ -20,8 +20,10 @@ import java.io.File;
 
 
 public class Loginseite extends VerticalLayout implements View {
+    public static final String CLASSNAME ="LOGINSEITE";
+    //Geschütztes Leerzeichen "No Break Space"
     private final String n = "&nbsp";
-    public static final String CLASSNAME="LOGINSEITE";
+
 
     public void setUp() {
 
@@ -48,13 +50,20 @@ public class Loginseite extends VerticalLayout implements View {
         GridLayout mainGrid = new GridLayout(6, 6);
         mainGrid.setSizeFull();
 
-
         Panel panel = new Panel();
         panel.addStyleName("login");
+
 //Vertikales Layout + Hinzufügen der Textfelder
         GridLayout layout = new GridLayout(4, 12);
+
+        //BUTTON-ANMELDEN
         Button buttonAn = new Button("Anmelden");
+        buttonAn.setPrimaryStyleName(CLASSNAME + "-anmelden");
+
+        //BUTTON-REGISTRIEREN
         Button buttonReg = new Button("Registrieren");
+        buttonReg.setPrimaryStyleName(CLASSNAME + "-registrieren");
+
         buttonAn.addStyleName(ValoTheme.BUTTON_LINK);
         buttonAn.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.LOGIN));
         buttonReg.addStyleName(ValoTheme.BUTTON_LINK);
@@ -65,7 +74,10 @@ public class Loginseite extends VerticalLayout implements View {
         layout.setComponentAlignment(logo, Alignment.MIDDLE_CENTER);
         layout.addComponent(buttonReg, 3, 0);
         layout.setComponentAlignment(buttonReg, Alignment.MIDDLE_CENTER);
+
         Label label = new Label("Willkommen zurück!", ContentMode.PREFORMATTED);
+        label.setPrimaryStyleName(CLASSNAME + "-willkommen");
+
         layout.addComponent(label, 0, 1, 3, 1);
         layout.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
 
@@ -78,31 +90,48 @@ public class Loginseite extends VerticalLayout implements View {
         layout.setComponentAlignment(passwordField, Alignment.MIDDLE_LEFT);
 
 
-        Button butonPasswortvergessen = new Button("Passwort vergessen?");
-        butonPasswortvergessen.addStyleName(ValoTheme.BUTTON_LINK);
-        butonPasswortvergessen.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.PASSWORTVERGESSEN));
-        layout.addComponent(butonPasswortvergessen, 2, 6, 3, 6);
-        layout.setComponentAlignment(butonPasswortvergessen, Alignment.MIDDLE_RIGHT);
-        userLogin.setWidth("400px");
-        passwordField.setWidth("400px");
+        Button buttonPasswortvergessen = new Button("Passwort vergessen?");
+        buttonPasswortvergessen.addStyleName(ValoTheme.BUTTON_LINK);
+        buttonPasswortvergessen.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.PASSWORTVERGESSEN));
+        buttonPasswortvergessen.setPrimaryStyleName(CLASSNAME + "-pwVergessen");
 
+
+        layout.addComponent(buttonPasswortvergessen, 2, 6, 3, 6);
+        layout.setComponentAlignment(buttonPasswortvergessen, Alignment.MIDDLE_RIGHT);
+
+        userLogin.setWidth("500px");
+        passwordField.setWidth("500px");
 
         CheckBox checkbox1 = new CheckBox("Angemeldet bleiben");
+        checkbox1.setPrimaryStyleName(CLASSNAME + "-check");
+
         layout.addComponent(checkbox1, 0, 6, 1, 6);
         layout.setComponentAlignment(checkbox1, Alignment.MIDDLE_LEFT);
+
 
 //Platzhalter
         Label label2 = new Label(n, ContentMode.HTML);
         layout.addComponent(label2, 0, 7, 3, 7);
 
 //Button zum Login + Symbol auf Button
-
         Button buttonLogin = new Button("Anmelden");
-        buttonAn.setPrimaryStyleName(CLASSNAME + "-login");
         buttonLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        buttonLogin.setPrimaryStyleName(CLASSNAME + "-login");
+
+
         layout.addComponent(buttonLogin, 0, 8, 3, 8);
         layout.setComponentAlignment(buttonLogin, Alignment.MIDDLE_CENTER);
 
+        Label label3 = new Label("", ContentMode.TEXT);
+
+        layout.addComponent(label3, 0, 9, 3, 9);
+        layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
+
+        //Button zum Google-Anmelden + Symbol auf Button
+        //Button buttonLoginMitGoogle = new Button("Mit Google Anmelden");
+        //layout.addComponent(buttonLoginMitGoogle, 0, 10, 3, 10);
+        //layout.setComponentAlignment(buttonLoginMitGoogle, Alignment.MIDDLE_CENTER);
+        //buttonLoginMitGoogle.setPrimaryStyleName(CLASSNAME + "-google");
 
         Label label4 = new Label(n, ContentMode.HTML);
         layout.addComponent(label4, 0, 11, 3, 11);

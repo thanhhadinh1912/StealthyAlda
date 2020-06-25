@@ -1,23 +1,9 @@
 .login .v-panel-content {
-	background-color: white;
-	border: 0px #ffffff;
-	padding: 10px;
-	font-family: Verdana, sans-serif;
-	color: #0f2a54;
-}
-
-.headlabel {
-	font-family: Verdana, sans-serif;
-	color: #0f2a54;
-	padding: 10px;
-	font-size: 14px;
-}
-
-.loggedLabel {
-	font-family: Verdana, sans-serif;
-	color: #0f2a54;
-	padding: 10px;
-	font-size: 14px;
+    background-color: white;
+    border: 0px #ffffff;
+    padding: 10px;
+    font-family: "OCR A Extended", sans-serif;
+    color: #0f2a54;
 }
 
 .layout-with-border {
@@ -1820,14 +1806,10 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme.v-app, .mytheme.v-app-loading {
-	font: 300 18px/1.55 sans-serif;
+	font: 300 18px/1.55 "OCR A Extended";
 	color: #acc0df;
 	background-color: #0f2a54;
 	cursor: default;
-}
-
-.v-mac .mytheme.v-app, .v-mac .mytheme.v-app-loading {
-	font-family: "Helvetica Neue", sans-serif;
 }
 
 .mytheme .v-app-loading {
@@ -15419,18 +15401,19 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .link {
-	padding: 5px 10px !important;
-	background-color: transparent !important;
-	color: black !important;
-	border: 1px solid transparent !important;
-	border-radius: 4px !important;
-	height: auto !important;
-	min-width: 100px !important;
-	font-size: small !important;
-	-webkit-transition: all 200ms ease-in-out !important;
-	-moz-transition: all 200ms ease-in-out !important;
-	-o-transition: all 200ms ease-in-out !important;
-	transition: all 200ms ease-in-out !important;
+    padding: 5px 10px !important;
+    background-color: transparent !important;
+    color: black !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    height: auto !important;
+    min-width: 100px !important;
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 25px;
+    -webkit-transition: all 200ms ease-in-out !important;
+    -moz-transition: all 200ms ease-in-out !important;
+    -o-transition: all 200ms ease-in-out !important;
+    transition: all 200ms ease-in-out !important;
 }
 
 .mytheme .link:hover {
@@ -15460,10 +15443,6 @@ div.v-layout.v-horizontal.v-widget {
 	color: white;
 }
 
-.mytheme .startseite .v-loggedLabel .v-loggedLabel-caption {
-	color: white;
-}
-
 .mytheme .suchseite .v-layout {
 	border: 1px solid black;
 }
@@ -15473,23 +15452,40 @@ div.v-layout.v-horizontal.v-widget {
 	background: #0be881;
 }
 
+.mytheme .TopPanelSTART-logo {
+	height: 270px;
+	width: 270px;
+}
+
+.mytheme .STARTSEITE-label {
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 70px;
+    color: white;
+}
+
+.mytheme .STARTSEITE-label2 {
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 20px;
+    color: white;
+}
+
 .mytheme .STARTSEITE-los {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #00A2E8;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 28px;
-	font-family: Verdana;
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00A2E8;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .STARTSEITE-los span {
@@ -15517,23 +15513,49 @@ div.v-layout.v-horizontal.v-widget {
 	right: 0;
 }
 
+.mytheme .LOGINSEITE-anmelden {
+    font-size: 25px;
+    font-family: "OCR A Extended", sans-serif;
+}
+
+.mytheme .LOGINSEITE-registrieren {
+    font-size: 25px;
+    font-family: "OCR A Extended", sans-serif;
+}
+
+.mytheme .LOGINSEITE-willkommen {
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+}
+
+.mytheme .LOGINSEITE-pwVergessen {
+    font-size: 12px;
+    font-family: "OCR A Extended", sans-serif;
+    display: inline;
+}
+
+.mytheme .LOGINSEITE-check {
+    font-size: 12px;
+    font-family: "OCR A Extended", sans-serif;
+}
+
 .mytheme .LOGINSEITE-login {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: Verdana;
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
 }
 
 .mytheme .LOGINSEITE-login span {
@@ -15552,6 +15574,162 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .LOGINSEITE-login:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITE-registrieren {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.mytheme .LOGINSEITE-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .LOGINSEITE-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEArbeitgeber-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .REGISTERSEITEStudent-registrieren:hover span:after {
+	opacity: 1;
+	right: 0;
+}
+
+.mytheme .SUCHSEITE-suchen {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #3C96D2;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: "OCR A Extended", sans-serif;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.mytheme .SUCHSEITE-suchen span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.mytheme .SUCHSEITE-suchen span:after {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.mytheme .SUCHSEITE-suchen:hover span:after {
 	opacity: 1;
 	right: 0;
 }

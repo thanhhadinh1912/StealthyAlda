@@ -31,6 +31,8 @@ public class RegisterseiteMainComponent extends Panel {
     private String register;
     private String password;
     private RadioButtonGroup<String> single = new RadioButtonGroup<>();
+    public static final String CLASSNAME ="REGISTERSEITE";
+
 
     public void setRadioButton(RadioButtonGroup<String> single){
         this.single = single;
@@ -98,16 +100,17 @@ public class RegisterseiteMainComponent extends Panel {
 //Button zum Registrieren
         Button buttonReg = new Button("Registrieren");
         buttonReg.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        buttonReg.setPrimaryStyleName(CLASSNAME + "-registrieren");
 
 
         layout.addComponent(buttonReg);
         layout.setComponentAlignment(buttonReg, Alignment.MIDDLE_CENTER);
-        Label label3 = new Label("oder", ContentMode.TEXT);
+        Label label3 = new Label("", ContentMode.TEXT);
         layout.addComponent(label3);
         layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
-        Button butonLoginMitGoogle = new Button("Mit Google Anmelden");
+        /*Button butonLoginMitGoogle = new Button("Mit Google Anmelden");
         layout.addComponent(butonLoginMitGoogle);
-        layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);
+        layout.setComponentAlignment(butonLoginMitGoogle, Alignment.MIDDLE_CENTER);*/
 
         this.setContent(layout);
         this.setSizeUndefined();

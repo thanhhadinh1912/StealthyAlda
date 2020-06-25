@@ -105,20 +105,26 @@ public class StellenanzeigeDAO extends AbstractDAO {
     }
 
 
-    public List<StellenanzeigeDTO> getStellenanzeigeByLocationOrJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
         ResultSet rs = null;
 
-        List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
-        String getStellenanzeigen = " SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
+        String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
-                "WHERE s.ort LIKE '%" + ort + "%' " +
-                "OR a.unternehmen LIKE '%" + titelorunternehmen + "%' " +
-                "OR s.titel LIKE '%" + titelorunternehmen + "%'";
+                "WHERE s.ort LIKE '%"+ort+"%'\n";
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
+
+        return liste;
+    }
+
+    private List<StellenanzeigeDTO> hilfe(String sql){
+        ResultSet rs = null;
+        List<StellenanzeigeDTO> liste = new ArrayList<>();
+        StellenanzeigeDTO stellenanzeige = null;
         try {
             // use prepared stmt
-            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(getStellenanzeigen);
+            PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(sql);
 
             rs = preparedStatement.executeQuery();
             assert (rs != null);
@@ -138,6 +144,35 @@ public class StellenanzeigeDAO extends AbstractDAO {
         } finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
         }
+
+        return liste;
+    }
+
+    public List<StellenanzeigeDTO> getStellenanzeigeByJobTitelOrUnternehmen(String titelorunternehmen){
+        ResultSet rs = null;
+
+        StellenanzeigeDTO stellenanzeige = null;
+        String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
+                "FROM stealthyalda.stellenanzeige s\n" +
+                "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
+                "WHERE a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
+                "OR s.titel LIKE '%"+titelorunternehmen+"%'";
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
+
+        return liste;
+    }
+
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocationAndJobTitelOrUnternehmen(String titelorunternehmen, String ort) {
+        ResultSet rs = null;
+
+        StellenanzeigeDTO stellenanzeige = null;
+        String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
+                "FROM stealthyalda.stellenanzeige s\n" +
+                "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
+                "WHERE s.ort LIKE '%"+ort+"%'\n" +
+                "OR a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
+                "OR s.titel LIKE '%"+titelorunternehmen+"%'";
+        List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
     }

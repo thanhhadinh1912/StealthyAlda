@@ -130,7 +130,7 @@ public class BenutzerDAO extends AbstractDAO {
             if (authenticator.authenticate(c, dbPasswordHash)) {
                 benutzer = new Benutzer();
                 benutzer.setEmail(email);
-                benutzer.setPasswort(password);
+                benutzer.setPasswort(dbPasswordHash);
                 benutzer.setRole(set.getString(3));
                 benutzer.setAnrede(set.getString(4));
                 benutzer.setTelefonnummer(set.getString(5));
@@ -143,9 +143,8 @@ public class BenutzerDAO extends AbstractDAO {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             AbstractDAO.closeResultset(set);
-            JDBCConnection.getInstance().closeConnection();
         }
-        return null;
+        return new Benutzer();
     }
 
     public void deleteUser(String email, String passwort) throws DatabaseException {
@@ -263,25 +262,34 @@ public class BenutzerDAO extends AbstractDAO {
 
 
     public boolean changepassword(String email, String altpasswort, String neupasswort) throws DatabaseException {
-        String sql;
-        sql = "update stealthyalda.benutzer set passwort = ? where stealthyalda.benutzer.email = ? and stealthyalda.benutzer.passwort = ?;";
+        String sql = "UPDATE stealthyalda.benutzer SET passwort = ? WHERE stealthyalda.benutzer.email = ? AND stealthyalda.benutzer.passwort = ?;";
 
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
 
-        try {
-            assert statement != null;
-            statement.setString(1, neupasswort);
+        PasswordAuthentication hasher = new PasswordAuthentication();
+        char[] alt = altpasswort.toCharArray();
+        char[] neu = neupasswort.toCharArray();
+
+
+        try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql)) {
+            String currentHash = getBenutzer(email, altpasswort).getPasswort();
+            if (!hasher.authenticate(alt, currentHash)) {
+                throw new NoSuchUserOrPassword();
+            }
+            statement.setString(1, hasher.hash(neu));
             statement.setString(2, email);
-            statement.setString(3, altpasswort);
+            statement.setString(3, currentHash);
             statement.executeUpdate();
             return true;
 
         } catch (SQLException throwables) {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
             return false;
+        } catch (NoSuchUserOrPassword noSuchUserOrPassword) {
+            Logger.getLogger(BenutzerDAO.class.getName()).log(Level.SEVERE, noSuchUserOrPassword.getMessage(), noSuchUserOrPassword);
         } finally {
             JDBCConnection.getInstance().closeConnection();
         }
+        return false;
     }
 
 

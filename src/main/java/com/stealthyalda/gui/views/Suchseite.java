@@ -28,6 +28,9 @@ import com.vaadin.shared.ui.ContentMode;
 
 public class Suchseite extends VerticalLayout implements View {
 
+    public static final String CLASSNAME ="SUCHSEITE";
+
+
     private transient StellenanzeigeDTO selected = null;
     private List<StellenanzeigeDTO> liste = null;
 
@@ -40,6 +43,7 @@ public class Suchseite extends VerticalLayout implements View {
 
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
+        button.setPrimaryStyleName(CLASSNAME + "-suchen");
 
 
         ComboBox<String> search = new ComboBox<>();
@@ -67,18 +71,26 @@ public class Suchseite extends VerticalLayout implements View {
         // Event Listener für den Suchen Button
         button.addClickListener(e -> {
             Panel sucheLayout = new Panel();
-            String ort = search.getValue();
+            String ort = searchort.getValue();
             String titel = search.getValue();
-            liste = SucheEinfach.getInstance().getStellenanzeigeByLocationOrJobTitelOrUnternehment(titel, ort);
-            if (ort.equals("") && titel.equals("")) {
-                Notification.show(null, "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
-            } else {
-                show.removeAllComponents();
+            /*if (ort.equals("") && titel.equals("")) {
+                Notification.show("FEHLER", "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
+            }
+            else {*/
+            if(titel!=null){
+                if(ort!=null) liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel,ort);
+
+                else  liste = SucheEinfach.getInstance().getStellenanzeigeByJob(titel);
+                }
+           else liste = SucheEinfach.getInstance().getStellenanzeigeByLocation(ort);
+
+
+            show.removeAllComponents();
                 sucheLayout = printergebnis(liste);
                 show.addComponent(sucheLayout);
                 addComponent(show);
                 setComponentAlignment(show, Alignment.MIDDLE_CENTER);
-            }
+
 
 
 

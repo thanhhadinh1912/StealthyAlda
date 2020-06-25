@@ -3,9 +3,7 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.ai.control.ProfilStudentControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
-import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.ai.model.entities.Student;
-import com.stealthyalda.gui.views.Studis;
+import com.stealthyalda.ai.model.entities.*;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -15,30 +13,34 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProfilVerwaltenStudent extends Studis {
+public class ProfilVerwaltenStudent extends ProfilVerwalten {
     private final String w = "700px";
 
     public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
+        super(user);
+        boolean isadmin = user.getRole().equals("admin");
         Student current = StudentDAO.getInstance().getStudent(user.getEmail());
         ProfilStudentControl c = new ProfilStudentControl();
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
         name.setPlaceholder("Vorname Nachname");
-        String studentname = current.getVorname() + " " + current.getNachname();
-        if (studentname.length() != 0) {
-            name.setValue(studentname);
+        if (!isadmin) {
+            String studentname = current.getVorname() + " " + current.getNachname();
+            if (studentname.length() != 0) {
+                name.setValue(studentname);
+            }
         }
         name.setWidth(w);
         name.setHeight("40px");
         vartical1.addComponent(name);
         vartical1.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 
-        TextArea area = new TextArea("Job Erfahrungen:");
-        area.setWidth(w);
-        area.setHeight("200px");
-        vartical1.addComponent(area);
-        vartical1.setComponentAlignment(area, Alignment.MIDDLE_CENTER);
+        TextArea jobExperience = new TextArea("Job Erfahrungen:");
+        jobExperience.setWidth(w);
+        jobExperience.setHeight("200px");
+        vartical1.addComponent(jobExperience);
+        vartical1.setComponentAlignment(jobExperience, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout horizon2 = new HorizontalLayout();
         horizon2.setHeight("75px");
@@ -110,5 +112,24 @@ public class ProfilVerwaltenStudent extends Studis {
         this.setWidth("1150px");
         this.setHeight("600px");
 
+        speichern.addClickListener(event -> {
+            ProfilStudentControl pc = new ProfilStudentControl();
+            String studentName = name.getValue(); // split into vor/nachname
+            String jobExp = jobExperience.getValue();
+            String hobbies = hobby.getValue();
+            String hardSkills = hardskill.getValue();
+            String softSkills = softskill.getValue();
+
+            Hobby h = new Hobby();
+            h.setHobby(hobby.getValue());
+            Hardskill hskill = new Hardskill();
+            Softskill skill = new Softskill();
+
+            hskill.setHardskill(hardSkills);
+            skill.setSoftskill(softSkills);
+            ProfilStudentControl psc = new ProfilStudentControl();
+            psc.updateStudentProfile();
+            //FIXME - what to do with the skills?
+        });
     }
 }
