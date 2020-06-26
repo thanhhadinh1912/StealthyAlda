@@ -8,6 +8,33 @@ public class Bewerbung {
     private int stellenanzeigeid;
     private String status;
     private Date datum;
+    private String anschreiben;
+    private String erfahrung;
+    private String zertifikat;
+
+    public String getAnschreiben() {
+        return anschreiben;
+    }
+
+    public void setAnschreiben(String anschreiben) {
+        this.anschreiben = anschreiben;
+    }
+
+    public String getErfahrung() {
+        return erfahrung;
+    }
+
+    public void setErfahrung(String erfahrung) {
+        this.erfahrung = erfahrung;
+    }
+
+    public String getZertifikat() {
+        return zertifikat;
+    }
+
+    public void setZertifikat(String zertifikat) {
+        this.zertifikat = zertifikat;
+    }
 
     public int getId() {
         return id;
