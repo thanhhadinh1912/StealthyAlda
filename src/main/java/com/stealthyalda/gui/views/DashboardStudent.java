@@ -59,15 +59,17 @@ public class DashboardStudent extends Studis {
             accordion.addTab(tab1, "Dashboard");
             final Layout tab2 = new ProfilVerwaltenStudent(user);
             accordion.addTab(tab2, "Profil verwalten");
-            Student current = StudentDAO.getInstance().getStudent(user.getEmail());
-            final Layout tab3 = new BewerbungStudent(current);
-
-            //if(ToogleRouter.isEnabled("bewerben")){
-
-            //}
+            Layout tab3 = new VerticalLayout();
 
 
-            accordion.addTab(tab3, "Bewerbungen");
+
+            if(ToogleRouter.isEnabled("bewerbung")){
+                Student current = StudentDAO.getInstance().getStudent(user.getEmail());
+                tab3 = new BewerbungStudent(current);
+            }
+
+                accordion.addTab(tab3, "Bewerbungen");
+
 
             final Layout tab4 = new KontoVerwaltung(user);
             accordion.addTab(tab4, "Konto");
