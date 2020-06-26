@@ -39,11 +39,6 @@ public class DashboardStudent extends Studis {
 
         final Button buttonsearch = new Button("Jobs finden!");
         buttonsearch.setWidth("200px");
-        buttonsearch.addClickListener(clickEvent ->  {
-            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
-            Panel ergebnisse = new Suchseite().printergebnis(liste);
-            this.addComponent(ergebnisse);
-        });
         horizon.addComponent(buttonsearch);
         horizon.setComponentAlignment(buttonsearch, Alignment.MIDDLE_RIGHT);
         if(jobsearch.getValue() == null) {
@@ -73,6 +68,12 @@ public class DashboardStudent extends Studis {
 
             final Layout tab4 = new KontoVerwaltung(user);
             accordion.addTab(tab4, "Konto");
+            buttonsearch.addClickListener(clickEvent ->  {
+                this.removeComponent(accordion);
+                List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
+                Panel ergebnisse = new Suchseite().printergebnis(liste);
+                this.addComponent(ergebnisse);
+            });
 
             accordion.setWidth("1200px");
             this.addComponent(accordion);
