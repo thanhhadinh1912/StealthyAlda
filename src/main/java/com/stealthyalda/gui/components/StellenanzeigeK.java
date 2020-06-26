@@ -51,7 +51,7 @@ public class StellenanzeigeK extends Window {
         top.addComponent(titel);
         top.addComponent(right);
         top.addComponent(arbeitgeber);
-        top.setComponentAlignment(arbeitgeber, Alignment.TOP_CENTER);
+        top.setComponentAlignment(arbeitgeber, Alignment.MIDDLE_CENTER);
         content.addComponent(top);
         content.setComponentAlignment(top,Alignment.TOP_CENTER);
 
