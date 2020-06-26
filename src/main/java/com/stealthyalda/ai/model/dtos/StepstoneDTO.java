@@ -20,9 +20,6 @@ public class StepstoneDTO implements AnwendungDTOs {
                 + " \"jobTitle\": \"" + jobTitle + "\", \n "
                 + " \"Vorname\": \"" + Vorname + "\", \n "
                 + " \"Nachname\": \"" + Nachname + "\", \n "
-                + " \"email\": \"" + email + "\", \n "
-
-                + " \"applicationText\": \"" + applicationText + "\", \n "
                 + "+ } }";
     }
 

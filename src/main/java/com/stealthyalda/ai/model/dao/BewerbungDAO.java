@@ -1,6 +1,8 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
+import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Bewerbung;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
@@ -31,7 +33,7 @@ public class BewerbungDAO extends AbstractDAO{
 
     }
 
-    public boolean createBewerbung(Stellenanzeige a, Bewerbung b, Student s){
+    public boolean createBewerbung(Stellenanzeige a, BewerbungCollAtHBRSDTO b, Student s){
         String sql = "INSERT INTO stealthyalda.bewerbung(bewerbung_id, student_id, stellenanzeige_id, status, anschreiben, erfahrung, zeugnisse) VALUES (default,?,?,?,?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
@@ -63,7 +65,7 @@ public class BewerbungDAO extends AbstractDAO{
         }
     }
 
-    private void setBewerbungsID(Bewerbung b) throws SQLException {
+    private void setBewerbungsID(BewerbungCollAtHBRSDTO b) throws SQLException {
         Statement statement = this.getStatement();
         ResultSet rs = null;
 
@@ -80,5 +82,40 @@ public class BewerbungDAO extends AbstractDAO{
             closeResultset(rs);
         }
         b.setId(currentValue);
+    }
+
+    public BewerbungCollAtHBRSDTO getBewerbungFromStudent(Student s){
+        String sql = "SELECT a.titel, u.unternehmen, b.status\n" +
+                "FROM stealthyalda.bewerbung b\n" +
+                "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
+                "JOIN stealthyalda.student s ON b.student_id = s.student_id\n" +
+                "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "WHERE s.student_id = ?\n";
+
+        ResultSet rs = null;
+        BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
+        try {
+            // use prepared stmt
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+            statement.setInt(1, s.getStudentId());
+            rs = statement.executeQuery();
+            assert (rs != null);
+            while (rs.next()) {
+                Arbeitgeber a = new Arbeitgeber();
+                StellenanzeigeDTO st = new StellenanzeigeDTO();
+                st.setOrt(rs.getString(1));
+                a.setUnternehmen(rs.getString(2));
+                bewerbung.setArbeitgeber(a);
+                bewerbung.setStatus(rs.getString(3));
+                bewerbung.setStellenanzeige(st);
+            }
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+        }
+        return bewerbung;
+
     }
 }

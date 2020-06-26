@@ -1,16 +1,14 @@
 package com.stealthyalda.gui.windows;
 
-import com.stealthyalda.ai.control.StellenanzeigeControl;
-import com.stealthyalda.ai.control.exceptions.BewerbungControl;
-import com.stealthyalda.ai.model.entities.Bewerbung;
-import com.stealthyalda.ai.model.entities.Stellenanzeige;
+import com.stealthyalda.ai.control.BewerbungControl;
+import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
+import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Student;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.ui.*;
 
 
 public class ConfirmBewerbung extends Window {
-    public ConfirmBewerbung(Stellenanzeige a, Bewerbung b, Student s) {
+    public ConfirmBewerbung(StellenanzeigeDTO a, BewerbungCollAtHBRSDTO b, Student s) {
         center();
 
         //Some basic content for the window

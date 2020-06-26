@@ -1,15 +1,14 @@
-package com.stealthyalda.gui.components;
+package com.stealthyalda.gui.windows;
 
 
 import com.stealthyalda.ai.control.StellenanzeigeControl;
 import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.AnforderungDAO;
-import com.stealthyalda.ai.model.dao.SoftskillDAO;
 import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
-import com.stealthyalda.ai.model.entities.Softskill;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
+import com.stealthyalda.gui.windows.BewerbungWindow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;

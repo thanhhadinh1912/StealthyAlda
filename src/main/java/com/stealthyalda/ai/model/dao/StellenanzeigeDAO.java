@@ -27,7 +27,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
-    public Stellenanzeige getStellenanzeige(String jobtitel,  String beschreibung, String ort, String status){
+    public StellenanzeigeDTO getStellenanzeige(String jobtitel, String beschreibung, String ort, String status){
         String sql = "select * from stealthyalda.stellenanzeige where titel = ?" +
                 "and beschreibung = ?" +
                 "and ort = ?" +

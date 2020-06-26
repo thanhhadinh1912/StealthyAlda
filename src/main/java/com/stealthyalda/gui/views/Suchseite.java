@@ -6,10 +6,9 @@ import com.stealthyalda.ai.model.dao.StellenanzeigeDAO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.components.StellenanzeigeK;
+import com.stealthyalda.gui.windows.StellenanzeigeK;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.services.util.DataSource;
 import com.stealthyalda.services.util.OrtService;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
@@ -158,7 +157,7 @@ public class Suchseite extends VerticalLayout implements View {
             article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
 
             scrollableLayout.addComponent(article);
-            Stellenanzeige s = StellenanzeigeDAO.getInstance().getStellenanzeige(suche.getTitel(), suche.getBeschreibung(), suche.getOrt(), suche.getStatus());
+            StellenanzeigeDTO s = StellenanzeigeDAO.getInstance().getStellenanzeige(suche.getTitel(), suche.getBeschreibung(), suche.getOrt(), suche.getStatus());
             article.addLayoutClickListener(event -> {
                 StellenanzeigeK window = new StellenanzeigeK(s);
                 UI.getCurrent().addWindow(window);
