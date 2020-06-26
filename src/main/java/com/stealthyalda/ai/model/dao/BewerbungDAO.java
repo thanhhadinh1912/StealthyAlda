@@ -15,6 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,16 +86,18 @@ public class BewerbungDAO extends AbstractDAO{
         b.setId(currentValue);
     }
 
-    public BewerbungCollAtHBRSDTO getBewerbungFromStudent(Student s){
+    public List<BewerbungCollAtHBRSDTO> getBewerbungFromStudent(Student s){
         String sql = "SELECT a.titel, u.unternehmen, b.status\n" +
                 "FROM stealthyalda.bewerbung b\n" +
                 "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
                 "JOIN stealthyalda.student s ON b.student_id = s.student_id\n" +
                 "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
-                "WHERE s.student_id = ?\n";
+                "WHERE s.student_id = ? " +
+                "ORDER BY b.bewerbung_id DESC\n";
+
 
         ResultSet rs = null;
-        BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
+        List<BewerbungCollAtHBRSDTO> liste = new ArrayList<>();
         try {
             // use prepared stmt
             PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
@@ -101,13 +105,15 @@ public class BewerbungDAO extends AbstractDAO{
             rs = statement.executeQuery();
             assert (rs != null);
             while (rs.next()) {
+                BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
                 Arbeitgeber a = new Arbeitgeber();
                 StellenanzeigeDTO st = new StellenanzeigeDTO();
-                st.setOrt(rs.getString(1));
+                st.setTitel(rs.getString(1));
                 a.setUnternehmen(rs.getString(2));
                 bewerbung.setArbeitgeber(a);
                 bewerbung.setStatus(rs.getString(3));
                 bewerbung.setStellenanzeige(st);
+                liste.add(bewerbung);
             }
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
         } catch (SQLException | DatabaseException e) {
@@ -115,7 +121,7 @@ public class BewerbungDAO extends AbstractDAO{
         } finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
         }
-        return bewerbung;
+        return liste;
 
     }
 }

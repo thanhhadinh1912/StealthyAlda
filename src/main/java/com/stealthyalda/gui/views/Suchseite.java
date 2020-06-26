@@ -5,7 +5,6 @@ import com.stealthyalda.ai.model.dao.SearchService;
 import com.stealthyalda.ai.model.dao.StellenanzeigeDAO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.windows.StellenanzeigeK;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;

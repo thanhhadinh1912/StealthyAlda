@@ -1,10 +1,14 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.SucheEinfach;
+import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.SearchService;
+import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.gui.components.BewerbungStudent;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
@@ -55,8 +59,14 @@ public class DashboardStudent extends Studis {
             accordion.addTab(tab1, "Dashboard");
             final Layout tab2 = new ProfilVerwaltenStudent(user);
             accordion.addTab(tab2, "Profil verwalten");
+            Student current = StudentDAO.getInstance().getStudent(user.getEmail());
+            final Layout tab3 = new BewerbungStudent(current);
 
-            final Layout tab3 = new VerticalLayout();
+            //if(ToogleRouter.isEnabled("bewerben")){
+
+            //}
+
+
             accordion.addTab(tab3, "Bewerbungen");
 
             final Layout tab4 = new KontoVerwaltung(user);
