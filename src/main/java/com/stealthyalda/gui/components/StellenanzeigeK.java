@@ -60,12 +60,14 @@ public class StellenanzeigeK extends Window {
 
         TextArea beschreibung = new TextArea("Jobbeschreibung");
         beschreibung.setValue(jobangebot.getBeschreibung());
+        beschreibung.setReadOnly(true);
         beschreibung.setHeight("150px");
         beschreibung.setWidth("700px");
         content.addComponent(beschreibung);
         content.setComponentAlignment(beschreibung, Alignment.TOP_CENTER);
 
         TextArea anforderung = new TextArea("Anforderungen");
+        anforderung.setReadOnly(true);
         try {
             List<Anforderung> a = AnforderungDAO.getInstance().getAnforderungForStellenanzeige(stellenanzeige_id);
             StringBuilder print = new StringBuilder();
