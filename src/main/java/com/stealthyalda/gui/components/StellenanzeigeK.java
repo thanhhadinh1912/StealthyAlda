@@ -91,6 +91,10 @@ public class StellenanzeigeK extends Window {
         button.setComponentAlignment(zuruck, Alignment.MIDDLE_LEFT);
 
         Button bewerben = new Button("Jetzt Bewerben!");
+        bewerben.addClickListener(clickEvent -> {
+            BewerbungWindow window = new BewerbungWindow();
+            UI.getCurrent().addWindow(window);
+        });
         bewerben.setWidth("150px");
         button.addComponent(bewerben);
         button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
