@@ -75,9 +75,9 @@ public class BewerbungDAO extends AbstractDAO{
             rs.next();
             currentValue = rs.getInt(1);
         } catch (SQLException ex) {
-            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BewerbungDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            closeResultset(rs);
         }
         b.setId(currentValue);
     }
