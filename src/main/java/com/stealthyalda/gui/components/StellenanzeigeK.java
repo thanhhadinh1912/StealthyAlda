@@ -82,7 +82,7 @@ public class StellenanzeigeK extends Window {
         content.setComponentAlignment(anforderung, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout button = new HorizontalLayout();
-        button.setWidth("1200px");
+        button.setWidth("800px");
 
         Button zuruck = new Button("Zurück");
         zuruck.setWidth("150px");
@@ -93,9 +93,9 @@ public class StellenanzeigeK extends Window {
         Button bewerben = new Button("Jetzt Bewerben!");
         bewerben.setWidth("150px");
         button.addComponent(bewerben);
-        button.setComponentAlignment(bewerben, Alignment.MIDDLE_LEFT);
+        button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
         content.addComponent(button);
-        content.setComponentAlignment(button, Alignment.MIDDLE_RIGHT);
+        content.setComponentAlignment(button, Alignment.MIDDLE_CENTER);
 
         this.setContent(content);
 
