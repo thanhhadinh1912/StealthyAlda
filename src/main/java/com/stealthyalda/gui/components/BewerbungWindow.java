@@ -42,6 +42,7 @@ public class BewerbungWindow extends Window {
         zuruck.setWidth("150px");
         button.addComponent(zuruck);
         button.setComponentAlignment(zuruck, Alignment.MIDDLE_LEFT);
+        zuruck.addClickListener(clickEvent -> close());
 
         Button abschicken = new Button("Abschicken");
         abschicken.setWidth("150px");

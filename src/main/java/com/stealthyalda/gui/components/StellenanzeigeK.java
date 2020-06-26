@@ -52,16 +52,18 @@ public class StellenanzeigeK extends Window {
         top.addComponent(right);
         top.addComponent(arbeitgeber);
         top.setComponentAlignment(arbeitgeber, Alignment.MIDDLE_CENTER);
+        top.setHeight("175px");
+
         content.addComponent(top);
         content.setComponentAlignment(top,Alignment.TOP_CENTER);
 
 
         TextArea beschreibung = new TextArea("Jobbeschreibung");
         beschreibung.setValue(jobangebot.getBeschreibung());
-        beschreibung.setHeight("200px");
+        beschreibung.setHeight("150px");
         beschreibung.setWidth("700px");
         content.addComponent(beschreibung);
-        content.setComponentAlignment(beschreibung, Alignment.MIDDLE_CENTER);
+        content.setComponentAlignment(beschreibung, Alignment.TOP_CENTER);
 
         TextArea anforderung = new TextArea("Anforderungen");
         try {
@@ -76,10 +78,10 @@ public class StellenanzeigeK extends Window {
             e.printStackTrace();
         }
 
-        anforderung.setHeight("200px");
+        anforderung.setHeight("150px");
         anforderung.setWidth("700px");
         content.addComponent(anforderung);
-        content.setComponentAlignment(anforderung, Alignment.MIDDLE_CENTER);
+        content.setComponentAlignment(anforderung, Alignment.TOP_CENTER);
 
         HorizontalLayout button = new HorizontalLayout();
         button.setWidth("800px");
@@ -99,7 +101,7 @@ public class StellenanzeigeK extends Window {
         button.addComponent(bewerben);
         button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
         content.addComponent(button);
-        content.setComponentAlignment(button, Alignment.MIDDLE_CENTER);
+        content.setComponentAlignment(button, Alignment.TOP_CENTER);
 
         this.setContent(content);
 
