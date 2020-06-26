@@ -147,6 +147,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
     }
 
 
+
     public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
         ResultSet rs = null;
 

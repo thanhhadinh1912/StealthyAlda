@@ -6,6 +6,7 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Bewerbung;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.gui.windows.ConfirmBewerbung;
 import com.stealthyalda.services.util.Roles;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
@@ -64,7 +65,8 @@ public class BewerbungWindow extends Window {
             bewerbung.setAnschreiben(anschreiben.getValue());
             bewerbung.setErfahrung(erfahrung.getValue());
             bewerbung.setZertifikat(zertifikat.getValue());
-            new BewerbungControl().createbewerbung(a,bewerbung,s);
+            ConfirmBewerbung window = new ConfirmBewerbung(a,bewerbung,s);
+            UI.getCurrent().addWindow(window);
         });
         abschicken.setWidth("150px");
         button.addComponent(abschicken);
