@@ -2,6 +2,7 @@ package com.stealthyalda.gui.components;
 
 
 import com.stealthyalda.ai.control.StellenanzeigeControl;
+import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.AnforderungDAO;
 import com.stealthyalda.ai.model.dao.SoftskillDAO;
@@ -101,8 +102,14 @@ public class StellenanzeigeK extends Window {
             UI.getCurrent().addWindow(window);
         });
         bewerben.setWidth("150px");
-        button.addComponent(bewerben);
-        button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
+        try {
+            if(new ToogleRouter().isEnabled("bewerbung")){
+                button.addComponent(bewerben);
+                button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
+            }
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
         content.addComponent(button);
         content.setComponentAlignment(button, Alignment.TOP_CENTER);
 
