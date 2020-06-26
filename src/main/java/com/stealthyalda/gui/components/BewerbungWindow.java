@@ -1,12 +1,23 @@
 package com.stealthyalda.gui.components;
 
+import com.stealthyalda.ai.control.exceptions.BewerbungControl;
+import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Bewerbung;
+import com.stealthyalda.ai.model.entities.Stellenanzeige;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.services.util.Roles;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 public class BewerbungWindow extends Window {
     private String WIDTH = "800px";
     private String HEIGHT = "120px";
-    public BewerbungWindow(){
+    private Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+
+
+    public BewerbungWindow(Stellenanzeige a){
         center();
         VerticalLayout content = new VerticalLayout();
         Label titel = new Label("<b> Bewerbung </b>", ContentMode.HTML);
@@ -45,6 +56,16 @@ public class BewerbungWindow extends Window {
         zuruck.addClickListener(clickEvent -> close());
 
         Button abschicken = new Button("Abschicken");
+        abschicken.addClickListener(clickEvent -> {
+            Student s = StudentDAO.getInstance().getStudent(user.getEmail());
+            Bewerbung bewerbung = new Bewerbung();
+            bewerbung.setMatrikelnr(s.getStudentId());
+            bewerbung.setStellenanzeigeid(a.getStellenanzeigeID());
+            bewerbung.setAnschreiben(anschreiben.getValue());
+            bewerbung.setErfahrung(erfahrung.getValue());
+            bewerbung.setZertifikat(zertifikat.getValue());
+            new BewerbungControl().createbewerbung(a,bewerbung,s);
+        });
         abschicken.setWidth("150px");
         button.addComponent(abschicken);
         button.setComponentAlignment(abschicken,Alignment.MIDDLE_RIGHT);

@@ -160,7 +160,7 @@ public class Suchseite extends VerticalLayout implements View {
             scrollableLayout.addComponent(article);
             Stellenanzeige s = StellenanzeigeDAO.getInstance().getStellenanzeige(suche.getTitel(), suche.getBeschreibung(), suche.getOrt(), suche.getStatus());
             article.addLayoutClickListener(event -> {
-                StellenanzeigeK window = new StellenanzeigeK(s.getStellenanzeigeID());
+                StellenanzeigeK window = new StellenanzeigeK(s);
                 UI.getCurrent().addWindow(window);
             } );
 

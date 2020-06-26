@@ -8,6 +8,7 @@ import com.stealthyalda.ai.model.dao.SoftskillDAO;
 import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Softskill;
+import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -17,9 +18,9 @@ import java.io.File;
 import java.util.List;
 
 public class StellenanzeigeK extends Window {
-    public StellenanzeigeK(int stellenanzeige_id){
+    public StellenanzeigeK(Stellenanzeige stellenanzeige){
         center();
-        StellenanzeigeDTO jobangebot = new StellenanzeigeControl().get(stellenanzeige_id);
+        StellenanzeigeDTO jobangebot = new StellenanzeigeControl().get(stellenanzeige.getStellenanzeigeID());
 
 
         VerticalLayout content = new VerticalLayout();
@@ -69,7 +70,7 @@ public class StellenanzeigeK extends Window {
         TextArea anforderung = new TextArea("Anforderungen");
         anforderung.setReadOnly(true);
         try {
-            List<Anforderung> a = AnforderungDAO.getInstance().getAnforderungForStellenanzeige(stellenanzeige_id);
+            List<Anforderung> a = AnforderungDAO.getInstance().getAnforderungForStellenanzeige(jobangebot.getStellenanzeigeID());
             StringBuilder print = new StringBuilder();
             for (int i = 0; i < a.size(); i++) {
                 print.append(a.get(i).getAnforderung());
@@ -96,7 +97,7 @@ public class StellenanzeigeK extends Window {
 
         Button bewerben = new Button("Jetzt Bewerben!");
         bewerben.addClickListener(clickEvent -> {
-            BewerbungWindow window = new BewerbungWindow();
+            BewerbungWindow window = new BewerbungWindow(stellenanzeige);
             UI.getCurrent().addWindow(window);
         });
         bewerben.setWidth("150px");
