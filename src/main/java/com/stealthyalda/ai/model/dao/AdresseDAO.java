@@ -96,6 +96,7 @@ public class AdresseDAO extends AbstractDAO {
                 ", plz = ? " +
                 ", ort = ? " +
                 "WHERE adresse_id = ?";
+
         try (PreparedStatement stmt = this.getPreparedStatement(sqlArbeitgeber)) {
             stmt.setString(1, adresse.getStrasse());
             stmt.setString(2, adresse.getHausnummer());
