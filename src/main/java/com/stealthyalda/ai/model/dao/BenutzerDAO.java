@@ -52,7 +52,7 @@ public class BenutzerDAO extends AbstractDAO {
                 benutzer.setEmail(set.getString(4));
                 benutzer.setPasswort(set.getString(5));
                 benutzer.setRole(set.getString(6));
-                benutzer.setAdresseId((set.getInt(7)));
+                // Tabelle scheint es nicht zu geben benutzer.setAdresseId((set.getInt(7)));
             }
         } catch (SQLException | DatabaseException e) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, e.getMessage());
