@@ -1,15 +1,10 @@
 package com.stealthyalda.ai.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class SearchService {
-    private static List<String> liste = new ArrayList<>();
-
-    public SearchService() {
-        liste = SearchDAO.getInstance().getJobtitelOrArbeitgeber();
-    }
+    private static final List<String> liste = SearchDAO.getInstance().getJobtitelOrArbeitgeber();
 
     public List<String> getJobtitelOrArbeitgeber() {
         return liste;

@@ -14,7 +14,7 @@ import java.io.File;
 
 
 public class TopPanel extends HorizontalLayout {
-    private final String t = "toppanelbutton";
+    static final String TOPPANELBUTTON = "toppanelbutton";
 
 
     public TopPanel(Benutzer user) {
@@ -33,13 +33,9 @@ public class TopPanel extends HorizontalLayout {
         Button buttonFuerStudent = new Button("Für Studenten");
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonFuerStudent.addStyleName(t);
+        buttonFuerStudent.addStyleName(TOPPANELBUTTON);
         buttonFuerStudent.addClickListener(clickEvent -> {
-            if (user.getRole().equals("Student")) {
-                ((MyUI) UI.getCurrent()).setBenutzer(user);
-                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
-                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
-            } else if (user.getRole().equals("admin")) {
+            if (user.getRole().equals("Student") || user.getRole().equals("admin")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
@@ -51,13 +47,9 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonFuerArbeitgeber = new Button("Für Arbeitgeber");
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonFuerArbeitgeber.addStyleName(t);
+        buttonFuerArbeitgeber.addStyleName(TOPPANELBUTTON);
         buttonFuerArbeitgeber.addClickListener(clickEvent -> {
-            if (user.getRole().equals("Arbeitgeber")) {
-                ((MyUI) UI.getCurrent()).setBenutzer(user);
-                UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
-                UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
-            } else if (user.getRole().equals("admin")) {
+            if (user.getRole().equals("Arbeitgeber") || user.getRole().equals("admin")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
@@ -71,7 +63,7 @@ public class TopPanel extends HorizontalLayout {
 
         Button buttonAbmelden = new Button("Abmelden");
         buttonAbmelden.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonAbmelden.addStyleName(t);
+        buttonAbmelden.addStyleName(TOPPANELBUTTON);
         buttonAbmelden.addClickListener(event -> LoginControl.logoutUser());
         gridTop.addComponent(buttonAbmelden, 7, 0);
         gridTop.setComponentAlignment(buttonFuerStudent, Alignment.MIDDLE_RIGHT);

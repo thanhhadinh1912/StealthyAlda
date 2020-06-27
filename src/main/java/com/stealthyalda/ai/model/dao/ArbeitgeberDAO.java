@@ -98,7 +98,6 @@ public class ArbeitgeberDAO extends AbstractDAO {
                 a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(set.getInt(3));
-                //a.setLogo(set.getByte(4));
                 a.setBeschreibung(set.getString(5));
                 a.setTelefonnummer(set.getString(7));
                 a.setAnrede(set.getString(8));
@@ -115,13 +114,13 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return null;
     }
 
-    public Arbeitgeber getArbeitgeberFromArbeitgeberid(int arbeitgeber_id) {
+    public Arbeitgeber getArbeitgeberFromArbeitgeberid(int arbeitgeberId) {
         ResultSet set = null;
         String arbeitgeberQuery = "SELECT * \n" +
                 "FROM stealthyalda.arbeitgeber \n" +
-                "WHERE arbeitgeber_id = ?;";
+                "WHERE arbeitgeberId = ?;";
         try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(arbeitgeberQuery)) {
-            statement.setInt(1, arbeitgeber_id);
+            statement.setInt(1, arbeitgeberId);
             set = statement.executeQuery();
 
             if (set.next()) {
@@ -129,7 +128,6 @@ public class ArbeitgeberDAO extends AbstractDAO {
                 a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(set.getInt(3));
-                //a.setLogo(set.getByte(4));
                 a.setBeschreibung(set.getString(5));
                 return a;
             }

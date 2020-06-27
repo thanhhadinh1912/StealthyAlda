@@ -9,9 +9,9 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Softskill;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,18 +35,18 @@ public class SoftskillDAO extends AbstractDAO {
     }
 
     public List<Softskill> getSoftskillsForUser(Benutzer user) {
-        Statement statement = this.getStatement();
         List<Softskill> liste = new ArrayList<>();
         Softskill softskill = null;
         ResultSet rs = null;
-        try {
-            String sql = "select h.softskill_id, h.softskill\n" +
-                    "from stealthyalda.softskill h\n" +
-                    "inner join  stealthyalda.student_hat_softskill sh on sh.softskill_id = h.softskill_id\n" +
-                    "inner join stealthyalda.student s on s.student_id = sh.student_id\n" +
-                    "where s.benutzer_id = '" + user.getId() + "';";
-            rs = statement.executeQuery(sql);
+        String sql = "SELECT h.softskill_id, h.softskill\n" +
+                "FROM stealthyalda.softskill h\n" +
+                "INNER JOIN  stealthyalda.student_hat_softskill sh on sh.softskill_id = h.softskill_id\n" +
+                "INNER JOIN stealthyalda.student s on s.student_id = sh.student_id\n" +
+                "WHERE s.benutzer_id = ?;";
+        try (PreparedStatement stmt = this.getPreparedStatement(sql)) {
+            stmt.setInt(1, user.getId());
 
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
                 softskill = new Softskill();
@@ -56,7 +56,7 @@ public class SoftskillDAO extends AbstractDAO {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Hardskill.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         } finally {
             closeResultset(rs);
         }

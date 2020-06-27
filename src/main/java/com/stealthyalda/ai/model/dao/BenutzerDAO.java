@@ -3,7 +3,6 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dtos.DTOs;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
@@ -13,7 +12,6 @@ import com.vaadin.server.VaadinSession;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,11 +37,11 @@ public class BenutzerDAO extends AbstractDAO {
 
         Benutzer benutzer = null;
         try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * "
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement("SELECT * "
                     + "FROM stealthyalda.benutzer "
-                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
-
+                    + "WHERE stealthyalda.benutzer.email = ?");
+            statement.setString(1, email);
+            set = statement.executeQuery();
             while (set.next()) {
                 benutzer = new Benutzer();
                 benutzer.setId(set.getInt(1));
@@ -68,10 +66,11 @@ public class BenutzerDAO extends AbstractDAO {
     public static String getUserRole(String email) {
         ResultSet set = null;
         try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT role "
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement("SELECT role "
                     + "FROM stealthyalda.benutzer "
-                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
+                    + "WHERE stealthyalda.benutzer.email = ?");
+            statement.setString(1, email);
+            set = statement.executeQuery();
 
             if (set.next()) {
                 return set.getString(1);
@@ -168,7 +167,7 @@ public class BenutzerDAO extends AbstractDAO {
 
     }
 
-    public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
+    public boolean checkUserExists(String email) throws DatabaseException {
         ResultSet set = null;
         try {
 

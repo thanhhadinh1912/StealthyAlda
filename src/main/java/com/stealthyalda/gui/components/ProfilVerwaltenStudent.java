@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ProfilVerwaltenStudent extends ProfilVerwalten {
-    private final String w = "700px";
+    static final String PX_700 = "700px";
 
     public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
         super(user);
@@ -31,20 +31,20 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
                 name.setValue(studentname);
             }
         }
-        name.setWidth(w);
+        name.setWidth(PX_700);
         name.setHeight("40px");
         vartical1.addComponent(name);
         vartical1.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 
         TextArea jobExperience = new TextArea("Job Erfahrungen:");
-        jobExperience.setWidth(w);
+        jobExperience.setWidth(PX_700);
         jobExperience.setHeight("200px");
         vartical1.addComponent(jobExperience);
         vartical1.setComponentAlignment(jobExperience, Alignment.MIDDLE_CENTER);
 
         HorizontalLayout horizon2 = new HorizontalLayout();
         horizon2.setHeight("75px");
-        horizon2.setWidth(w);
+        horizon2.setWidth(PX_700);
 
         TextArea hobby = new TextArea("Hobbys");
         hobby.setWidth("325px");
@@ -129,7 +129,7 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
             skill.setSoftskill(softSkills);
             ProfilStudentControl psc = new ProfilStudentControl();
             psc.updateStudentProfile();
-            //FIXME - what to do with the skills?
+            //TODO - Save skills eosoro2s
         });
     }
 }

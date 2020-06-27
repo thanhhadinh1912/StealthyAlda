@@ -28,7 +28,7 @@ public class SearchDAO extends AbstractDAO {
     public List<String> getJobtitelOrArbeitgeber() {
         ResultSet set = null;
         ResultSet set2 = null;
-        List<String> liste = new ArrayList<String>();
+        List<String> liste = new ArrayList<>();
         try {
             Statement statement = this.getStatement();
             set = statement.executeQuery("SELECT titel FROM stealthyalda.stellenanzeige ");
