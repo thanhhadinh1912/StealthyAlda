@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SearchDAO extends AbstractDAO{
+public class SearchDAO extends AbstractDAO {
     private static SearchDAO dao;
 
     private SearchDAO() {
@@ -24,6 +24,7 @@ public class SearchDAO extends AbstractDAO{
         }
         return dao;
     }
+
     public List<String> getJobtitelOrArbeitgeber() {
         ResultSet set = null;
         ResultSet set2 = null;
@@ -36,13 +37,13 @@ public class SearchDAO extends AbstractDAO{
                 if (!set.next()) break;
                 liste.add(set.getString(1));
             }
-             set2 = statement.executeQuery("select distinct a.unternehmen\n" +
-                     "from stealthyalda.arbeitgeber a\n" +
-                     "join stealthyalda.stellenanzeige s\n" +
-                     "on s.arbeitgeber_id = a.arbeitgeber_id");
-            while (true){
+            set2 = statement.executeQuery("select distinct a.unternehmen\n" +
+                    "from stealthyalda.arbeitgeber a\n" +
+                    "join stealthyalda.stellenanzeige s\n" +
+                    "on s.arbeitgeber_id = a.arbeitgeber_id");
+            while (true) {
                 assert set2 != null;
-                if(!set2.next()) break;
+                if (!set2.next()) break;
                 liste.add(set2.getString(1));
             }
         } catch (SQLException ex) {
@@ -77,9 +78,8 @@ public class SearchDAO extends AbstractDAO{
                 liste.add(set.getString(1));
             }
         } catch (SQLException e) {
-                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
-        }
-        finally {
+            Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
             try {
                 JDBCConnection.getInstance().closeConnection();
             } catch (DatabaseException e) {

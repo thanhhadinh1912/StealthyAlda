@@ -29,17 +29,17 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                 Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
                 List<BewerbungCollAtHBRSDTO> bewerbungs = BewerbungCollAtHBRSFactory.getInstance().getListBewerbungForArbeitgeber(a);
 
-                for(int i=0; i<bewerbungs.size();i++){
+                for (int i = 0; i < bewerbungs.size(); i++) {
                     HorizontalLayout layout = new HorizontalLayout();
                     BewerbungCollAtHBRSDTO bewerbung = bewerbungs.get(i);
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
                     String formattedString = bewerbung.getDatum().format(formatter);
-                    Label label = new Label(Integer.toString(i+1) + ". " +
+                    Label label = new Label((i + 1) + ". " +
                             bewerbung.getStudent().getNachname() + ", " +
                             bewerbung.getStudent().getVorname() + " - " +
                             bewerbung.getStellenanzeige().getTitel() + " - " +
                             formattedString
-                            );
+                    );
                     layout.addComponent(label);
                     Button infor = new Button(VaadinIcons.INFO);
                     layout.addComponent(infor);
@@ -54,12 +54,12 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
         Label titelstellenanzeige = new Label("<b> Ihre Stellenanzeigen </b>", ContentMode.HTML);
         content.addComponent(titelstellenanzeige);
 
-        if(!user.getRole().equals("admin")) {
+        if (!user.getRole().equals("admin")) {
 
             List<StellenanzeigeDTO> jobangebot = new ProfilArbeitgeberControl().getStellenanzeige(ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail()).getUnternehmen());
             for (int i = 0; i < jobangebot.size(); i++) {
                 HorizontalLayout joblayout = new HorizontalLayout();
-                Label job = new Label(Integer.toString(i + 1) + "." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
+                Label job = new Label((i + 1) + "." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
                 Button jobangebotbearbeiten = new Button(VaadinIcons.PENCIL);
                 //jobangebotbearbeiten.addClickListener(clickEvent -> {});
                 joblayout.addComponent(job);

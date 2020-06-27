@@ -39,12 +39,11 @@ public class TopPanel extends HorizontalLayout {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
-            } else  if (user.getRole().equals("admin")){
+            } else if (user.getRole().equals("admin")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDS);
-            }
-            else {
+            } else {
                 Notification.show("Fehler", "Seite ist nur für Student verfügbar", Notification.Type.ERROR_MESSAGE);
             }
         });
@@ -58,12 +57,11 @@ public class TopPanel extends HorizontalLayout {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
-            }else  if (user.getRole().equals("admin")){
+            } else if (user.getRole().equals("admin")) {
                 ((MyUI) UI.getCurrent()).setBenutzer(user);
                 UI.getCurrent().getSession().setAttribute(Roles.CURRENTUSER, user);
                 UI.getCurrent().getNavigator().navigateTo(Views.DASHBOARDA);
-            }
-            else {
+            } else {
                 Notification.show("Fehler", "Seite ist nur für Arbeitgeber verfügbar", Notification.Type.ERROR_MESSAGE);
 
             }

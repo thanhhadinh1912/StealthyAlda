@@ -8,7 +8,6 @@ import com.stealthyalda.ai.model.dao.AnforderungDAO;
 import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-import com.stealthyalda.gui.windows.BewerbungWindow;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
@@ -18,7 +17,7 @@ import java.io.File;
 import java.util.List;
 
 public class StellenanzeigeK extends Window {
-    public StellenanzeigeK(Stellenanzeige stellenanzeige){
+    public StellenanzeigeK(Stellenanzeige stellenanzeige) {
         center();
         StellenanzeigeDTO jobangebot = new StellenanzeigeControl().get(stellenanzeige.getStellenanzeigeID());
 
@@ -31,7 +30,7 @@ public class StellenanzeigeK extends Window {
         jt.setWidth("600px");
         titel.addComponent(jt);
 
-        Label ju = new Label(jobangebot.getUnternehmen().getUnternehmen() + " - " +jobangebot.getOrt());
+        Label ju = new Label(jobangebot.getUnternehmen().getUnternehmen() + " - " + jobangebot.getOrt());
         ju.setWidth("600px");
         titel.addComponent(ju);
 
@@ -42,9 +41,9 @@ public class StellenanzeigeK extends Window {
 
         VerticalLayout right = new VerticalLayout();
         right.addComponent(profilbild);
-        right.setComponentAlignment(profilbild,Alignment.TOP_CENTER);
+        right.setComponentAlignment(profilbild, Alignment.TOP_CENTER);
         right.addComponent(new Label(jobangebot.getStatus()));
-        right.setComponentAlignment(profilbild,Alignment.TOP_CENTER);
+        right.setComponentAlignment(profilbild, Alignment.TOP_CENTER);
         right.addComponent(new Label(jobangebot.getDatum().toString()));
         Button arbeitgeber = new Button(VaadinIcons.HOME);
 
@@ -56,7 +55,7 @@ public class StellenanzeigeK extends Window {
         top.setHeight("175px");
 
         content.addComponent(top);
-        content.setComponentAlignment(top,Alignment.TOP_CENTER);
+        content.setComponentAlignment(top, Alignment.TOP_CENTER);
 
 
         TextArea beschreibung = new TextArea("Jobbeschreibung");
@@ -102,7 +101,7 @@ public class StellenanzeigeK extends Window {
         });
         bewerben.setWidth("150px");
         try {
-            if(new ToogleRouter().isEnabled("bewerbung")){
+            if (new ToogleRouter().isEnabled("bewerbung")) {
                 button.addComponent(bewerben);
                 button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
             }

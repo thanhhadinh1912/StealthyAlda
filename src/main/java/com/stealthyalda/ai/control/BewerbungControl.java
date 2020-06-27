@@ -6,7 +6,7 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Student;
 
 public class BewerbungControl {
-    public void createbewerbung(StellenanzeigeDTO a, BewerbungCollAtHBRSDTO b, Student s){
-        BewerbungDAO.getInstance().createBewerbung(a,b,s);
+    public void createbewerbung(StellenanzeigeDTO a, BewerbungCollAtHBRSDTO b, Student s) {
+        BewerbungDAO.getInstance().createBewerbung(a, b, s);
     }
 }

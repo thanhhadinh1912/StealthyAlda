@@ -52,7 +52,6 @@ public class BenutzerDAO extends AbstractDAO {
                 benutzer.setEmail(set.getString(4));
                 benutzer.setPasswort(set.getString(5));
                 benutzer.setRole(set.getString(6));
-                // Tabelle scheint es nicht zu geben benutzer.setAdresseId((set.getInt(7)));
             }
         } catch (SQLException | DatabaseException e) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, e.getMessage());
@@ -170,36 +169,27 @@ public class BenutzerDAO extends AbstractDAO {
     }
 
     public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
-        ResultSet set;
-        boolean checksOkay = false;
+        ResultSet set = null;
         try {
+
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement("SELECT  COUNT(*) AS rowcount FROM stealthyalda.benutzer " +
                     " WHERE stealthyalda.benutzer.email = ?;");
 
             preparedStatement.setString(1, email);
 
             set = preparedStatement.executeQuery();
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
-        } catch (SQLException e) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException(EXCEPTION);
-        }
-        try {
             set.next();
             int count = set.getInt("rowcount");
             set.close();
-            if (count != 0) {
-                checksOkay = false;
-                throw new UserExistsException("Sorry, Sie können diese Email Adresse nicht benutzen");
-            }
-            checksOkay = true;
-        } catch (SQLException ex) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return count == 0;
+        } catch (SQLException e) {
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            throw new DatabaseException(EXCEPTION);
         } finally {
+            closeResultset(set);
             JDBCConnection.getInstance().closeConnection();
         }
 
-        return checksOkay;
     }
 
     public boolean createBenutzer(String email, String passwort, String role) {

@@ -51,7 +51,7 @@ public class KontoVerwaltung extends VerticalLayout {
             UI.getCurrent().addWindow(deleteWindow);
         });
         deletekonto.addComponent(delete);
-        
+
         VerticalLayout changepassword = new VerticalLayout();
         Label change = new Label("Passwort ändern");
 
@@ -80,11 +80,11 @@ public class KontoVerwaltung extends VerticalLayout {
             String altpasswort = alt.getValue();
             String neupasswort = neu.getValue();
             Boolean check = kc.changekonto(email, altpasswort, neupasswort);
-            if(check){
+            if (check) {
                 ConfirmationWindow confirm = new ConfirmationWindow("Erfolgreich");
                 UI.getCurrent().addWindow(confirm);
             }
-                });
+        });
 
         main.addComponent(deletekonto);
         main.setComponentAlignment(deletekonto, Alignment.TOP_LEFT);

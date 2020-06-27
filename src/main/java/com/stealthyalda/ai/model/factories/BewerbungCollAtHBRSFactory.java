@@ -1,9 +1,8 @@
 package com.stealthyalda.ai.model.factories;
 
 import com.stealthyalda.ai.model.dao.BewerbungDAO;
-import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.AnwendungDTOs;
-import com.stealthyalda.ai.model.dtos.StepstoneDTO;
+import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Student;
 
@@ -32,12 +31,13 @@ public class BewerbungCollAtHBRSFactory implements AnwendungFactory {
         BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
         return bewerbung;
     }
-    public List<BewerbungCollAtHBRSDTO> getListBewerbungStudent(Student s){
+
+    public List<BewerbungCollAtHBRSDTO> getListBewerbungStudent(Student s) {
         list = BewerbungDAO.getInstance().getBewerbungFromStudent(s);
         return list;
     }
 
-    public List<BewerbungCollAtHBRSDTO> getListBewerbungForArbeitgeber(Arbeitgeber a){
+    public List<BewerbungCollAtHBRSDTO> getListBewerbungForArbeitgeber(Arbeitgeber a) {
         list = BewerbungDAO.getInstance().getBewerbungFromArbeitgeber(a);
         return list;
     }

@@ -20,7 +20,7 @@ import java.io.File;
 
 
 public class Loginseite extends VerticalLayout implements View {
-    public static final String CLASSNAME ="LOGINSEITE";
+    public static final String CLASSNAME = "LOGINSEITE";
     //Geschütztes Leerzeichen "No Break Space"
     private final String n = "&nbsp";
 

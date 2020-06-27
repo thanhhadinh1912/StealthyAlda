@@ -114,6 +114,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
 
         return null;
     }
+
     public Arbeitgeber getArbeitgeberFromArbeitgeberid(int arbeitgeber_id) {
         ResultSet set = null;
         String arbeitgeberQuery = "SELECT * \n" +

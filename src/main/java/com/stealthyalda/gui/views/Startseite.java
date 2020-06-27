@@ -19,7 +19,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * @author WINDOWS
  */
 public class Startseite extends VerticalLayout implements View {
-    public static final String CLASSNAME ="STARTSEITE";
+    public static final String CLASSNAME = "STARTSEITE";
 
     public void setUp() {
 

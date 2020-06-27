@@ -5,9 +5,9 @@ import com.stealthyalda.ai.model.dao.SearchService;
 import com.stealthyalda.ai.model.dao.StellenanzeigeDAO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.gui.windows.StellenanzeigeK;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
+import com.stealthyalda.gui.windows.StellenanzeigeK;
 import com.stealthyalda.services.util.OrtService;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
@@ -18,25 +18,23 @@ import com.vaadin.server.FileResource;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
-
 
 import java.io.File;
 import java.util.List;
 
-import com.vaadin.shared.ui.ContentMode;
-
 
 public class Suchseite extends VerticalLayout implements View {
 
-    public static final String CLASSNAME ="SUCHSEITE";
+    public static final String CLASSNAME = "SUCHSEITE";
 
 
-    private transient StellenanzeigeDTO selected = null;
+    private final transient StellenanzeigeDTO selected = null;
     private List<StellenanzeigeDTO> liste = null;
 
     public void setUp() {
-        Benutzer user  = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+        Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
         this.addComponent(new TopPanel(user));
 
         setMargin(true);
@@ -60,7 +58,6 @@ public class Suchseite extends VerticalLayout implements View {
         searchort.setDataProvider(ortService::fetch, ortService::count);
 
 
-
         horizon.addComponents(search, searchort, button);
         addComponent(horizon);
 
@@ -78,25 +75,22 @@ public class Suchseite extends VerticalLayout implements View {
                 Notification.show("FEHLER", "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
             }
             else {*/
-            if(titel!=null){
-                if(ort!=null) liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel,ort);
+            if (titel != null) {
+                if (ort != null)
+                    liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel, ort);
 
-                else  liste = SucheEinfach.getInstance().getStellenanzeigeByJob(titel);
-                }
-           else liste = SucheEinfach.getInstance().getStellenanzeigeByLocation(ort);
+                else liste = SucheEinfach.getInstance().getStellenanzeigeByJob(titel);
+            } else liste = SucheEinfach.getInstance().getStellenanzeigeByLocation(ort);
 
 
             show.removeAllComponents();
-                sucheLayout = printergebnis(liste);
-                show.addComponent(sucheLayout);
-                addComponent(show);
-                setComponentAlignment(show, Alignment.MIDDLE_CENTER);
-
-
+            sucheLayout = printergebnis(liste);
+            show.addComponent(sucheLayout);
+            addComponent(show);
+            setComponentAlignment(show, Alignment.MIDDLE_CENTER);
 
 
         });
-
 
 
         // Grid und Buchen Button richtig anordnen
@@ -104,65 +98,65 @@ public class Suchseite extends VerticalLayout implements View {
 
     }
 
-    public Panel printergebnis(List<StellenanzeigeDTO>liste){
+    public Panel printergebnis(List<StellenanzeigeDTO> liste) {
         VerticalLayout scrollableLayout = new VerticalLayout();
         Panel main = new Panel();
-        if(liste.size()!=0){
-        for(int i=0; i<liste.size();i++){
-            StellenanzeigeDTO suche= liste.get(i);
-            HorizontalLayout article = new HorizontalLayout();
-            String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
-            FileResource resource = new FileResource(new File(basepath +
-                    "/Image/Unknown_profil.png"));
-            Image profilbild = new Image("", resource);
-            article.addComponent(profilbild);
-            article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
-            VerticalLayout titelbeschreibung = new VerticalLayout();
-            HorizontalLayout info = new HorizontalLayout();
-            Label stitel = new Label(suche.getTitel(), ContentMode.TEXT);
-            stitel.setWidth("400px");
-            info.addComponent(stitel);
+        if (liste.size() != 0) {
+            for (int i = 0; i < liste.size(); i++) {
+                StellenanzeigeDTO suche = liste.get(i);
+                HorizontalLayout article = new HorizontalLayout();
+                String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
+                FileResource resource = new FileResource(new File(basepath +
+                        "/Image/Unknown_profil.png"));
+                Image profilbild = new Image("", resource);
+                article.addComponent(profilbild);
+                article.setComponentAlignment(profilbild, Alignment.MIDDLE_LEFT);
+                VerticalLayout titelbeschreibung = new VerticalLayout();
+                HorizontalLayout info = new HorizontalLayout();
+                Label stitel = new Label(suche.getTitel(), ContentMode.TEXT);
+                stitel.setWidth("400px");
+                info.addComponent(stitel);
 
-            Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
-            info.addComponent(sunternehmen);
-            info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
-            sunternehmen.setWidth("200px");
+                Label sunternehmen = new Label(suche.getArbeitgeber(), ContentMode.PREFORMATTED);
+                info.addComponent(sunternehmen);
+                info.setComponentAlignment(sunternehmen, Alignment.TOP_CENTER);
+                sunternehmen.setWidth("200px");
 
-            Label sdatum = new Label(suche.getDatum().toString(),  ContentMode.PREFORMATTED);
-            info.addComponent(sdatum);
-            info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
-            sdatum.setWidth("100px");
+                Label sdatum = new Label(suche.getDatum().toString(), ContentMode.PREFORMATTED);
+                info.addComponent(sdatum);
+                info.setComponentAlignment(sdatum, Alignment.TOP_CENTER);
+                sdatum.setWidth("100px");
 
-            Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
-            info.addComponent(sort);
-            info.setComponentAlignment(sort, Alignment.TOP_CENTER);
-            sort.setWidth("175px");
+                Label sort = new Label(suche.getOrt(), ContentMode.PREFORMATTED);
+                info.addComponent(sort);
+                info.setComponentAlignment(sort, Alignment.TOP_CENTER);
+                sort.setWidth("175px");
 
-            Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
-            info.addComponent(sstatus);
-            info.setComponentAlignment(sstatus, Alignment.TOP_CENTER);
-            sstatus.setWidth("75px");
+                Label sstatus = new Label(suche.getStatus(), ContentMode.PREFORMATTED);
+                info.addComponent(sstatus);
+                info.setComponentAlignment(sstatus, Alignment.TOP_CENTER);
+                sstatus.setWidth("75px");
 
-            info.setHeight("60px");
+                info.setHeight("60px");
 
-            titelbeschreibung.addComponent(info);
+                titelbeschreibung.addComponent(info);
 
             /*Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.PREFORMATTED);
             sbeschreibung.setHeight("80px");
             sbeschreibung.setWidth("875px");
             titelbeschreibung.addComponent(sbeschreibung);*/
 
-            article.addComponent(titelbeschreibung);
-            article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
+                article.addComponent(titelbeschreibung);
+                article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);
 
-            scrollableLayout.addComponent(article);
-            StellenanzeigeDTO s = StellenanzeigeDAO.getInstance().getStellenanzeige(suche.getTitel(), suche.getBeschreibung(), suche.getOrt(), suche.getStatus());
-            article.addLayoutClickListener(event -> {
-                StellenanzeigeK window = new StellenanzeigeK(s);
-                UI.getCurrent().addWindow(window);
-            } );
+                scrollableLayout.addComponent(article);
+                StellenanzeigeDTO s = StellenanzeigeDAO.getInstance().getStellenanzeige(suche.getTitel(), suche.getBeschreibung(), suche.getOrt(), suche.getStatus());
+                article.addLayoutClickListener(event -> {
+                    StellenanzeigeK window = new StellenanzeigeK(s);
+                    UI.getCurrent().addWindow(window);
+                });
 
-        }
+            }
         }
         main.setContent(scrollableLayout);
         return main;

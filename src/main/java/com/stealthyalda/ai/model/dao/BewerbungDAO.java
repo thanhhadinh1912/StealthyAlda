@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class BewerbungDAO extends AbstractDAO{
+public class BewerbungDAO extends AbstractDAO {
     private static BewerbungDAO dao;
 
     private BewerbungDAO() {
@@ -29,17 +29,16 @@ public class BewerbungDAO extends AbstractDAO{
 
     }
 
-    public boolean createBewerbung(Stellenanzeige a, BewerbungCollAtHBRSDTO b, Student s){
+    public boolean createBewerbung(Stellenanzeige a, BewerbungCollAtHBRSDTO b, Student s) {
         String sql = "INSERT INTO stealthyalda.bewerbung(bewerbung_id, student_id, stellenanzeige_id, status, anschreiben, erfahrung, zeugnisse, datum) VALUES (default,?,?,?,?,?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
 
-
         try {
-            statement.setInt(1,s.getStudentId());
-            statement.setInt(2,a.getStellenanzeigeID());
-            statement.setString(3,"gesendet");
-            statement.setString(4,b.getAnschreiben());
+            statement.setInt(1, s.getStudentId());
+            statement.setInt(2, a.getStellenanzeigeID());
+            statement.setString(3, "gesendet");
+            statement.setString(4, b.getAnschreiben());
             statement.setString(5, b.getErfahrung());
             statement.setString(6, b.getZertifikat());
             statement.setDate(7, Date.valueOf(b.getDatum()));
@@ -81,7 +80,7 @@ public class BewerbungDAO extends AbstractDAO{
         b.setId(currentValue);
     }
 
-    public List<BewerbungCollAtHBRSDTO> getBewerbungFromStudent(Student s){
+    public List<BewerbungCollAtHBRSDTO> getBewerbungFromStudent(Student s) {
         String sql = "SELECT a.titel, u.unternehmen, b.status\n" +
                 "FROM stealthyalda.bewerbung b\n" +
                 "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
@@ -120,7 +119,7 @@ public class BewerbungDAO extends AbstractDAO{
 
     }
 
-    public List<BewerbungCollAtHBRSDTO> getBewerbungFromArbeitgeber(Arbeitgeber a){
+    public List<BewerbungCollAtHBRSDTO> getBewerbungFromArbeitgeber(Arbeitgeber a) {
         String sql = "SELECT s.nachname, s.vorname, a.titel, b.datum\n" +
                 "FROM stealthyalda.bewerbung b\n" +
                 "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +

@@ -7,9 +7,9 @@ import com.vaadin.navigator.View;
 import com.vaadin.ui.VerticalLayout;
 
 public class Register extends VerticalLayout implements View {
+    public static final String FEHLER = "Fehler";
     static final String STUDENT = "Student";
     static final String ARBEITGEBER = "Arbeitgeber";
-    public static final String FEHLER = "Fehler";
     static final String HORIZONTAL_WIDTH = "400px";
     final Binder<Benutzer> binder = new Binder<>();
 }

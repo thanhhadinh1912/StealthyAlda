@@ -12,9 +12,7 @@ import com.stealthyalda.gui.components.BewerbungStudent;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
@@ -41,7 +39,7 @@ public class DashboardStudent extends Studis {
         buttonsearch.setWidth("200px");
         horizon.addComponent(buttonsearch);
         horizon.setComponentAlignment(buttonsearch, Alignment.MIDDLE_RIGHT);
-        if(jobsearch.getValue() == null) {
+        if (jobsearch.getValue() == null) {
             this.addComponent(horizon);
             this.setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
             // Create the accordion
@@ -57,18 +55,17 @@ public class DashboardStudent extends Studis {
             Layout tab3 = new VerticalLayout();
 
 
-
-            if(ToogleRouter.isEnabled("bewerbung")){
+            if (ToogleRouter.isEnabled("bewerbung")) {
                 Student current = StudentDAO.getInstance().getStudent(user.getEmail());
                 tab3 = new BewerbungStudent(current);
             }
 
-                accordion.addTab(tab3, "Bewerbungen");
+            accordion.addTab(tab3, "Bewerbungen");
 
 
             final Layout tab4 = new KontoVerwaltung(user);
             accordion.addTab(tab4, "Konto");
-            buttonsearch.addClickListener(clickEvent ->  {
+            buttonsearch.addClickListener(clickEvent -> {
                 this.removeComponent(accordion);
                 List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
                 Panel ergebnisse = new Suchseite().printergebnis(liste);

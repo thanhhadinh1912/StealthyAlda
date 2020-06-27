@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
-    
+
     private int id;
     private Student student;
     private StellenanzeigeDTO stellenanzeige;
@@ -19,12 +19,11 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
     private LocalDate datum;
 
 
-
     @Override
     public String toString() {
         return "CollAtHBRS{" + " stellenid =" + stellenanzeige.getStellenanzeigeID() + "," + "title=" + stellenanzeige.getTitel() +
                 ", ort=" + stellenanzeige.getOrt() + ", status=" + status + ", arbeitgeber=" + arbeitgeber +
-                " vorname =" + student.getVorname() + "," + "nachname=" + student.getNachname() +"}";
+                " vorname =" + student.getVorname() + "," + "nachname=" + student.getNachname() + "}";
     }
 
     @Override
@@ -42,7 +41,7 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
         if (this.stellenanzeige != other.stellenanzeige) {
             return false;
         }
-        if(!Objects.equals(this.student, other.student)){
+        if (!Objects.equals(this.student, other.student)) {
             return false;
         }
         if (!Objects.equals(this.arbeitgeber, other.arbeitgeber)) {
@@ -51,13 +50,10 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
         if (!Objects.equals(this.anschreiben, other.anschreiben)) {
             return false;
         }
-        if(!Objects.equals(this.erfahrung, other.erfahrung)){
+        if (!Objects.equals(this.erfahrung, other.erfahrung)) {
             return false;
         }
-        if(!Objects.equals(this.zertifikat, other.zertifikat)){
-            return false;
-        }
-        return true;
+        return Objects.equals(this.zertifikat, other.zertifikat);
 
     }
 
@@ -134,13 +130,6 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
     public void setDatum(LocalDate datum) {
         this.datum = datum;
     }
-    
-    
-    
-
-
-
-
 
 
 }

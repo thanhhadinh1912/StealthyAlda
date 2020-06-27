@@ -8,7 +8,8 @@ public class StellenanzeigeControl {
     public void erstellen(Stellenanzeige s) {
         StellenanzeigeDAO.getInstance().createStellenanzeige(s);
     }
-    public StellenanzeigeDTO get(int stellenanzeigeid){
+
+    public StellenanzeigeDTO get(int stellenanzeigeid) {
         return StellenanzeigeDAO.getInstance().getJobangebot(stellenanzeigeid);
     }
 }

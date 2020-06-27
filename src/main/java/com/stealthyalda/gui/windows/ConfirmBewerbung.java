@@ -13,7 +13,7 @@ public class ConfirmBewerbung extends Window {
 
         //Some basic content for the window
         VerticalLayout content = new VerticalLayout();
-        content.addComponent(new com.vaadin.ui.Label("Sind Sie sicher, dass Sie die Bewerbung \t jetzt abschicken möchten? " ));
+        content.addComponent(new com.vaadin.ui.Label("Sind Sie sicher, dass Sie die Bewerbung \t jetzt abschicken möchten? "));
         content.setMargin(true);
         setContent(content);
 
@@ -28,7 +28,7 @@ public class ConfirmBewerbung extends Window {
         com.vaadin.ui.Button ja = new com.vaadin.ui.Button("Ja");
         janein.addComponent(ja);
         ja.addClickListener(clickEvent -> {
-            new BewerbungControl().createbewerbung(a,b,s);
+            new BewerbungControl().createbewerbung(a, b, s);
             com.vaadin.ui.Window confirm = new com.vaadin.ui.Window();
             confirm.setContent(new Label("Super! Die Bewerbung wurde versendet."));
             confirm.center();

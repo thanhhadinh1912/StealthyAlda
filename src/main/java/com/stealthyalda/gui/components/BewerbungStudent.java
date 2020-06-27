@@ -11,17 +11,17 @@ import com.vaadin.ui.VerticalLayout;
 import java.util.List;
 
 public class BewerbungStudent extends VerticalLayout {
-    public BewerbungStudent(Student s){
+    public BewerbungStudent(Student s) {
         VerticalLayout content = new VerticalLayout();
-        Label news = new Label( "<b> News </b>", ContentMode.HTML);
+        Label news = new Label("<b> News </b>", ContentMode.HTML);
 
         content.addComponent(news);
 
         List<BewerbungCollAtHBRSDTO> list = new BewerbungCollAtHBRSFactory().getListBewerbungStudent(s);
         int n;
-        if(list.size()<3) n=list.size();
-        else n=3;
-        for(int i=0; i<n;i++){
+        if (list.size() < 3) n = list.size();
+        else n = 3;
+        for (int i = 0; i < n; i++) {
             BewerbungCollAtHBRSDTO b = list.get(i);
             Label a = new Label("Ihre Bewerbung auf die Stellenanzeige '" + b.getStellenanzeige().getTitel() +
                     "' wurde " + b.getStatus());
@@ -29,9 +29,9 @@ public class BewerbungStudent extends VerticalLayout {
         }
         Label bewerbung = new Label("<b> Aktueller Stand deiner Bewerbungen </b>", ContentMode.HTML);
         content.addComponent(bewerbung);
-        for(int i=0; i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             BewerbungCollAtHBRSDTO b = list.get(i);
-            Label a = new Label(Integer.toString(i+1) +". "+
+            Label a = new Label((i + 1) + ". " +
                     b.getStellenanzeige().getTitel() + " - " +
                     b.getArbeitgeber().getUnternehmen() + " - " +
                     b.getStatus());

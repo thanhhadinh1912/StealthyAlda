@@ -8,8 +8,6 @@ package com.stealthyalda.ai.model.dtos;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 
-import java.time.LocalDate;
-
 /**
  * @author WINDOWS
  */
@@ -25,7 +23,6 @@ public class StellenanzeigeDTO extends Stellenanzeige {
     public void setUnternehmen(Arbeitgeber unternehmen) {
         this.unternehmen = unternehmen;
     }
-
 
 
     public String getArbeitgeber() {

@@ -68,7 +68,7 @@ public class RegWeiterArbeitgeber extends RegWeiter {
 
         final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", WIDTHB2);
         streetNr.addComponent(nummer);
-        streetNr.setComponentAlignment(nummer,Alignment.MIDDLE_RIGHT);
+        streetNr.setComponentAlignment(nummer, Alignment.MIDDLE_RIGHT);
 
         final HorizontalLayout plzort = new HorizontalLayout();
         plzort.setWidth("515px");

@@ -27,7 +27,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     }
 
-    public StellenanzeigeDTO getStellenanzeige(String jobtitel, String beschreibung, String ort, String status){
+    public StellenanzeigeDTO getStellenanzeige(String jobtitel, String beschreibung, String ort, String status) {
         String sql = "select * from stealthyalda.stellenanzeige where titel = ?" +
                 "and beschreibung = ?" +
                 "and ort = ?" +
@@ -85,8 +85,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
             //Nachtragliches Setzen der BuchungsID
             setStellenanzeigesID(s);
             List<Anforderung> list = s.getAnforderungs();
-            for (int i=0; i<list.size();i++){
-                AnforderungDAO.getInstance().createAnforderung(s.getStellenanzeigeID(),list.get(i).getAnforderung());
+            for (int i = 0; i < list.size(); i++) {
+                AnforderungDAO.getInstance().createAnforderung(s.getStellenanzeigeID(), list.get(i).getAnforderung());
             }
             return true;
         } catch (SQLException ex) {
@@ -114,7 +114,8 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
         s.setStellenanzeigeID(currentValue);
     }
-    public List<StellenanzeigeDTO> getStellenanzeigeByArbeitgeber(String arbeitgeber){
+
+    public List<StellenanzeigeDTO> getStellenanzeigeByArbeitgeber(String arbeitgeber) {
         ResultSet set = null;
         List<StellenanzeigeDTO> liste = new ArrayList<>();
         String sql = "select *\n" +
@@ -122,7 +123,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 "join stealthyalda.arbeitgeber a\n" +
                 "on s.arbeitgeber_id = a.arbeitgeber_id\n" +
                 "where a.unternehmen = ? order by s.stellenanzeige_id";
-        try{
+        try {
             PreparedStatement statement = this.getPreparedStatement(sql);
             statement.setString(1, arbeitgeber);
             set = statement.executeQuery();
@@ -137,31 +138,29 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 liste.add(s);
             }
 
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }        finally {
+        } finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
         }
         return liste;
     }
 
 
-
-    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort) {
         ResultSet rs = null;
 
         StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
-                "WHERE s.ort LIKE '%"+ort+"%'\n";
+                "WHERE s.ort LIKE '%" + ort + "%'\n";
         List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
     }
 
-    private List<StellenanzeigeDTO> hilfe(String sql){
+    private List<StellenanzeigeDTO> hilfe(String sql) {
         ResultSet rs = null;
         List<StellenanzeigeDTO> liste = new ArrayList<>();
         StellenanzeigeDTO stellenanzeige = null;
@@ -191,15 +190,15 @@ public class StellenanzeigeDAO extends AbstractDAO {
         return liste;
     }
 
-    public List<StellenanzeigeDTO> getStellenanzeigeByJobTitelOrUnternehmen(String titelorunternehmen){
+    public List<StellenanzeigeDTO> getStellenanzeigeByJobTitelOrUnternehmen(String titelorunternehmen) {
         ResultSet rs = null;
 
         StellenanzeigeDTO stellenanzeige = null;
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
-                "WHERE a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
-                "OR s.titel LIKE '%"+titelorunternehmen+"%'";
+                "WHERE a.unternehmen LIKE '%" + titelorunternehmen + "%' \n" +
+                "OR s.titel LIKE '%" + titelorunternehmen + "%'";
         List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
@@ -212,20 +211,20 @@ public class StellenanzeigeDAO extends AbstractDAO {
         String getStellenanzeigen = "SELECT s.titel,s.beschreibung, s.status,s.datum,a.unternehmen, s.ort \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a ON s.arbeitgeber_id = a.arbeitgeber_id \n" +
-                "WHERE s.ort LIKE '%"+ort+"%'\n" +
-                "OR a.unternehmen LIKE '%"+titelorunternehmen+"%' \n" +
-                "OR s.titel LIKE '%"+titelorunternehmen+"%'";
+                "WHERE s.ort LIKE '%" + ort + "%'\n" +
+                "OR a.unternehmen LIKE '%" + titelorunternehmen + "%' \n" +
+                "OR s.titel LIKE '%" + titelorunternehmen + "%'";
         List<StellenanzeigeDTO> liste = hilfe(getStellenanzeigen);
 
         return liste;
     }
 
-    public StellenanzeigeDTO getJobangebot(int stellenanzeige_id){
+    public StellenanzeigeDTO getJobangebot(int stellenanzeige_id) {
         String sql = "SELECT * \n" +
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a\n" +
                 "ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                "WHERE s.stellenanzeige_id = '"+stellenanzeige_id+"';";
+                "WHERE s.stellenanzeige_id = '" + stellenanzeige_id + "';";
         ResultSet rs = null;
         StellenanzeigeDTO stellenanzeige = new StellenanzeigeDTO();
         try {
@@ -250,7 +249,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
         } finally {
             com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
         }
-return stellenanzeige;
+        return stellenanzeige;
     }
 
 }

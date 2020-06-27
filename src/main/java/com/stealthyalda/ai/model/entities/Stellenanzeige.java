@@ -20,12 +20,16 @@ public class Stellenanzeige {
         return arbeitgeberID;
     }
 
-    public List<Anforderung> getAnforderungs(){return anforderungs;}
-
-    public void setAnforderungs(List<Anforderung>anforderungs){this.anforderungs=anforderungs;}
-
     public void setArbeitgeberID(int arbeitgeberID) {
         this.arbeitgeberID = arbeitgeberID;
+    }
+
+    public List<Anforderung> getAnforderungs() {
+        return anforderungs;
+    }
+
+    public void setAnforderungs(List<Anforderung> anforderungs) {
+        this.anforderungs = anforderungs;
     }
 
     public int getStellenanzeigeID() {

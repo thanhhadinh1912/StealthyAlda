@@ -14,9 +14,8 @@ import java.io.File;
 
 
 public class TopPanelStartSeite extends HorizontalLayout {
+    public static final String CLASSNAME = "TopPanelSTART";
     private final String t = "toppanelbutton";
-    public static final String CLASSNAME ="TopPanelSTART";
-
 
 
     public TopPanelStartSeite() {
