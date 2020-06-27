@@ -12,6 +12,8 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
+import java.time.LocalDate;
+
 public class BewerbungWindow extends Window {
     private String WIDTH = "800px";
     private String HEIGHT = "120px";
@@ -65,6 +67,7 @@ public class BewerbungWindow extends Window {
             bewerbung.setAnschreiben(anschreiben.getValue());
             bewerbung.setErfahrung(erfahrung.getValue());
             bewerbung.setZertifikat(zertifikat.getValue());
+            bewerbung.setDatum(LocalDate.now());
             ConfirmBewerbung window = new ConfirmBewerbung((StellenanzeigeDTO) a,bewerbung,s);
             UI.getCurrent().addWindow(window);
         });

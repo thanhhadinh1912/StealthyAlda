@@ -11,10 +11,7 @@ import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.PasswordAuthentication;
 import com.vaadin.server.VaadinSession;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,7 +33,7 @@ public class BewerbungDAO extends AbstractDAO{
     }
 
     public boolean createBewerbung(Stellenanzeige a, BewerbungCollAtHBRSDTO b, Student s){
-        String sql = "INSERT INTO stealthyalda.bewerbung(bewerbung_id, student_id, stellenanzeige_id, status, anschreiben, erfahrung, zeugnisse) VALUES (default,?,?,?,?,?,?)";
+        String sql = "INSERT INTO stealthyalda.bewerbung(bewerbung_id, student_id, stellenanzeige_id, status, anschreiben, erfahrung, zeugnisse, datum) VALUES (default,?,?,?,?,?,?,?)";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
 
@@ -48,6 +45,7 @@ public class BewerbungDAO extends AbstractDAO{
             statement.setString(4,b.getAnschreiben());
             statement.setString(5, b.getErfahrung());
             statement.setString(6, b.getZertifikat());
+            statement.setDate(7, Date.valueOf(b.getDatum()));
 
             int rowsChanged = statement.executeUpdate();
             setBewerbungsID(b);
@@ -112,6 +110,45 @@ public class BewerbungDAO extends AbstractDAO{
                 a.setUnternehmen(rs.getString(2));
                 bewerbung.setArbeitgeber(a);
                 bewerbung.setStatus(rs.getString(3));
+                bewerbung.setStellenanzeige(st);
+                liste.add(bewerbung);
+            }
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
+        } catch (SQLException | DatabaseException e) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+        }
+        return liste;
+
+    }
+
+    public List<BewerbungCollAtHBRSDTO> getBewerbungFromArbeitgeber(Arbeitgeber a){
+        String sql = "SELECT s.nachname, s.vorname, a.titel, b.datum\n" +
+                "FROM stealthyalda.bewerbung b\n" +
+                "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
+                "JOIN stealthyalda.student s ON b.student_id = s.student_id\n" +
+                "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "WHERE u.arbeitgeber_id = ?\n" +
+                "AND b.status = 'gesendet'\n" +
+                "ORDER BY b.bewerbung_id";
+        ResultSet rs = null;
+        List<BewerbungCollAtHBRSDTO> liste = new ArrayList<>();
+        try {
+            // use prepared stmt
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
+            statement.setInt(1, a.getArbeitgeberId());
+            rs = statement.executeQuery();
+            assert (rs != null);
+            while (rs.next()) {
+                BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
+                Student s = new Student();
+                StellenanzeigeDTO st = new StellenanzeigeDTO();
+                s.setNachname(rs.getString(1));
+                s.setVorname(rs.getString(2));
+                st.setTitel(rs.getString(3));
+                bewerbung.setDatum(rs.getDate(4).toLocalDate());
+                bewerbung.setStudent(s);
                 bewerbung.setStellenanzeige(st);
                 liste.add(bewerbung);
             }

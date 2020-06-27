@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.entities.Bewerbung;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
     private String erfahrung;
     private String zertifikat;
     private Arbeitgeber arbeitgeber;
-
+    private LocalDate datum;
 
 
 
@@ -127,6 +128,14 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
 
     public void setArbeitgeber(Arbeitgeber arbeitgeber) {
         this.arbeitgeber = arbeitgeber;
+    }
+
+    public LocalDate getDatum() {
+        return datum;
+    }
+
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
     }
     
     
