@@ -15,8 +15,6 @@ public class BewerbungCollAtHBRSFactory implements AnwendungFactory {
     private static BewerbungCollAtHBRSFactory instance = null;
     private List<BewerbungCollAtHBRSDTO> list = new ArrayList<>();
 
-    public BewerbungCollAtHBRSFactory() {
-    }
 
     public static BewerbungCollAtHBRSFactory getInstance() {
         if (instance == null) {
@@ -28,8 +26,7 @@ public class BewerbungCollAtHBRSFactory implements AnwendungFactory {
 
     @Override
     public AnwendungDTOs create() {
-        BewerbungCollAtHBRSDTO bewerbung = new BewerbungCollAtHBRSDTO();
-        return bewerbung;
+        return new BewerbungCollAtHBRSDTO();
     }
 
     public List<BewerbungCollAtHBRSDTO> getListBewerbungStudent(Student s) {

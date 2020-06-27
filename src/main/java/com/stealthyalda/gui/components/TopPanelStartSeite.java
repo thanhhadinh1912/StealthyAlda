@@ -15,7 +15,7 @@ import java.io.File;
 
 public class TopPanelStartSeite extends HorizontalLayout {
     public static final String CLASSNAME = "TopPanelSTART";
-    private final String t = "toppanelbutton";
+    static final String TOPPANELBUTTON = "toppanelbutton";
 
 
     public TopPanelStartSeite() {
@@ -33,7 +33,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
 
         gridTop.addComponent(logo, 0, 0);
         Button buttonFuerStudent = new Button("Für Studenten");
-        buttonFuerStudent.addStyleName(t);
+        buttonFuerStudent.addStyleName(TOPPANELBUTTON);
 
         buttonFuerStudent.addStyleName(ValoTheme.BUTTON_LINK);
 
@@ -41,7 +41,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
         gridTop.addComponent(buttonFuerStudent, 5, 0);
 
         Button buttonFuerArbeitgeber = new Button("Für Unternehmen");
-        buttonFuerArbeitgeber.addStyleName(t);
+        buttonFuerArbeitgeber.addStyleName(TOPPANELBUTTON);
         buttonFuerArbeitgeber.addStyleName(ValoTheme.BUTTON_LINK);
         buttonFuerArbeitgeber.addClickListener(event -> UI.getCurrent().getNavigator().navigateTo(Views.REGISTERFUERARBEITGEBER));
         gridTop.addComponent(buttonFuerArbeitgeber, 6, 0);
@@ -49,7 +49,7 @@ public class TopPanelStartSeite extends HorizontalLayout {
 
         Button buttonAnmelden = new Button("Anmelden");
         buttonAnmelden.addStyleName(ValoTheme.BUTTON_LINK);
-        buttonAnmelden.addStyleName(t);
+        buttonAnmelden.addStyleName(TOPPANELBUTTON);
 
         buttonAnmelden.addClickListener(event -> {
             if (user != null) {

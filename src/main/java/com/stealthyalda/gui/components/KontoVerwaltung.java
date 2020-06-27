@@ -8,7 +8,7 @@ import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 
 public class KontoVerwaltung extends VerticalLayout {
-    private final String w = "300px";
+    static final String PX_300 = "300px";
 
     public KontoVerwaltung(Benutzer user) {
         KontoControl kc = new KontoControl();
@@ -36,12 +36,12 @@ public class KontoVerwaltung extends VerticalLayout {
 
         TextField mail = new TextField();
         mail.setPlaceholder("E-Mail Adresse");
-        mail.setWidth(w);
+        mail.setWidth(PX_300);
         deletekonto.addComponent(mail);
 
         PasswordField passwort = new PasswordField();
         passwort.setPlaceholder("Passwort");
-        passwort.setWidth(w);
+        passwort.setWidth(PX_300);
         deletekonto.addComponent(passwort);
 
 
@@ -60,17 +60,17 @@ public class KontoVerwaltung extends VerticalLayout {
         final TextField mail2 = new TextField();
         mail2.setPlaceholder("E-Mail Adresse");
         mail2.setValue(user.getEmail());
-        mail2.setWidth(w);
+        mail2.setWidth(PX_300);
         changepassword.addComponent(mail2);
 
         final PasswordField alt = new PasswordField();
         alt.setPlaceholder("Altes Passwort");
-        alt.setWidth(w);
+        alt.setWidth(PX_300);
         changepassword.addComponent(alt);
 
         final PasswordField neu = new PasswordField();
         neu.setPlaceholder("Neues Passwort");
-        neu.setWidth(w);
+        neu.setWidth(PX_300);
         changepassword.addComponent(neu);
 
         final Button andern = new Button("Ändern");
@@ -79,7 +79,7 @@ public class KontoVerwaltung extends VerticalLayout {
             String email = mail2.getValue();
             String altpasswort = alt.getValue();
             String neupasswort = neu.getValue();
-            Boolean check = kc.changekonto(email, altpasswort, neupasswort);
+            boolean check = kc.changekonto(email, altpasswort, neupasswort);
             if (check) {
                 ConfirmationWindow confirm = new ConfirmationWindow("Erfolgreich");
                 UI.getCurrent().addWindow(confirm);

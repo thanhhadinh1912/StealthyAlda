@@ -41,12 +41,13 @@ public class ProfilStudentControl {
     }
 
     public String printHobby(Benutzer user) {
-        String print = "";
+        StringBuilder print = new StringBuilder();
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         for (int i = 0; i < liste.size(); i++) {
-            print += liste.get(i).getHobby() + "\t";
+            print.append(liste.get(i).getHobby());
+            print.append("\t");
         }
-        return print;
+        return print.toString();
     }
 
     public void hardskillchange(Benutzer user, String input) throws DatabaseException {

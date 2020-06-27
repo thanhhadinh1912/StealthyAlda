@@ -18,6 +18,8 @@ import com.vaadin.ui.VerticalLayout;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BenachrichtigungArbeitgeber extends VerticalLayout {
     public BenachrichtigungArbeitgeber(Benutzer user) {
@@ -47,7 +49,7 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                 }
             }
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            Logger.getLogger(BenachrichtigungArbeitgeber.class.getName()).log(Level.SEVERE, e.getReason(), e);
         }
 
 
@@ -61,7 +63,7 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                 HorizontalLayout joblayout = new HorizontalLayout();
                 Label job = new Label((i + 1) + "." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
                 Button jobangebotbearbeiten = new Button(VaadinIcons.PENCIL);
-                //jobangebotbearbeiten.addClickListener(clickEvent -> {});
+
                 joblayout.addComponent(job);
                 joblayout.addComponent(jobangebotbearbeiten);
                 content.addComponent(joblayout);
