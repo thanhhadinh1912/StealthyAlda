@@ -1,7 +1,6 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
-import com.stealthyalda.ai.model.entities.Bewerbung;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.ai.model.factories.BewerbungCollAtHBRSFactory;
 import com.vaadin.shared.ui.ContentMode;

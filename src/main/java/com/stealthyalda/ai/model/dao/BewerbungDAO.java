@@ -4,12 +4,9 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
-import com.stealthyalda.ai.model.entities.Bewerbung;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.PasswordAuthentication;
-import com.vaadin.server.VaadinSession;
 
 import java.sql.*;
 import java.util.ArrayList;

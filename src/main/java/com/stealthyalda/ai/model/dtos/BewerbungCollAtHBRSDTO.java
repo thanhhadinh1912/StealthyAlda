@@ -1,12 +1,9 @@
 package com.stealthyalda.ai.model.dtos;
 
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
-import com.stealthyalda.ai.model.entities.Bewerbung;
-import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
