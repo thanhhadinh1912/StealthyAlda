@@ -1,7 +1,6 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.services.util.Email;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.PasswordField;

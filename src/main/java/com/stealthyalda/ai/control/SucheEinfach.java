@@ -23,10 +23,11 @@ public class SucheEinfach {
         return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehmen(titel, ort);
     }
 
-    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort){
+    public List<StellenanzeigeDTO> getStellenanzeigeByLocation(String ort) {
         return StellenanzeigeDAO.getInstance().getStellenanzeigeByLocation(ort);
     }
-    public List<StellenanzeigeDTO> getStellenanzeigeByJob(String job){
+
+    public List<StellenanzeigeDTO> getStellenanzeigeByJob(String job) {
         return StellenanzeigeDAO.getInstance().getStellenanzeigeByJobTitelOrUnternehmen(job);
     }
 }

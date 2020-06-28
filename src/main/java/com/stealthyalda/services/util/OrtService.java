@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class OrtService {
-    private static List< String> liste =  new ArrayList<>();
+    private static List<String> liste = new ArrayList<>();
 
     public OrtService() {
         liste = SearchDAO.getInstance().getOrt();
     }
 
-    public  List< String> getOrt(){
+    public List<String> getOrt() {
         return liste;
     }
 
@@ -25,7 +25,7 @@ public class OrtService {
         return (int) getOrt().stream()
                 .filter(ort -> filter == null || ort
                         .toLowerCase().startsWith(filter.toLowerCase())
-                        ||ort.toLowerCase().contains(filter.toLowerCase())
+                        || ort.toLowerCase().contains(filter.toLowerCase())
                 )
                 .count();
     }

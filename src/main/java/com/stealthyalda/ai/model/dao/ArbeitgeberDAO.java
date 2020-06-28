@@ -98,7 +98,6 @@ public class ArbeitgeberDAO extends AbstractDAO {
                 a.setArbeitgeberId(set.getInt(1));
                 a.setUnternehmen(set.getString(2));
                 a.setId(set.getInt(3));
-                //a.setLogo(set.getByte(4));
                 a.setBeschreibung(set.getString(5));
                 a.setTelefonnummer(set.getString(7));
                 a.setAnrede(set.getString(8));
@@ -115,7 +114,33 @@ public class ArbeitgeberDAO extends AbstractDAO {
         return null;
     }
 
-    public void updateArbeitgeber(UnternehmenDTO unternehmen) {
+    public Arbeitgeber getArbeitgeberFromArbeitgeberid(int arbeitgeberId) {
+        ResultSet set = null;
+        String arbeitgeberQuery = "SELECT * \n" +
+                "FROM stealthyalda.arbeitgeber \n" +
+                "WHERE arbeitgeberId = ?;";
+        try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(arbeitgeberQuery)) {
+            statement.setInt(1, arbeitgeberId);
+            set = statement.executeQuery();
+
+            if (set.next()) {
+                Arbeitgeber a = new Arbeitgeber();
+                a.setArbeitgeberId(set.getInt(1));
+                a.setUnternehmen(set.getString(2));
+                a.setId(set.getInt(3));
+                a.setBeschreibung(set.getString(5));
+                return a;
+            }
+        } catch (SQLException | DatabaseException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeResultset(set);
+        }
+
+        return null;
+    }
+
+    public boolean updateArbeitgeber(UnternehmenDTO unternehmen) {
         String sqlArbeitgeber = "UPDATE stealthyalda.arbeitgeber " +
                 "SET unternehmen = ? " +
                 ", beschreibung = ? " +
@@ -125,8 +150,10 @@ public class ArbeitgeberDAO extends AbstractDAO {
             stmt.setString(2, unternehmen.getBeschreibung());
             stmt.setInt(3, unternehmen.getArbeitgeberId());
             stmt.executeUpdate();
+            return true;
         } catch (Exception e) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
         }
     }
 

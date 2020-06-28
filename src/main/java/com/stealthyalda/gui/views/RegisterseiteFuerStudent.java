@@ -1,27 +1,12 @@
 package com.stealthyalda.gui.views;
 
-import com.stealthyalda.ai.control.RegisterControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.RegisterseiteMainComponent;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
-import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.gui.windows.ConfirmReg;
-import com.stealthyalda.services.db.JDBCConnection;
-import com.stealthyalda.services.util.Roles;
-import com.stealthyalda.services.util.Views;
-import com.vaadin.data.validator.EmailValidator;
-import com.vaadin.data.validator.StringLengthValidator;
-import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.VaadinSession;
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.*;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Panel;
+import com.vaadin.ui.RadioButtonGroup;
 import com.vaadin.ui.themes.ValoTheme;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class RegisterseiteFuerStudent extends Register {
 

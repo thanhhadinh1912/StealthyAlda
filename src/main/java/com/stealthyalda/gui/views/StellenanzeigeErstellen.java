@@ -5,6 +5,7 @@
  */
 package com.stealthyalda.gui.views;
 
+import com.stealthyalda.ai.model.dtos.Anforderung;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.TopPanel;
@@ -17,6 +18,10 @@ import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author WINDOWS
@@ -87,6 +92,16 @@ public class StellenanzeigeErstellen extends VerticalLayout implements View {
             a.setDatum(date.getValue());
             a.setStatus((String) status.getValue());
             a.setOrt(ort.getValue());
+
+            List<String> listStr = new ArrayList<>();
+            List<Anforderung> list = new ArrayList<>();
+            listStr.addAll(Arrays.asList(anforderung.getValue().split("\n")));
+            for (int i = 0; i < listStr.size(); i++) {
+                Anforderung anforderung1 = new Anforderung();
+                anforderung1.setAnforderung(listStr.get(i));
+                list.add(anforderung1);
+            }
+            a.setAnforderungs(list);
             ConfirmStellenanzeige confirm = new ConfirmStellenanzeige(a);
 
             UI.getCurrent().addWindow(confirm);

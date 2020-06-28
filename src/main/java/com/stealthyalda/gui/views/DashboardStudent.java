@@ -1,16 +1,18 @@
 package com.stealthyalda.gui.views;
 
 import com.stealthyalda.ai.control.SucheEinfach;
+import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.SearchService;
+import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.gui.components.BewerbungStudent;
 import com.stealthyalda.gui.components.KontoVerwaltung;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
 import com.stealthyalda.gui.components.TopPanel;
-import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
-import com.stealthyalda.services.util.Views;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
@@ -35,14 +37,9 @@ public class DashboardStudent extends Studis {
 
         final Button buttonsearch = new Button("Jobs finden!");
         buttonsearch.setWidth("200px");
-        buttonsearch.addClickListener(clickEvent ->  {
-            List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
-            Panel ergebnisse = new Suchseite().printergebnis(liste);
-            this.addComponent(ergebnisse);
-        });
         horizon.addComponent(buttonsearch);
         horizon.setComponentAlignment(buttonsearch, Alignment.MIDDLE_RIGHT);
-        if(jobsearch.getValue() == null) {
+        if (jobsearch.getValue() == null) {
             this.addComponent(horizon);
             this.setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
             // Create the accordion
@@ -55,12 +52,25 @@ public class DashboardStudent extends Studis {
             accordion.addTab(tab1, "Dashboard");
             final Layout tab2 = new ProfilVerwaltenStudent(user);
             accordion.addTab(tab2, "Profil verwalten");
+            Layout tab3 = new VerticalLayout();
 
-            final Layout tab3 = new VerticalLayout();
+
+            if (ToogleRouter.isEnabled("bewerbung")) {
+                Student current = StudentDAO.getInstance().getStudent(user.getEmail());
+                tab3 = new BewerbungStudent(current);
+            }
+
             accordion.addTab(tab3, "Bewerbungen");
+
 
             final Layout tab4 = new KontoVerwaltung(user);
             accordion.addTab(tab4, "Konto");
+            buttonsearch.addClickListener(clickEvent -> {
+                this.removeComponent(accordion);
+                List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
+                Panel ergebnisse = new Suchseite().printergebnis(liste);
+                this.addComponent(ergebnisse);
+            });
 
             accordion.setWidth("1200px");
             this.addComponent(accordion);

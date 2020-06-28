@@ -8,12 +8,14 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ToogleFeatureDAO extends AbstractDAO{
+public class ToogleFeatureDAO extends AbstractDAO {
     private static ToogleFeatureDAO me;
-    private ToogleFeatureDAO() {}
+
+    private ToogleFeatureDAO() {
+    }
 
     public static ToogleFeatureDAO getInstance() {
-        if(me == null) {
+        if (me == null) {
             me = new ToogleFeatureDAO();
         }
         return me;
@@ -28,15 +30,13 @@ public class ToogleFeatureDAO extends AbstractDAO{
             ps.setString(1, feature);
             set = ps.executeQuery();
 
-            while(set.next()) {
+            while (set.next()) {
                 return set.getBoolean(2);
             }
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ToogleFeatureDAO.class.getName()).log(Level.SEVERE, null, ex);
             throw new DatabaseException("Fehler beim Auslesen eines Toggle-Features aus der Datenbank! Bitte Programmierer informieren.");
-        }
-        finally {
+        } finally {
             JDBCConnection.getInstance().closeConnection();
             closeResultset(set);
         }

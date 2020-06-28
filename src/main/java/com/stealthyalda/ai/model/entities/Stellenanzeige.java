@@ -1,6 +1,9 @@
 package com.stealthyalda.ai.model.entities;
 
+import com.stealthyalda.ai.model.dtos.Anforderung;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class Stellenanzeige {
     private int stellenanzeigeID;
@@ -10,6 +13,8 @@ public class Stellenanzeige {
     private LocalDate datum;
     private int arbeitgeberID;
     private String ort;
+    private List<Anforderung> anforderungs;
+
 
     public int getArbeitgeberID() {
         return arbeitgeberID;
@@ -17,6 +22,14 @@ public class Stellenanzeige {
 
     public void setArbeitgeberID(int arbeitgeberID) {
         this.arbeitgeberID = arbeitgeberID;
+    }
+
+    public List<Anforderung> getAnforderungs() {
+        return anforderungs;
+    }
+
+    public void setAnforderungs(List<Anforderung> anforderungs) {
+        this.anforderungs = anforderungs;
     }
 
     public int getStellenanzeigeID() {

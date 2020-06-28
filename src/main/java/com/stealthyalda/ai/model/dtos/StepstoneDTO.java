@@ -1,6 +1,4 @@
 package com.stealthyalda.ai.model.dtos;
-import java.util.Date;
-
 
 public class StepstoneDTO implements AnwendungDTOs {
 
@@ -20,9 +18,6 @@ public class StepstoneDTO implements AnwendungDTOs {
                 + " \"jobTitle\": \"" + jobTitle + "\", \n "
                 + " \"Vorname\": \"" + Vorname + "\", \n "
                 + " \"Nachname\": \"" + Nachname + "\", \n "
-                + " \"email\": \"" + email + "\", \n "
-
-                + " \"applicationText\": \"" + applicationText + "\", \n "
                 + "+ } }";
     }
 
@@ -50,7 +45,6 @@ public class StepstoneDTO implements AnwendungDTOs {
     }
 
 
-
     public String getVorname() {
         return Vorname;
     }
@@ -74,7 +68,6 @@ public class StepstoneDTO implements AnwendungDTOs {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 
     public String getApplicationText() {

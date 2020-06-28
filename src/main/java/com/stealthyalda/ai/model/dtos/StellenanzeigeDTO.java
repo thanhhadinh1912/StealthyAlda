@@ -5,52 +5,25 @@
  */
 package com.stealthyalda.ai.model.dtos;
 
+import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
-
-import java.time.LocalDate;
 
 /**
  * @author WINDOWS
  */
 public class StellenanzeigeDTO extends Stellenanzeige {
-    private String titel;
-    private String beschreibung;
-    private String status;
-    private LocalDate datum;
     private String arbeitgeber;
     private String ort;
+    private Arbeitgeber unternehmen;
 
-    public String getTitel() {
-        return titel;
+    public Arbeitgeber getUnternehmen() {
+        return unternehmen;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setUnternehmen(Arbeitgeber unternehmen) {
+        this.unternehmen = unternehmen;
     }
 
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDate getDatum() {
-        return datum;
-    }
-
-    public void setDatum(LocalDate datum) {
-        this.datum = datum;
-    }
 
     public String getArbeitgeber() {
         return arbeitgeber;

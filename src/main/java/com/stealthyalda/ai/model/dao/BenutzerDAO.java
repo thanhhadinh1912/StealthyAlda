@@ -3,7 +3,6 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dtos.DTOs;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
@@ -13,7 +12,6 @@ import com.vaadin.server.VaadinSession;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,11 +37,11 @@ public class BenutzerDAO extends AbstractDAO {
 
         Benutzer benutzer = null;
         try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * "
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement("SELECT * "
                     + "FROM stealthyalda.benutzer "
-                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
-
+                    + "WHERE stealthyalda.benutzer.email = ?");
+            statement.setString(1, email);
+            set = statement.executeQuery();
             while (set.next()) {
                 benutzer = new Benutzer();
                 benutzer.setId(set.getInt(1));
@@ -52,7 +50,6 @@ public class BenutzerDAO extends AbstractDAO {
                 benutzer.setEmail(set.getString(4));
                 benutzer.setPasswort(set.getString(5));
                 benutzer.setRole(set.getString(6));
-                benutzer.setAdresseId((set.getInt(7)));
             }
         } catch (SQLException | DatabaseException e) {
             Logger.getLogger(LoginControl.class.getName()).log(Level.SEVERE, e.getMessage());
@@ -69,10 +66,11 @@ public class BenutzerDAO extends AbstractDAO {
     public static String getUserRole(String email) {
         ResultSet set = null;
         try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT role "
+            PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement("SELECT role "
                     + "FROM stealthyalda.benutzer "
-                    + "WHERE stealthyalda.benutzer.email = '" + email + "'");
+                    + "WHERE stealthyalda.benutzer.email = ?");
+            statement.setString(1, email);
+            set = statement.executeQuery();
 
             if (set.next()) {
                 return set.getString(1);
@@ -169,37 +167,28 @@ public class BenutzerDAO extends AbstractDAO {
 
     }
 
-    public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
-        ResultSet set;
-        boolean checksOkay = false;
+    public boolean checkUserExists(String email) throws DatabaseException {
+        ResultSet set = null;
         try {
+
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement("SELECT  COUNT(*) AS rowcount FROM stealthyalda.benutzer " +
                     " WHERE stealthyalda.benutzer.email = ?;");
 
             preparedStatement.setString(1, email);
 
             set = preparedStatement.executeQuery();
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.INFO, null, set);
-        } catch (SQLException e) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, e);
-            throw new DatabaseException(EXCEPTION);
-        }
-        try {
             set.next();
             int count = set.getInt("rowcount");
             set.close();
-            if (count != 0) {
-                checksOkay = false;
-                throw new UserExistsException("Sorry, Sie können diese Email Adresse nicht benutzen");
-            }
-            checksOkay = true;
-        } catch (SQLException ex) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return count == 0;
+        } catch (SQLException e) {
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            throw new DatabaseException(EXCEPTION);
         } finally {
+            closeResultset(set);
             JDBCConnection.getInstance().closeConnection();
         }
 
-        return checksOkay;
     }
 
     public boolean createBenutzer(String email, String passwort, String role) {
@@ -239,7 +228,7 @@ public class BenutzerDAO extends AbstractDAO {
         }
     }
 
-    public void updateStammdaten(DTOs u, String anrede, Benutzer user) {
+    public boolean updateStammdaten(DTOs u, String anrede, Benutzer user) {
         String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
                 "SET " +
                 "anrede = ?, " +
@@ -253,9 +242,11 @@ public class BenutzerDAO extends AbstractDAO {
             statement.setString(2, u.getTelefonnummer());
             statement.setInt(3, user.getId());
             statement.executeUpdate();
+            return true;
 
         } catch (SQLException ex) {
             Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage());
+            return false;
 
         }
     }

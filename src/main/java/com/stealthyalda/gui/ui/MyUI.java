@@ -58,7 +58,6 @@ public class MyUI extends UI {
         navi.addView(Views.REGWEITERA, RegWeiterArbeitgeber.class);
         navi.addView(Views.DASHBOARDS, DashboardStudent.class);
         navi.addView(Views.DASHBOARDA, DashboardArbeitgeber.class);
-        navi.addView(Views.STELLENANZEIGE, Stellenanzeige.class);
         navi.addView(Views.STELLENANZEIGEERSTELLEN, StellenanzeigeErstellen.class);
 
         this.benutzer = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);

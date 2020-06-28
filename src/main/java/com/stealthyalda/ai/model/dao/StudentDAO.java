@@ -1,17 +1,14 @@
 package com.stealthyalda.ai.model.dao;
 
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.gui.ui.MyUI;
-import com.stealthyalda.services.db.JDBCConnection;
 import com.vaadin.ui.UI;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,11 +57,11 @@ public class StudentDAO extends AbstractDAO {
 
     public Student getStudent(int benutzerid) {
         ResultSet set = null;
-        try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * "
-                    + "FROM stealthyalda.student "
-                    + "WHERE stealthyalda.student.benutzer_id = '" + benutzerid + "'");
+        try (PreparedStatement stmt = this.getPreparedStatement("SELECT * "
+                + "FROM stealthyalda.student "
+                + "WHERE stealthyalda.student.benutzer_id = ?")) {
+            stmt.setInt(1, benutzerid);
+            set = stmt.executeQuery();
 
             if (set.next()) {
                 Student s = new Student();
@@ -75,8 +72,8 @@ public class StudentDAO extends AbstractDAO {
                 s.setProfilbild(set.getByte(5));
                 return s;
             }
-        } catch (SQLException | DatabaseException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         } finally {
             closeResultset(set);
         }
@@ -86,11 +83,12 @@ public class StudentDAO extends AbstractDAO {
     public Student getStudent(String email) {
         ResultSet set = null;
         try {
-            Statement statement = JDBCConnection.getInstance().getStatement();
-            set = statement.executeQuery("SELECT * \n" +
+            PreparedStatement stmt = this.getPreparedStatement("SELECT * \n" +
                     "FROM stealthyalda.student s\n" +
                     "JOIN stealthyalda.benutzer b ON  s.benutzer_id = b.benutzer_id\n" +
-                    "WHERE b.email = '" + email + "';");
+                    "WHERE b.email = ?;");
+            stmt.setString(1, email);
+            set = stmt.executeQuery();
 
             if (set.next()) {
                 Student s = new Student();
@@ -102,8 +100,8 @@ public class StudentDAO extends AbstractDAO {
                 s.setRole(set.getString(11));
                 return s;
             }
-        } catch (SQLException | DatabaseException ex) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         } finally {
             closeResultset(set);
         }

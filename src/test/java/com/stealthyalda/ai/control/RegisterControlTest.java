@@ -1,50 +1,45 @@
 package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
+import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
 import com.stealthyalda.ai.control.exceptions.UserExistsException;
+import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
+import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.views.Unternehmen;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import com.vaadin.server.VaadinSession;
+import org.cdisource.logging.SystemOutLogger;
+import org.junit.Test;
+
+import static com.stealthyalda.ai.model.dao.BenutzerDAO.getUser;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
-class RegisterControlTest {
+public class RegisterControlTest {
 
-    @BeforeEach
-    void setUp() {
-
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
-    void checkUserExists() throws UserExistsException, DatabaseException {
+   public void checkUserExists() throws UserExistsException, DatabaseException, NoSuchUserOrPassword {
 
-        RegisterControl rc = new RegisterControl();
-        assertEquals(false,rc.checkUserExists("Auto2@test.de"));
+        RegisterControl rc = mock(RegisterControl.class);
+        assertFalse(rc.checkUserExists("ingo"));
 
     }
 
     @Test
-    void registerUser() throws DatabaseException {
-        RegisterControl rc = new RegisterControl();
+   public void registerUser() throws DatabaseException, NoSuchUserOrPassword {
 
-        String email = "hallo@test.de";
-        String pw = "test123";
-        String student="Student";
-
-
-
-        assertEquals(true, rc.registerUser(email,pw,student));
+        BenutzerDAO myDAO=BenutzerDAO.getInstance();
+        myDAO.createBenutzer("one","one","Student");
+        Benutzer ben= myDAO.getBenutzer("one","one");
+        System.out.println(ben.getEmail());
 
     }
 
     @Test
-    void registerArbeitgeber() {
+    public void registerArbeitgeber() {
 
 
 
@@ -55,6 +50,6 @@ class RegisterControlTest {
     }
 
     @Test
-    void registerStudent() {
+    public void registerStudent() {
     }
 }

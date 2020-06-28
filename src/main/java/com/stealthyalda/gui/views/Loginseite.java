@@ -20,9 +20,9 @@ import java.io.File;
 
 
 public class Loginseite extends VerticalLayout implements View {
-    public static final String CLASSNAME ="LOGINSEITE";
+    public static final String CLASSNAME = "LOGINSEITE";
     //Geschütztes Leerzeichen "No Break Space"
-    private final String n = "&nbsp";
+    private static final String BLANK_SPACE = "&nbsp";
 
 
     public void setUp() {
@@ -83,7 +83,7 @@ public class Loginseite extends VerticalLayout implements View {
 
         layout.addComponent(userLogin, 0, 3, 3, 3);
         layout.setComponentAlignment(userLogin, Alignment.MIDDLE_LEFT);
-        Label label5 = new Label(n, ContentMode.HTML);
+        Label label5 = new Label(BLANK_SPACE, ContentMode.HTML);
         layout.addComponent(label5, 0, 4, 3, 4);
 
         layout.addComponent(passwordField, 0, 5, 3, 5);
@@ -110,7 +110,7 @@ public class Loginseite extends VerticalLayout implements View {
 
 
 //Platzhalter
-        Label label2 = new Label(n, ContentMode.HTML);
+        Label label2 = new Label(BLANK_SPACE, ContentMode.HTML);
         layout.addComponent(label2, 0, 7, 3, 7);
 
 //Button zum Login + Symbol auf Button
@@ -127,13 +127,7 @@ public class Loginseite extends VerticalLayout implements View {
         layout.addComponent(label3, 0, 9, 3, 9);
         layout.setComponentAlignment(label3, Alignment.MIDDLE_CENTER);
 
-        //Button zum Google-Anmelden + Symbol auf Button
-        //Button buttonLoginMitGoogle = new Button("Mit Google Anmelden");
-        //layout.addComponent(buttonLoginMitGoogle, 0, 10, 3, 10);
-        //layout.setComponentAlignment(buttonLoginMitGoogle, Alignment.MIDDLE_CENTER);
-        //buttonLoginMitGoogle.setPrimaryStyleName(CLASSNAME + "-google");
-
-        Label label4 = new Label(n, ContentMode.HTML);
+        Label label4 = new Label(BLANK_SPACE, ContentMode.HTML);
         layout.addComponent(label4, 0, 11, 3, 11);
         panel.setContent(layout);
         panel.setSizeUndefined();

@@ -1,7 +1,6 @@
 package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.ProfilArbeitgeberControl;
-import com.stealthyalda.ai.control.exceptions.ProfilUnternehmenControl;
 import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dtos.Adresse;
@@ -9,15 +8,15 @@ import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.gui.windows.ConfirmReg;
 import com.stealthyalda.services.util.Uploader;
+import com.stealthyalda.services.util.Views;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
-import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 
 import java.io.File;
-import java.time.LocalDate;
 import java.util.List;
 
 public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
@@ -45,7 +44,7 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         name.setWidth("580px");
         name.setHeight("50px");
         logoandname.addComponent(name);
-        logoandname.setComponentAlignment(name,Alignment.MIDDLE_CENTER);
+        logoandname.setComponentAlignment(name, Alignment.MIDDLE_CENTER);
 
 
         logoandname.addComponent(x);
@@ -70,7 +69,6 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         main.setComponentAlignment(beschreibungDesUnternehmens, Alignment.TOP_LEFT);
 
         HorizontalLayout bottom = new HorizontalLayout();
-        bottom.setHeight("240px");
 
 
         TextArea stellenanzeige = new TextArea("Stellenanzeige");
@@ -89,18 +87,17 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
         }
         stellenanzeige.setReadOnly(true);
         stellenanzeige.setWidth("650px");
-        stellenanzeige.setHeight("200px");
+        stellenanzeige.setHeight("240px");
         bottom.addComponent(stellenanzeige);
         bottom.setComponentAlignment(stellenanzeige, Alignment.MIDDLE_LEFT);
 
 
         VerticalLayout kontaktandadresse = new VerticalLayout();
         kontaktandadresse.setWidth("300px");
-        kontaktandadresse.setHeight("200px");
 
         TextArea kontakte = new TextArea("Kontakt");
-        if (!isAdmin) kontakte.setValue("Tel " + current.getTelefonnummer());
-        kontakte.setHeight("50px");
+        if (!isAdmin) kontakte.setValue(current.getTelefonnummer());
+        kontakte.setHeight("70px");
         kontakte.setWidth("300px");
         kontaktandadresse.addComponent(kontakte);
 
@@ -133,27 +130,25 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
         }
         strasse.setWidth("150px");
-        strasse.setHeight("60px");
+        strasse.setHeight("50px");
         strassehnr.addComponent(strasse);
 
 
         hausNummer.setPlaceholder("Hausnummer");
-        hausNummer.setCaption("Hausnummer");
         hausNummer.setWidth("130px");
-        hausNummer.setHeight("60px");
+        hausNummer.setHeight("50px");
         strassehnr.addComponent(hausNummer);
 
 
         HorizontalLayout plzort = new HorizontalLayout();
-        plz.setCaption("Postleitzahl");
         plz.setPlaceholder("Postleitzahl");
         plz.setWidth("150px");
-        plz.setHeight("60px");
+        plz.setHeight("50px");
 
         ort.setPlaceholder("Ort ");
 
         ort.setWidth("130px");
-        ort.setHeight("60px");
+        ort.setHeight("50px");
 
         plzort.addComponent(plz);
         plzort.addComponent(ort);
@@ -164,13 +159,13 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
 
         bottom.addComponent(kontaktandadresse);
-        bottom.setComponentAlignment(kontaktandadresse,Alignment.MIDDLE_RIGHT);
+        bottom.setComponentAlignment(kontaktandadresse, Alignment.TOP_RIGHT);
         main.addComponent(bottom);
 
 
         Button speichern = new Button("Speichern");
         main.addComponent(speichern);
-        main.setComponentAlignment(speichern,Alignment.TOP_CENTER);
+        main.setComponentAlignment(speichern, Alignment.TOP_CENTER);
 
         this.addComponent(main);
         this.setHeight("800px");
@@ -193,7 +188,11 @@ public class ProfilVerwaltenArbeitgeber extends ProfilVerwalten {
 
 
             // TODO: implement unnecessary updates when nothing has changed
-            pc.updateArbeitgeberprofil(company);
+            boolean isokay = pc.updateArbeitgeberprofil(company);
+            if (isokay) {
+                ConfirmReg confirm = new ConfirmReg("Die Änderung wurde gespeichert", Views.DASHBOARDA);
+                UI.getCurrent().addWindow(confirm);
+            }
         });
 
     }

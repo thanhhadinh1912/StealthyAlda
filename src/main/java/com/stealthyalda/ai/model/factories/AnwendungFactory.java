@@ -5,5 +5,7 @@ import com.stealthyalda.ai.model.dtos.AnwendungDTOs;
 
 public interface AnwendungFactory {
 
-    public AnwendungDTOs create();
+
+    AnwendungDTOs create();
+
 }

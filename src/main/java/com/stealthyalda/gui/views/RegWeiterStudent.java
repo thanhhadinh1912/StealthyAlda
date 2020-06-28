@@ -31,9 +31,9 @@ import java.util.logging.Logger;
  */
 public class RegWeiterStudent extends Register {
     private static final String WIDTH = "500px";
-    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
     private final String w = "250px";
     private final String w2 = "230px";
+    transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
     public void setUp() {
         TopPanelStartSeite panel = new TopPanelStartSeite();
@@ -52,7 +52,7 @@ public class RegWeiterStudent extends Register {
 
         HorizontalLayout hl1 = new HorizontalLayout();
         hl1.setWidth("515px");
-        final TextFieldForRegWeiter vorname = new TextFieldForRegWeiter("Vorname",w);
+        final TextFieldForRegWeiter vorname = new TextFieldForRegWeiter("Vorname", w);
         hl1.addComponent(vorname);
         hl1.setComponentAlignment(vorname, Alignment.MIDDLE_LEFT);
 
@@ -78,7 +78,7 @@ public class RegWeiterStudent extends Register {
 
         final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", w2);
         streetNr.addComponent(nummer);
-        streetNr.setComponentAlignment(nummer,Alignment.MIDDLE_RIGHT);
+        streetNr.setComponentAlignment(nummer, Alignment.MIDDLE_RIGHT);
 
         final HorizontalLayout plzort = new HorizontalLayout();
         plzort.setWidth("515px");
