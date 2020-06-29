@@ -73,7 +73,6 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
             top.addComponent(news);
             news.setWidth("1100px");
 
-            Label n = new Label("Neue Bewerbungen sind eingegangen");
 
 
             Button add = new Button(VaadinIcons.PLUS);
@@ -84,7 +83,12 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
                 UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGEERSTELLEN);
             });
             tab1.addComponent(top);
-            tab1.addComponent(n);
+            if (new ToogleRouter().isEnabled("bewerbung")) {
+
+                Label n = new Label("Neue Bewerbungen sind eingegangen");
+                tab1.addComponent(n);
+
+            }
 
             accordion.addTab(tab1, "Dashboard");
 

@@ -46,9 +46,11 @@ public class DashboardStudent extends Studis {
             final Accordion accordion = new Accordion();
             final Layout tab1 = new VerticalLayout();
             Label news = new Label("News");
-            Label n = new Label("Es sind viele Stellenanzeigen vorhanden. Bewerben Sie sich jetzt.");
-            tab1.addComponent(news);
-            tab1.addComponent(n);
+            if (new ToogleRouter().isEnabled("bewerbung")) {
+                Label n = new Label("Es sind viele Stellenanzeigen vorhanden. Bewerben Sie sich jetzt.");
+                tab1.addComponent(n);
+            }
+                tab1.addComponent(news);
 
             accordion.addTab(tab1, "Dashboard");
             final Layout tab2 = new ProfilVerwaltenStudent(user);
