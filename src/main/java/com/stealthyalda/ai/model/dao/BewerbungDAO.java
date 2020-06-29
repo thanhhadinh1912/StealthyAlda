@@ -56,7 +56,7 @@ public class BewerbungDAO extends AbstractDAO {
             try {
                 JDBCConnection.getInstance().closeConnection();
             } catch (DatabaseException e) {
-                e.printStackTrace();
+                logEntry(this.getClass().getName(), Level.SEVERE, e.getMessage());
             }
         }
     }

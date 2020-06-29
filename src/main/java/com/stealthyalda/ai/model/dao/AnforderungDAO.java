@@ -63,13 +63,13 @@ public class AnforderungDAO extends AbstractDAO {
         return liste;
     }
 
-    public boolean createAnforderung(int arbeitgeber_id, String anforderung) {
+    public boolean createAnforderung(int arbeitgeberId, String anforderung) {
         String sql = "insert into stealthyalda.anforderung values(?,?);";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         //Zeilenweise Abbildung der Daten auf die Spalten der erzeugten Zeile
         try {
-            statement.setInt(1, arbeitgeber_id);
+            statement.setInt(1, arbeitgeberId);
             statement.setString(2, anforderung);
             statement.executeUpdate();
             return true;

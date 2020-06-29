@@ -3,15 +3,17 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.ai.control.ProfilStudentControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
-import com.stealthyalda.ai.model.entities.*;
+import com.stealthyalda.ai.model.dtos.HardskillDTO;
+import com.stealthyalda.ai.model.dtos.HobbyDTO;
+import com.stealthyalda.ai.model.dtos.SoftskillDTO;
+import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
 
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProfilVerwaltenStudent extends ProfilVerwalten {
     static final String PX_700 = "700px";
@@ -97,14 +99,25 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
 
         Button speichern = new Button("Speichern");
         speichern.addClickListener(clickEvent -> {
-            String inputhardskill = hardskill.getValue();
-            String inputsoftskill = softskill.getValue();
-            String inputhobby = hobby.getValue();
-            try {
-                c.hardskillchange(user, inputhardskill);
-            } catch (DatabaseException ex) {
-                Logger.getLogger(ProfilVerwaltenStudent.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        });
+        speichern.addClickListener(event -> {
+            ProfilStudentControl psc = new ProfilStudentControl();
+            String studentName = name.getValue(); // split into vor/nachname
+            String jobExp = jobExperience.getValue();
+            String hardSkills = hardskill.getValue();
+            String softSkills = softskill.getValue();
+
+            HobbyDTO hbby = new HobbyDTO();
+            hbby.setDescription(hobby.getValue());
+
+            HardskillDTO hskill = new HardskillDTO();
+            SoftskillDTO skill = new SoftskillDTO();
+            hskill.setHardSkillName(hardSkills);
+            skill.setSetSoftSkillName(softSkills);
+            //TODO - Save name too eosoro2s
+            // move to control
+            psc.updateStudentProfile(hskill, skill, hbby, user);
+            // move to Control
         });
         this.addComponent(speichern);
         this.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
@@ -112,24 +125,5 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
         this.setWidth("1150px");
         this.setHeight("600px");
 
-        speichern.addClickListener(event -> {
-            ProfilStudentControl pc = new ProfilStudentControl();
-            String studentName = name.getValue(); // split into vor/nachname
-            String jobExp = jobExperience.getValue();
-            String hobbies = hobby.getValue();
-            String hardSkills = hardskill.getValue();
-            String softSkills = softskill.getValue();
-
-            Hobby h = new Hobby();
-            h.setHobby(hobby.getValue());
-            Hardskill hskill = new Hardskill();
-            Softskill skill = new Softskill();
-
-            hskill.setHardskill(hardSkills);
-            skill.setSoftskill(softSkills);
-            ProfilStudentControl psc = new ProfilStudentControl();
-            psc.updateStudentProfile();
-            //TODO - Save skills eosoro2s
-        });
     }
 }

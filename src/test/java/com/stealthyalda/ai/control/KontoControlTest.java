@@ -5,7 +5,8 @@ import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class KontoControlTest {
@@ -13,21 +14,21 @@ public class KontoControlTest {
     @Test
     public void deletekonto() throws DatabaseException, UserExistsException {
 
-        RegisterControl rc = mock ( RegisterControl.class);
+        RegisterControl rc = mock(RegisterControl.class);
         String email = "deletekonto@test.de";
         String pw = "test123";
-        rc.registerUser(email,pw,"student");
+        rc.registerUser(email, pw, "student");
         assertTrue(rc.checkUserExists(email));
 
         BenutzerDAO benDAO = BenutzerDAO.getInstance();
-        benDAO.deleteUser(email,pw);
+        benDAO.deleteUser(email, pw);
 
         assertFalse(rc.checkUserExists(email));
 
     }
 
     @Test
-   public  void changekonto() {
+    public void changekonto() {
 
     }
 }

@@ -45,6 +45,7 @@ public class JDBCConnection {
             props.setProperty("password", Password.getPasswort());
 
             this.conn = DriverManager.getConnection(this.url, props);
+            // set autocommit? Enables rollback ;)
 
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);

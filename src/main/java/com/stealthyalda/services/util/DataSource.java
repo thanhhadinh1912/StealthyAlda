@@ -12,7 +12,7 @@ public class DataSource {
     private List<StellenanzeigeDTO> liste;
 
     private DataSource() {
-        liste = new ArrayList<StellenanzeigeDTO>();
+        liste = new ArrayList<>();
 
     }
 
