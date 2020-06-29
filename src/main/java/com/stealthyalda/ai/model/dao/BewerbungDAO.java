@@ -3,6 +3,7 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
+import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;
@@ -121,7 +122,7 @@ public class BewerbungDAO extends AbstractDAO {
 
     public List<BewerbungCollAtHBRSDTO> getBewerbungFromArbeitgeber(Arbeitgeber a) {
         String sql = "SELECT s.nachname, s.vorname, a.titel, b.datum, s.student_id, s.benutzer_id, b.anschreiben," +
-                "b.erfahrung, b.zeugnisse\n" +
+                "b.erfahrung, b.zeugnisse, b.bewerbung_id\n" +
                 "FROM stealthyalda.bewerbung b\n" +
                 "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
                 "JOIN stealthyalda.student s ON b.student_id = s.student_id\n" +
@@ -149,6 +150,7 @@ public class BewerbungDAO extends AbstractDAO {
                 bewerbung.setAnschreiben(rs.getString(7));
                 bewerbung.setErfahrung(rs.getString(8));
                 bewerbung.setZertifikat(rs.getString(9));
+                bewerbung.setId(rs.getInt(10));
                 bewerbung.setDatum(rs.getDate(4).toLocalDate());
                 bewerbung.setStudent(s);
                 bewerbung.setStellenanzeige(st);
@@ -162,5 +164,20 @@ public class BewerbungDAO extends AbstractDAO {
         }
         return liste;
 
+    }
+
+    public boolean updateStatusBewerbung(BewerbungCollAtHBRSDTO bewerbung) {
+        String sqlArbeitgeber = "UPDATE stealthyalda.bewerbung " +
+                "SET status = ? " +
+                "WHERE bewerbung_id = ?";
+        try (PreparedStatement stmt = this.getPreparedStatement(sqlArbeitgeber)) {
+            stmt.setString(1, bewerbung.getStatus());
+            stmt.setInt(2, bewerbung.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
     }
 }

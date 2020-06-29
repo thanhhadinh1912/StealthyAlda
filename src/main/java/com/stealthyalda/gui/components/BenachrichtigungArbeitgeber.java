@@ -47,7 +47,7 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                     layout.addLayoutClickListener(layoutClickEvent -> {
                         ProfilStudent window = null;
                         try {
-                            window = new ProfilStudent(student);
+                            window = new ProfilStudent(student, bewerbung);
                         } catch (DatabaseException e) {
                             e.printStackTrace();
                         }

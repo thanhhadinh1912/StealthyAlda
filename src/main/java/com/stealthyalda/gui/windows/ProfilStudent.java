@@ -1,8 +1,10 @@
 package com.stealthyalda.gui.windows;
 
+import com.stealthyalda.ai.control.BewerbungControl;
 import com.stealthyalda.ai.control.ProfilStudentControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.HardskillDTO;
 import com.stealthyalda.ai.model.dtos.HobbyDTO;
 import com.stealthyalda.ai.model.dtos.SoftskillDTO;
@@ -18,7 +20,7 @@ import java.io.File;
 public class ProfilStudent extends Window {
     static final String PX_700 = "700px";
 
-    public ProfilStudent(Student s) throws DatabaseException {
+    public ProfilStudent(Student s, BewerbungCollAtHBRSDTO bewerbung) throws DatabaseException {
         center();
         VerticalLayout content = new VerticalLayout();
         ProfilStudentControl c = new ProfilStudentControl();
@@ -100,6 +102,11 @@ public class ProfilStudent extends Window {
         HorizontalLayout button = new HorizontalLayout();
         button.setWidth("950px");
         Button ablehnen = new Button("Ablehnen!");
+        ablehnen.addClickListener(clickEvent -> {
+            bewerbung.setStatus("abgelent");
+            new BewerbungControl().updatestatus(bewerbung);
+            close();
+        });
         ablehnen.setWidth("200px");
         button.addComponent(ablehnen);
         button.setComponentAlignment(ablehnen, Alignment.MIDDLE_LEFT);
@@ -107,6 +114,11 @@ public class ProfilStudent extends Window {
         Button zusage = new Button ("Zusagen!");
         zusage.setWidth("200px");
         button.addComponent(zusage);
+        zusage.addClickListener(clickEvent -> {
+            bewerbung.setStatus("zugesagt");
+            new BewerbungControl().updatestatus(bewerbung);
+            close();
+        });
         button.setComponentAlignment(zusage, Alignment.MIDDLE_RIGHT);
 
         content.addComponent(button);
