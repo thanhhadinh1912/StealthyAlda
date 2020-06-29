@@ -6,12 +6,10 @@
 package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.dao.HardskillDAO;
-import com.stealthyalda.ai.model.dao.HobbyDAO;
-import com.stealthyalda.ai.model.dao.SoftskillDAO;
-import com.stealthyalda.ai.model.dao.StudentDAO;
+import com.stealthyalda.ai.model.dao.*;
 import com.stealthyalda.ai.model.dtos.HardskillDTO;
 import com.stealthyalda.ai.model.dtos.HobbyDTO;
+import com.stealthyalda.ai.model.dtos.JoberfahrungDTO;
 import com.stealthyalda.ai.model.dtos.SoftskillDTO;
 import com.stealthyalda.ai.model.entities.*;
 import com.stealthyalda.gui.components.ProfilVerwaltenStudent;
@@ -31,7 +29,7 @@ public class ProfilStudentControl {
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         for (Hardskill hardskill : liste) {
             print.append(hardskill.getHardskill());
-            print.append("\t");
+            print.append("\n");
         }
         return print.toString();
     }
@@ -41,7 +39,16 @@ public class ProfilStudentControl {
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         for (int i = 0; i < liste.size(); ++i) {
             print.append(liste.get(i).getSoftskill());
-            print.append("\t");
+            print.append("\n");
+        }
+        return print.toString();
+    }
+    public String printJoberfahrung(Student s){
+        StringBuilder print = new StringBuilder();
+        List<JoberfahrungDTO> liste = JoberfahrungDAO.getInstance().getJoberfahrungsForStudent(s);
+        for (int i = 0; i < liste.size(); ++i) {
+            print.append(liste.get(i).getJoberfahrung());
+            print.append("\n");
         }
         return print.toString();
     }
@@ -51,14 +58,14 @@ public class ProfilStudentControl {
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         for (int i = 0; i < liste.size(); ++i) {
             print.append(liste.get(i).getHobby());
-            print.append("\t");
+            print.append("\n");
         }
         return print.toString();
     }
 
     public void hardskillchange(Benutzer user, String input) throws DatabaseException {
         List<String> listStr = new ArrayList<>();
-        listStr.addAll(Arrays.asList(input.split("\t")));
+        listStr.addAll(Arrays.asList(input.split("\n")));
         List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
         for (int i = 0; i < liste.size(); ++i) {
@@ -74,7 +81,7 @@ public class ProfilStudentControl {
     public void softskillchange(Benutzer user, String input) throws DatabaseException {
         List<String> softSkillsList = new ArrayList<>();
         // TODO: are our soft and hard skills separated by a tab? I prefer "\n"
-        softSkillsList.addAll(Arrays.asList(input.split("\t")));
+        softSkillsList.addAll(Arrays.asList(input.split("\n")));
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
         for (int i = 0; i < liste.size(); ++i) {
@@ -91,7 +98,7 @@ public class ProfilStudentControl {
     public void hobbiesChange(Benutzer user, String input) throws DatabaseException {
         List<String> hobbiesListe = new ArrayList<>();
         // TODO: are our hobbies also separated by a tab? I prefer "\n"
-        hobbiesListe.addAll(Arrays.asList(input.split("\t")));
+        hobbiesListe.addAll(Arrays.asList(input.split("\n")));
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
         for (int i = 0; i < liste.size(); ++i) {

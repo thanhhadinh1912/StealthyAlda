@@ -6,15 +6,14 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
+import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
+import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.ai.model.factories.BewerbungCollAtHBRSFactory;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -42,7 +41,12 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                             bewerbung.getStellenanzeige().getTitel() + " - " +
                             formattedString
                     );
+                    Student student = bewerbung.getStudent();
                     layout.addComponent(label);
+                    layout.addLayoutClickListener(layoutClickEvent -> {
+                            ProfilStudent window = new ProfilStudent(student);
+                        UI.getCurrent().addWindow(window);
+                    });
                     Button infor = new Button(VaadinIcons.INFO);
                     layout.addComponent(infor);
                     content.addComponent(layout);

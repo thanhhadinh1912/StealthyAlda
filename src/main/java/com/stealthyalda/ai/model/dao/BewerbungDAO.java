@@ -120,7 +120,7 @@ public class BewerbungDAO extends AbstractDAO {
     }
 
     public List<BewerbungCollAtHBRSDTO> getBewerbungFromArbeitgeber(Arbeitgeber a) {
-        String sql = "SELECT s.nachname, s.vorname, a.titel, b.datum\n" +
+        String sql = "SELECT s.nachname, s.vorname, a.titel, b.datum, s.student_id\n" +
                 "FROM stealthyalda.bewerbung b\n" +
                 "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
                 "JOIN stealthyalda.student s ON b.student_id = s.student_id\n" +
@@ -143,6 +143,7 @@ public class BewerbungDAO extends AbstractDAO {
                 s.setNachname(rs.getString(1));
                 s.setVorname(rs.getString(2));
                 st.setTitel(rs.getString(3));
+                s.setStudentId(rs.getInt(4));
                 bewerbung.setDatum(rs.getDate(4).toLocalDate());
                 bewerbung.setStudent(s);
                 bewerbung.setStellenanzeige(st);
