@@ -6,11 +6,11 @@ import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class SearchArbeitgeberService {
+public class SearchArbeitgeberServiceMitBewerbung {
 
     private static Arbeitgeber a;
     private static List<String> liste = null;
-    public SearchArbeitgeberService(Arbeitgeber a){
+    public SearchArbeitgeberServiceMitBewerbung(Arbeitgeber a){
         this.a = a;
         this.liste = SearchDAO.getInstance().getBewerberOrStellenanzeige(a);}
 

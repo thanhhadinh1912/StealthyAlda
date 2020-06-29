@@ -93,6 +93,36 @@ public class SearchDAO extends AbstractDAO {
         return liste;
     }
 
+    public List<String> getStellenanzeigeFürArbeitgeber(Arbeitgeber a){
+        ResultSet set = null;
+        List<String> liste = new ArrayList<>();
+
+        try {
+            Statement statement = this.getStatement();
+            set = statement.executeQuery("select distinct a.titel\n" +
+                    "from stealthyalda.arbeitgeber a\n" +
+                    "JOIN stealthyalda.stellenanzeige s ON s.stellenanzeige_id = a.stellenanzeige_id\n" +
+                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'\n");
+            while (true) {
+                assert set != null;
+                if (!set.next()) break;
+                liste.add(set.getString(1));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                JDBCConnection.getInstance().closeConnection();
+            } catch (DatabaseException e) {
+                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
+        }
+
+
+        return liste;
+    }
+
     public List<String> getBewerberOrStellenanzeige(Arbeitgeber a) {
         ResultSet set = null;
         ResultSet set2 = null;
@@ -111,10 +141,8 @@ public class SearchDAO extends AbstractDAO {
                 liste.add(set.getString(1));
             }
             set2 = statement.executeQuery("select distinct a.titel\n" +
-                    "from stealthyalda.bewerbung b\n" +
-                    "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
-                    "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "join stealthyalda.student s ON b.student_id = s.student_id\n" +
+                    "from stealthyalda.arbeitgeber a\n" +
+                    "JOIN stealthyalda.stellenanzeige s ON s.stellenanzeige_id = a.stellenanzeige_id\n" +
                     "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'\n");
             while (true) {
                 assert set2 != null;
