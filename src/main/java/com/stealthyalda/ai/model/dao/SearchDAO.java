@@ -99,10 +99,10 @@ public class SearchDAO extends AbstractDAO {
 
         try {
             Statement statement = this.getStatement();
-            set = statement.executeQuery("select distinct a.titel\n" +
+            set = statement.executeQuery("select distinct s.titel\n" +
                     "from stealthyalda.arbeitgeber a\n" +
-                    "JOIN stealthyalda.stellenanzeige s ON s.stellenanzeige_id = a.stellenanzeige_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'\n");
+                    "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'");
             while (true) {
                 assert set != null;
                 if (!set.next()) break;
@@ -140,10 +140,10 @@ public class SearchDAO extends AbstractDAO {
                 if (!set.next()) break;
                 liste.add(set.getString(1));
             }
-            set2 = statement.executeQuery("select distinct a.titel\n" +
+            set2 = statement.executeQuery("select distinct s.titel\n" +
                     "from stealthyalda.arbeitgeber a\n" +
-                    "JOIN stealthyalda.stellenanzeige s ON s.stellenanzeige_id = a.stellenanzeige_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'\n");
+                    "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'");
             while (true) {
                 assert set2 != null;
                 if (!set2.next()) break;

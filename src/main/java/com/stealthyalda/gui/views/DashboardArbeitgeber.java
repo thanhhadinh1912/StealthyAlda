@@ -93,7 +93,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         } catch (DatabaseException databaseException) {
             databaseException.printStackTrace();
         }
-    } 
+    }
 
         @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
