@@ -70,9 +70,12 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
             final Layout tab1 = new VerticalLayout();
             final HorizontalLayout top = new HorizontalLayout();
             Label news = new Label("News");
-            news.setWidth("1100px");
-            Label bewerber = new Label("Aktuelle Bewerber");
             top.addComponent(news);
+            news.setWidth("1100px");
+
+            Label n = new Label("Neue Bewerbungen sind eingegangen");
+
+
             Button add = new Button(VaadinIcons.PLUS);
             top.addComponent(add);
             add.addClickListener(clickEvent -> {
@@ -81,7 +84,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
                 UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGEERSTELLEN);
             });
             tab1.addComponent(top);
-            tab1.addComponent(bewerber);
+            tab1.addComponent(n);
 
             accordion.addTab(tab1, "Dashboard");
 

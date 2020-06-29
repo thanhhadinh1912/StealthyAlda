@@ -46,9 +46,10 @@ public class DashboardStudent extends Studis {
             final Accordion accordion = new Accordion();
             final Layout tab1 = new VerticalLayout();
             Label news = new Label("News");
-            Label bewerber = new Label("Zuletzt angesehene Stellenanzeigen");
+            Label n = new Label("Es sind viele Stellenanzeigen vorhanden. Bewerben Sie sich jetzt.");
             tab1.addComponent(news);
-            tab1.addComponent(bewerber);
+            tab1.addComponent(n);
+
             accordion.addTab(tab1, "Dashboard");
             final Layout tab2 = new ProfilVerwaltenStudent(user);
             accordion.addTab(tab2, "Profil verwalten");
