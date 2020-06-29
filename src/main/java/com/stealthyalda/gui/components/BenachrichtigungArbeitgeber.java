@@ -44,7 +44,12 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                     Student student = bewerbung.getStudent();
                     layout.addComponent(label);
                     layout.addLayoutClickListener(layoutClickEvent -> {
-                            ProfilStudent window = new ProfilStudent(student);
+                        ProfilStudent window = null;
+                        try {
+                            window = new ProfilStudent(student);
+                        } catch (DatabaseException e) {
+                            e.printStackTrace();
+                        }
                         UI.getCurrent().addWindow(window);
                     });
                     Button infor = new Button(VaadinIcons.INFO);

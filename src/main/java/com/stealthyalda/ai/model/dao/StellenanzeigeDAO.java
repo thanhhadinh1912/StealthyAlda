@@ -214,7 +214,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
                 "FROM stealthyalda.stellenanzeige s\n" +
                 "JOIN stealthyalda.arbeitgeber a\n" +
                 "ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                "WHERE s.stellenanzeigeId = '" + stellenanzeigeId + "';";
+                "WHERE s.stellenanzeige_id = '" + stellenanzeigeId + "';";
         ResultSet rs = null;
         StellenanzeigeDTO stellenanzeige = new StellenanzeigeDTO();
         try {

@@ -73,6 +73,8 @@ public class HardskillDAO extends AbstractDAO {
         return liste;
     }
 
+
+
     /**
      * Delete stored user's hard skills
      *

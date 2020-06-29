@@ -118,7 +118,7 @@ public class ArbeitgeberDAO extends AbstractDAO {
         ResultSet set = null;
         String arbeitgeberQuery = "SELECT * \n" +
                 "FROM stealthyalda.arbeitgeber \n" +
-                "WHERE arbeitgeberId = ?;";
+                "WHERE arbeitgeber_id = ?;";
         try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(arbeitgeberQuery)) {
             statement.setInt(1, arbeitgeberId);
             set = statement.executeQuery();
