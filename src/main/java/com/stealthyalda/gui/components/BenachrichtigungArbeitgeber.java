@@ -6,11 +6,12 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
-import com.stealthyalda.ai.model.dtos.StudentDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
 import com.stealthyalda.ai.model.factories.BewerbungCollAtHBRSFactory;
+import com.stealthyalda.gui.windows.InforBewerber;
+import com.stealthyalda.gui.windows.ProfilStudent;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
@@ -53,6 +54,10 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                         UI.getCurrent().addWindow(window);
                     });
                     Button infor = new Button(VaadinIcons.INFO);
+                    infor.addClickListener(clickEvent -> {
+                        InforBewerber window = new InforBewerber(bewerbung);
+                        UI.getCurrent().addWindow(window);
+                    });
                     layout.addComponent(infor);
                     content.addComponent(layout);
                 }

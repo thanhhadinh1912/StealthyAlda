@@ -1,4 +1,4 @@
-package com.stealthyalda.gui.components;
+package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.ai.control.ProfilStudentControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
