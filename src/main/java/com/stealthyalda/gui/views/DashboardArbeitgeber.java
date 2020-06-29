@@ -31,23 +31,31 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
 
         HorizontalLayout horizon = new HorizontalLayout();
         Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
-
+        SearchArbeitgeberServiceOhneBewerbung service = new SearchArbeitgeberServiceOhneBewerbung(a);
         ComboBox<String> search = new ComboBox<>();
         try {
             if (new ToogleRouter().isEnabled("bewerbung")) {
-                search.setPlaceholder("(Bewerber, Stellenanzeige) ");
-                search.setWidth("800px");
-                SearchArbeitgeberServiceMitBewerbung service = new SearchArbeitgeberServiceMitBewerbung(a);
-                search.setDataProvider(service::fetch, service::count);
+                search.setPlaceholder("Bewerber ");
+                search.setWidth("400px");
+                SearchArbeitgeberServiceMitBewerbung servicea = new SearchArbeitgeberServiceMitBewerbung(a);
+                search.setDataProvider(servicea::fetch, servicea::count);
+                horizon.addComponent(search);
+
+
+                ComboBox<String> bewerber = new ComboBox<>();
+                bewerber.setPlaceholder("Stellenanzeige");
+                bewerber.setWidth("400px");
+                bewerber.setDataProvider(service::fetch, service::count);
+                horizon.addComponent(bewerber);
             }
             else{
                 search.setPlaceholder("(Stellenanzeige) ");
                 search.setWidth("800px");
-                SearchArbeitgeberServiceOhneBewerbung service = new SearchArbeitgeberServiceOhneBewerbung(a);
                 search.setDataProvider(service::fetch, service::count);
+                horizon.addComponent(search);
+
             }
 
-            horizon.addComponent(search);
             horizon.setComponentAlignment(search, Alignment.MIDDLE_LEFT);
 
             final Button buttonsearch = new Button("Suche");

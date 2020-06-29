@@ -122,19 +122,15 @@ public class SearchDAO extends AbstractDAO {
         return liste;
     }
 
-    public List<String> getBewerberOrStellenanzeige(Arbeitgeber a) {
+    public List<String> getBewerber(Arbeitgeber a) {
         String sql1 ="select distinct s.nachname\n" +
                     "from stealthyalda.bewerbung b\n" +
                     "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
                     "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
                     "join stealthyalda.student s ON b.student_id = s.student_id\n" +
                     "where a.arbeitgeber_id = '"+ a.getArbeitgeberId()+"'";
-           String sql2 = "select distinct s.titel\n" +
-                    "from stealthyalda.arbeitgeber a\n" +
-                    "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'";
 
-        return hilfe2(sql1,sql2);
+        return hilfe(sql1);
     }
 
 }

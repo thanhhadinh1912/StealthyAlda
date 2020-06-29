@@ -12,10 +12,10 @@ public class SearchArbeitgeberServiceMitBewerbung {
     private static List<String> liste = null;
     public SearchArbeitgeberServiceMitBewerbung(Arbeitgeber a){
         this.a = a;
-        this.liste = SearchDAO.getInstance().getBewerberOrStellenanzeige(a);}
+        this.liste = SearchDAO.getInstance().getBewerber(a);}
 
 
-        public List<String> getBewerberOrStellenanzeige() {
+        public List<String> getBewerber() {
             return liste;
         }
 
@@ -24,7 +24,7 @@ public class SearchArbeitgeberServiceMitBewerbung {
         }
 
         public int count(String filter) {
-            return (int) getBewerberOrStellenanzeige().stream()
+            return (int) getBewerber().stream()
                     .filter(job -> filter == null || job
                             .toLowerCase().startsWith(filter.toLowerCase())
                             || job.toLowerCase().contains(filter.toLowerCase())
@@ -33,7 +33,7 @@ public class SearchArbeitgeberServiceMitBewerbung {
         }
 
         public Stream<String> fetch(String filter, int offset, int limit) {
-            return getBewerberOrStellenanzeige().stream()
+            return getBewerber().stream()
                     .filter(job -> filter == null || job
                             .toLowerCase().startsWith(filter.toLowerCase()) || job
                             .toLowerCase().contains(filter.toLowerCase())
