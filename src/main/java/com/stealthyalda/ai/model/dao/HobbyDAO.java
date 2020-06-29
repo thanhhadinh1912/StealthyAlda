@@ -98,6 +98,7 @@ public class HobbyDAO extends AbstractDAO {
      * @param s     A student object
      */
     public void createHobbyForUser(Hobby hobby, Student s) {
+        ResultSet idKeys = null;
         try (PreparedStatement statement = this.getPreparedStatement(
                 "INSERT INTO stealthyalda.hobby(hobby) VALUES(?);")) {
             statement.setString(1, hobby.getHobby());
@@ -107,7 +108,7 @@ public class HobbyDAO extends AbstractDAO {
             if (rows == 0) {
                 throw new SQLException("Failed to insert hobby");
             }
-            ResultSet idKeys = statement.getGeneratedKeys();
+            idKeys = statement.getGeneratedKeys();
             if (idKeys.next()) {
                 int hobbyId = idKeys.getInt(1);
                 insertStudentHatHobby(s.getStudentId(), hobbyId);
@@ -116,6 +117,8 @@ public class HobbyDAO extends AbstractDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(HobbyDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } finally {
+            closeResultset(idKeys);
         }
     }
 
