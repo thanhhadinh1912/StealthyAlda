@@ -26,6 +26,8 @@ public class SearchDAO extends AbstractDAO {
         return dao;
     }
 
+
+
     public List<String> getJobtitelOrArbeitgeber() {
         ResultSet set = null;
         ResultSet set2 = null;
@@ -67,12 +69,18 @@ public class SearchDAO extends AbstractDAO {
 
     public List<String> getOrt() {
 
+            String sql ="SELECT ort FROM stealthyalda.stellenanzeige order by ort";
+
+        return hilfe(sql);
+    }
+
+    private List<String> hilfe(String sql){
         ResultSet set = null;
         List<String> liste = new ArrayList<>();
 
         try {
             Statement statement = this.getStatement();
-            set = statement.executeQuery("SELECT ort FROM stealthyalda.stellenanzeige order by ort");
+            set = statement.executeQuery(sql);
             while (true) {
                 assert set != null;
                 if (!set.next()) break;
@@ -94,31 +102,14 @@ public class SearchDAO extends AbstractDAO {
     }
 
     public List<String> getStellenanzeigeFürArbeitgeber(Arbeitgeber a){
-        ResultSet set = null;
-        List<String> liste = new ArrayList<>();
 
-        try {
-            Statement statement = this.getStatement();
-            set = statement.executeQuery("select distinct s.titel\n" +
+            String sql = "select distinct s.titel\n" +
                     "from stealthyalda.arbeitgeber a\n" +
                     "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'");
-            while (true) {
-                assert set != null;
-                if (!set.next()) break;
-                liste.add(set.getString(1));
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                JDBCConnection.getInstance().closeConnection();
-            } catch (DatabaseException e) {
-                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
-        }
+                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'";
 
+
+        List<String> liste = hilfe(sql);
 
         return liste;
     }
