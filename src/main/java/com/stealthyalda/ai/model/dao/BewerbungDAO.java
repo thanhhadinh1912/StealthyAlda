@@ -3,7 +3,6 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
-import com.stealthyalda.ai.model.dtos.UnternehmenDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.ai.model.entities.Student;

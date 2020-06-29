@@ -74,22 +74,24 @@ public class HardskillDAO extends AbstractDAO {
     }
 
 
-
     /**
      * Delete stored user's hard skills
      *
      * @param h id of hard skill
      * @param s Student object
+     * @return boolean true if all is ok
      * @throws DatabaseException
      */
-    public void deleteHardskillForUser(int h, Student s) throws DatabaseException {
+    public boolean deleteHardskillForUser(int h, Student s) throws DatabaseException {
         try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(
                 "DELETE FROM stealthyalda.student_hat_hardskill WHERE hardskill_id = ? AND student_id = ?;")) {
             statement.setInt(1, h);
-            statement.setInt(1, s.getStudentId());
+            statement.setInt(2, s.getStudentId());
             statement.executeUpdate();
+            return true;
         } catch (SQLException throwables) {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage(), throwables);
+            return false;
         } finally {
             JDBCConnection.getInstance().closeConnection();
         }
@@ -100,8 +102,9 @@ public class HardskillDAO extends AbstractDAO {
      *
      * @param hardskill A Hardskill object
      * @param s         A student object
+     * @return boolean boolean
      */
-    public void createHardskillForUser(Hardskill hardskill, Student s) {
+    public boolean createHardskillForUser(Hardskill hardskill, Student s) {
         ResultSet idKeys = null;
         try (PreparedStatement statement = this.getPreparedStatement(
                 "INSERT INTO stealthyalda.hardskill VALUES(default,?);")) {
@@ -116,11 +119,13 @@ public class HardskillDAO extends AbstractDAO {
             if (idKeys.next()) {
                 int rskillId = idKeys.getInt(1);
                 insertStudentHatHardskill(s.getStudentId(), rskillId);
+                return true;
             } else {
                 throw new SQLException("Funny, we didn't get a hard skill ID back :(");
             }
         } catch (SQLException ex) {
             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            return false;
         } finally {
             closeResultset(idKeys);
         }
@@ -132,16 +137,18 @@ public class HardskillDAO extends AbstractDAO {
      *
      * @param studId   ID of the student
      * @param hskillId hard skill id
+     * @return boolean true if all goes well
      */
-    private void insertStudentHatHardskill(int studId, int hskillId) {
+    private boolean insertStudentHatHardskill(int studId, int hskillId) {
         String sql2 = "INSERT INTO stealthyalda.student_hat_hardskill(student_id, hardskill_id) VALUES(?,?);";
         try (PreparedStatement statement2 = this.getPreparedStatement(sql2)) {
             statement2.setInt(1, studId);
             statement2.setInt(2, hskillId);
             statement2.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-            throw new IllegalStateException();
+            return false;
         }
     }
 }

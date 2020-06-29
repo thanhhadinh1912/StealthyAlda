@@ -13,11 +13,11 @@ public class StellenanzeigeControl {
         return StellenanzeigeDAO.getInstance().getJobangebot(stellenanzeigeid);
     }
 
-    public boolean updatestatus(StellenanzeigeDTO s){
+    public boolean updatestatus(StellenanzeigeDTO s) {
         return StellenanzeigeDAO.getInstance().updateStatusStellenanzeige(s);
     }
 
-    public boolean deletestellenanzeige(StellenanzeigeDTO s){
+    public boolean deletestellenanzeige(StellenanzeigeDTO s) {
         return StellenanzeigeDAO.getInstance().deleteStellenanzeige(s);
     }
 }

@@ -91,8 +91,6 @@ $v-font-size: 18px;
 }
 
 
-
-
 @import "../valo/valo.scss";
 
 @mixin mytheme {
@@ -147,7 +145,7 @@ $v-font-size: 18px;
       border: 1px solid black;;
     }
   }
-  .v-button{
+  .v-button {
     color: white;
     //background: #0be881;
     background-color: #00A2E8;
@@ -158,9 +156,8 @@ $v-font-size: 18px;
   //----------------------------------------------------\\
 
 
-
   //TopPanelSTART -> LOGO
-  .TopPanelSTART-logo{
+  .TopPanelSTART-logo {
     height: 270px;
     width: 270px;
   }
@@ -168,7 +165,7 @@ $v-font-size: 18px;
   //--------------------STARTSEITE-----------------------------\\
 
   //Startseite LABEL-ANFANG
-  .STARTSEITE-label{
+  .STARTSEITE-label {
     font-family: "OCR A Extended", sans-serif;
     font-size: 70px;
     color: white;
@@ -176,7 +173,7 @@ $v-font-size: 18px;
   //Startseite LABEL-ENDE
 
   //Startseite LABEL2-ANFANG
-  .STARTSEITE-label2{
+  .STARTSEITE-label2 {
     font-family: "OCR A Extended", sans-serif;
     font-size: 20px;
     color: white;
@@ -233,30 +230,30 @@ $v-font-size: 18px;
   //------------------------LOGINSEITE-----------------\\
 
   //LOGINSEITE Button oben Anmelden
-  .LOGINSEITE-anmelden{
+  .LOGINSEITE-anmelden {
     font-size: 25px;
     font-family: "OCR A Extended", sans-serif;
   }
 
   //LOGINSEITE Button oben Registrieren
-  .LOGINSEITE-registrieren{
+  .LOGINSEITE-registrieren {
     font-size: 25px;
     font-family: "OCR A Extended", sans-serif;
   }
 
   //LOGINSEITE LABEL Willkommen zurück
-  .LOGINSEITE-willkommen{
+  .LOGINSEITE-willkommen {
     font-size: 20px;
     font-family: "OCR A Extended", sans-serif;
   }
   //LOGINSEITE Button Password vergessen
-  .LOGINSEITE-pwVergessen{
+  .LOGINSEITE-pwVergessen {
     font-size: 12px;
     font-family: "OCR A Extended", sans-serif;
     display: inline;
   }
   //LOGINSEITE Checkbox Angemeldet bleiben
-  .LOGINSEITE-check{
+  .LOGINSEITE-check {
     font-size: 12px;
     font-family: "OCR A Extended", sans-serif;
   }
@@ -306,7 +303,7 @@ $v-font-size: 18px;
 
   //------------------REGISTRIERSEITE-----------\\
 
-  .REGISTERSEITE-registrieren{
+  .REGISTERSEITE-registrieren {
     display: inline-block;
     border-radius: 4px;
     background-color: #3C96D2;
@@ -347,7 +344,7 @@ $v-font-size: 18px;
   }
   //------------------REGISTRIERSEITEArbeitgeber-----------\\
 
-  .REGISTERSEITEArbeitgeber-registrieren{
+  .REGISTERSEITEArbeitgeber-registrieren {
     display: inline-block;
     border-radius: 4px;
     background-color: #3C96D2;
@@ -388,7 +385,7 @@ $v-font-size: 18px;
   }
   //------------------REGISTRIERSEITEStudent-----------\\
 
-  .REGISTERSEITEStudent-registrieren{
+  .REGISTERSEITEStudent-registrieren {
     display: inline-block;
     border-radius: 4px;
     background-color: #3C96D2;

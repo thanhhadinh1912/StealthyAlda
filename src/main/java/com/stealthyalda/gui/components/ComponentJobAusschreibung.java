@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ComponentJobAusschreibung {
 
-    public VerticalLayout getJobAusschreibung(StellenanzeigeDTO jobangebot){
+    public VerticalLayout getJobAusschreibung(StellenanzeigeDTO jobangebot) {
         VerticalLayout content = new VerticalLayout();
         HorizontalLayout top = new HorizontalLayout();
 

@@ -43,7 +43,8 @@ public class ProfilStudentControl {
         }
         return print.toString();
     }
-    public String printJoberfahrung(Student s){
+
+    public String printJoberfahrung(Student s) {
         StringBuilder print = new StringBuilder();
         List<JoberfahrungDTO> liste = JoberfahrungDAO.getInstance().getJoberfahrungsForStudent(s);
         for (int i = 0; i < liste.size(); ++i) {
@@ -63,17 +64,23 @@ public class ProfilStudentControl {
         return print.toString();
     }
 
-    public void hardskillchange(Benutzer user, String input) throws DatabaseException {
-        List<String> listStr = new ArrayList<>();
-        listStr.addAll(Arrays.asList(input.split("\n")));
-        List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
-        Student s = StudentDAO.getInstance().getStudent(user.getId());
-        for (int i = 0; i < liste.size(); ++i) {
-            HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskillId(), s);
-        }
-        for (int i = 0; i < listStr.size(); ++i) {
-            Hardskill hardskill = new Hardskill(listStr.get(i));
-            HardskillDAO.getInstance().createHardskillForUser(hardskill, s);
+    public boolean hardskillchange(Benutzer user, String input) throws DatabaseException {
+        try {
+            List<String> listStr = new ArrayList<>();
+            listStr.addAll(Arrays.asList(input.split("\n")));
+            List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
+            Student s = StudentDAO.getInstance().getStudent(user.getId());
+            for (int i = 0; i < liste.size(); ++i) {
+                HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskillId(), s);
+            }
+            for (int i = 0; i < listStr.size(); ++i) {
+                Hardskill hardskill = new Hardskill(listStr.get(i));
+                HardskillDAO.getInstance().createHardskillForUser(hardskill, s);
+            }
+            return true;
+        } catch (DatabaseException e) {
+            Logger.getLogger(ProfilStudentControl.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
         }
 
     }

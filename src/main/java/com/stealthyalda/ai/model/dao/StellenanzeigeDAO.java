@@ -2,7 +2,6 @@ package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.Anforderung;
-import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
@@ -243,6 +242,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
         }
         return stellenanzeige;
     }
+
     public boolean updateStatusStellenanzeige(StellenanzeigeDTO s) {
         String sqlArbeitgeber = "UPDATE stealthyalda.stellenanzeige " +
                 "SET status = ? " +
@@ -275,7 +275,6 @@ public class StellenanzeigeDAO extends AbstractDAO {
             return false;
         }
     }
-
 
 
 }

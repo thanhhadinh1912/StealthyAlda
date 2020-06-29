@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.model.dtos.JoberfahrungDTO;
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Student;
 
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JoberfahrungDAO extends AbstractDAO{
+public class JoberfahrungDAO extends AbstractDAO {
 
     private static JoberfahrungDAO dao = null;
 
@@ -26,6 +25,7 @@ public class JoberfahrungDAO extends AbstractDAO{
         }
         return dao;
     }
+
     public List<JoberfahrungDTO> getJoberfahrungsForStudent(Student student) {
         List<JoberfahrungDTO> liste = new ArrayList<>();
         JoberfahrungDTO joberfahrung = null;

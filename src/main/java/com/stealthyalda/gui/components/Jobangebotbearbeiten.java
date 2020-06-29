@@ -3,14 +3,13 @@ package com.stealthyalda.gui.components;
 import com.stealthyalda.ai.control.StellenanzeigeControl;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.gui.windows.ConfirmReg;
-import com.stealthyalda.gui.windows.StellenanzeigeK;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.ui.*;
 
 public class Jobangebotbearbeiten extends Window {
-    public Jobangebotbearbeiten(StellenanzeigeDTO jobangebot){
+    public Jobangebotbearbeiten(StellenanzeigeDTO jobangebot) {
         center();
-        VerticalLayout content =  new ComponentJobAusschreibung().getJobAusschreibung(jobangebot);
+        VerticalLayout content = new ComponentJobAusschreibung().getJobAusschreibung(jobangebot);
 
         ComboBox status = new ComboBox();
         status.setPlaceholder("Neuer Status");
@@ -33,7 +32,7 @@ public class Jobangebotbearbeiten extends Window {
         statusbe.setComponentAlignment(bstatus, Alignment.MIDDLE_RIGHT);
 
         content.addComponent(statusbe);
-        content.setComponentAlignment(statusbe,Alignment.MIDDLE_CENTER);
+        content.setComponentAlignment(statusbe, Alignment.MIDDLE_CENTER);
 
         /*Button delete = new Button("Delete Stellenanzeige");
         delete.setWidth(String.valueOf(bstatus.getWidth()));

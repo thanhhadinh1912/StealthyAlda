@@ -9,7 +9,8 @@ public class BewerbungControl {
     public void createbewerbung(StellenanzeigeDTO a, BewerbungCollAtHBRSDTO b, Student s) {
         BewerbungDAO.getInstance().createBewerbung(a, b, s);
     }
-    public void updatestatus(BewerbungCollAtHBRSDTO bewerbung){
+
+    public void updatestatus(BewerbungCollAtHBRSDTO bewerbung) {
         BewerbungDAO.getInstance().updateStatusBewerbung(bewerbung);
     }
 }
