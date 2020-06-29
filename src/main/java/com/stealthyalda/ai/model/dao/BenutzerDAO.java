@@ -3,7 +3,6 @@ package com.stealthyalda.ai.model.dao;
 import com.stealthyalda.ai.control.LoginControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.control.exceptions.NoSuchUserOrPassword;
-import com.stealthyalda.ai.model.dtos.DTOs;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.services.db.JDBCConnection;
 import com.stealthyalda.services.util.PasswordAuthentication;

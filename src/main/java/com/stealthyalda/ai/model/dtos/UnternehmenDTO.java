@@ -1,6 +1,8 @@
 package com.stealthyalda.ai.model.dtos;
 
-public class UnternehmenDTO extends DTOs {
+import com.stealthyalda.ai.model.entities.Benutzer;
+
+public class UnternehmenDTO extends Benutzer {
     private String beschreibung;
     private String unternehmen;
     private int arbeitgeberId;
