@@ -85,22 +85,20 @@ public class StudentDTOTest {
 
     @Test
     public void setAnrede() {
-
+        assertNotNull(testStudent.getAnrede());
+        testStudent.setAnrede(null);
+        assertNull(testStudent.getAnrede());
     }
 
     @Test
     public void getStudentId() {
+        assertTrue(testStudent.getStudentId() > 0 && testStudent.getStudentId() < Integer.MAX_VALUE);
     }
 
     @Test
     public void setStudentId() {
+        testStudent.setStudentId(Integer.MAX_VALUE + 1);
+        assertFalse(testStudent.getStudentId() > 0 && testStudent.getStudentId() < Integer.MAX_VALUE);
     }
 
-    @Test
-    public void getProfilbild() {
-    }
-
-    @Test
-    public void setProfilbild() {
-    }
 }

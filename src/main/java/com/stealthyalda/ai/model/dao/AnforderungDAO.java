@@ -11,7 +11,6 @@ import com.stealthyalda.ai.model.dtos.Anforderung;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,13 +39,13 @@ public class AnforderungDAO extends AbstractDAO {
      * @throws DatabaseException if something goes horribly wrong
      */
     public List<Anforderung> getAnforderungForStellenanzeige(int stellenanzeigeid) throws DatabaseException {
-        Statement statement = this.getStatement();
-
         ResultSet rs = null;
         List<Anforderung> liste = new ArrayList<>();
         Anforderung anforderung = null;
-        try {
-            rs = statement.executeQuery("SELECT anforderung FROM stealthyalda.anforderung WHERE stealthyalda.anforderung.stellenanzeige_id = '" + stellenanzeigeid + "'");
+        try (PreparedStatement stmt = getPreparedStatement(
+                "SELECT anforderung FROM stealthyalda.anforderung WHERE stealthyalda.anforderung.stellenanzeige_id = ?")) {
+            stmt.setInt(1, stellenanzeigeid);
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
                 anforderung = new Anforderung();
@@ -57,7 +56,7 @@ public class AnforderungDAO extends AbstractDAO {
             logEntry(this.getClass().getName(), Level.SEVERE, throwables.getMessage());
             throw new DatabaseException("Fehler im SQL Befehl! Bitte den Programmierer benachrichtigen.");
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            closeResultset(rs);
         }
 
         return liste;
