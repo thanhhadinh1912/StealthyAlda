@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Suchseite extends VerticalLayout implements View {
 
-    public static final String CLASSNAME = "SUCHSEITE";
+    //public static final String CLASSNAME = "SUCHSEITE";
 
 
     private final transient StellenanzeigeDTO selected = null;
@@ -42,7 +42,7 @@ public class Suchseite extends VerticalLayout implements View {
 
         Button button = new Button("Jobs finden", FontAwesome.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        button.setPrimaryStyleName(CLASSNAME + "-suchen");
+        //button.setPrimaryStyleName(CLASSNAME + "-suchen");
 
 
         ComboBox<String> search = new ComboBox<>();

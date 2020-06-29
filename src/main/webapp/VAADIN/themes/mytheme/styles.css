@@ -15449,7 +15449,9 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-button {
 	color: white;
-	background: #0be881;
+	background-color: #00A2E8;
+	font-family: "OCR A Extended", sans-serif;
+	font-size: 20px;
 }
 
 .mytheme .TopPanelSTART-logo {
@@ -15691,45 +15693,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .REGISTERSEITEStudent-registrieren:hover span:after {
-	opacity: 1;
-	right: 0;
-}
-
-.mytheme .SUCHSEITE-suchen {
-	display: inline-block;
-	border-radius: 4px;
-	background-color: #3C96D2;
-	border: none;
-	color: #FFFFFF;
-	text-align: center;
-	font-size: 20px;
-	font-family: "OCR A Extended", sans-serif;
-	padding-top: 0px;
-	padding-right: 5px;
-	padding-bottom: 0px;
-	padding-left: 5px;
-	width: 150px;
-	transition: all 0.5s;
-	cursor: pointer;
-	margin: 5px;
-}
-
-.mytheme .SUCHSEITE-suchen span {
-	cursor: pointer;
-	display: inline-block;
-	position: relative;
-	transition: 0.5s;
-}
-
-.mytheme .SUCHSEITE-suchen span:after {
-	position: absolute;
-	opacity: 0;
-	top: 0;
-	right: -20px;
-	transition: 0.5s;
-}
-
-.mytheme .SUCHSEITE-suchen:hover span:after {
 	opacity: 1;
 	right: 0;
 }

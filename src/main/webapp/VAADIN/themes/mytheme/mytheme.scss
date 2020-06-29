@@ -149,7 +149,10 @@ $v-font-size: 18px;
   }
   .v-button{
     color: white;
-    background: #0be881;
+    //background: #0be881;
+    background-color: #00A2E8;
+    font-family: "OCR A Extended", sans-serif;
+    font-size: 20px;
   }
 
   //----------------------------------------------------\\
@@ -425,7 +428,7 @@ $v-font-size: 18px;
     right: 0;
   }
 
-  //------------------SUCHSEITE-----------\\
+  /*//------------------SUCHSEITE-----------\\
 
   .SUCHSEITE-suchen{
     display: inline-block;
@@ -465,5 +468,5 @@ $v-font-size: 18px;
   .SUCHSEITE-suchen:hover span:after {
     opacity: 1;
     right: 0;
-  }
+  }*/
 }
