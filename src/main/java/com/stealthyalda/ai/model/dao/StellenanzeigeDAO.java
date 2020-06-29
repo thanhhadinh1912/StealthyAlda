@@ -2,6 +2,7 @@ package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.Anforderung;
+import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
@@ -130,6 +131,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             assert (set != null);
             while (set.next()) {
                 StellenanzeigeDTO s = new StellenanzeigeDTO();
+                s.setStellenanzeigeID(set.getInt(1));
                 s.setTitel(set.getString(2));
                 s.setBeschreibung(set.getString(3));
                 s.setStatus(set.getString(4));
@@ -241,5 +243,39 @@ public class StellenanzeigeDAO extends AbstractDAO {
         }
         return stellenanzeige;
     }
+    public boolean updateStatusStellenanzeige(StellenanzeigeDTO s) {
+        String sqlArbeitgeber = "UPDATE stealthyalda.stellenanzeige " +
+                "SET status = ? " +
+                "WHERE stellenanzeige_id = ?";
+        try (PreparedStatement stmt = this.getPreparedStatement(sqlArbeitgeber)) {
+            stmt.setString(1, s.getStatus());
+            stmt.setInt(2, s.getStellenanzeigeID());
+            stmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
+    }
+
+    public boolean deleteStellenanzeige(StellenanzeigeDTO s) {
+        String sqlArbeitgeber = "DELETE FROM stealthyalda.anforderung WHERE stellenanzeige_id = ?;" +
+                "DELETE FROM stealthyalda.bewerbung WHERE stellenanzeige_id = ?;" +
+                "DELETE FROM stealthyalda.stellenanzeige " +
+                "WHERE stellenanzeige_id = ?;";
+        try (PreparedStatement stmt = this.getPreparedStatement(sqlArbeitgeber)) {
+            stmt.setInt(1, s.getStellenanzeigeID());
+            stmt.setInt(2, s.getStellenanzeigeID());
+            stmt.setInt(3, s.getStellenanzeigeID());
+
+            stmt.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            Logger.getLogger(StellenanzeigeDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            return false;
+        }
+    }
+
+
 
 }

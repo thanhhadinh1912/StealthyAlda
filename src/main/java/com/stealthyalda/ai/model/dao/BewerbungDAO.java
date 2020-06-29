@@ -176,7 +176,7 @@ public class BewerbungDAO extends AbstractDAO {
             stmt.executeUpdate();
             return true;
         } catch (Exception e) {
-            Logger.getLogger(ArbeitgeberDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+            Logger.getLogger(BewerbungDAO.class.getName()).log(Level.SEVERE, e.getMessage(), e);
             return false;
         }
     }

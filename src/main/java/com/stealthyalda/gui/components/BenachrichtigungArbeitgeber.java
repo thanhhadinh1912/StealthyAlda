@@ -4,6 +4,7 @@ import com.stealthyalda.ai.control.ProfilArbeitgeberControl;
 import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
+import com.stealthyalda.ai.model.dao.StellenanzeigeDAO;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.dtos.StellenanzeigeDTO;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
@@ -78,6 +79,11 @@ public class BenachrichtigungArbeitgeber extends VerticalLayout {
                 Label job = new Label((i + 1) + "." + jobangebot.get(i).getTitel() + " - " + jobangebot.get(i).getStatus());
                 Button jobangebotbearbeiten = new Button(VaadinIcons.PENCIL);
 
+                int finalI = i;
+                jobangebotbearbeiten.addClickListener(clickEvent -> {
+                    StellenanzeigeDTO stellenanzeigeDTO = StellenanzeigeDAO.getInstance().getStellenanzeige(jobangebot.get(finalI).getTitel(), jobangebot.get(finalI).getBeschreibung(), jobangebot.get(finalI).getOrt(), jobangebot.get(finalI).getStatus());
+                    UI.getCurrent().addWindow(new Jobangebotbearbeiten(stellenanzeigeDTO));
+                });
                 joblayout.addComponent(job);
                 joblayout.addComponent(jobangebotbearbeiten);
                 content.addComponent(joblayout);
