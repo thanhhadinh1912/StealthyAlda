@@ -1,6 +1,10 @@
 package com.stealthyalda.gui.views;
 
 
+import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
+import com.stealthyalda.ai.model.dao.BenutzerDAO;
+import com.stealthyalda.ai.model.dao.SearchService;
+import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.BenachrichtigungArbeitgeber;
 import com.stealthyalda.gui.components.KontoVerwaltung;
@@ -8,6 +12,7 @@ import com.stealthyalda.gui.components.ProfilVerwaltenArbeitgeber;
 import com.stealthyalda.gui.components.TopPanel;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.services.util.Roles;
+import com.stealthyalda.services.util.SearchArbeitgeberService;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
@@ -22,13 +27,19 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         this.addComponent(new TopPanel(user));
 
         HorizontalLayout horizon = new HorizontalLayout();
-        final TextField jobsearch = new TextField();
-        jobsearch.setPlaceholder("(Bewerber, Studentenanzeige) ");
-        jobsearch.setWidth("800px");
-        horizon.addComponent(jobsearch);
-        horizon.setComponentAlignment(jobsearch, Alignment.MIDDLE_LEFT);
+        Arbeitgeber a = ArbeitgeberDAO.getInstance().getArbeitgeber(user.getEmail());
 
-        final Button buttonsearch = new Button("Jobs finden!");
+        ComboBox<String> search = new ComboBox<>();
+        search.setPlaceholder("(Bewerber, Stellenanzeige) ");
+        search.setWidth("800px");
+        SearchArbeitgeberService service = new SearchArbeitgeberService(a);
+        search.setDataProvider(service::fetch, service::count);
+
+
+        horizon.addComponent(search);
+        horizon.setComponentAlignment(search, Alignment.MIDDLE_LEFT);
+
+        final Button buttonsearch = new Button("Suche");
         buttonsearch.setWidth("200px");
         horizon.addComponent(buttonsearch);
         horizon.setComponentAlignment(buttonsearch, Alignment.MIDDLE_RIGHT);
