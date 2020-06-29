@@ -26,24 +26,19 @@ public class SearchDAO extends AbstractDAO {
         return dao;
     }
 
-
-
-    public List<String> getJobtitelOrArbeitgeber() {
+    private List<String> hilfe2(String sql1, String sql2){
         ResultSet set = null;
         ResultSet set2 = null;
         List<String> liste = new ArrayList<>();
         try {
             Statement statement = this.getStatement();
-            set = statement.executeQuery("SELECT titel FROM stealthyalda.stellenanzeige ");
+            set = statement.executeQuery(sql1);
             while (true) {
                 assert set != null;
                 if (!set.next()) break;
                 liste.add(set.getString(1));
             }
-            set2 = statement.executeQuery("select distinct a.unternehmen\n" +
-                    "from stealthyalda.arbeitgeber a\n" +
-                    "join stealthyalda.stellenanzeige s\n" +
-                    "on s.arbeitgeber_id = a.arbeitgeber_id");
+            set2 = statement.executeQuery(sql2);
             while (true) {
                 assert set2 != null;
                 if (!set2.next()) break;
@@ -64,6 +59,19 @@ public class SearchDAO extends AbstractDAO {
 
 
         return liste;
+
+    }
+
+
+
+    public List<String> getJobtitelOrArbeitgeber() {
+    String sql1 = "SELECT titel FROM stealthyalda.stellenanzeige ";
+    String sql2 = "select distinct a.unternehmen\n" +
+                    "from stealthyalda.arbeitgeber a\n" +
+                    "join stealthyalda.stellenanzeige s\n" +
+                    "on s.arbeitgeber_id = a.arbeitgeber_id";
+
+        return hilfe2(sql1,sql2);
 
     }
 
@@ -115,46 +123,18 @@ public class SearchDAO extends AbstractDAO {
     }
 
     public List<String> getBewerberOrStellenanzeige(Arbeitgeber a) {
-        ResultSet set = null;
-        ResultSet set2 = null;
-        List<String> liste = new ArrayList<>();
-        try {
-            Statement statement = this.getStatement();
-            set = statement.executeQuery("select distinct s.nachname\n" +
+        String sql1 ="select distinct s.nachname\n" +
                     "from stealthyalda.bewerbung b\n" +
                     "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
                     "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
                     "join stealthyalda.student s ON b.student_id = s.student_id\n" +
-                    "where a.arbeitgeber_id = '"+ a.getArbeitgeberId()+"'");
-            while (true) {
-                assert set != null;
-                if (!set.next()) break;
-                liste.add(set.getString(1));
-            }
-            set2 = statement.executeQuery("select distinct s.titel\n" +
+                    "where a.arbeitgeber_id = '"+ a.getArbeitgeberId()+"'";
+           String sql2 = "select distinct s.titel\n" +
                     "from stealthyalda.arbeitgeber a\n" +
                     "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'");
-            while (true) {
-                assert set2 != null;
-                if (!set2.next()) break;
-                liste.add(set2.getString(1));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                JDBCConnection.getInstance().closeConnection();
-            } catch (DatabaseException e) {
-                Logger.getLogger(SearchDAO.class.getName()).log(Level.SEVERE, null, e);
+                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'";
 
-            }
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set);
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(set2);
-        }
-
-
-        return liste;
+        return hilfe2(sql1,sql2);
     }
 
 }
