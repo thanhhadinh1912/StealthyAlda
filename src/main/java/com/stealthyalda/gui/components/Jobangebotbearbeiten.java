@@ -35,7 +35,7 @@ public class Jobangebotbearbeiten extends Window {
         content.addComponent(statusbe);
         content.setComponentAlignment(statusbe,Alignment.MIDDLE_CENTER);
 
-        Button delete = new Button("Delete Stellenanzeige");
+        /*Button delete = new Button("Delete Stellenanzeige");
         delete.setWidth(String.valueOf(bstatus.getWidth()));
 
         delete.addClickListener(clickEvent -> {
@@ -44,7 +44,7 @@ public class Jobangebotbearbeiten extends Window {
             UI.getCurrent().addWindow(confirm);
             close();
         });
-        statusbe.addComponent(delete);
+        statusbe.addComponent(delete);*/
 
         this.setContent(content);
     }
