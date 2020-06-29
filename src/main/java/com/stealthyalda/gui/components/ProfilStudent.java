@@ -25,6 +25,7 @@ public class ProfilStudent extends Window {
         HorizontalLayout horizon1 = new HorizontalLayout();
         VerticalLayout vartical1 = new VerticalLayout();
         TextField name = new TextField();
+        name.setReadOnly(true);
         name.setPlaceholder("Vorname Nachname");
             String studentname = s.getVorname() + " " + s.getNachname();
             if (studentname.length() != 0) {
@@ -51,6 +52,7 @@ public class ProfilStudent extends Window {
         Benutzer user = new Benutzer();
         user.setId(s.getId());
         TextArea hobby = new TextArea("Hobbys");
+        hobby.setReadOnly(true);
         hobby.setWidth("325px");
         c.printHobby(user);
         horizon2.addComponent(hobby);
@@ -58,6 +60,7 @@ public class ProfilStudent extends Window {
 
         TextArea hardskill = new TextArea("Hardskills");
         hardskill.setWidth("325px");
+        hardskill.setReadOnly(true);
         hardskill.setValue(c.printHardskill(user));
         horizon2.addComponent(hardskill);
         horizon2.setComponentAlignment(hardskill, Alignment.MIDDLE_RIGHT);
@@ -79,14 +82,9 @@ public class ProfilStudent extends Window {
         Image profilbild = new Image("", resource);
         vertical2.addComponent(profilbild);
         vertical2.setComponentAlignment(profilbild, Alignment.MIDDLE_RIGHT);
-        ImageUploader receiver = new ImageUploader();
-        Upload upload = new Upload("", receiver);
-        upload.addSucceededListener(receiver);
-        upload.setButtonCaption("Profilbild hochladen");
-        upload.setImmediateMode(true);
-        vertical2.addComponent(upload);
-        vertical2.setComponentAlignment(upload, Alignment.MIDDLE_RIGHT);
+
         TextArea softskill = new TextArea("Softskills");
+        softskill.setReadOnly(true);
         softskill.setWidth("275px");
         softskill.setHeight("117px");
         softskill.setValue(c.printSoftskill(user));
