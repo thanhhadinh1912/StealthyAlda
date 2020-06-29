@@ -47,9 +47,7 @@ public class KontoDeleteWindow extends Window {
 
         ja.setClickShortcut(ShortcutAction.KeyCode.ENTER);
 
-        nein.addClickListener(clickEvent -> {
-            close();
-        });
+        nein.addClickListener(clickEvent -> close());
         ja.addClickListener(clickEvent -> {
             KontoControl kc = new KontoControl();
             try {
