@@ -100,6 +100,7 @@ public class HardskillDAO extends AbstractDAO {
      * @param s         A student object
      */
     public void createHardskillForUser(Hardskill hardskill, Student s) {
+        ResultSet idKeys = null;
         try (PreparedStatement statement = this.getPreparedStatement(
                 "INSERT INTO stealthyalda.hardskill VALUES(default,?);")) {
             statement.setString(1, hardskill.getHardskill());
@@ -109,7 +110,7 @@ public class HardskillDAO extends AbstractDAO {
             if (rows == 0) {
                 throw new SQLException("Failed to insert skill");
             }
-            ResultSet idKeys = statement.getGeneratedKeys();
+            idKeys = statement.getGeneratedKeys();
             if (idKeys.next()) {
                 int rskillId = idKeys.getInt(1);
                 insertStudentHatHardskill(s.getStudentId(), rskillId);
@@ -118,7 +119,10 @@ public class HardskillDAO extends AbstractDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(HardskillDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } finally {
+            closeResultset(idKeys);
         }
+
     }
 
     /**
