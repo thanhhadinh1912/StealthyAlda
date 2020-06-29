@@ -3,14 +3,9 @@ package com.stealthyalda.gui.windows;
 import com.stealthyalda.ai.control.BewerbungControl;
 import com.stealthyalda.ai.control.ProfilStudentControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
-import com.stealthyalda.ai.model.dtos.HardskillDTO;
-import com.stealthyalda.ai.model.dtos.HobbyDTO;
-import com.stealthyalda.ai.model.dtos.SoftskillDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
-import com.stealthyalda.services.util.ImageUploader;
 import com.vaadin.server.FileResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.*;
@@ -29,10 +24,10 @@ public class ProfilStudent extends Window {
         TextField name = new TextField();
         name.setReadOnly(true);
         name.setPlaceholder("Vorname Nachname");
-            String studentname = s.getVorname() + " " + s.getNachname();
-            if (studentname.length() != 0) {
-                name.setValue(studentname);
-            }
+        String studentname = s.getVorname() + " " + s.getNachname();
+        if (studentname.length() != 0) {
+            name.setValue(studentname);
+        }
 
         name.setWidth(PX_700);
         name.setHeight("40px");
@@ -111,7 +106,7 @@ public class ProfilStudent extends Window {
         button.addComponent(ablehnen);
         button.setComponentAlignment(ablehnen, Alignment.MIDDLE_LEFT);
 
-        Button zusage = new Button ("Zusagen!");
+        Button zusage = new Button("Zusagen!");
         zusage.setWidth("200px");
         button.addComponent(zusage);
         zusage.addClickListener(clickEvent -> {

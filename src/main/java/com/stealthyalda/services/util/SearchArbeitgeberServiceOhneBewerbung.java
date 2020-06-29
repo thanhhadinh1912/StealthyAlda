@@ -9,9 +9,11 @@ import java.util.stream.Stream;
 public class SearchArbeitgeberServiceOhneBewerbung {
     private static Arbeitgeber a;
     private static List<String> liste = null;
-    public SearchArbeitgeberServiceOhneBewerbung(Arbeitgeber a){
-        this.a = a;
-        this.liste = SearchDAO.getInstance().getStellenanzeigeFürArbeitgeber(a);}
+
+    public SearchArbeitgeberServiceOhneBewerbung(Arbeitgeber a) {
+        SearchArbeitgeberServiceOhneBewerbung.a = a;
+        liste = SearchDAO.getInstance().getStellenanzeigeFürArbeitgeber(a);
+    }
 
 
     public List<String> getStellenanzeige() {

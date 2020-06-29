@@ -7,8 +7,9 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 public class InforBewerber extends Window {
-    private String WIDTH = "950px";
-    public InforBewerber(BewerbungCollAtHBRSDTO b){
+    private final String WIDTH = "950px";
+
+    public InforBewerber(BewerbungCollAtHBRSDTO b) {
         center();
         VerticalLayout content = new VerticalLayout();
         Label titel = new Label("Information zur Bewerbung");

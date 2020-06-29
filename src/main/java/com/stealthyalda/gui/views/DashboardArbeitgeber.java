@@ -4,8 +4,6 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
-import com.stealthyalda.ai.model.dao.BenutzerDAO;
-import com.stealthyalda.ai.model.dao.SearchService;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.BenachrichtigungArbeitgeber;
@@ -39,8 +37,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
                 search.setWidth("800px");
                 SearchArbeitgeberServiceMitBewerbung service = new SearchArbeitgeberServiceMitBewerbung(a);
                 search.setDataProvider(service::fetch, service::count);
-            }
-            else{
+            } else {
                 search.setPlaceholder("(Stellenanzeige) ");
                 search.setWidth("800px");
                 SearchArbeitgeberServiceOhneBewerbung service = new SearchArbeitgeberServiceOhneBewerbung(a);
@@ -95,7 +92,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         }
     }
 
-        @Override
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setUp();
 
