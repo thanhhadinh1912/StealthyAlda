@@ -41,6 +41,7 @@ public class HardskillDTOTest {
         HardskillDTO neu = new HardskillDTO();
         neu.setHardSkillName("Head banging");
         neu.setHardSkillId(101);
-        assertEquals(hardSk, neu);
+        assertTrue(hardSk.getHardSkillId() == neu.getHardSkillId()
+                && hardSk.getHardSkillName() == neu.getHardSkillName());
     }
 }

@@ -20,15 +20,4 @@ public class HardskillDTO {
         this.hardSkillId = hardSkillId;
     }
 
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof HardskillDTO)) {
-            return false;
-        }
-        HardskillDTO c = (HardskillDTO) o;
-        return Integer.compare(c.hardSkillId, this.hardSkillId) == 0
-                && this.getHardSkillName().equals(c.getHardSkillName());
-
-    }
 }
