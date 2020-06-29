@@ -228,7 +228,7 @@ public class BenutzerDAO extends AbstractDAO {
         }
     }
 
-    public boolean updateStammdaten(DTOs u, String anrede, Benutzer user) {
+    public boolean updateStammdaten(Benutzer u, String anrede, Benutzer user) {
         String updateBenutzerTbl = "UPDATE stealthyalda.benutzer " +
                 "SET " +
                 "anrede = ?, " +

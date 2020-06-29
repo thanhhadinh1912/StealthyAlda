@@ -1,5 +1,7 @@
 package com.stealthyalda.ai.model.entities;
 
+import com.stealthyalda.ai.model.dtos.Adresse;
+
 public class Benutzer {
     private int adresseId;
     private String email;
@@ -8,6 +10,17 @@ public class Benutzer {
     private int id;
     private String anrede;
     private String role;
+    private Adresse adresse;
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+    
+    
 
 
     public String getRole() {
