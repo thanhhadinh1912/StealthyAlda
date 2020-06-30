@@ -14,17 +14,17 @@ public class AnforderungDAOTest {
     public void getAnforderungForStellenanzeige() throws DatabaseException {
         AnforderungDAO anfdao = AnforderungDAO.getInstance();
         //anfdao.createAnforderung(17,"java kentnissse");
-        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(17);
+        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(19);
 
-        assertEquals("java kentnissse", anfdao.getAnforderungForStellenanzeige(17).get(0).getAnforderung());
+        assertEquals("java kentnissse", anfdao.getAnforderungForStellenanzeige(19).get(0).getAnforderung());
     }
 
     @Test
     public void createAnforderung() throws DatabaseException {
 
         AnforderungDAO anfdao = AnforderungDAO.getInstance();
-        anfdao.createAnforderung(17, "java kentnissse");
-        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(17);
+        anfdao.createAnforderung(19, "java kentnissse");
+        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(19);
         System.out.println(anf.get(0).getAnforderung());
 
 
