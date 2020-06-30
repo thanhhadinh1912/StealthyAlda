@@ -3155,8 +3155,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px;
 	padding: 5px 9px;
 	border: 1px solid #93c5e6;
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -3184,10 +3184,6 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.mytheme .v-filterselect [class*="input"][class*="prompt"] {
-	color: #8fccf4;
-}
-
 .mytheme .v-filterselect .v-icon + [class*="input"] {
 	padding-left: 41px;
 }
@@ -3198,15 +3194,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect span.v-icon {
-	color: #d0e0eb;
+	
 	width: 41px;
 	line-height: 1;
 	padding-top: 0.12em;
 	margin-left: 9px;
-}
-
-.mytheme .v-filterselect[class*="prompt"] > [class*="input"] {
-	color: #8fccf4;
 }
 
 .mytheme .v-filterselect [class$="button"] {
@@ -3218,8 +3210,6 @@ div.v-layout.v-horizontal.v-widget {
 	top: 1px;
 	right: 1px;
 	bottom: 1px;
-	border-left: 1px solid #67addc;
-	color: #86bbde;
 	border-radius: 0 3px 3px 0;
 }
 
@@ -3237,10 +3227,6 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: -0.47em;
 }
 
-.mytheme .v-filterselect [class$="button"]:hover:before {
-	color: #d0e0eb;
-}
-
 .mytheme .v-filterselect [class$="button"]:active:after {
 	content: "";
 	position: absolute;
@@ -3249,7 +3235,6 @@ div.v-layout.v-horizontal.v-widget {
 	bottom: 0;
 	left: 0;
 	border-radius: inherit;
-	background-color: rgba(9, 79, 126, 0.2);
 }
 
 .mytheme .v-filterselect.v-disabled {
@@ -3267,15 +3252,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect.v-readonly [class*="input"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-filterselect.v-readonly [class*="input"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-filterselect.v-readonly [class$="button"] {
@@ -3749,15 +3734,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect-tiny.v-readonly [class*="input"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-filterselect-tiny.v-readonly [class*="input"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-filterselect-tiny.v-readonly [class$="button"] {
@@ -3889,15 +3874,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect-compact.v-readonly [class*="input"], .mytheme .v-filterselect-small.v-readonly [class*="input"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-filterselect-compact.v-readonly [class*="input"]:focus, .mytheme .v-filterselect-small.v-readonly [class*="input"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-filterselect-compact.v-readonly [class$="button"], .mytheme .v-filterselect-small.v-readonly [class$="button"] {
@@ -4034,15 +4019,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect-large.v-readonly [class*="input"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-filterselect-large.v-readonly [class*="input"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-filterselect-large.v-readonly [class$="button"] {
@@ -4175,15 +4160,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-filterselect-huge.v-readonly [class*="input"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-filterselect-huge.v-readonly [class*="input"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-filterselect-huge.v-readonly [class$="button"] {
@@ -4494,10 +4479,6 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-textfield:focus, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-textarea:focus, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-filterselect input:focus, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-datefield input:focus, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-richtextarea:focus {
 	box-shadow: none;
-}
-
-.mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-textfield-prompt, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-textarea-prompt, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-filterselect-prompt input, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-datefield-prompt input {
-	color: #8fccf4;
 }
 
 .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-textarea, .mytheme .v-formlayout.light  > table > tbody > [class*="row"] > [class*="contentcell"]  > .v-richtextarea {
@@ -5429,8 +5410,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px;
 	padding: 5px 9px;
 	border: 1px solid #93c5e6;
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5455,20 +5436,16 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.mytheme .v-textfield[class*="prompt"] {
-	color: #8fccf4;
-}
-
 .mytheme .v-textfield-readonly {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-textfield-readonly:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-textfield-error {
@@ -5895,8 +5872,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px;
 	padding: 7px;
 	border: 1px solid #93c5e6;
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5924,20 +5901,16 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.mytheme .v-textarea[class*="prompt"] {
-	color: #8fccf4;
-}
-
 .mytheme .v-textarea-readonly {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-textarea-readonly:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-textarea-error {
@@ -6121,8 +6094,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px;
 	padding: 5px 9px;
 	border: 1px solid #93c5e6;
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -6150,14 +6123,6 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 
-.mytheme .v-datefield [class*="textfield"][class*="prompt"] {
-	color: #8fccf4;
-}
-
-.mytheme .v-datefield[class*="prompt"] > [class*="textfield"] {
-	color: #8fccf4;
-}
-
 .mytheme .v-datefield [class*="button"] {
 	-webkit-tap-highlight-color: transparent;
 	-webkit-touch-callout: none;
@@ -6177,13 +6142,7 @@ div.v-layout.v-horizontal.v-widget {
 	bottom: 1px;
 	left: 1px;
 	border: none;
-	border-right: 1px solid #67addc;
-	color: #86bbde;
 	border-radius: 3px 0 0 3px;
-}
-
-.mytheme .v-datefield [class*="button"]:hover {
-	color: #d0e0eb;
 }
 
 .mytheme .v-datefield [class*="button"]:before {
@@ -6201,7 +6160,6 @@ div.v-layout.v-horizontal.v-widget {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(9, 79, 126, 0.2);
 	border-radius: inherit;
 }
 
@@ -6220,15 +6178,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-datefield.v-readonly [class*="textfield"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-datefield.v-readonly [class*="textfield"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-datefield.v-readonly [class*="button"] {
@@ -6881,15 +6839,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-datefield-tiny.v-readonly [class*="textfield"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-datefield-tiny.v-readonly [class*="textfield"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-datefield-tiny.v-readonly [class*="button"] {
@@ -7008,15 +6966,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-datefield-compact.v-readonly [class*="textfield"], .mytheme .v-datefield-small.v-readonly [class*="textfield"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-datefield-compact.v-readonly [class*="textfield"]:focus, .mytheme .v-datefield-small.v-readonly [class*="textfield"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-datefield-compact.v-readonly [class*="button"], .mytheme .v-datefield-small.v-readonly [class*="button"] {
@@ -7140,15 +7098,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-datefield-large.v-readonly [class*="textfield"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-datefield-large.v-readonly [class*="textfield"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-datefield-large.v-readonly [class*="button"] {
@@ -7268,15 +7226,15 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-datefield-huge.v-readonly [class*="textfield"] {
-	background: #3492d0;
-	color: #cedfea;
+	background: #3C96D2;
+	color: #d0e0eb;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
 
 .mytheme .v-datefield-huge.v-readonly [class*="textfield"]:focus {
 	box-shadow: none;
-	border-color: #8fc3e5;
+	border-color: #93c5e6;
 }
 
 .mytheme .v-datefield-huge.v-readonly [class*="button"] {
@@ -13953,8 +13911,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-label-success, .mytheme .v-label-failure {
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	border: 2px solid #2c9720;
 	border-radius: 4px;
 	padding: 8px 21px 8px 41px;
@@ -14212,8 +14170,8 @@ div.v-layout.v-horizontal.v-widget {
 	border-radius: 4px;
 	padding: 0;
 	border: 1px solid #93c5e6;
-	background: #3C96D2;
-	color: #d0e0eb;
+	background: white;
+	
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -14221,10 +14179,6 @@ div.v-layout.v-horizontal.v-widget {
 	transition: box-shadow 180ms, border 180ms;
 	height: auto;
 	overflow: hidden;
-}
-
-.mytheme .v-richtextarea[class*="prompt"] {
-	color: #8fccf4;
 }
 
 .mytheme .v-richtextarea .gwt-RichTextToolbar {
@@ -15423,22 +15377,27 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-textfield {
+	font-family: "OCR A Extended", sans-serif;
 	background-color: white;
 	color: black;
 }
 
 .mytheme .v-textfield .v-textfield-caption {
+	font-family: "OCR A Extended", sans-serif;
 	color: black;
 }
 
 .mytheme .v-textarea {
+	font-family: "OCR A Extended", sans-serif;
 	overflow-y: auto !important;
 	background-color: white;
 	color: black;
 }
 
 .mytheme .v-panel {
+	font-family: "OCR A Extended", sans-serif;
 	background-color: white;
+	color: black;
 }
 
 .mytheme .toppanelbutton .v-button-caption {
@@ -15446,8 +15405,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .suchseite .v-layout {
-	background-color: white;
-	color: black;
 	border: 1px solid black;
 }
 

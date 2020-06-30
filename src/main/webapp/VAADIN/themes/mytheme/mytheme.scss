@@ -48,7 +48,7 @@ $v-shadow: false;
 $v-textfield-bevel: false;
 $v-textfield-shadow: false;
 $v-border: 1px solid (v-tint 1.5);
-$v-textfield-background-color: $v-background-color;
+$v-textfield-background-color: white;
 //$v-font-family: sans-serif;
 $v-font-family: "OCR A Extended";
 $v-font-size: 18px;
@@ -122,23 +122,28 @@ $v-font-size: 18px;
 
   //TEXTFELDER
   .v-textfield {
+    font-family: "OCR A Extended", sans-serif;
     background-color: white;
     color: black;
 
     .v-textfield-caption {
+      font-family: "OCR A Extended", sans-serif;
       color: black;
 
     }
   }
 
   .v-textarea {
+    font-family: "OCR A Extended", sans-serif;
     overflow-y: auto ! important;
     background-color: white;
     color: black;
 
   }
   .v-panel {
+    font-family: "OCR A Extended", sans-serif;
     background-color: white;
+    color: black;
   }
   .toppanelbutton {
     .v-button-caption {
