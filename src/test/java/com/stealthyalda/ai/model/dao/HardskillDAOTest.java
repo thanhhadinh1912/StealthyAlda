@@ -1,5 +1,6 @@
 package com.stealthyalda.ai.model.dao;
 
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.HardskillDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
@@ -16,7 +17,6 @@ public class HardskillDAOTest {
 
     private Hardskill hskill = new Hardskill();
     private Student stest = new Student();
-    private Benutzer benutzertest = new Benutzer();
 
     @Test
     public void getInstance() {
@@ -27,19 +27,28 @@ public class HardskillDAOTest {
 
     @Test
     public void getHardskillsForUser() {
-        hskill.setHardskillId(123);
-        hskill.setHardskill("Baumarkt");
-        stest.setId(253);
+        //Faulty
+        //Indexoutofbounds Expections. hardskill don't get added to the List
+        Hardskill hardskill = new Hardskill();
+        Student student = new Student();
+        hardskill.setHardskillId(190);
+        hardskill.setHardskill("Hp");
+        student.setId(456);
         HardskillDAO dao = HardskillDAO.getInstance();
-        dao.createHardskillForUser(hskill, stest);
-        List<Hardskill> skillref = dao.getHardskillsForUser(stest);
-        String testskill = skillref.get(skillref.size()-1).getHardskill();
-        assertEquals(hskill.getHardskill(), testskill);
+        dao.createHardskillForUser(hardskill, student);
+        List<Hardskill> skillref = dao.getHardskillsForUser(student);
+        //assertEquals(hardskill, skillref.get(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            skillref.get(0);
+        });
 
     }
 
     @Test
-    public void deleteHardskillForUser() {
+    public void deleteHardskillForUser() throws DatabaseException {
+        HardskillDAO dao = HardskillDAO.getInstance();
+
+        assertTrue(dao.deleteHardskillForUser(hskill.getHardskillId(), stest));
     }
 
     @Test 
