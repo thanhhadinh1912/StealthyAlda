@@ -82,7 +82,7 @@ public class HobbyDAO extends AbstractDAO {
         try (PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(
                 "DELETE FROM stealthyalda.student_hat_hobby WHERE hobby_id = ? AND student_id = ?;")) {
             statement.setInt(1, h);
-            statement.setInt(1, s.getStudentId());
+            statement.setInt(2, s.getStudentId());
             statement.executeUpdate();
         } catch (SQLException throwables) {
             Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage(), throwables);
