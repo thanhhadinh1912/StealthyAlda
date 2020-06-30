@@ -1,6 +1,6 @@
 package com.stealthyalda.gui.views;
 
-import com.stealthyalda.ai.control.SucheEinfach;
+import com.stealthyalda.ai.control.SucheEinfachProxy;
 import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.SearchService;
@@ -70,7 +70,7 @@ public class DashboardStudent extends Studis {
             accordion.addTab(tab4, "Konto");
             buttonsearch.addClickListener(clickEvent -> {
                 this.removeComponent(accordion);
-                List<StellenanzeigeDTO> liste = SucheEinfach.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
+                List<StellenanzeigeDTO> liste = SucheEinfachProxy.getInstance().getStellenanzeigeByJob(jobsearch.getValue());
                 Panel ergebnisse = new Suchseite().printergebnis(liste);
                 this.addComponent(ergebnisse);
             });

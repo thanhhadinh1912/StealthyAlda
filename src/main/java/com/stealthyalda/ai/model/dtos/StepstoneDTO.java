@@ -5,28 +5,45 @@ public class StepstoneDTO implements AnwendungDTOs {
 
     private int stellenid;
     private String jobTitle;
-    private String Vorname;
-    private String Nachname;
+    private static final String NEW_LINE = "\", \n ";
+    private String vorname;
     private String email;
     private String applicationText;
-
+    private String nachname;
 
     @Override
     public String toString() {
         return " { \"Stepstone\": { \n "
-                + " \"stellenid\": \"" + stellenid + "\", \n "
-                + " \"jobTitle\": \"" + jobTitle + "\", \n "
-                + " \"Vorname\": \"" + Vorname + "\", \n "
-                + " \"Nachname\": \"" + Nachname + "\", \n "
+                + " \"stellenid\": \"" + stellenid + NEW_LINE
+                + " \"jobTitle\": \"" + jobTitle + NEW_LINE
+                + " \"Vorname\": \"" + vorname + NEW_LINE
+                + " \"Nachname\": \"" + nachname + NEW_LINE
                 + "+ } }";
     }
 
     @Override
-    public boolean gleich(AnwendungDTOs application) {
+    public boolean equals(Object application) {
+        if (application == this)
+            return true;
+        if (application == null)
+            return true;
+
+        if (getClass() != application.getClass()) {
+            return false;
+        }
         return (application instanceof StepstoneDTO
                 && this.getApplicationText().equals(((StepstoneDTO) application).getApplicationText()));
     }
 
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException();
+    }
 
     public int getstellenid() {
         return stellenid;
@@ -46,19 +63,19 @@ public class StepstoneDTO implements AnwendungDTOs {
 
 
     public String getVorname() {
-        return Vorname;
+        return vorname;
     }
 
     public void setVorname(String vorname) {
-        this.Vorname = vorname;
+        this.vorname = vorname;
     }
 
     public String getNachname() {
-        return Nachname;
+        return nachname;
     }
 
     public void setNachname(String nachname) {
-        this.Nachname = nachname;
+        this.nachname = nachname;
     }
 
     public String getEmail() {
