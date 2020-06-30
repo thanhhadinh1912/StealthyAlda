@@ -15424,6 +15424,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .v-textfield {
 	background-color: white;
+	color: black;
 }
 
 .mytheme .v-textfield .v-textfield-caption {
@@ -15445,6 +15446,8 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .suchseite .v-layout {
+	background-color: white;
+	color: black;
 	border: 1px solid black;
 }
 
