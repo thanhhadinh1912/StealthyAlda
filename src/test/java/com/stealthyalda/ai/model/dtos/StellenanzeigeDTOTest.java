@@ -38,6 +38,7 @@ public class StellenanzeigeDTOTest {
         a2.setAnforderung("Anforderung 2");
         anforderungs.add(a1);
         anforderungs.add(a2);
+        stellenanzeigeDTO.setArbeitgeber("Test");
 
         unternehmen = new Arbeitgeber();
 
@@ -58,5 +59,6 @@ public class StellenanzeigeDTOTest {
         assertEquals("Test", stellenanzeigeDTO.getTitel());
         assertEquals("Offen",stellenanzeigeDTO.getStatus());
         assertEquals("Beschreibung", stellenanzeigeDTO.getBeschreibung());
+        assertEquals("Test", stellenanzeigeDTO.getArbeitgeber());
     }
 }
