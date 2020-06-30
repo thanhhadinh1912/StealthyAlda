@@ -32,7 +32,8 @@
 
 
 $v-app-loading-text: "Stealthy_Alda";
-$v-background-color: #0f2a54;
+//$v-background-color: #0f2a54;
+$v-background-color: #3C96D2;
 $v-focus-color: #fff;
 //$v-background-image: url("Image/background_home.jpg");
 $v-panel-background-color: $v-background-color;
@@ -124,12 +125,16 @@ $v-font-size: 18px;
     background-color: white;
 
     .v-textfield-caption {
-      color: #000000;
+      color: black;
+
     }
   }
+
   .v-textarea {
     overflow-y: auto ! important;
     background-color: white;
+    color: black;
+
   }
   .v-panel {
     background-color: white;
@@ -148,7 +153,8 @@ $v-font-size: 18px;
   .v-button {
     color: white;
     //background: #0be881;
-    background-color: #00A2E8;
+    //background-color: #00A2E8;
+    background-color: #e36566;
     font-family: "OCR A Extended", sans-serif;
     font-size: 20px;
   }
@@ -185,7 +191,8 @@ $v-font-size: 18px;
   .STARTSEITE-los {
     display: inline-block;
     border-radius: 4px;
-    background-color: #00A2E8;
+    //background-color: #00A2E8;
+    background-color: #e36566;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -262,7 +269,8 @@ $v-font-size: 18px;
   .LOGINSEITE-login {
     display: inline-block;
     border-radius: 4px;
-    background-color: #3C96D2;
+    //background-color: #3C96D2;
+    background-color: #e36566;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -306,7 +314,8 @@ $v-font-size: 18px;
   .REGISTERSEITE-registrieren {
     display: inline-block;
     border-radius: 4px;
-    background-color: #3C96D2;
+    background-color: #e36566;
+    //background-color: #3C96D2;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -347,7 +356,8 @@ $v-font-size: 18px;
   .REGISTERSEITEArbeitgeber-registrieren {
     display: inline-block;
     border-radius: 4px;
-    background-color: #3C96D2;
+    background-color: #e36566;
+    //background-color: #3C96D2;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -388,7 +398,8 @@ $v-font-size: 18px;
   .REGISTERSEITEStudent-registrieren {
     display: inline-block;
     border-radius: 4px;
-    background-color: #3C96D2;
+    background-color: #e36566;
+    //background-color: #3C96D2;
     border: none;
     color: #FFFFFF;
     text-align: center;
@@ -425,45 +436,4 @@ $v-font-size: 18px;
     right: 0;
   }
 
-  /*//------------------SUCHSEITE-----------\\
-
-  .SUCHSEITE-suchen{
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #3C96D2;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 20px;
-    font-family: "OCR A Extended", sans-serif;
-    padding-top: 0px;
-    padding-right: 5px;
-    padding-bottom: 0px;
-    padding-left: 5px;
-    width: 150px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-  }
-
-  .SUCHSEITE-suchen span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
-
-  .SUCHSEITE-suchen span:after {
-    //content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-
-  .SUCHSEITE-suchen:hover span:after {
-    opacity: 1;
-    right: 0;
-  }*/
 }
