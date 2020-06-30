@@ -13,7 +13,7 @@ public class SucheEinfach implements SucheEinfachInt {
 
     public static SucheEinfach getInstance() {
         if (sucheEinfach == null) {
-            sucheEinfach = SucheEinfach.getInstance();
+            sucheEinfach = new SucheEinfach();
         }
         return sucheEinfach;
     }

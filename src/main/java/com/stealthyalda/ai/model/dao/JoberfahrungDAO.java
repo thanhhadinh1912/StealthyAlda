@@ -1,8 +1,10 @@
 package com.stealthyalda.ai.model.dao;
 
+import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.JoberfahrungDTO;
 import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Student;
+import com.stealthyalda.services.db.JDBCConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,4 +53,33 @@ public class JoberfahrungDAO extends AbstractDAO {
         return liste;
     }
 
+    public void deleteJoberfahrungForUser(int joberfahrungId, Student s) throws DatabaseException {
+        try (PreparedStatement statement = getPreparedStatement(
+                "DELETE FROM stealthyalda.joberfahrung WHERE joberfahrung_id = ? AND student_id = ?;")) {
+            statement.setInt(1, joberfahrungId);
+            statement.setInt(2, s.getStudentId());
+            statement.executeUpdate();
+        } catch (SQLException throwables) {
+            Logger.getLogger(JoberfahrungDAO.class.getName()).log(Level.SEVERE, throwables.getMessage(), throwables);
+        } finally {
+            JDBCConnection.getInstance().closeConnection();
+        }
+    }
+
+    public void createJoberfahrungForUser(JoberfahrungDTO je, Student s) {
+        ResultSet set = null;
+        try (PreparedStatement statement = this.getPreparedStatement(
+                "INSERT INTO stealthyalda.joberfahrung(joberfahrung,student_id) VALUES(?,?);")) {
+            statement.setString(1, je.getJoberfahrung());
+            statement.setInt(2, s.getStudentId());
+            int numRows = statement.executeUpdate();
+            if (numRows == 0) {
+                throw new SQLException("Failed to insert Joberfahrung");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HobbyDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        } finally {
+            closeResultset(set);
+        }
+    }
 }

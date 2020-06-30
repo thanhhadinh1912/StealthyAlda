@@ -145,21 +145,15 @@ public class BenutzerDAO extends AbstractDAO {
     }
 
     public void deleteUser(String email, String passwort) throws DatabaseException {
-        String sql;
-        sql = "DELETE FROM stealthyalda.benutzer WHERE email = ? AND passwort = ?;";
-
-        PreparedStatement statement = JDBCConnection.getInstance().getPreparedStatement(sql);
         PasswordAuthentication hasher = new PasswordAuthentication();
         char[] c = passwort.toCharArray();
         String passwordHash = hasher.hash(c);
-        try {
-            assert statement != null;
+        try (PreparedStatement statement = getPreparedStatement("DELETE FROM stealthyalda.benutzer WHERE email = ? AND passwort = ?;")) {
             statement.setString(1, email);
             statement.setString(2, passwordHash);
             statement.executeUpdate();
-
         } catch (SQLException throwables) {
-            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage());
+            Logger.getLogger(AbstractDAO.class.getName()).log(Level.SEVERE, throwables.getMessage(), throwables);
         } finally {
             JDBCConnection.getInstance().closeConnection();
         }

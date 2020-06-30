@@ -5,6 +5,7 @@ import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.StudentDAO;
 import com.stealthyalda.ai.model.dtos.HardskillDTO;
 import com.stealthyalda.ai.model.dtos.HobbyDTO;
+import com.stealthyalda.ai.model.dtos.JoberfahrungDTO;
 import com.stealthyalda.ai.model.dtos.SoftskillDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
@@ -112,12 +113,13 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
 
             HardskillDTO hskill = new HardskillDTO();
             SoftskillDTO skill = new SoftskillDTO();
+
+            JoberfahrungDTO jobE = new JoberfahrungDTO();
+            jobE.setJoberfahrung(jobExp);
+
             hskill.setHardSkillName(hardSkills);
             skill.setSetSoftSkillName(softSkills);
-            //TODO - Save name too eosoro2s
-            // move to control
-            psc.updateStudentProfile(hskill, skill, hbby, user);
-            // move to Control
+            psc.updateStudentProfile(hskill, skill, hbby, jobE, user);
         });
         this.addComponent(speichern);
         this.setComponentAlignment(speichern, Alignment.BOTTOM_CENTER);
