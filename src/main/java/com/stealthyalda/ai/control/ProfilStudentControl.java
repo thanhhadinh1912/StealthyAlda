@@ -87,7 +87,6 @@ public class ProfilStudentControl {
 
     public void softskillchange(Benutzer user, String input) throws DatabaseException {
         List<String> softSkillsList = new ArrayList<>();
-        // TODO: are our soft and hard skills separated by a tab? I prefer "\n"
         softSkillsList.addAll(Arrays.asList(input.split("\n")));
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
@@ -104,7 +103,6 @@ public class ProfilStudentControl {
 
     public void hobbiesChange(Benutzer user, String input) throws DatabaseException {
         List<String> hobbiesListe = new ArrayList<>();
-        // TODO: are our hobbies also separated by a tab? I prefer "\n"
         hobbiesListe.addAll(Arrays.asList(input.split("\n")));
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
