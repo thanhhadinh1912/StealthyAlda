@@ -6,25 +6,25 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnforderungDAOTest {
 
     @Test
-    public void getAnforderungForStellenanzeige() throws DatabaseException {
+ public   void getAnforderungForStellenanzeige() throws DatabaseException {
         AnforderungDAO anfdao = AnforderungDAO.getInstance();
         //anfdao.createAnforderung(17,"java kentnissse");
-        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(19);
+        List<Anforderung> anf= anfdao.getAnforderungForStellenanzeige(17);
 
-        assertEquals("java kentnissse", anfdao.getAnforderungForStellenanzeige(19).get(0).getAnforderung());
+        assertEquals("java kentnissse",anfdao.getAnforderungForStellenanzeige(17).get(0).getAnforderung() );
     }
 
     @Test
-    public void createAnforderung() throws DatabaseException {
+ public   void createAnforderung() throws DatabaseException {
 
         AnforderungDAO anfdao = AnforderungDAO.getInstance();
-        anfdao.createAnforderung(19, "java kentnissse");
-        List<Anforderung> anf = anfdao.getAnforderungForStellenanzeige(19);
+        anfdao.createAnforderung(17,"java kentnissse");
+        List<Anforderung> anf= anfdao.getAnforderungForStellenanzeige(17);
         System.out.println(anf.get(0).getAnforderung());
 
 
