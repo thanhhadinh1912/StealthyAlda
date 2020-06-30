@@ -120,15 +120,32 @@ public class ProfilStudentControl {
     }
 
 
-    public boolean updateStudentProfile(HardskillDTO hardskillDTO, SoftskillDTO softskillDTO, HobbyDTO hobbyDTO, Benutzer user) {
+    public boolean updateStudentProfile(HardskillDTO hardskillDTO, SoftskillDTO softskillDTO, HobbyDTO hobbyDTO, JoberfahrungDTO jobExp, Benutzer user) {
         try {
             hardskillchange(user, hardskillDTO.getHardSkillName());
             softskillchange(user, softskillDTO.getSetSoftSkillName());
             hobbiesChange(user, hobbyDTO.getDescription());
+            jobExperienceChange(user, jobExp.getJoberfahrung());
         } catch (DatabaseException ex) {
             Logger.getLogger(ProfilVerwaltenStudent.class.getName()).log(Level.SEVERE, ex.getReason(), ex);
         }
         return false;
+    }
+
+    private void jobExperienceChange(Benutzer user, String joberfahrung) throws DatabaseException {
+        List<String> experience = new ArrayList<>();
+        experience.addAll(Arrays.asList(joberfahrung.split("\n")));
+        Student s = StudentDAO.getInstance().getStudent(user.getId());
+        List<JoberfahrungDTO> liste = JoberfahrungDAO.getInstance().getJoberfahrungsForStudent(s);
+        for (int i = 0; i < liste.size(); ++i) {
+            JoberfahrungDAO.getInstance().deleteJoberfahrungForUser(liste.get(i).getJoberfahrungId(), s);
+        }
+        for (int i = 0; i < experience.size(); ++i) {
+            JoberfahrungDTO je = new JoberfahrungDTO();
+            je.setJoberfahrung(experience.get(i));
+            JoberfahrungDAO.getInstance().createJoberfahrungForUser(je, s);
+        }
+
     }
 }
 

@@ -43,17 +43,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             statement.setString(4, status);
             rs = statement.executeQuery();
             assert (rs != null);
-            while (rs.next()) {
-                Arbeitgeber a = new Arbeitgeber();
-                stellenanzeige.setStellenanzeigeID(rs.getInt(1));
-                stellenanzeige.setTitel(rs.getString(2));
-                stellenanzeige.setBeschreibung(rs.getString(3));
-                stellenanzeige.setStatus(rs.getString(4));
-                stellenanzeige.setDatum(rs.getDate(5).toLocalDate());
-                stellenanzeige.setOrt(rs.getString(7));
-                a = ArbeitgeberDAO.getInstance().getArbeitgeberFromArbeitgeberid(rs.getInt(6));
-                stellenanzeige.setUnternehmen(a);
-            }
+            fillStellenanzeige(rs, stellenanzeige, 6);
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
         } catch (SQLException | DatabaseException e) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
@@ -62,6 +52,20 @@ public class StellenanzeigeDAO extends AbstractDAO {
         }
         return stellenanzeige;
 
+    }
+
+    private void fillStellenanzeige(ResultSet rs, StellenanzeigeDTO stellenanzeige, int i) throws SQLException {
+        while (rs.next()) {
+            Arbeitgeber a = new Arbeitgeber();
+            stellenanzeige.setStellenanzeigeID(rs.getInt(1));
+            stellenanzeige.setTitel(rs.getString(2));
+            stellenanzeige.setBeschreibung(rs.getString(3));
+            stellenanzeige.setStatus(rs.getString(4));
+            stellenanzeige.setDatum(rs.getDate(5).toLocalDate());
+            stellenanzeige.setOrt(rs.getString(7));
+            a = ArbeitgeberDAO.getInstance().getArbeitgeberFromArbeitgeberid(rs.getInt(i));
+            stellenanzeige.setUnternehmen(a);
+        }
     }
 
     public boolean createStellenanzeige(Stellenanzeige s) {
@@ -223,17 +227,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
             PreparedStatement preparedStatement = JDBCConnection.getInstance().getPreparedStatement(sql);
             rs = preparedStatement.executeQuery();
             assert (rs != null);
-            while (rs.next()) {
-                Arbeitgeber a = new Arbeitgeber();
-                stellenanzeige.setStellenanzeigeID(rs.getInt(1));
-                stellenanzeige.setTitel(rs.getString(2));
-                stellenanzeige.setBeschreibung(rs.getString(3));
-                stellenanzeige.setStatus(rs.getString(4));
-                stellenanzeige.setDatum(rs.getDate(5).toLocalDate());
-                stellenanzeige.setOrt(rs.getString(7));
-                a = ArbeitgeberDAO.getInstance().getArbeitgeberFromArbeitgeberid(rs.getInt(8));
-                stellenanzeige.setUnternehmen(a);
-            }
+            fillStellenanzeige(rs, stellenanzeige, 8);
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
         } catch (SQLException | DatabaseException e) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
