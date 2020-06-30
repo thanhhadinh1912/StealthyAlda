@@ -6,7 +6,7 @@ import com.stealthyalda.ai.model.entities.Student;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
+public class BewerbungCollAtHBRSDTO implements AnwendungDTOs, Cloneable {
 
     private int id;
     private Student student;
@@ -27,7 +27,7 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
     }
 
     @Override
-    public boolean gleich(AnwendungDTOs obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -55,6 +55,16 @@ public class BewerbungCollAtHBRSDTO implements AnwendungDTOs {
         }
         return Objects.equals(this.zertifikat, other.zertifikat);
 
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException();
     }
 
     public int getId() {

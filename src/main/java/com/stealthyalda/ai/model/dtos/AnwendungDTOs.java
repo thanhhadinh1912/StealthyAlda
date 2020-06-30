@@ -4,6 +4,8 @@ public interface AnwendungDTOs {
 
     String toString();
 
-    boolean gleich(AnwendungDTOs anwendung);
+    boolean equals(Object anwendung);
+
+    Object clone() throws CloneNotSupportedException;
 
 }
