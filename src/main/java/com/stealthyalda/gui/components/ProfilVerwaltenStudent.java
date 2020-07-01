@@ -18,6 +18,7 @@ import java.io.File;
 
 public class ProfilVerwaltenStudent extends ProfilVerwalten {
     static final String PX_700 = "700px";
+    // public static final String CLASSNAME = "ProfilVerwaltenStudent";
 
     public ProfilVerwaltenStudent(Benutzer user) throws DatabaseException {
         super(user);
@@ -81,7 +82,10 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
         ImageUploader receiver = new ImageUploader();
         Upload upload = new Upload("", receiver);
         upload.addSucceededListener(receiver);
+
         upload.setButtonCaption("Profilbild hochladen");
+        ///---------////
+
         upload.setImmediateMode(true);
         vertical2.addComponent(upload);
         vertical2.setComponentAlignment(upload, Alignment.MIDDLE_RIGHT);

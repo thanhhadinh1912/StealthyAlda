@@ -15364,6 +15364,7 @@ div.v-layout.v-horizontal.v-widget {
 	min-width: 100px !important;
 	font-family: "OCR A Extended", sans-serif;
 	font-size: 25px;
+	text-decoration: none;
 	-webkit-transition: all 200ms ease-in-out !important;
 	-moz-transition: all 200ms ease-in-out !important;
 	-o-transition: all 200ms ease-in-out !important;
@@ -15372,7 +15373,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .link:hover {
 	color: white !important;
-	background-color: #464646 !important;
+	background-color: #85DAFF !important;
 	text-decoration: none !important;
 }
 
@@ -15402,6 +15403,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .toppanelbutton .v-button-caption {
 	color: white;
+	font-size: 30px;
+	text-decoration: none;
 }
 
 .mytheme .suchseite .v-layout {

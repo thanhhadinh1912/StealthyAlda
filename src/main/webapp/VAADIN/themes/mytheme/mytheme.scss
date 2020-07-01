@@ -108,6 +108,7 @@ $v-font-size: 18px;
     font-family: "OCR A Extended", sans-serif;
     //font-size: small !important;
     font-size: 25px;
+    text-decoration: none;
     -webkit-transition: all 200ms ease-in-out !important; /* Firefox */
     -moz-transition: all 200ms ease-in-out !important; /* WebKit */
     -o-transition: all 200ms ease-in-out !important; /* Opera */
@@ -116,7 +117,8 @@ $v-font-size: 18px;
 
   .link:hover {
     color: white !important;
-    background-color: #464646 !important;
+   // background-color: #464646 !important;
+    background-color: #85DAFF !important;
     text-decoration: none !important;
   }
 
@@ -145,11 +147,17 @@ $v-font-size: 18px;
     background-color: white;
     color: black;
   }
+
+  ///greift auch auf die LINKS zu
   .toppanelbutton {
     .v-button-caption {
       color: white;
+      font-size: 30px;
+      text-decoration: none;
     }
   }
+
+
 
   .suchseite {
     .v-layout {
@@ -166,6 +174,7 @@ $v-font-size: 18px;
   }
 
   //----------------------------------------------------\\
+
 
 
   //TopPanelSTART -> LOGO
