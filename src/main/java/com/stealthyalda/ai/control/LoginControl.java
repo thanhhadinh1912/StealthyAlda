@@ -33,7 +33,7 @@ public class LoginControl {
     public static void logoutUser() {
         UI.getCurrent().close();
         UI.getCurrent().getSession().close();
-        UI.getCurrent().getPage().setLocation("/");
+        UI.getCurrent().getPage().setLocation(Views.LOGIN);
     }
 }
 

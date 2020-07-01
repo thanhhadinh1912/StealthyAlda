@@ -33,10 +33,12 @@ public class StellenanzeigeDTO extends Stellenanzeige {
         this.arbeitgeber = arbeitgeber;
     }
 
+    @Override
     public String getOrt() {
         return ort;
     }
 
+    @Override
     public void setOrt(String ort) {
         this.ort = ort;
     }

@@ -15,42 +15,42 @@ import com.vaadin.ui.*;
 import java.time.LocalDate;
 
 public class BewerbungWindow extends Window {
-    private final String WIDTH = "800px";
-    private final String HEIGHT = "120px";
-    private final Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
+    private static final String WIDTH_800_PX = "800px";
+    private static final String HEIGHT_120_PX = "120px";
+    private final transient Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
 
 
     public BewerbungWindow(Stellenanzeige a) {
         center();
         VerticalLayout content = new VerticalLayout();
         Label titel = new Label("<b> Bewerbung </b>", ContentMode.HTML);
-        titel.setWidth(WIDTH);
+        titel.setWidth(WIDTH_800_PX);
 
         content.addComponent(titel);
         content.setComponentAlignment(titel, Alignment.MIDDLE_CENTER);
         TextArea anschreiben = new TextArea("Anschreiben");
-        anschreiben.setWidth(WIDTH);
-        anschreiben.setHeight(HEIGHT);
+        anschreiben.setWidth(WIDTH_800_PX);
+        anschreiben.setHeight(HEIGHT_120_PX);
         content.addComponent(anschreiben);
         content.setComponentAlignment(anschreiben, Alignment.MIDDLE_CENTER);
 
 
         TextArea erfahrung = new TextArea("Erfahrung");
-        erfahrung.setHeight(HEIGHT);
-        erfahrung.setWidth(WIDTH);
+        erfahrung.setHeight(HEIGHT_120_PX);
+        erfahrung.setWidth(WIDTH_800_PX);
         content.addComponent(erfahrung);
         content.setComponentAlignment(erfahrung, Alignment.MIDDLE_CENTER);
 
 
         TextArea zertifikat = new TextArea("Letzter Schulabschluss, Zertifikate, etc.");
-        zertifikat.setWidth(WIDTH);
-        zertifikat.setHeight(HEIGHT);
+        zertifikat.setWidth(WIDTH_800_PX);
+        zertifikat.setHeight(HEIGHT_120_PX);
         content.addComponent(zertifikat);
         content.setComponentAlignment(zertifikat, Alignment.MIDDLE_CENTER);
 
 
         HorizontalLayout button = new HorizontalLayout();
-        button.setWidth(WIDTH);
+        button.setWidth(WIDTH_800_PX);
 
         Button zuruck = new Button("Zurück");
         zuruck.setWidth("150px");

@@ -4,8 +4,6 @@ package com.stealthyalda.gui.views;
 import com.stealthyalda.ai.control.ToogleRouter;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
-import com.stealthyalda.ai.model.dao.BenutzerDAO;
-import com.stealthyalda.ai.model.dao.SearchService;
 import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.BenachrichtigungArbeitgeber;
@@ -34,7 +32,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         SearchArbeitgeberServiceOhneBewerbung service = new SearchArbeitgeberServiceOhneBewerbung(a);
         ComboBox<String> search = new ComboBox<>();
         try {
-            if (new ToogleRouter().isEnabled("bewerbung")) {
+            if (ToogleRouter.isEnabled("bewerbung")) {
                 search.setPlaceholder("Bewerber ");
                 search.setWidth("400px");
                 SearchArbeitgeberServiceMitBewerbung servicea = new SearchArbeitgeberServiceMitBewerbung(a);
@@ -47,8 +45,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
                 bewerber.setWidth("400px");
                 bewerber.setDataProvider(service::fetch, service::count);
                 horizon.addComponent(bewerber);
-            }
-            else{
+            } else {
                 search.setPlaceholder("(Stellenanzeige) ");
                 search.setWidth("800px");
                 search.setDataProvider(service::fetch, service::count);
@@ -74,7 +71,6 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
             news.setWidth("1100px");
 
 
-
             Button add = new Button(VaadinIcons.PLUS);
             top.addComponent(add);
             add.addClickListener(clickEvent -> {
@@ -83,7 +79,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
                 UI.getCurrent().getNavigator().navigateTo(Views.STELLENANZEIGEERSTELLEN);
             });
             tab1.addComponent(top);
-            if (new ToogleRouter().isEnabled("bewerbung")) {
+            if (ToogleRouter.isEnabled("bewerbung")) {
 
                 Label n = new Label("Neue Bewerbungen sind eingegangen");
                 tab1.addComponent(n);
@@ -110,7 +106,7 @@ public class DashboardArbeitgeber extends VerticalLayout implements View {
         }
     }
 
-        @Override
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         this.setUp();
 

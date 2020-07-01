@@ -2,7 +2,7 @@ package com.stealthyalda.ai.model.dtos;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RoleTest {
 
@@ -10,7 +10,7 @@ public class RoleTest {
     public void getBezeichnung() {
         Role r = new Role();
         r.setBezeichnung("bez");
-        assertEquals("bez",r.getBezeichnung());
+        assertEquals("bez", r.getBezeichnung());
 
     }
 
@@ -18,6 +18,6 @@ public class RoleTest {
     public void setBezeichnung() {
         Role r = new Role();
         r.setBezeichnung("bez");
-        assertEquals("bez",r.getBezeichnung());
+        assertEquals("bez", r.getBezeichnung());
     }
 }

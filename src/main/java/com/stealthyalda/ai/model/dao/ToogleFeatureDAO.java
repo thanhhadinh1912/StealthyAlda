@@ -23,23 +23,23 @@ public class ToogleFeatureDAO extends AbstractDAO {
 
     public boolean checkFeature(String feature) throws DatabaseException {
         ResultSet set = null;
-        try {
-            PreparedStatement ps = this.getPreparedStatement("SELECT * " +
-                    "FROM stealthyalda.toogle " +
-                    "WHERE stealthyalda.toogle.feature = ?");
+        boolean enabledOrNot = false;
+        try (PreparedStatement ps = this.getPreparedStatement("SELECT status " +
+                "FROM stealthyalda.toogle " +
+                "WHERE stealthyalda.toogle.feature = ?")) {
+
             ps.setString(1, feature);
             set = ps.executeQuery();
-
-            while (set.next()) {
-                return set.getBoolean(2);
+            if (set.next()) {
+                enabledOrNot = set.getBoolean(1);
             }
         } catch (Exception ex) {
-            Logger.getLogger(ToogleFeatureDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ToogleFeatureDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             throw new DatabaseException("Fehler beim Auslesen eines Toggle-Features aus der Datenbank! Bitte Programmierer informieren.");
         } finally {
-            JDBCConnection.getInstance().closeConnection();
             closeResultset(set);
+            JDBCConnection.getInstance().closeConnection();
         }
-        return false;
+        return enabledOrNot;
     }
 }

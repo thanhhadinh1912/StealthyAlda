@@ -11,6 +11,8 @@ import com.vaadin.ui.*;
 
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ComponentJobAusschreibung {
 
@@ -70,7 +72,7 @@ public class ComponentJobAusschreibung {
             }
             anforderung.setValue(String.valueOf(print));
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            Logger.getLogger(ComponentJobAusschreibung.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
 
         anforderung.setHeight("150px");

@@ -3,9 +3,9 @@ package com.stealthyalda.ai.model.dtos;
 public class StepstoneDTO implements AnwendungDTOs {
 
 
+    private static final String NEW_LINE = "\", \n ";
     private int stellenid;
     private String jobTitle;
-    private static final String NEW_LINE = "\", \n ";
     private String vorname;
     private String email;
     private String applicationText;

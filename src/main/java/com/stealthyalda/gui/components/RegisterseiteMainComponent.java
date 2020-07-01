@@ -3,7 +3,6 @@ package com.stealthyalda.gui.components;
 
 import com.stealthyalda.ai.control.RegisterControl;
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
@@ -113,7 +112,7 @@ public class RegisterseiteMainComponent extends Panel {
             boolean allChecksOkay = false;
             try {
                 allChecksOkay = r.checkUserExists(register);
-            } catch (UserExistsException | DatabaseException ex) {
+            } catch (DatabaseException ex) {
                 Notification.show("Fehler", "Registrierung konnte nicht abgeschlossen werden", Notification.Type.ERROR_MESSAGE);
 
                 Logger.getLogger(RegisterseiteMainComponent.class.getName()).log(Level.SEVERE, null, "Failed on : " + ex);

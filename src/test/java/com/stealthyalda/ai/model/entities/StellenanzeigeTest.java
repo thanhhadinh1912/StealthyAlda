@@ -13,18 +13,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class StellenanzeigeTest {
 
     private Stellenanzeige stellenanzeige;
-    private int stellenanzeigeID = 5;
-    private String titel = "IT-Support";
-    private String beschreibung = "XXXX";
-    private String status = "Werkstudent";
-    private LocalDate datum ;
-    private int arbeitgeberID = 10;
-    private String ort = "Bonn";
+    private final int stellenanzeigeID = 5;
+    private final String titel = "IT-Support";
+    private final String beschreibung = "XXXX";
+    private final String status = "Werkstudent";
+    private LocalDate datum;
+    private final int arbeitgeberID = 10;
+    private final String ort = "Bonn";
     private List<Anforderung> anforderungs;
 
 
     @Before
-    public void setup(){
+    public void setup() {
         stellenanzeige = new Stellenanzeige();
         stellenanzeige.setStellenanzeigeID(stellenanzeigeID);
         stellenanzeige.setTitel(titel);
@@ -38,18 +38,19 @@ public class StellenanzeigeTest {
         stellenanzeige.setDatum(datum);
 
     }
+
     @Test
-    public void testget(){
-        assertEquals(stellenanzeigeID,stellenanzeige.getStellenanzeigeID());
+    public void testget() {
+        assertEquals(stellenanzeigeID, stellenanzeige.getStellenanzeigeID());
         assertNotNull(stellenanzeige.getStellenanzeigeID());
         assertEquals(titel, stellenanzeige.getTitel());
-        assertEquals(beschreibung,stellenanzeige.getBeschreibung());
-        assertEquals(status,stellenanzeige.getStatus());
-        assertEquals(arbeitgeberID,stellenanzeige.getArbeitgeberID());
+        assertEquals(beschreibung, stellenanzeige.getBeschreibung());
+        assertEquals(status, stellenanzeige.getStatus());
+        assertEquals(arbeitgeberID, stellenanzeige.getArbeitgeberID());
         assertNotNull(stellenanzeige.getArbeitgeberID());
-        assertEquals(ort,stellenanzeige.getOrt());
-        assertEquals(anforderungs,stellenanzeige.getAnforderungs());
-        assertEquals(datum,stellenanzeige.getDatum());
+        assertEquals(ort, stellenanzeige.getOrt());
+        assertEquals(anforderungs, stellenanzeige.getAnforderungs());
+        assertEquals(datum, stellenanzeige.getDatum());
 
 
     }

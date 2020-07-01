@@ -6,15 +6,15 @@ import org.junit.Test;
 
 public class LoginControlTest {
 
-    @Test (expected = NoSuchUserOrPassword.class)
+    @Test(expected = NoSuchUserOrPassword.class)
     public void checkAuthenticationNeg2() throws NoSuchUserOrPassword, DatabaseException {
         //unregistered user should fail
         LoginControl.checkAuthentification("nicht null", "nicht null");
     }
 
 
-    @Test (expected = NullPointerException.class)
-    public void logoutUserNeg(){
+    @Test(expected = NullPointerException.class)
+    public void logoutUserNeg() {
         LoginControl.logoutUser();
     }
 

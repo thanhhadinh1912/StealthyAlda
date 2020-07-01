@@ -1,23 +1,19 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.dao.SoftskillDAO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Softskill;
 import com.stealthyalda.ai.model.entities.Student;
-
 import org.junit.Test;
-import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SoftskillDAOTest {
 
-    private Softskill softskill = new Softskill();
-    private Student student = new Student();
+    private final Softskill softskill = new Softskill();
+    private final Student student = new Student();
 
     @Test
     public void getInstance() {
@@ -56,6 +52,6 @@ public class SoftskillDAOTest {
         softskill.setSoftskill("Teamfähig");
         student.setId(259);
 
-        assertTrue(dao.createSoftskillForUser(softskill,student));
+        assertTrue(dao.createSoftskillForUser(softskill, student));
     }
 }

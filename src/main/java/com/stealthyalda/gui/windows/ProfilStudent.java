@@ -2,7 +2,6 @@ package com.stealthyalda.gui.windows;
 
 import com.stealthyalda.ai.control.BewerbungControl;
 import com.stealthyalda.ai.control.ProfilStudentControl;
-import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import com.stealthyalda.ai.model.dtos.BewerbungCollAtHBRSDTO;
 import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Student;
@@ -13,9 +12,10 @@ import com.vaadin.ui.*;
 import java.io.File;
 
 public class ProfilStudent extends Window {
+    public static final String HEIGHT_200_PX = "200px";
     static final String PX_700 = "700px";
 
-    public ProfilStudent(Student s, BewerbungCollAtHBRSDTO bewerbung) throws DatabaseException {
+    public ProfilStudent(Student s, BewerbungCollAtHBRSDTO bewerbung) {
         center();
         VerticalLayout content = new VerticalLayout();
         ProfilStudentControl c = new ProfilStudentControl();
@@ -36,7 +36,7 @@ public class ProfilStudent extends Window {
 
         TextArea jobExperience = new TextArea("Job Erfahrungen:");
         jobExperience.setWidth(PX_700);
-        jobExperience.setHeight("200px");
+        jobExperience.setHeight(HEIGHT_200_PX);
         jobExperience.setValue(c.printJoberfahrung(s));
         jobExperience.setReadOnly(true);
         vartical1.addComponent(jobExperience);
@@ -102,12 +102,12 @@ public class ProfilStudent extends Window {
             new BewerbungControl().updatestatus(bewerbung);
             close();
         });
-        ablehnen.setWidth("200px");
+        ablehnen.setWidth((HEIGHT_200_PX));
         button.addComponent(ablehnen);
         button.setComponentAlignment(ablehnen, Alignment.MIDDLE_LEFT);
 
         Button zusage = new Button("Zusagen!");
-        zusage.setWidth("200px");
+        zusage.setWidth((HEIGHT_200_PX));
         button.addComponent(zusage);
         zusage.addClickListener(clickEvent -> {
             bewerbung.setStatus("zugesagt");

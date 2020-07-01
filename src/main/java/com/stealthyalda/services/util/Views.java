@@ -15,5 +15,7 @@ public class Views {
     public static final String STELLENANZEIGE = "suche/stellenanzeige/jobtitel/";
     public static final String STELLENANZEIGEERSTELLEN = "unternehmen/stellenanzeige";
 
+    private Views() {
+    }
 
 }

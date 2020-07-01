@@ -9,19 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SoftskillTest {
 
     private Softskill softskill;
-    private int softskillId = 3;
-    private String name = "softskill";
+    private final int softskillId = 3;
+    private final String name = "softskill";
 
 
     @Before
-    public void setup(){
+    public void setup() {
         softskill = new Softskill();
         softskill.setSoftskillId(softskillId);
         softskill.setSoftskill(name);
     }
+
     @Test
-    public void testget(){
-        assertEquals(softskillId,softskill.getSoftskillId());
+    public void testget() {
+        assertEquals(softskillId, softskill.getSoftskillId());
         assertNotNull(softskill.getSoftskillId());
         assertEquals(name, softskill.getSoftskill());
     }

@@ -59,7 +59,7 @@ public class RegisterControlTest {
         assertTrue(student.getNachname() == "Müller");
         assertTrue(student.getEmail() == "jan@mueller.de");
         assertTrue(student.getPasswort() == "12345678");
-        assertEquals(student,student);
+        assertEquals(student, student);
         Registerseite test1 = Mockito.mock(Registerseite.class);
 
     }

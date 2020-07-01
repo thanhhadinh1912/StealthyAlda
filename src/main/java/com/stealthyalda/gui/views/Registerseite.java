@@ -11,14 +11,11 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class Registerseite extends Register {
     public static final String CLASSNAME = "REGISTERSEITE";
-    private String register;
-    private String password;
 
     public void setUp() {
         // validation experiment
         this.addComponent(new TopPanelStartSeite());
         RadioButtonGroup<String> single = new RadioButtonGroup<>();
-        single = new RadioButtonGroup<>();
         single.setItems(ARBEITGEBER, STUDENT);
         single.setValue(STUDENT);
         single.addStyleName(ValoTheme.OPTIONGROUP_HORIZONTAL);

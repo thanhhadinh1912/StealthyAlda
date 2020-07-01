@@ -1,13 +1,10 @@
 package com.stealthyalda.ai.model.dao;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.model.dao.HardskillDAO;
-import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.ai.model.entities.Hardskill;
 import com.stealthyalda.ai.model.entities.Student;
 import org.junit.Test;
-import static org.mockito.Mockito.mock;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HardskillDAOTest {
 
-    private Hardskill hskill = new Hardskill();
-    private Student stest = new Student();
+    private final Hardskill hskill = new Hardskill();
+    private final Student stest = new Student();
 
     @Test
     public void getInstance() {
@@ -51,12 +48,12 @@ public class HardskillDAOTest {
         assertTrue(dao.deleteHardskillForUser(hskill.getHardskillId(), stest));
     }
 
-    @Test 
+    @Test
     public void createHardskillForUser() {
         HardskillDAO dao = HardskillDAO.getInstance();
         hskill.setHardskillId(14);
         hskill.setHardskill("Webentwickler");
         stest.setId(25);
-        assertTrue(dao.createHardskillForUser(hskill,stest));
+        assertTrue(dao.createHardskillForUser(hskill, stest));
     }
 }

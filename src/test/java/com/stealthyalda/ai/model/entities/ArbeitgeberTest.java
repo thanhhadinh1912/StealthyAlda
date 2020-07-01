@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ArbeitgeberTest {
     private Arbeitgeber arbeitgeber;
-    private String unternehmen = "=o2";
-    private String beschreibung = "xxx";
-    private int arbeitgeberId = 2;
+    private final String unternehmen = "=o2";
+    private final String beschreibung = "xxx";
+    private final int arbeitgeberId = 2;
     private byte logo;
 
 
     @Before
-    public void setup(){
+    public void setup() {
         arbeitgeber = new Arbeitgeber();
         arbeitgeber.setArbeitgeberId(arbeitgeberId);
         arbeitgeber.setUnternehmen(unternehmen);
@@ -23,9 +23,10 @@ public class ArbeitgeberTest {
         arbeitgeber.setLogo(logo);
 
     }
+
     @Test
-    public void testget(){
-        assertEquals(arbeitgeberId,arbeitgeber.getArbeitgeberId());
+    public void testget() {
+        assertEquals(arbeitgeberId, arbeitgeber.getArbeitgeberId());
         assertNotNull(arbeitgeber.getArbeitgeberId());
         assertEquals(unternehmen, arbeitgeber.getUnternehmen());
         assertEquals(beschreibung, arbeitgeber.getBeschreibung());

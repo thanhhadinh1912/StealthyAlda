@@ -69,7 +69,6 @@ public class StudentDAO extends AbstractDAO {
                 s.setNachname(set.getString(2));
                 s.setId(benutzerid);
                 s.setVorname(set.getString(4));
-                //s.setProfilbild(set.getByte(5));
                 return s;
             }
         } catch (SQLException ex) {

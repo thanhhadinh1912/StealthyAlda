@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class StudentTest {
 
     private Student student;
-    private String nachname = "Müller";
-    private String vorname = "Hans";
-    private int studentId = 2;
+    private final String nachname = "Müller";
+    private final String vorname = "Hans";
+    private final int studentId = 2;
     private byte profilbild;
 
 
     @Before
-    public void setup(){
+    public void setup() {
         student = new Student();
         student.setVorname(vorname);
         student.setNachname(nachname);
@@ -24,9 +24,10 @@ public class StudentTest {
         student.setProfilbild(profilbild);
 
     }
+
     @Test
-    public void testget(){
-        assertEquals(studentId,student.getStudentId());
+    public void testget() {
+        assertEquals(studentId, student.getStudentId());
         assertNotNull(student.getStudentId());
         assertEquals(vorname, student.getVorname());
         assertEquals(nachname, student.getNachname());

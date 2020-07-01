@@ -7,7 +7,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 public class InforBewerber extends Window {
-    private final String WIDTH = "950px";
+    private static final String WIDTH_950_PX = "950px";
 
     public InforBewerber(BewerbungCollAtHBRSDTO b) {
         center();
@@ -16,17 +16,17 @@ public class InforBewerber extends Window {
 
         TextArea an = new TextArea("Anschreiben");
         an.setReadOnly(true);
-        an.setWidth(WIDTH);
+        an.setWidth(WIDTH_950_PX);
         an.setValue(b.getAnschreiben());
 
         TextArea er = new TextArea("Erfahrung");
         er.setReadOnly(true);
-        er.setWidth(WIDTH);
+        er.setWidth(WIDTH_950_PX);
         er.setValue(b.getErfahrung());
 
         TextArea ze = new TextArea("Letzter Schulabschluss, Zertifikate, etc.");
         ze.setValue(b.getZertifikat());
-        ze.setWidth(WIDTH);
+        ze.setWidth(WIDTH_950_PX);
         ze.setReadOnly(true);
 
         content.addComponent(an);

@@ -56,7 +56,7 @@ public class StellenanzeigeDAO extends AbstractDAO {
 
     private void fillStellenanzeige(ResultSet rs, StellenanzeigeDTO stellenanzeige, int i) throws SQLException {
         while (rs.next()) {
-            Arbeitgeber a = new Arbeitgeber();
+            Arbeitgeber a;
             stellenanzeige.setStellenanzeigeID(rs.getInt(1));
             stellenanzeige.setTitel(rs.getString(2));
             stellenanzeige.setBeschreibung(rs.getString(3));

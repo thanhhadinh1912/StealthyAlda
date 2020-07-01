@@ -27,9 +27,9 @@ import java.util.List;
  * @author WINDOWS
  */
 public class StellenanzeigeErstellen extends VerticalLayout implements View {
+    private static final String WIDTH = "750px";
+    private static final String WIDTHB = "150px";
     final transient Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
-    final private String WIDTH = "750px";
-    final private String WIDTHB = "150px";
 
     public void setUp() {
 
@@ -123,6 +123,7 @@ public class StellenanzeigeErstellen extends VerticalLayout implements View {
 
     }
 
+    @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         if (user == null) {
             UI.getCurrent().getNavigator().navigateTo(Views.STARTSEITE);

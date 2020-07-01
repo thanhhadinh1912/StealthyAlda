@@ -2,7 +2,7 @@ package com.stealthyalda.ai.model.dtos;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StellenanzeigeRequestTest {
 
@@ -10,14 +10,14 @@ public class StellenanzeigeRequestTest {
     public void getStatus() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setStatus("status");
-        assertEquals("status",s.getStatus());
+        assertEquals("status", s.getStatus());
     }
 
     @Test
     public void setStatus() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setStatus("status");
-        assertEquals("status",s.getStatus());
+        assertEquals("status", s.getStatus());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class StellenanzeigeRequestTest {
     public void getTitel() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setTitel("titel");
-        assertEquals("titel",s.getTitel());
+        assertEquals("titel", s.getTitel());
 
     }
 
@@ -40,35 +40,35 @@ public class StellenanzeigeRequestTest {
     public void setTitel() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setTitel("titel");
-        assertEquals("titel",s.getTitel());
+        assertEquals("titel", s.getTitel());
     }
 
     @Test
     public void getBeschreibung() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setBeschreibung("beschreibung");
-        assertEquals("beschreibung",s.getBeschreibung());
+        assertEquals("beschreibung", s.getBeschreibung());
     }
 
     @Test
     public void setBeschreibung() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setBeschreibung("beschreibung");
-        assertEquals("beschreibung",s.getBeschreibung());
+        assertEquals("beschreibung", s.getBeschreibung());
     }
 
     @Test
     public void getOrt() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setOrt("koeln");
-        assertEquals("koeln",s.getOrt());
+        assertEquals("koeln", s.getOrt());
     }
 
     @Test
     public void setOrt() {
         StellenanzeigeRequest s = new StellenanzeigeRequest();
         s.setOrt("koeln");
-        assertEquals("koeln",s.getOrt());
+        assertEquals("koeln", s.getOrt());
     }
 
     @Test
@@ -77,7 +77,7 @@ public class StellenanzeigeRequestTest {
         Anforderung anf = new Anforderung();
         anf.setAnforderung("anf");
         s.setAnforderung(anf);
-        assertEquals("anf",anf.getAnforderung());
+        assertEquals("anf", anf.getAnforderung());
     }
 
     @Test
@@ -86,6 +86,6 @@ public class StellenanzeigeRequestTest {
         Anforderung anf = new Anforderung();
         anf.setAnforderung("anf");
         s.setAnforderung(anf);
-        assertEquals("anf",anf.getAnforderung());
+        assertEquals("anf", anf.getAnforderung());
     }
 }

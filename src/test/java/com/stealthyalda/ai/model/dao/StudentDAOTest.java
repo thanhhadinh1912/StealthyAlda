@@ -1,13 +1,10 @@
 package com.stealthyalda.ai.model.dao;
 
-import com.stealthyalda.ai.control.exceptions.SQLException;
 import com.stealthyalda.ai.model.dtos.StudentDTO;
-import com.stealthyalda.ai.model.entities.Benutzer;
-import com.stealthyalda.ai.model.entities.Student;
-import com.stealthyalda.ai.model.dao.StudentDAO;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
 public class StudentDAOTest {

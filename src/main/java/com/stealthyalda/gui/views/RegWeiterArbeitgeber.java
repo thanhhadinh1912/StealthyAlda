@@ -12,10 +12,12 @@ import com.stealthyalda.ai.model.entities.Benutzer;
 import com.stealthyalda.gui.components.*;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -137,8 +139,13 @@ public class RegWeiterArbeitgeber extends RegWeiter {
                     ag.setUnternehmen(unternehmen);
 
                     r.registerArbeitgeber(ag, anrede);
-                    ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen! ", Views.LOGIN);
-                    ((MyUI) UI.getCurrent()).setBenutzer(null);
+
+                    user = null;
+                    ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!", Views.STARTSEITE);
+                    UI.getCurrent().addWindow(window);
+                    ((MyUI) UI.getCurrent()).setBenutzer(user);
+                    VaadinSession.getCurrent().setAttribute(Roles.CURRENTUSER, null);
+
                     UI.getCurrent().addWindow(window);
                 } catch (Exception ex) {
                     Logger.getLogger(RegWeiterArbeitgeber.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);

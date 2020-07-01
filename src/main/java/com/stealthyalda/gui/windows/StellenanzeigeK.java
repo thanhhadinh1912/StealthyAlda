@@ -9,6 +9,9 @@ import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import com.stealthyalda.gui.components.ComponentJobAusschreibung;
 import com.vaadin.ui.*;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class StellenanzeigeK extends Window {
     public StellenanzeigeK(Stellenanzeige stellenanzeige) {
         center();
@@ -31,14 +34,13 @@ public class StellenanzeigeK extends Window {
             BewerbungWindow window = new BewerbungWindow(stellenanzeige);
             UI.getCurrent().addWindow(window);
         });
-        //bewerben.setWidth("170px");
         try {
-            if (new ToogleRouter().isEnabled("bewerbung")) {
+            if (ToogleRouter.isEnabled("bewerbung")) {
                 button.addComponent(bewerben);
                 button.setComponentAlignment(bewerben, Alignment.MIDDLE_RIGHT);
             }
         } catch (DatabaseException e) {
-            e.printStackTrace();
+            Logger.getLogger(StellenanzeigeK.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
         content.addComponent(button);
         content.setComponentAlignment(button, Alignment.TOP_CENTER);

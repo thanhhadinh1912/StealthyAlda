@@ -5,6 +5,7 @@ import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Stellenanzeige;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,14 +20,14 @@ public class StellenanzeigeDAOTest {
     Stellenanzeige san = new Stellenanzeige();
 
     @Before
-    public void setup(){
+    public void setup() {
         dao = new StellenanzeigeDAO();
         a = new Arbeitgeber();
         arbeitgeber = "Test test";
         s = new StellenanzeigeDTO();
         s.setStellenanzeigeID(19);
         s.setStatus("Offen");
-        LocalDate date = LocalDate.of(2020,7,1);
+        LocalDate date = LocalDate.of(2020, 7, 1);
         a.setArbeitgeberId(44);
         san.setTitel("Webentwicklung");
         san.setBeschreibung("Lorem Ipsum");
@@ -34,10 +35,12 @@ public class StellenanzeigeDAOTest {
         san.setDatum(date);
         san.setOrt("Bonn");
     }
+
     @Test
     public void getInstance() {
         assertNotNull(StellenanzeigeDAO.getInstance());
     }
+
     @Test
     public void getStellenanzeige() {
         StellenanzeigeDTO dtotest = new StellenanzeigeDTO();
@@ -47,7 +50,7 @@ public class StellenanzeigeDAOTest {
         dtotest.setBeschreibung(s.getBeschreibung());
         dtotest.setOrt(s.getOrt());
         dtotest.setStatus(s.getStatus());
-        StellenanzeigeDTO sdto = sdao.getStellenanzeige(s.getTitel(),s.getBeschreibung(),s.getOrt(),s.getStatus());
+        StellenanzeigeDTO sdto = sdao.getStellenanzeige(s.getTitel(), s.getBeschreibung(), s.getOrt(), s.getStatus());
 
         assertEquals(dtotest.getTitel(), sdto.getTitel());
         assertEquals(dtotest.getBeschreibung(), sdto.getBeschreibung());
@@ -61,10 +64,10 @@ public class StellenanzeigeDAOTest {
     }
 
     @Test
-    public void getStellenanzeigeByArbeitgeber(){
+    public void getStellenanzeigeByArbeitgeber() {
         List<StellenanzeigeDTO> list = dao.getStellenanzeigeByArbeitgeber("Test test");
         assertEquals(list.get(0).getStellenanzeigeID(), 19);
-        assertEquals(list.get(0).getArbeitgeberID(),0);
+        assertEquals(list.get(0).getArbeitgeberID(), 0);
     }
 
     @Test
@@ -80,7 +83,7 @@ public class StellenanzeigeDAOTest {
     }
 
     @Test
-    public  void getJobangebot() {
+    public void getJobangebot() {
         StellenanzeigeDAO dos = mock(StellenanzeigeDAO.class);
         assertDoesNotThrow(() -> dos.getJobangebot(s.getStellenanzeigeID()));
     }

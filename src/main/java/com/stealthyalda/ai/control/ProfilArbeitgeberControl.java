@@ -25,8 +25,7 @@ public class ProfilArbeitgeberControl {
     }
 
     public boolean updateArbeitgeberprofil(UnternehmenDTO u) {
-        boolean ergebnis;
-        ergebnis = ArbeitgeberDAO.getInstance().updateArbeitgeber(u);
+        boolean ergebnis = ArbeitgeberDAO.getInstance().updateArbeitgeber(u);
         boolean ergebnis2 = AdresseDAO.getInstance().updateAdresse(u.getAdresse());
         boolean ergebnis3 = BenutzerDAO.getInstance().updateStammdaten(u, user.getAnrede(), user);
         return ergebnis && ergebnis2 && ergebnis3;

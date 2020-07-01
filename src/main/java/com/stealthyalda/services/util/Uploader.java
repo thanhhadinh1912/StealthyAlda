@@ -126,7 +126,7 @@ public class Uploader extends CustomComponent {
             private static final long serialVersionUID = -46336015006190050L;
 
             // Put upload in this memory buffer that grows automatically
-            final ByteArrayOutputStream os =
+            final transient ByteArrayOutputStream os =
                     new ByteArrayOutputStream(10240);
             final ProgressBar progress = new ProgressBar(0.0f);
             // Show uploaded file in this placeholder

@@ -1,7 +1,6 @@
 package com.stealthyalda.ai.control;
 
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
-import com.stealthyalda.ai.control.exceptions.UserExistsException;
 import com.stealthyalda.ai.model.dao.AdresseDAO;
 import com.stealthyalda.ai.model.dao.ArbeitgeberDAO;
 import com.stealthyalda.ai.model.dao.BenutzerDAO;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
 public class RegisterControl {
     Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
-    public boolean checkUserExists(String email) throws UserExistsException, DatabaseException {
+    public boolean checkUserExists(String email) throws DatabaseException {
         return BenutzerDAO.getInstance().checkUserExists(email);
     }
 

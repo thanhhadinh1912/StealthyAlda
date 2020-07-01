@@ -26,7 +26,7 @@ public class SearchDAO extends AbstractDAO {
         return dao;
     }
 
-    private List<String> hilfe2(String sql1, String sql2){
+    private List<String> hilfe2(String sql1, String sql2) {
         ResultSet set = null;
         ResultSet set2 = null;
         List<String> liste = new ArrayList<>();
@@ -63,26 +63,25 @@ public class SearchDAO extends AbstractDAO {
     }
 
 
-
     public List<String> getJobtitelOrArbeitgeber() {
-    String sql1 = "SELECT titel FROM stealthyalda.stellenanzeige ";
-    String sql2 = "select distinct a.unternehmen\n" +
-                    "from stealthyalda.arbeitgeber a\n" +
-                    "join stealthyalda.stellenanzeige s\n" +
-                    "on s.arbeitgeber_id = a.arbeitgeber_id";
+        String sql1 = "SELECT titel FROM stealthyalda.stellenanzeige ";
+        String sql2 = "select distinct a.unternehmen\n" +
+                "from stealthyalda.arbeitgeber a\n" +
+                "join stealthyalda.stellenanzeige s\n" +
+                "on s.arbeitgeber_id = a.arbeitgeber_id";
 
-        return hilfe2(sql1,sql2);
+        return hilfe2(sql1, sql2);
 
     }
 
     public List<String> getOrt() {
 
-            String sql ="SELECT ort FROM stealthyalda.stellenanzeige order by ort";
+        String sql = "SELECT ort FROM stealthyalda.stellenanzeige order by ort";
 
         return hilfe(sql);
     }
 
-    private List<String> hilfe(String sql){
+    private List<String> hilfe(String sql) {
         ResultSet set = null;
         List<String> liste = new ArrayList<>();
 
@@ -109,26 +108,23 @@ public class SearchDAO extends AbstractDAO {
         return liste;
     }
 
-    public List<String> getStellenanzeigeFürArbeitgeber(Arbeitgeber a){
+    public List<String> getStellenanzeigeFuerArbeitgeber(Arbeitgeber a) {
 
-            String sql = "select distinct s.titel\n" +
-                    "from stealthyalda.arbeitgeber a\n" +
-                    "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "where a.arbeitgeber_id = '"+a.getArbeitgeberId()+"'";
+        String sql = "select distinct s.titel\n" +
+                "from stealthyalda.arbeitgeber a\n" +
+                "JOIN stealthyalda.stellenanzeige s ON s.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "where a.arbeitgeber_id = '" + a.getArbeitgeberId() + "'";
 
-
-        List<String> liste = hilfe(sql);
-
-        return liste;
+        return hilfe(sql);
     }
 
     public List<String> getBewerber(Arbeitgeber a) {
-        String sql1 ="select distinct s.nachname\n" +
-                    "from stealthyalda.bewerbung b\n" +
-                    "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
-                    "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
-                    "join stealthyalda.student s ON b.student_id = s.student_id\n" +
-                    "where a.arbeitgeber_id = '"+ a.getArbeitgeberId()+"'";
+        String sql1 = "select distinct s.nachname\n" +
+                "from stealthyalda.bewerbung b\n" +
+                "JOIN stealthyalda.stellenanzeige a ON b.stellenanzeige_id = a.stellenanzeige_id\n" +
+                "JOIN stealthyalda.arbeitgeber u ON u.arbeitgeber_id = a.arbeitgeber_id\n" +
+                "join stealthyalda.student s ON b.student_id = s.student_id\n" +
+                "where a.arbeitgeber_id = '" + a.getArbeitgeberId() + "'";
 
         return hilfe(sql1);
     }

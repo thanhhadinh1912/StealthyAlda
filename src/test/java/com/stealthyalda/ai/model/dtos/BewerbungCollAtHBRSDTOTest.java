@@ -4,97 +4,94 @@ import com.stealthyalda.ai.model.entities.Arbeitgeber;
 import com.stealthyalda.ai.model.entities.Student;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BewerbungCollAtHBRSDTOTest {
 
     @Test
-    public   void testToString() {
+    public void testToString() {
     }
 
     @Test
-    public  void testEquals() {
+    public void testEquals() {
     }
 
     @Test
-    public  void testHashCode() {
+    public void testHashCode() {
     }
 
     @Test
-    public  void testClone() {
+    public void testClone() {
     }
 
     @Test
     public void getId() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setId(2);
-        assertEquals(2,b.getId());
+        assertEquals(2, b.getId());
     }
 
     @Test
     public void setId() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setId(2);
-        assertEquals(2,b.getId());
+        assertEquals(2, b.getId());
     }
 
     @Test
     public void getStatus() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setStatus("Status");
-        assertEquals("Status",b.getStatus());
+        assertEquals("Status", b.getStatus());
     }
 
     @Test
     public void setStatus() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setStatus("Status");
-        assertEquals("Status",b.getStatus());
+        assertEquals("Status", b.getStatus());
     }
 
     @Test
     public void getAnschreiben() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setAnschreiben("Anschreiben");
-        assertEquals("Anschreiben",b.getAnschreiben());
+        assertEquals("Anschreiben", b.getAnschreiben());
     }
 
     @Test
     public void setAnschreiben() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setAnschreiben("Anschreiben");
-        assertEquals("Anschreiben",b.getAnschreiben());
+        assertEquals("Anschreiben", b.getAnschreiben());
     }
 
     @Test
     public void getErfahrung() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setErfahrung("Erfahrung");
-        assertEquals("Erfahrung",b.getErfahrung());
+        assertEquals("Erfahrung", b.getErfahrung());
     }
 
     @Test
     public void setErfahrung() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setErfahrung("Erfahrung");
-        assertEquals("Erfahrung",b.getErfahrung());
+        assertEquals("Erfahrung", b.getErfahrung());
     }
 
     @Test
     public void getZertifikat() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setZertifikat("Zert");
-        assertEquals("Zert",b.getZertifikat());
+        assertEquals("Zert", b.getZertifikat());
     }
 
     @Test
     public void setZertifikat() {
         BewerbungCollAtHBRSDTO b = new BewerbungCollAtHBRSDTO();
         b.setZertifikat("Zert");
-        assertEquals("Zert",b.getZertifikat());
+        assertEquals("Zert", b.getZertifikat());
     }
 
     @Test
@@ -103,7 +100,7 @@ public class BewerbungCollAtHBRSDTOTest {
         Student s = new StudentDTO();
         s.setVorname("peter");
         b.setStudent(s);
-        assertEquals("peter",b.getStudent().getVorname());
+        assertEquals("peter", b.getStudent().getVorname());
 
     }
 
@@ -113,7 +110,7 @@ public class BewerbungCollAtHBRSDTOTest {
         Student s = new StudentDTO();
         s.setVorname("peter");
         b.setStudent(s);
-        assertEquals("peter",b.getStudent().getVorname());
+        assertEquals("peter", b.getStudent().getVorname());
     }
 
     @Test
@@ -122,7 +119,7 @@ public class BewerbungCollAtHBRSDTOTest {
         StellenanzeigeDTO s = new StellenanzeigeDTO();
         s.setOrt("koeln");
         b.setStellenanzeige(s);
-        assertEquals("koeln",b.getStellenanzeige().getOrt());
+        assertEquals("koeln", b.getStellenanzeige().getOrt());
     }
 
     @Test
@@ -131,7 +128,7 @@ public class BewerbungCollAtHBRSDTOTest {
         StellenanzeigeDTO s = new StellenanzeigeDTO();
         s.setOrt("koeln");
         b.setStellenanzeige(s);
-        assertEquals("koeln",b.getStellenanzeige().getOrt());
+        assertEquals("koeln", b.getStellenanzeige().getOrt());
     }
 
     @Test
@@ -140,7 +137,7 @@ public class BewerbungCollAtHBRSDTOTest {
         Arbeitgeber a = new Arbeitgeber();
         a.setUnternehmen("Microsoft");
         b.setArbeitgeber(a);
-        assertEquals("Microsoft",b.getArbeitgeber().getUnternehmen());
+        assertEquals("Microsoft", b.getArbeitgeber().getUnternehmen());
     }
 
     @Test
@@ -149,7 +146,7 @@ public class BewerbungCollAtHBRSDTOTest {
         Arbeitgeber a = new Arbeitgeber();
         a.setUnternehmen("Microsoft");
         b.setArbeitgeber(a);
-        assertEquals("Microsoft",b.getArbeitgeber().getUnternehmen());
+        assertEquals("Microsoft", b.getArbeitgeber().getUnternehmen());
     }
 
     @Test

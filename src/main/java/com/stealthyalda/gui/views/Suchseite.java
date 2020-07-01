@@ -12,10 +12,10 @@ import com.stealthyalda.services.util.OrtService;
 import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.event.ShortcutAction;
+import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FileResource;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
@@ -27,11 +27,7 @@ import java.util.List;
 
 public class Suchseite extends VerticalLayout implements View {
 
-    //public static final String CLASSNAME = "SUCHSEITE";
-
-
-    private final transient StellenanzeigeDTO selected = null;
-    private List<StellenanzeigeDTO> liste = null;
+    private transient List<StellenanzeigeDTO> liste = null;
 
     public void setUp() {
         Benutzer user = (Benutzer) VaadinSession.getCurrent().getAttribute(Roles.CURRENTUSER);
@@ -40,10 +36,8 @@ public class Suchseite extends VerticalLayout implements View {
         setMargin(true);
         HorizontalLayout horizon = new HorizontalLayout();
 
-        Button button = new Button("Jobs finden", FontAwesome.SEARCH);
+        Button button = new Button("Jobs finden", VaadinIcons.SEARCH);
         button.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        //button.setPrimaryStyleName(CLASSNAME + "-suchen");
-
 
         ComboBox<String> search = new ComboBox<>();
         search.setPlaceholder("Jobtitel, Unternehmen, ... ");
@@ -71,10 +65,6 @@ public class Suchseite extends VerticalLayout implements View {
             Panel sucheLayout = new Panel();
             String ort = searchort.getValue();
             String titel = search.getValue();
-            /*if (ort.equals("") && titel.equals("")) {
-                Notification.show("FEHLER", "Bitte Ort oder Jobtitel/Unternehmen eingeben!", Notification.Type.WARNING_MESSAGE);
-            }
-            else {*/
             if (titel != null) {
                 if (ort != null)
                     liste = SucheEinfach.getInstance().getStellenanzeigeByLocationAndJobTitelOrUnternehment(titel, ort);
@@ -101,9 +91,8 @@ public class Suchseite extends VerticalLayout implements View {
     public Panel printergebnis(List<StellenanzeigeDTO> liste) {
         VerticalLayout scrollableLayout = new VerticalLayout();
         Panel main = new Panel();
-        if (liste.size() != 0) {
-            for (int i = 0; i < liste.size(); i++) {
-                StellenanzeigeDTO suche = liste.get(i);
+        if (!liste.isEmpty()) {
+            for (StellenanzeigeDTO suche : liste) {
                 HorizontalLayout article = new HorizontalLayout();
                 String basepath = VaadinService.getCurrent().getBaseDirectory().getAbsolutePath();
                 FileResource resource = new FileResource(new File(basepath +
@@ -140,11 +129,6 @@ public class Suchseite extends VerticalLayout implements View {
                 info.setHeight("60px");
 
                 titelbeschreibung.addComponent(info);
-
-            /*Label sbeschreibung = new Label(suche.getBeschreibung(), ContentMode.PREFORMATTED);
-            sbeschreibung.setHeight("80px");
-            sbeschreibung.setWidth("875px");
-            titelbeschreibung.addComponent(sbeschreibung);*/
 
                 article.addComponent(titelbeschreibung);
                 article.setComponentAlignment(titelbeschreibung, Alignment.TOP_CENTER);

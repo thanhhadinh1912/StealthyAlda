@@ -43,6 +43,7 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
         TextArea jobExperience = new TextArea("Job Erfahrungen:");
         jobExperience.setWidth(PX_700);
         jobExperience.setHeight("200px");
+        jobExperience.setValue(c.printJoberfahrung(StudentDAO.getInstance().getStudent(user.getId())));
         vartical1.addComponent(jobExperience);
         vartical1.setComponentAlignment(jobExperience, Alignment.MIDDLE_CENTER);
 
@@ -52,7 +53,7 @@ public class ProfilVerwaltenStudent extends ProfilVerwalten {
 
         TextArea hobby = new TextArea("Hobbys");
         hobby.setWidth("325px");
-        c.printHobby(user);
+        hobby.setValue(c.printHobby(user));
         horizon2.addComponent(hobby);
         horizon2.setComponentAlignment(hobby, Alignment.MIDDLE_LEFT);
 

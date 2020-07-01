@@ -12,7 +12,7 @@ public class SearchArbeitgeberServiceOhneBewerbung {
 
     public SearchArbeitgeberServiceOhneBewerbung(Arbeitgeber a) {
         SearchArbeitgeberServiceOhneBewerbung.a = a;
-        liste = SearchDAO.getInstance().getStellenanzeigeFürArbeitgeber(a);
+        liste = SearchDAO.getInstance().getStellenanzeigeFuerArbeitgeber(a);
     }
 
 

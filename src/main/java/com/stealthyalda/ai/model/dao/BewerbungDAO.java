@@ -31,12 +31,11 @@ public class BewerbungDAO extends AbstractDAO {
 
     public boolean createBewerbung(Stellenanzeige a, BewerbungCollAtHBRSDTO b, Student s) {
         String sql = "INSERT INTO stealthyalda.bewerbung(bewerbung_id, student_id, stellenanzeige_id, status, anschreiben, erfahrung, zeugnisse, datum) VALUES (default,?,?,?,?,?,?,?)";
-        PreparedStatement statement = this.getPreparedStatement(sql);
 
 
-        try {
-            statement.setInt(1, s.getStudentId());
-            statement.setInt(2, a.getStellenanzeigeID());
+        try (PreparedStatement statement = this.getPreparedStatement(sql)) {
+            statement.setInt(1, a.getStellenanzeigeID());
+            statement.setInt(2, s.getStudentId());
             statement.setString(3, "gesendet");
             statement.setString(4, b.getAnschreiben());
             statement.setString(5, b.getErfahrung());
@@ -109,11 +108,10 @@ public class BewerbungDAO extends AbstractDAO {
                 bewerbung.setStellenanzeige(st);
                 liste.add(bewerbung);
             }
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
         } catch (SQLException | DatabaseException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            closeResultset(rs);
         }
         return liste;
 
@@ -155,11 +153,10 @@ public class BewerbungDAO extends AbstractDAO {
                 bewerbung.setStellenanzeige(st);
                 liste.add(bewerbung);
             }
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.INFO, null, rs);
         } catch (SQLException | DatabaseException e) {
-            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, e.getMessage(), e);
         } finally {
-            com.stealthyalda.ai.model.dao.AbstractDAO.closeResultset(rs);
+            closeResultset(rs);
         }
         return liste;
 

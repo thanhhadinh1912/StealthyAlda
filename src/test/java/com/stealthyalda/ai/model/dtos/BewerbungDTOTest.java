@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class BewerbungDTOTest {
 
     BewerbungCollAtHBRSDTO bewerb;
+
     @Before
     public void setUp() {
         bewerb = new BewerbungCollAtHBRSDTO();
@@ -33,6 +33,7 @@ public class BewerbungDTOTest {
         bewerb.setStellenanzeige(st);
         bewerb.setDatum(datum);
     }
+
     @Test
     public void getTest() {
         Assertions.assertEquals("gesendet", bewerb.getStatus());
@@ -44,7 +45,7 @@ public class BewerbungDTOTest {
         Assertions.assertEquals("StealthyAlda", bewerb.getArbeitgeber().getUnternehmen());
         Assertions.assertEquals("Test", bewerb.getStellenanzeige().getTitel());
         Assertions.assertEquals(1, bewerb.getId());
-        Assertions.assertSame(null,bewerb.getDatum());
+        Assertions.assertSame(null, bewerb.getDatum());
     }
 
 }

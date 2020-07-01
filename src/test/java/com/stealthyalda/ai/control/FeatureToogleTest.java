@@ -1,4 +1,5 @@
 package com.stealthyalda.ai.control;
+
 import com.stealthyalda.ai.control.exceptions.DatabaseException;
 import org.junit.Test;
 

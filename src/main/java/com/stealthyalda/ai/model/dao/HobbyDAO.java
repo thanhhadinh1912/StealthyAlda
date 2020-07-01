@@ -110,7 +110,7 @@ public class HobbyDAO extends AbstractDAO {
             }
             idKeys = statement.getGeneratedKeys();
             if (idKeys.next()) {
-                int hobbyId = idKeys.getInt(1);
+                int hobbyId = idKeys.getInt(2);
                 insertStudentHatHobby(s.getStudentId(), hobbyId);
             } else {
                 throw new SQLException("Funny, we didn't get a hobby ID back :O");
@@ -131,7 +131,8 @@ public class HobbyDAO extends AbstractDAO {
     private void insertStudentHatHobby(int studId, int hobbyId) {
         String sql2 = "INSERT INTO stealthyalda.student_hat_hobby(student_id, hobby_id) VALUES(?,?);";
         try (PreparedStatement statement2 = this.getPreparedStatement(sql2)) {
-            statement2.setInt(studId, hobbyId);
+            statement2.setInt(1, studId);
+            statement2.setInt(2, hobbyId);
             statement2.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(HobbyDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);

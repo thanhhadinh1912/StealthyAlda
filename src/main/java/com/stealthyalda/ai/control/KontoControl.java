@@ -14,7 +14,7 @@ public class KontoControl {
     }
 
     public boolean changekonto(String email, String altpassword, String neupassword) {
-        Boolean check = false;
+        boolean check = false;
         if (altpassword.equals(neupassword)) {
             return check; // ;)
         }

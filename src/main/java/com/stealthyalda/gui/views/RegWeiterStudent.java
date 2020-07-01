@@ -15,10 +15,12 @@ import com.stealthyalda.gui.components.TextFieldForRegWeiter;
 import com.stealthyalda.gui.components.TopPanelStartSeite;
 import com.stealthyalda.gui.ui.MyUI;
 import com.stealthyalda.gui.windows.ConfirmReg;
+import com.stealthyalda.services.util.Roles;
 import com.stealthyalda.services.util.Views;
 import com.vaadin.data.validator.RegexpValidator;
 import com.vaadin.data.validator.StringLengthValidator;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.themes.ValoTheme;
@@ -31,8 +33,9 @@ import java.util.logging.Logger;
  */
 public class RegWeiterStudent extends Register {
     private static final String WIDTH = "500px";
-    private final String w = "250px";
-    private final String w2 = "230px";
+    private static final String WIDTH_250_PX = "250px";
+    private static final String WIDTH_230_PX = "230px";
+    private static final String WIDTH_515_PX = "515px";
     transient Benutzer user = ((MyUI) UI.getCurrent()).getBenutzer();
 
     public void setUp() {
@@ -51,12 +54,12 @@ public class RegWeiterStudent extends Register {
         haupt.addComponent(userAnrede);
 
         HorizontalLayout hl1 = new HorizontalLayout();
-        hl1.setWidth("515px");
-        final TextFieldForRegWeiter vorname = new TextFieldForRegWeiter("Vorname", w);
+        hl1.setWidth(WIDTH_515_PX);
+        final TextFieldForRegWeiter vorname = new TextFieldForRegWeiter("Vorname", WIDTH_250_PX);
         hl1.addComponent(vorname);
         hl1.setComponentAlignment(vorname, Alignment.MIDDLE_LEFT);
 
-        final TextFieldForRegWeiter nachname = new TextFieldForRegWeiter("Nachname", w2);
+        final TextFieldForRegWeiter nachname = new TextFieldForRegWeiter("Nachname", WIDTH_230_PX);
         hl1.addComponent(nachname);
         hl1.setComponentAlignment(nachname, Alignment.MIDDLE_RIGHT);
 
@@ -69,26 +72,26 @@ public class RegWeiterStudent extends Register {
         /// start edits
         HorizontalLayout streetNr = new HorizontalLayout();
         streetNr.setSpacing(true);
-        streetNr.setWidth("515px");
+        streetNr.setWidth(WIDTH_515_PX);
 
 
-        final TextFieldForRegWeiter strasse = new TextFieldForRegWeiter("Straße", w);
+        final TextFieldForRegWeiter strasse = new TextFieldForRegWeiter("Straße", WIDTH_250_PX);
         streetNr.addComponent(strasse);
 
 
-        final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", w2);
+        final TextFieldForRegWeiter nummer = new TextFieldForRegWeiter("Hausnr.", WIDTH_230_PX);
         streetNr.addComponent(nummer);
         streetNr.setComponentAlignment(nummer, Alignment.MIDDLE_RIGHT);
 
         final HorizontalLayout plzort = new HorizontalLayout();
-        plzort.setWidth("515px");
+        plzort.setWidth(WIDTH_515_PX);
 
-        final TextFieldForRegWeiter plz = new TextFieldForRegWeiter("PLZ", w);
+        final TextFieldForRegWeiter plz = new TextFieldForRegWeiter("PLZ", WIDTH_250_PX);
         plzort.addComponent(plz);
 
         haupt.addComponent(streetNr);
 
-        final TextFieldForRegWeiter ort = new TextFieldForRegWeiter("Ort", w2);
+        final TextFieldForRegWeiter ort = new TextFieldForRegWeiter("Ort", WIDTH_230_PX);
         plzort.addComponent(ort);
         plzort.setComponentAlignment(ort, Alignment.MIDDLE_RIGHT);
 
@@ -158,7 +161,10 @@ public class RegWeiterStudent extends Register {
                 } catch (Exception e) {
                     Logger.getLogger(RegWeiterStudent.class.getName()).log(Level.SEVERE, e.getMessage(), e);
                 }
-                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!", Views.LOGIN);
+                user = null;
+                ConfirmReg window = new ConfirmReg("Registrierung abgeschlossen!", Views.STARTSEITE);
+                ((MyUI) UI.getCurrent()).setBenutzer(user);
+                VaadinSession.getCurrent().setAttribute(Roles.CURRENTUSER, null);
                 UI.getCurrent().addWindow(window);
             } else {
                 Notification.show(FEHLER, "Beachten Sie die Hinweise neben den Feldern!", Notification.Type.ERROR_MESSAGE);

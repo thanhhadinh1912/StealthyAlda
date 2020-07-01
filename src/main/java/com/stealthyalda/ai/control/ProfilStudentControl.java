@@ -37,8 +37,8 @@ public class ProfilStudentControl {
     public String printSoftskill(Benutzer user) {
         StringBuilder print = new StringBuilder();
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
-        for (int i = 0; i < liste.size(); ++i) {
-            print.append(liste.get(i).getSoftskill());
+        for (Softskill softskill : liste) {
+            print.append(softskill.getSoftskill());
             print.append("\n");
         }
         return print.toString();
@@ -47,8 +47,8 @@ public class ProfilStudentControl {
     public String printJoberfahrung(Student s) {
         StringBuilder print = new StringBuilder();
         List<JoberfahrungDTO> liste = JoberfahrungDAO.getInstance().getJoberfahrungsForStudent(s);
-        for (int i = 0; i < liste.size(); ++i) {
-            print.append(liste.get(i).getJoberfahrung());
+        for (JoberfahrungDTO joberfahrungDTO : liste) {
+            print.append(joberfahrungDTO.getJoberfahrung());
             print.append("\n");
         }
         return print.toString();
@@ -57,8 +57,8 @@ public class ProfilStudentControl {
     public String printHobby(Benutzer user) {
         StringBuilder print = new StringBuilder();
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
-        for (int i = 0; i < liste.size(); ++i) {
-            print.append(liste.get(i).getHobby());
+        for (Hobby hobby : liste) {
+            print.append(hobby.getHobby());
             print.append("\n");
         }
         return print.toString();
@@ -70,11 +70,11 @@ public class ProfilStudentControl {
             listStr.addAll(Arrays.asList(input.split("\n")));
             List<Hardskill> liste = HardskillDAO.getInstance().getHardskillsForUser(user);
             Student s = StudentDAO.getInstance().getStudent(user.getId());
-            for (int i = 0; i < liste.size(); ++i) {
-                HardskillDAO.getInstance().deleteHardskillForUser(liste.get(i).getHardskillId(), s);
+            for (Hardskill item : liste) {
+                HardskillDAO.getInstance().deleteHardskillForUser(item.getHardskillId(), s);
             }
-            for (int i = 0; i < listStr.size(); ++i) {
-                Hardskill hardskill = new Hardskill(listStr.get(i));
+            for (String value : listStr) {
+                Hardskill hardskill = new Hardskill(value);
                 HardskillDAO.getInstance().createHardskillForUser(hardskill, s);
             }
             return true;
@@ -90,12 +90,12 @@ public class ProfilStudentControl {
         softSkillsList.addAll(Arrays.asList(input.split("\n")));
         List<Softskill> liste = SoftskillDAO.getInstance().getSoftskillsForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
-        for (int i = 0; i < liste.size(); ++i) {
-            SoftskillDAO.getInstance().deleteSoftskillsForUser(liste.get(i).getSoftskillId(), s);
+        for (Softskill value : liste) {
+            SoftskillDAO.getInstance().deleteSoftskillsForUser(value.getSoftskillId(), s);
         }
-        for (int i = 0; i < softSkillsList.size(); ++i) {
+        for (String value : softSkillsList) {
             Softskill softskill = new Softskill();
-            softskill.setSoftskill(softSkillsList.get(i));
+            softskill.setSoftskill(value);
             SoftskillDAO.getInstance().createSoftskillForUser(softskill, s);
         }
 
@@ -106,12 +106,12 @@ public class ProfilStudentControl {
         hobbiesListe.addAll(Arrays.asList(input.split("\n")));
         List<Hobby> liste = HobbyDAO.getInstance().getHobbysForUser(user);
         Student s = StudentDAO.getInstance().getStudent(user.getId());
-        for (int i = 0; i < liste.size(); ++i) {
-            HobbyDAO.getInstance().deleteHobbysForUser(liste.get(i).getHobbyId(), s);
+        for (Hobby value : liste) {
+            HobbyDAO.getInstance().deleteHobbysForUser(value.getHobbyId(), s);
         }
-        for (int i = 0; i < hobbiesListe.size(); ++i) {
+        for (String value : hobbiesListe) {
             Hobby hobby = new Hobby();
-            hobby.setHobby(hobbiesListe.get(i));
+            hobby.setHobby(value);
             HobbyDAO.getInstance().createHobbyForUser(hobby, s);
         }
 
@@ -135,12 +135,12 @@ public class ProfilStudentControl {
         experience.addAll(Arrays.asList(joberfahrung.split("\n")));
         Student s = StudentDAO.getInstance().getStudent(user.getId());
         List<JoberfahrungDTO> liste = JoberfahrungDAO.getInstance().getJoberfahrungsForStudent(s);
-        for (int i = 0; i < liste.size(); ++i) {
-            JoberfahrungDAO.getInstance().deleteJoberfahrungForUser(liste.get(i).getJoberfahrungId(), s);
+        for (JoberfahrungDTO joberfahrungDTO : liste) {
+            JoberfahrungDAO.getInstance().deleteJoberfahrungForUser(joberfahrungDTO.getJoberfahrungId(), s);
         }
-        for (int i = 0; i < experience.size(); ++i) {
+        for (String value : experience) {
             JoberfahrungDTO je = new JoberfahrungDTO();
-            je.setJoberfahrung(experience.get(i));
+            je.setJoberfahrung(value);
             JoberfahrungDAO.getInstance().createJoberfahrungForUser(je, s);
         }
 

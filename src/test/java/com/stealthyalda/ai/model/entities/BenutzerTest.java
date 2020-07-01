@@ -11,17 +11,17 @@ public class BenutzerTest {
 
     private Benutzer benutzer;
 
-    private int adresseId = 10;
-    private String email = "hanspeter@gmail.com";
-    private String passwort = "hallo12345";
+    private final int adresseId = 10;
+    private final String email = "hanspeter@gmail.com";
+    private final String passwort = "hallo12345";
     //private String telefonnummer = null;
-    private int id = 1;
-    private String anrede = "Herr";
-   private String role = "Projektmanager";
+    private final int id = 1;
+    private final String anrede = "Herr";
+    private final String role = "Projektmanager";
     private Adresse adresse;
 
     @Before
-    public void setup(){
+    public void setup() {
         benutzer = new Benutzer();
         benutzer.setAdresseId(adresseId);
         benutzer.setEmail(email);
@@ -32,8 +32,9 @@ public class BenutzerTest {
         benutzer.setRole(role);
         benutzer.setAdresse(adresse);
     }
+
     @Test
-    public void testget(){
+    public void testget() {
 
         assertEquals(adresseId, benutzer.getAdresseId());
         assertNotNull(benutzer.getAdresseId());
@@ -44,8 +45,6 @@ public class BenutzerTest {
         assertEquals(anrede, benutzer.getAnrede());
         assertEquals(role, benutzer.getRole());
         assertEquals(adresse, benutzer.getAdresse());
-
-
 
 
     }

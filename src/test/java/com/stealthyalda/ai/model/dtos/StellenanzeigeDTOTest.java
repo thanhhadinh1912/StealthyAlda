@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class StellenanzeigeDTOTest {
 
+    StellenanzeigeDTO stellenanzeigeDTO;
     private int stellenanzeigeID;
     private String titel;
     private String beschreibung;
@@ -19,12 +20,11 @@ public class StellenanzeigeDTOTest {
     private LocalDate datum;
     private int arbeitgeberID;
     private String ort;
-    private List<Anforderung> anforderungs ;
+    private List<Anforderung> anforderungs;
     private Arbeitgeber unternehmen;
-    StellenanzeigeDTO stellenanzeigeDTO;
 
     @Before
-    public void setup(){
+    public void setup() {
         anforderungs = new ArrayList<>();
         stellenanzeigeDTO = new StellenanzeigeDTO();
         stellenanzeigeDTO.setOrt("Bonn");
@@ -50,14 +50,14 @@ public class StellenanzeigeDTOTest {
     }
 
     @Test
-    public void getStellenanzeige(){
-        assertTrue(anforderungs.size()==2);
-        assertEquals(stellenanzeigeDTO.getStellenanzeigeID(),100);
+    public void getStellenanzeige() {
+        assertTrue(anforderungs.size() == 2);
+        assertEquals(stellenanzeigeDTO.getStellenanzeigeID(), 100);
         assertNotNull(stellenanzeigeDTO.getUnternehmen().getArbeitgeberId());
         assertEquals(stellenanzeigeDTO.getUnternehmen().getUnternehmen(), "Test");
-        assertEquals(stellenanzeigeDTO.getOrt(),"Bonn");
+        assertEquals(stellenanzeigeDTO.getOrt(), "Bonn");
         assertEquals("Test", stellenanzeigeDTO.getTitel());
-        assertEquals("Offen",stellenanzeigeDTO.getStatus());
+        assertEquals("Offen", stellenanzeigeDTO.getStatus());
         assertEquals("Beschreibung", stellenanzeigeDTO.getBeschreibung());
         assertEquals("Test", stellenanzeigeDTO.getArbeitgeber());
     }
