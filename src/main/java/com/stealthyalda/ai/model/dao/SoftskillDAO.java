@@ -144,7 +144,6 @@ public class SoftskillDAO extends AbstractDAO {
         } catch (SQLException ex) {
             Logger.getLogger(SoftskillDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             return false;
-            //throw new IllegalStateException();
         }
     }
 }
