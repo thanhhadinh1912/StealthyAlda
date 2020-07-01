@@ -31,7 +31,7 @@ public class StellenanzeigeK extends Window {
             BewerbungWindow window = new BewerbungWindow(stellenanzeige);
             UI.getCurrent().addWindow(window);
         });
-        bewerben.setWidth("150px");
+        //bewerben.setWidth("170px");
         try {
             if (new ToogleRouter().isEnabled("bewerbung")) {
                 button.addComponent(bewerben);
